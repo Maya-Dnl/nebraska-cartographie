@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "nebraska-cartographie": {
+      "hosting": {
+        "nebraska-cartographie": [
+          "nebraska-cartographie"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "nebraska-cartographie"
+  }
+}
