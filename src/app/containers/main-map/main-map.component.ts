@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './main-map.component.scss'
 })
 export class MainMapComponent {
-
+  showFiller = false
+  opened = true;
 }
