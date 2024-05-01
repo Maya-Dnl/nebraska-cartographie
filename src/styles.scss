@@ -36,6 +36,7 @@ $nebraska-cartographie-theme: mat.define-light-theme((
 @include mat.all-component-themes($nebraska-cartographie-theme);
 
 body {
+  height: 100%;
   margin: 0;
   font-family: "Happy Monkey", system-ui;
 }

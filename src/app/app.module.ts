@@ -23,8 +23,11 @@ import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { HomeComponent } from './containers/home/home.component';
-import { MainMapComponent } from './components/main-map/main-map.component';
+import { MainMapComponent } from './containers/main-map/main-map.component';
 import { HeadBarComponent } from './components/head-bar/head-bar.component';
+import { MapComponent } from './components/map/map.component';
+import { DetailsBuildingComponent } from './components/details-building/details-building.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -61,12 +64,15 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AppComponent,
     HomeComponent,
     MainMapComponent,
-    HeadBarComponent
+    HeadBarComponent,
+    MapComponent,
+    DetailsBuildingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
+    LeafletModule,
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
