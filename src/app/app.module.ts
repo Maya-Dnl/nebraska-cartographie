@@ -15,11 +15,16 @@ import {
 } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule} from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { environment } from '../environments/environment';
 import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { HomeComponent } from './containers/home/home.component';
+import { MainMapComponent } from './components/main-map/main-map.component';
+import { HeadBarComponent } from './components/head-bar/head-bar.component';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -53,13 +58,18 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    MainMapComponent,
+    HeadBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
