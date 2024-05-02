@@ -1,0 +1,55 @@
+#logo img {
+  height: 70px;
+  margin: 10px 0px 10px 15px;
+}
+
+.mat-toolbar {
+  background-image: url("/assets/images/nebraska-nav-bar-maison-teophile.jpg");
+  background-position: 180px 0;
+  height: 100px;
+  box-shadow: -1px 10px 20px 0px rgba(0,0,0,0.60);
+}
+
+.overlay-gradient-navbar {
+  background: linear-gradient(to right, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.010) 20%, rgba(0,0,0,0.010) 80%, rgba(0,0,0,0.70) 100%);
+}
+
+.mat-toolbar-row {
+  height: 100px;
+}
+.title-bar {
+  justify-content: center;
+  h1 {
+    font-size: 28px;
+  }
+}
+
+.navbar-container-left {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 100px;
+  width: 50%;
+}
+
+.navbar-container-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+
+  width: 50%;
+  padding: 0px 15px;
+}
+
+.account-profil mat-icon {
+  width: auto;
+  height: 100%;
+  font-size: 48px;
+  color: white;
+}
+
+// .account-profil mat-icon {
+//   width: 50px;
+//   height: 50px;
+// }

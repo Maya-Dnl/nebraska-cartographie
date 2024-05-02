@@ -1,0 +1,20 @@
+<div class="details-building-container">
+  <div class="carousel">
+    <ng-image-slider
+      [images]="imageObject"
+      [infinite]="true"
+      [manageImageRatio]="false"
+      [imageSize]="imageSizeObject"
+      [autoSlide]="autoSlideObject"
+      [showArrow]="false" #nav>
+    </ng-image-slider>
+    <div class="carousel-overlay">
+      <div class="overlay-gradient-carousel previous">
+        <div class="btn-slider-custom previous" (click)="prevImageClick()"><mat-icon>chevron_left</mat-icon></div>
+      </div>
+      <div class="overlay-gradient-carousel next">
+        <div class="btn-slider-custom next" (click)="nextImageClick()"><mat-icon>navigate_next</mat-icon></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,11 +15,22 @@ import {
 } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule} from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { NgImageSliderModule } from 'ng-image-slider';
 import { environment } from '../environments/environment';
 import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { HomeComponent } from './containers/home/home.component';
+import { MainMapComponent } from './containers/main-map/main-map.component';
+import { HeadBarComponent } from './components/head-bar/head-bar.component';
+import { MapComponent } from './components/map/map.component';
+import { DetailsBuildingComponent } from './components/details-building/details-building.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -53,13 +64,24 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    MainMapComponent,
+    HeadBarComponent,
+    MapComponent,
+    DetailsBuildingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
+    LeafletModule,
     MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatButtonModule,
+    NgImageSliderModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
