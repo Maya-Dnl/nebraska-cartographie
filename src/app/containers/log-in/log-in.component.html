@@ -1,0 +1,67 @@
+<div class="log-in-container">
+  <div class="form-log-in-container">
+    <div class="input-title">E-mail</div>
+    <mat-form-field>
+      <input matInput placeholder="construction@exemple.com" [formControl]="email" required>
+        <mat-error *ngIf="email.hasError('required')">Email est requis</mat-error>
+        <mat-error *ngIf="email.hasError('email')">Email invalide</mat-error>
+      <!-- @if (email.invalid) {
+      <mat-error>{{errorMessage}}</mat-error>
+      } -->
+    </mat-form-field>
+
+    <div class="manage-connexion-mode" [ngSwitch]="connexionMode">
+      <div class="btn-custom continue" *ngSwitchCase="0">
+        <button mat-flat-button (click)="checkEmail()" [disabled]="email.invalid">Continuer</button>
+      </div>
+      <div class="manage-mdp" *ngSwitchCase="1">
+        <div class="input-title">Mot de passe</div>
+        <mat-form-field>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" class="password-input" [formControl]="password" placeholder="********">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="password.hasError('required')">Le mot de passe est requis</mat-error>
+          <!-- <mat-error *ngIf="password.hasError('minlength')">Le mot de passe doit contenir au moins 8 caracteres</mat-error> -->
+          <!-- {{password.errors | json }} -->
+        </mat-form-field>
+        <div class="btn-custom connexion">
+          <button mat-flat-button>Se connecter</button>
+        </div>
+        <p class="btn-custom missing-mdp">Mot de passe oublié ?</p>
+      </div>
+      <div *ngSwitchCase="2">
+        <form [formGroup]="registerForm">
+        <div class="input-title">Mot de passe</div>
+        <mat-form-field>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" class="password-input" formControlName="passwordSubscribe" placeholder="********">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="registerForm.get('passwordSubscribe')!.hasError('required')">Le mot de passe est requis</mat-error>
+          <mat-error *ngIf="registerForm.get('passwordSubscribe')!.hasError('minlength')">Le mot de passe doit contenir au moins 8 caractères</mat-error>
+
+        </mat-form-field>
+        <div class="input-title">Confirmez votre mot de passe</div>
+        <mat-form-field>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="passwordConfirm" placeholder="********">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="registerForm.get('passwordConfirm')!.hasError('required')">Le mot de passe doit être confirmé</mat-error>
+       
+          <!-- {{registerForm.errors | json }} -->
+        </mat-form-field>
+        <mat-error *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('passwordConfirm')?.dirty" >Les mots de passe doivent être identiques</mat-error>
+        <div class="btn-custom connexion">
+          <button mat-flat-button [disabled]="registerForm.invalid">S'inscrire</button>
+        </div>
+    
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

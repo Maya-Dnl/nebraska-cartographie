@@ -8,19 +8,20 @@
   background-position: 180px 0;
   height: 100px;
   box-shadow: -1px 10px 20px 0px rgba(0,0,0,0.60);
+  padding: 0;
 }
 
 .overlay-gradient-navbar {
+  display: flex;
+  width: 100%;
   background: linear-gradient(to right, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.010) 20%, rgba(0,0,0,0.010) 80%, rgba(0,0,0,0.70) 100%);
 }
 
-.mat-toolbar-row {
-  height: 100px;
-}
 .title-bar {
-  justify-content: center;
+  margin-top: 40px 0 30px 0;
+  text-align: center;
   h1 {
-    font-size: 28px;
+    font-size: 30px;
   }
 }
 

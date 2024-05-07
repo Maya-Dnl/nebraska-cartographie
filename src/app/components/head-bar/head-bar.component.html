@@ -2,22 +2,19 @@
   <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button> -->
-  <div class="overlay-gradient-navbar">
-    <mat-toolbar-row class="top-nav-bar">
+    <div class="overlay-gradient-navbar">
       <div class="navbar-container-left">
-        <div id="logo">
+        <div [routerLink]="['/main-map']" id="logo">
           <img src="assets/images/logo-nebraska.png" alt="logo-nebraska">
         </div>
       </div>
       <div class="navbar-container-right">
-        <div class="account-profil">
+        <a [routerLink]="['/log-in']" class="account-profil">
           <mat-icon>account_circle</mat-icon>
-        </div>
+        </a>
       </div>
-    </mat-toolbar-row>
-  </div>
-
+    </div>
 </mat-toolbar>
-<mat-toolbar-row class="title-bar">
+<div class="title-bar">
   <h1 class="adaptable-title">Recensement des constructions en Paille Porteuse de France</h1>
-</mat-toolbar-row>
+</div>

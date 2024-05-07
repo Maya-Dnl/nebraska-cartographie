@@ -31,6 +31,10 @@ import { HeadBarComponent } from './components/head-bar/head-bar.component';
 import { MapComponent } from './components/map/map.component';
 import { DetailsBuildingComponent } from './components/details-building/details-building.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LogInComponent } from './containers/log-in/log-in.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -69,12 +73,17 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MainMapComponent,
     HeadBarComponent,
     MapComponent,
-    DetailsBuildingComponent
+    DetailsBuildingComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
     LeafletModule,
     MatCardModule,
     MatToolbarModule,
