@@ -6,7 +6,8 @@ import { LogInComponent } from './containers/log-in/log-in.component';
 
 const routes: Routes = [
  {path: "log-in", component: LogInComponent},
- {path: "main-map", component: MainMapComponent}
+ {path: "main-map", component: MainMapComponent},
+ {path: "**", component: MainMapComponent}
 ];
 
 @NgModule({
