@@ -52,6 +52,12 @@ export class BuildingFormComponent {
     numberOfRowsCtrl: [''],
     arrayIntegrationCtrl: [''],
     arrayIntegrationInfosCtrl: [''],
+    natureInkingSupportCtrl: [''],
+    infosNatureInkingSupportCtrl: [''],
+    interiorCoveringCtrl: [''],
+    infosInteriorCoveringCtrl: [''],
+    exteriorCoveringCtrl: [''],
+    infosExteriorCoveringCtrl: ['']
   });
   
   selectWorks = this.formBuilder.group({
