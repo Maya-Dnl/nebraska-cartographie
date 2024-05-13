@@ -1,0 +1,284 @@
+<div class="stepper-container">
+  <mat-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="generalInformationsFormGroup">
+      <form [formGroup]="generalInformationsFormGroup">
+        <ng-template matStepLabel>Informations Générales</ng-template>
+        <div class="building-form-container">
+          <div class="title-and-input-content one large-input">
+            <div class="input-title">Nom de la construction*</div>
+            <mat-form-field>
+              <input matInput placeholder="Maison Libération" formControlName="buildingNameCtrl" required>
+              <mat-error *ngIf="generalInformationsFormGroup.get('buildingNameCtrl')!.hasError('required')">Ce champ est
+                requis</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content two large-input">
+            <div class="input-title">Adresse (facultatif)</div>
+            <mat-form-field>
+              <input matInput placeholder="3 rue des Iris">
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content three large-input">
+            <div class="input-title">Ville ou Commune*</div>
+            <mat-form-field>
+              <input matInput placeholder="38000, Grenoble" formControlName="cityOrTownCtrl" required>
+              <mat-error *ngIf="generalInformationsFormGroup.get('cityOrTownCtrl')!.hasError('required')">Ce champ est
+                requis</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content four large-input">
+            <div class="input-title">Latitude</div>
+            <mat-form-field>
+              <input matInput placeholder="45.16760093978442">
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content five large-input">
+            <div class="input-title">Longitude</div>
+            <mat-form-field>
+              <input matInput placeholder="5.713191260934383">
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content six large-input">
+            <div class="input-title">Usage de la construction*</div>
+            <mat-form-field>
+              <input matInput placeholder="Maison individuelle" formControlName="constructionUseCtrl" required>
+              <mat-error *ngIf="generalInformationsFormGroup.get('constructionUseCtrl')!.hasError('required')">Ce champ
+                est requis</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content seven large-input">
+            <div class="input-title">Infos sur l’usage</div>
+            <mat-form-field>
+              <input matInput
+                placeholder="Maison d’architecte construite en plein coeur de Grenoble, habitation particulier.">
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content eight large-input">
+            <div class="input-title">Coût total des travaux TTC (hors études...)*</div>
+            <mat-form-field>
+              <input matInput placeholder="180 000€" formControlName="totalCostOfWorkCtrl" required>
+              <mat-error *ngIf="generalInformationsFormGroup.get('totalCostOfWorkCtrl')!.hasError('required')">Ce champ
+                est requis</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content nine large-input">
+            <div class="input-title">Surface de la construction en m²*</div>
+            <mat-form-field>
+              <input matInput placeholder="82m²" formControlName="buildingSurfaceCtrl" required>
+              <mat-error *ngIf="generalInformationsFormGroup.get('buildingSurfaceCtrl')!.hasError('required')">Ce champ
+                est requis</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content ten large-input">
+            <div class="input-title">Nombre de niveau (ex: RDC = 1, un étage = 2 niveaux, sous-sol non compté)*</div>
+            <mat-form-field>
+              <input matInput placeholder="2" formControlName="numberOfLevelsCtrl" required>
+              <mat-error *ngIf="generalInformationsFormGroup.get('numberOfLevelsCtrl')!.hasError('required')">Ce champ
+                est requis</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="btn-custom next">
+          <button mat-button matStepperNext (click)="checkFormStepOne()">Suivant</button>
+          <!-- <mat-error *ngIf="generalInformationsFormGroup.valid!.hasError('required')">Ce champ est requis</mat-error> -->
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="constructionWorksFormGroup" label="Travaux / Construction">
+      <form [formGroup]="constructionWorksFormGroup">
+        <div class="construction-works-container">
+          <!-- <div class="title-and-input-content eleven large-input"> -->
+          <section class="checkbox-section" [formGroup]="selectWorks">
+            <div class="input-title">Nature des travaux :*</div>
+            <p><mat-checkbox formControlName="neuf">Neuf</mat-checkbox></p>
+            <p><mat-checkbox formControlName="extension">Extension</mat-checkbox></p>
+            <p><mat-checkbox formControlName="renovation">Rénovation</mat-checkbox></p>
+            <p><mat-checkbox formControlName="isolationExt">Isolation thermique extérieure</mat-checkbox></p>
+            <p><mat-checkbox formControlName="isolationInt">Isolation thermique intérieure</mat-checkbox></p>
+          </section>
+          <div class="grid-container">
+            <div class="title-and-input-content twelve large-input">
+              <div class="input-title">Début des travaux*</div>
+              <mat-form-field>
+                <mat-label>Choisir une date de début</mat-label>
+                <input matInput [matDatepicker]="pickerStart" formControlName="startDateCtrl" required>
+                <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                <mat-datepicker #pickerStart></mat-datepicker>
+                <mat-error *ngIf="constructionWorksFormGroup.get('startDateCtrl')!.hasError('required')">Ce champ est
+                  requis</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content thirteen large-input">
+              <div class="input-title">Achèvement des travaux*</div>
+              <mat-form-field>
+                <mat-label>Choisir une date de fin</mat-label>
+                <input matInput [matDatepicker]="pickerEnd" formControlName="endDateCtrl" required>
+                <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEnd></mat-datepicker>
+                <mat-error *ngIf="constructionWorksFormGroup.get('endDateCtrl')!.hasError('required')">Ce champ est
+                  requis</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content fourteen large-input">
+              <div class="input-title">Taille des bottes de paille</div>
+              <mat-form-field>
+                <input matInput placeholder="36 x 46 x 70 à 120" formControlName="strawBaleSizeCtrl">
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content fifteen large-input">
+              <div class="input-title">Infos sur la taille des bottes</div>
+              <mat-form-field>
+                <input matInput placeholder="Plus d'informations sur la taille des bottes"
+                  formControlName="strawBaleInfosCtrl">
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content sixteen large-input">
+              <div class="input-title">Bottes, densité sur base sèche (kg/m³)</div>
+              <mat-form-field>
+                <input matInput placeholder="95" formControlName="strawBaleDensityCtrl">
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content seventeen large-input">
+              <div class="input-title">Céréales utilisés dans la botte*</div>
+              <mat-form-field>
+                <input matInput placeholder="Blé" formControlName="cerealsUsedCtrl" required>
+                <mat-error *ngIf="constructionWorksFormGroup.get('cerealsUsedCtrl')!.hasError('required')">Ce champ est
+                  requis</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content eighteen large-input">
+               <div class="input-title">Chantier en Autoconstruction*</div>
+              <mat-form-field>
+                <input type="text" placeholder="Non" matInput [formControl]="selfConstruction" [matAutocomplete]="autoSelfConstruction"
+                  formControlName="selfConstruction" required>
+                <mat-autocomplete #autoSelfConstruction="matAutocomplete">
+                  @for (option of options; track option) {
+                  <mat-option [value]="option">{{option}}</mat-option>
+                  }
+                </mat-autocomplete>
+                <mat-error *ngIf="constructionWorksFormGroup.get('selfConstruction')!.hasError('required')">Ce champ est
+                  requis</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content nineteen large-input">
+              <div class="input-title">Chantier Participatif*</div>
+              <mat-form-field>
+                <input type="text" placeholder="Non" matInput [formControl]="participatoryConstruction"
+                  [matAutocomplete]="autoParticipatoryConstruction" formControlName="participatoryConstruction" required>
+                <mat-autocomplete #autoParticipatoryConstruction="matAutocomplete">
+                  @for (option of options; track option) {
+                  <mat-option [value]="option">{{option}}</mat-option>
+                  }
+                </mat-autocomplete>
+                <mat-error *ngIf="constructionWorksFormGroup.get('participatoryConstruction')!.hasError('required')">Ce champ est requis</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content twenty large-input">
+              <div class="input-title">Bottes, distance d'approvisionnement (km)</div>
+              <mat-form-field>
+                <input matInput placeholder="75 km" formControlName="supplyDistanceCtrl">
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content twenty-one large-input">
+              <div class="input-title">Structure complémentaire à la structure en paille porteuse (poteau, mur de refend, …)</div>
+              <mat-form-field>
+                <input type="text" placeholder="Non" matInput [formControl]="complementaryStructure" [matAutocomplete]="autoComplementaryStructure" formControlName="complementaryStructure" required>
+                <mat-autocomplete #autoComplementaryStructure="matAutocomplete">
+                  @for (optionTwo of optionsTwo; track optionTwo) {
+                  <mat-option [value]="optionTwo">{{optionTwo}}</mat-option>
+                  }
+                </mat-autocomplete>
+                <mat-error *ngIf="constructionWorksFormGroup.get('complementaryStructure')!.hasError('required')">Ce champ est requis</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content twenty-two large-input">
+              <div class="input-title">Nature de la structure complémentaire</div>
+              <mat-form-field>
+                <input matInput placeholder="Bois" formControlName="natureComplementaryStructureCtrl">
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content twenty-three large-input">
+              <div class="input-title">Infos nature de la structure complémentaire</div>
+              <mat-form-field>
+                <input matInput placeholder="Plus d'informations ?" formControlName="infosNatureComplementaryStructureCtrl">
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content twenty-four large-input">
+              <div class="input-title">Longueur maximum sans mur de refend (mètre)</div>
+              <mat-form-field>
+                <input matInput placeholder="10 m" formControlName="shearWallLengthCtrl">
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content twenty-five large-input">
+              <div class="input-title">Note de calcul</div>
+              <mat-form-field>
+                <input matInput placeholder="" formControlName="calculationNoteCtrl">
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content twenty-six large-input">
+              <div class="input-title">Nombre de rangs de bottes</div>
+              <mat-form-field>
+                <input matInput placeholder="7" formControlName="numberOfRowsCtrl">
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content twenty-seven large-input">
+              <div class="input-title">Intégration des baies</div>
+              <mat-form-field>
+                <input matInput placeholder="Élément fixe (poteau, montant, …)" formControlName="arrayIntegrationCtrl">
+              </mat-form-field>
+            </div>
+            <div class="title-and-input-content twenty-eight large-input">
+              <div class="input-title">Infos sur l’Intégration des baies</div>
+              <mat-form-field>
+                <input matInput placeholder="Élément fixe (poteau, montant, …)" formControlName="arrayIntegrationInfosCtrl">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+          <div class="btn-custom">
+          <button mat-button matStepperPrevious>Précédent</button>
+          <button class="validate" mat-button matStepperNext>Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <!-- <mat-step [stepControl]="picturesFormGroup" label="Photos">
+      <form [formGroup]="picturesFormGroup">
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="thirdCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="contactsFormGroup" label="Participants, Contacts">
+      <form [formGroup]="contactsFormGroup">
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="fourthCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+   <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step> -->
+  </mat-stepper>
+</div>

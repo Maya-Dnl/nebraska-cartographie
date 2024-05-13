@@ -20,9 +20,9 @@ export class LogInComponent {
 
   connexionMode: ConnexionMode = ConnexionMode.connexion;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private formBuilder: FormBuilder) {
 
-    this.registerForm = this.fb.group({
+    this.registerForm = this.formBuilder.group({
       passwordSubscribe: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
       passwordConfirm: ['', [Validators.required]]
       }, {validator: passwordMatchValidator});
