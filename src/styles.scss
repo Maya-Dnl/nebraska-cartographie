@@ -9,11 +9,47 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+$nebraska-palette: (
+  50: #f9e8e0, // much lighter version of #AB7A44
+  100: #f0d1c2, // lighter version of #AB7A44
+  200: #e7baa3, // lighter version of #AB7A44
+  300: #dea384, // slight lighter version of #AB7A44
+  400: #d6906f, // slightly lighter version of #AB7A44
+  500: #ab7a44, // base color
+  600: #a4723e, // slightly darker version of #AB7A44
+  700: #9b6836, // darker version of #AB7A44
+  800: #925f2f, // darker version of #AB7A44
+  900: #834e21, // much darker version of #AB7A44
+  A100: #ffd7b5, // a lighter accent color
+  A200: #ffa882, // an accent color
+  A400: #ff794f, // a darker accent color
+  A700: #ff6435, // an even darker accent color
+  contrast: (
+    50: #212121,
+    100: #212121,
+    200: #212121,
+    300: #212121,
+    400: #212121,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #212121,
+    A200: #212121,
+    A400: #ffffff,
+    A700: #ffffff,
+  )
+);
+
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$nebraska-cartographie-primary: mat.define-palette(mat.$indigo-palette);
-$nebraska-cartographie-accent: mat.define-palette(mat.$indigo-palette, A200, A100, A400);
+$nebraska-cartographie-primary: mat.define-palette(mat.$teal-palette);
+$nebraska-cartographie-accent: mat.define-palette(mat.$teal-palette, A100, A200);
+$nebraska-cartographie-secondary: mat.define-palette(mat.$orange-palette);
+$nebraska-cartographie-nebraska: mat.define-palette($nebraska-palette);
 
 // The warn palette is optional (defaults to red).
 $nebraska-cartographie-warn: mat.define-palette(mat.$red-palette);
@@ -23,7 +59,9 @@ $nebraska-cartographie-warn: mat.define-palette(mat.$red-palette);
 $nebraska-cartographie-theme: mat.define-light-theme((
   color: (
     primary: $nebraska-cartographie-primary,
+    secondary:  $nebraska-cartographie-secondary,
     accent: $nebraska-cartographie-accent,
+    nebraska: $nebraska-cartographie-nebraska,
     warn: $nebraska-cartographie-warn,
   ),
   typography: mat.define-typography-config(),
@@ -39,4 +77,15 @@ body {
   height: 100%;
   margin: 0;
   font-family: "Happy Monkey", system-ui;
+}
+
+button.custom-nebraska {
+  font-family: "Happy Monkey", system-ui;
+  font-size: 16px;
+  background-color: #AB7A44;
+  color: white!important;
+  border: none;
+  border-radius: 10px;
+  margin: 30px 30px;
+  padding: 10px;
 }

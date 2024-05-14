@@ -1,26 +1,7 @@
-.stepper-container {
-  margin: auto;
 
-  .building-form-container {
-    font-family: "Happy Monkey", system-ui;
-    background-color: #ab794446;
-    border-radius: 10px;
-    padding: 30px;
-    height: 100%;
+.step-container {
+  margin-top: 30px;
 
-    .input-title {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-  } 
-}
-
-  mat-form-field.auto-size {
-    width: 100%;
-    max-width: 450px;
-}
-
-.construction-works-container, .contacts-container {
   font-family: "Happy Monkey", system-ui;
   background-color: #ab794446;
   border-radius: 10px;
@@ -35,6 +16,17 @@
     margin-bottom: 10px;
   }
 }
+
+.stepper-container {
+  margin: auto;
+
+  mat-form-field.auto-size {
+    width: 100%;
+    max-width: 450px;
+}
+}
+
+
 
 .checkbox-section {
   margin: 0px 0px 20px 0px;
@@ -51,7 +43,6 @@
   button {
     font-family: "Happy Monkey", system-ui;
     font-size: 16px;
-    background-color: #AB7A44;
     color: white;
     border: none;
     border-radius: 10px;

@@ -96,9 +96,9 @@ export class BuildingFormComponent {
     isolationInt: [false]
   });
 
-  // picturesFormGroup = this.formBuilder.group({
-  //   thirdCtrl: ['', Validators.required],
-  // });
+  picturesFormGroup = this.formBuilder.group({
+    thirdCtrl: ['', Validators.required],
+  });
 
   contactsFormGroup = this.formBuilder.group({
     contactCtrl: ['', Validators.required],
