@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
+// import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import {
   provideFirestore,
@@ -16,10 +16,10 @@ import {
 import { CommonModule } from '@angular/common';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { environment } from '../environments/environment';
 import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
@@ -35,6 +35,15 @@ import { LogInComponent } from './containers/log-in/log-in.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { BuildingFormComponent } from './containers/building-form/building-form.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
+
+
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -74,7 +83,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     HeadBarComponent,
     MapComponent,
     DetailsBuildingComponent,
-    LogInComponent
+    LogInComponent,
+    BuildingFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,14 +100,18 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatIconModule,
     MatSidenavModule,
     MatButtonModule,
+    MatStepperModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatAutocompleteModule,
     NgImageSliderModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-  //  provideAuth(() => getAuth()),
+    //  provideAuth(() => getAuth()),
     provideStorage(() => getStorage()),
-   // provideFirestore(() => getFirestore())
+    // provideFirestore(() => getFirestore())
     provideFirestore(() => initializeFirestore(getApp(), {
       localCache: persistentLocalCache({
         tabManager: persistentMultipleTabManager(),
@@ -107,26 +121,26 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   providers: [
     {
       provide: 'appConfig',
-      useValue: {googleAuthEnabled: true, emailAuthEnabled: true}
+      useValue: { googleAuthEnabled: true, emailAuthEnabled: true }
     },
     {
       provide: 'firebaseUIAuthConfig',
       useFactory: (config: any) => {
-  
+
         // build firebase UI config object using settings from `config`
-  
+
         const fbUiConfig: firebaseui.auth.Config = {
           signInFlow: 'popup',
           signInOptions: [],
           tosUrl: () => null,
-          privacyPolicyUrl:  () => null,
+          privacyPolicyUrl: () => null,
           credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
         };
-  
+
         if (config.googleAuthEnabled) {
           fbUiConfig.signInOptions!.push(firebase.auth.GoogleAuthProvider.PROVIDER_ID);
         }
-  
+
         if (config.emailAuthEnabled) {
           fbUiConfig.signInOptions!.push({
             provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -134,14 +148,18 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
             signInMethod: firebase.auth.EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD
           });
         }
-  
+
         // other providers as needed
-  
+
         return fbUiConfig;
       },
       deps: ['appConfig']
     },
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideNativeDateAdapter(),
+    {
+      provide: MAT_DATE_LOCALE, useValue: 'fr'
+    },
   ],
   bootstrap: [AppComponent]
 })
