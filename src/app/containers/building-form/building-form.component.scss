@@ -1,20 +1,12 @@
 .stepper-container {
- // max-width: 75%;
   margin: auto;
 
   .building-form-container {
     font-family: "Happy Monkey", system-ui;
-    // display: grid;
-    // grid-template-columns: repeat(2, 1fr);
-    // grid-template-rows: repeat(6, 1fr);
-    // grid-column-gap: 20px;
-    // grid-row-gap: 0px;
     background-color: #ab794446;
     border-radius: 10px;
     padding: 30px;
     height: 100%;
-
-
 
     .input-title {
       font-size: 18px;
@@ -23,57 +15,12 @@
   } 
 }
 
-
   mat-form-field.auto-size {
     width: 100%;
     max-width: 450px;
 }
 
-// .title-and-input-content {
-//   &.one {
-//     grid-column: 1 / 3;
-//     grid-row: 1;
-//   }
-
-//   &.two {
-//     grid-column: 1;
-//     grid-row: 2;
-//   }
-//   &.three {
-//     grid-column: 2;
-//     grid-row: 2;
-//   }
-//   &.four {
-//     grid-column: 1;
-//     grid-row: 3;
-//   }
-//   &.five {
-//     grid-column: 2;
-//     grid-row: 3;
-//   }
-//   &.six {
-//     grid-column: 1;
-//     grid-row: 4;
-//   }
-//   &.seven {
-//     grid-column: 2;
-//     grid-row: 4;
-//   }
-//   &.eight {
-//     grid-column: 1;
-//     grid-row: 5;
-//   }
-//   &.nine {
-//     grid-column: 2;
-//     grid-row: 5;
-//   }
-//   &.ten {
-//     grid-column: 1 / 3;
-//     grid-row: 6;
-//   }
-// }
-
-.construction-works-container {
+.construction-works-container, .contacts-container {
   font-family: "Happy Monkey", system-ui;
   background-color: #ab794446;
   border-radius: 10px;
@@ -96,7 +43,6 @@
     padding: 0;
   }
 }
-
 
 .btn-custom {
   display: flex;
