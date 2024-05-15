@@ -1,5 +1,5 @@
 <div class="stepper-container container">
-  <mat-stepper [linear]="false" #stepper>
+  <mat-stepper color="accent" [linear]="false" #stepper>
     <mat-step [stepControl]="generalInformationsFormGroup">
       <form [formGroup]="generalInformationsFormGroup">
         <ng-template matStepLabel>Informations Générales</ng-template>
@@ -107,10 +107,11 @@
               </mat-form-field>
             </div>
           </div>
-          <div class="btn-custom">
-            <button  mat-flat-button color="primary" matStepperNext (click)="checkFormStepOne()">Suivant</button>
-            <!-- <mat-error *ngIf="generalInformationsFormGroup.valid!.hasError('required')">Ce champ est requis</mat-error> -->
-          </div>
+        </div>
+        <div class="btn-custom">
+          <button class="custom-nebraska" mat-flat-button color="accent" matStepperNext
+            (click)="checkFormStepOne()">Suivant</button>
+          <!-- <mat-error *ngIf="generalInformationsFormGroup.valid!.hasError('required')">Ce champ est requis</mat-error> -->
         </div>
       </form>
     </mat-step>
@@ -410,10 +411,10 @@
               </mat-form-field>
             </div>
           </div>
-          <div class="btn-custom">
-            <button  mat-flat-button color="nebraska" matStepperPrevious>Précédent</button>
-            <button class="validate"  mat-flat-button color="primary"  matStepperNext>Suivant</button>
-          </div>
+        </div>
+        <div class="btn-custom">
+          <button class="custom-nebraska" mat-flat-button color="primary" matStepperPrevious>Précédent</button>
+          <button class="custom-nebraska" mat-flat-button color="accent" matStepperNext>Suivant</button>
         </div>
       </form>
     </mat-step>
@@ -422,11 +423,13 @@
     <mat-step [stepControl]="picturesFormGroup" label="Photos">
       <form [formGroup]="picturesFormGroup">
         <div class="container step-container">
-              <app-upload-image [numberOfPictures]="4"></app-upload-image>
+          <app-upload-image [numberOfPictures]="4"></app-upload-image>
           <div class="btn-custom">
-            <button mat-flat-button color="nebraska" matStepperPrevious>Précédent</button>
-            <button mat-flat-button color="primary" class="validate" matStepperNext>Suivant</button>
           </div>
+        </div>
+        <div class="btn-custom">
+          <button class="custom-nebraska" mat-flat-button color="primary" matStepperPrevious>Précédent</button>
+          <button class="custom-nebraska" mat-flat-button color="accent" matStepperNext>Suivant</button>
         </div>
       </form>
     </mat-step>
@@ -574,12 +577,10 @@
               </mat-form-field>
             </div>
           </div>
-
-          <div class="btn-custom">
-            <button mat-button matStepperPrevious>Précédent</button>
-            <button class="validate" mat-button matStepperNext>Valider</button>
-          </div>
-
+        </div>
+        <div class="btn-custom">
+          <button class="custom-nebraska" mat-flat-button color="primary" matStepperPrevious>Précédent</button>
+          <button class="custom-nebraska" mat-flat-button color="accent" matStepperNext>Valider</button>
         </div>
       </form>
     </mat-step>

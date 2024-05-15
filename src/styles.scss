@@ -46,10 +46,11 @@ $nebraska-palette: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$nebraska-cartographie-primary: mat.define-palette(mat.$teal-palette);
-$nebraska-cartographie-accent: mat.define-palette(mat.$teal-palette, A100, A200);
-$nebraska-cartographie-secondary: mat.define-palette(mat.$orange-palette);
-$nebraska-cartographie-nebraska: mat.define-palette($nebraska-palette);
+// $nebraska-cartographie-primary: mat.define-palette(mat.$teal-palette);
+
+// $nebraska-cartographie-secondary: mat.define-palette(mat.$orange-palette);
+$nebraska-cartographie-primary: mat.define-palette($nebraska-palette);
+$nebraska-cartographie-accent: mat.define-palette(mat.$teal-palette);
 
 // The warn palette is optional (defaults to red).
 $nebraska-cartographie-warn: mat.define-palette(mat.$red-palette);
@@ -59,9 +60,7 @@ $nebraska-cartographie-warn: mat.define-palette(mat.$red-palette);
 $nebraska-cartographie-theme: mat.define-light-theme((
   color: (
     primary: $nebraska-cartographie-primary,
-    secondary:  $nebraska-cartographie-secondary,
     accent: $nebraska-cartographie-accent,
-    nebraska: $nebraska-cartographie-nebraska,
     warn: $nebraska-cartographie-warn,
   ),
   typography: mat.define-typography-config(),
@@ -86,6 +85,6 @@ button.custom-nebraska {
   color: white!important;
   border: none;
   border-radius: 10px;
-  margin: 30px 30px;
+  margin: 30px 30px 15px 30px;
   padding: 10px;
 }
