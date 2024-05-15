@@ -52,7 +52,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Usage de la construction*</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Logement Individuel" matInput [formControl]="constructionUse"
+                <input type="text" placeholder="Logement Individuel" matInput
                   [matAutocomplete]="constructionUsage" formControlName="constructionUseCtrl" required>
                 <mat-autocomplete #constructionUsage="matAutocomplete">
                   @for (constructionUseOption of constructionUseOptions; track constructionUseOption) {
@@ -162,7 +162,7 @@
                 <div class="title-and-input-content col">
                   <div class="input-title">Taille des bottes de paille</div>
                   <mat-form-field class="auto-size">
-                    <input type="text" placeholder="36 x 46 x 70 à 120" matInput [formControl]="strawBaleSize"
+                    <input type="text" placeholder="36 x 46 x 70 à 120" matInput
                       [matAutocomplete]="autoStrawBaleSize" formControlName="strawBaleSizeCtrl" required>
                     <mat-autocomplete #autoStrawBaleSize="matAutocomplete">
                       @for (strawBaleSizeOption of strawBaleSizeOptions; track strawBaleSizeOption) {
@@ -197,7 +197,7 @@
               <div class="input-title">Céréales utilisés dans la botte*</div>
               <mat-form-field class="auto-size">
                 <!-- <input matInput placeholder="Blé" formControlName="cerealsUsedCtrl" required> -->
-                <input type="text" placeholder="Blé" matInput [formControl]="cerealsUsed"
+                <input type="text" placeholder="Blé" matInput
                   [matAutocomplete]="autoCerealsUsed" formControlName="cerealsUsedCtrl" required>
                 <mat-autocomplete #autoCerealsUsed="matAutocomplete">
                   @for (cerealsUsedOption of cerealsUsedOptions; track cerealsUsedOption) {
@@ -220,8 +220,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Chantier en Autoconstruction*</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Non" matInput [formControl]="selfConstruction"
-                  [matAutocomplete]="autoSelfConstruction" formControlName="selfConstructionCtrl" required>
+                <input type="text" placeholder="Non" matInput [matAutocomplete]="autoSelfConstruction" formControlName="selfConstructionCtrl" required>
                 <mat-autocomplete #autoSelfConstruction="matAutocomplete">
                   @for (selfConstructionOption of selfConstructionOptions; track selfConstructionOption) {
                   <mat-option [value]="selfConstructionOption">{{selfConstructionOption}}</mat-option>
@@ -235,8 +234,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Chantier Participatif*</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Non" matInput [formControl]="participatoryConstruction"
-                  [matAutocomplete]="autoParticipatoryConstruction" formControlName="participatoryConstructionCtrl"
+                <input type="text" placeholder="Non" matInput [matAutocomplete]="autoParticipatoryConstruction" formControlName="participatoryConstructionCtrl"
                   required>
                 <mat-autocomplete #autoParticipatoryConstruction="matAutocomplete">
                   @for (participatoryConstructionOption of participatoryConstructionOptions; track
@@ -258,7 +256,7 @@
                   <div class="input-title">Structure complémentaire à la structure en paille porteuse (poteau, mur de
                     refend, …)</div>
                   <mat-form-field class="auto-size">
-                    <input type="text" placeholder="Non" matInput [formControl]="complementaryStructure"
+                    <input type="text" placeholder="Non" matInput 
                       [matAutocomplete]="autoComplementaryStructure" formControlName="complementaryStructureCtrl"
                       required>
                     <mat-autocomplete #autoComplementaryStructure="matAutocomplete">
@@ -304,7 +302,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Note de calcul</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Non" matInput [formControl]="calculationNote"
+                <input type="text" placeholder="Non" matInput
                   [matAutocomplete]="autoCalculationNoteCtrl" formControlName="calculationNoteCtrl" required>
                 <mat-autocomplete #autoCalculationNoteCtrl="matAutocomplete">
                   @for (calculationNoteCtrlOption of calculationNoteCtrlOptions; track calculationNoteCtrlOption) {
@@ -328,7 +326,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Intégration des baies</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Pré-cadre flottant" matInput [formControl]="arrayIntegration"
+                <input type="text" placeholder="Pré-cadre flottant" matInput
                   [matAutocomplete]="autoArrayIntegration" formControlName="arrayIntegrationCtrl">
                 <mat-autocomplete #autoArrayIntegration="matAutocomplete">
                   @for (arrayIntegrationOption of arrayIntegrationOptions; track arrayIntegrationOption) {
@@ -350,7 +348,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Nature du support d'ancrage</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Bois" matInput [formControl]="natureInkingSupport"
+                <input type="text" placeholder="Bois" matInput
                   [matAutocomplete]="autoNatureInkingSupport" formControlName="natureInkingSupportCtrl">
                 <mat-autocomplete #autoNatureInkingSupport="matAutocomplete">
                   @for (natureInkingSupportOption of natureInkingSupportOptions; track natureInkingSupportOption) {
@@ -372,7 +370,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Revêtement intérieur</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Enduit terre" matInput [formControl]="interiorCovering"
+                <input type="text" placeholder="Enduit terre" matInput
                   [matAutocomplete]="autoInteriorCovering" formControlName="interiorCoveringCtrl">
                 <mat-autocomplete #autoInteriorCovering="matAutocomplete">
                   @for (interiorCoveringOption of interiorCoveringOptions; track interiorCoveringOption) {
@@ -394,7 +392,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Revêtement extérieur</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Bardage ventilé" matInput [formControl]="exteriorCovering"
+                <input type="text" placeholder="Bardage ventilé" matInput
                   [matAutocomplete]="autoExteriorCovering" formControlName="exteriorCoveringCtrl">
                 <mat-autocomplete #autoExteriorCovering="matAutocomplete">
                   @for (exteriorCoveringOption of exteriorCoveringOptions; track exteriorCoveringOption) {

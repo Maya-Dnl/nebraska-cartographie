@@ -12,41 +12,8 @@ import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 export class BuildingFormComponent {
 
   maxDate = new Date();
-
-  selfConstruction = new FormControl('');
-  selfConstructionOptions: string[] = ['Oui','Non', 'Partiel'];
-
-  participatoryConstruction = new FormControl('');
-  participatoryConstructionOptions: string[] = ['Oui','Non', 'Partiel'];
-
-  constructionUse = new FormControl('');
+  
   constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel','Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
-  
-  complementaryStructure = new FormControl('');
-  complementaryStructureOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre']
-
-  strawBaleSize = new FormControl('');
-  strawBaleSizeOptions: string[] = ['36 x 46 x 70 à 120' , '70 x 120 x 230' , '50 x 80 x 110 à 200', 'Autre']
-
-  cerealsUsed = new FormControl('');
-  cerealsUsedOptions: string[] = ['Blé', 'Orge', 'Avoine', 'Seigle', 'Triticale', 'Riz', 'Autre']
-
-  calculationNote = new FormControl('');
-  calculationNoteCtrlOptions: string[] = ['Oui', 'Non']
-
-  arrayIntegration = new FormControl('');
-  arrayIntegrationOptions: string[] = ['Pré-cadre flottant', 'Elément coulissant', 'Elément fixe (poteau, montant, ..)', 'Autre']
-
-  natureInkingSupport = new FormControl('');
-  natureInkingSupportOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre']
-  
-  interiorCovering = new FormControl('');
-  interiorCoveringOptions: string[] = ['Plaque de plâtre', 'Lambris', 'Enduit terre', 'Enduit chaux', 'Enduit terre et chaux', 'Enduit plâtre', 'Autre']
-  
-  exteriorCovering = new FormControl('');
-  exteriorCoveringOptions: string[] = ['Bardage ventilé', 'Enduit terre', 'Enduit chaux', 'Enduit terre et chaux', 'Enduit plâtre', 'Panneau', 'Autre']
-  
-
   
   generalInformationsFormGroup = this.formBuilder.group({
     buildingNameCtrl: ['', Validators.required],
@@ -60,6 +27,18 @@ export class BuildingFormComponent {
     buildingSurfaceCtrl: ['', Validators.required],
     numberOfLevelsCtrl: ['', Validators.required],
   });
+
+  selfConstructionOptions: string[] = ['Oui','Non', 'Partiel'];
+  participatoryConstructionOptions: string[] = ['Oui','Non', 'Partiel'];
+  complementaryStructureOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre']
+  strawBaleSizeOptions: string[] = ['36 x 46 x 70 à 120' , '70 x 120 x 230' , '50 x 80 x 110 à 200', 'Autre']
+  cerealsUsedOptions: string[] = ['Blé', 'Orge', 'Avoine', 'Seigle', 'Triticale', 'Riz', 'Autre']
+  calculationNoteCtrlOptions: string[] = ['Oui', 'Non']
+  arrayIntegrationOptions: string[] = ['Pré-cadre flottant', 'Elément coulissant', 'Elément fixe (poteau, montant, ..)', 'Autre']
+  natureInkingSupportOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre']
+  interiorCoveringOptions: string[] = ['Plaque de plâtre', 'Lambris', 'Enduit terre', 'Enduit chaux', 'Enduit terre et chaux', 'Enduit plâtre', 'Autre']
+  exteriorCoveringOptions: string[] = ['Bardage ventilé', 'Enduit terre', 'Enduit chaux', 'Enduit terre et chaux', 'Enduit plâtre', 'Panneau', 'Autre']
+
 
   constructionWorksFormGroup = this.formBuilder.group({
     selectWorksCtrl: ['', Validators.required],
