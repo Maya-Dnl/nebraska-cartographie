@@ -4,7 +4,7 @@
     <mat-form-field>
       <input matInput placeholder="construction@exemple.com" [formControl]="email" required>
         <mat-error *ngIf="email.hasError('required')">Email est requis</mat-error>
-        <mat-error *ngIf="email.hasError('email')">Email invalide</mat-error>
+        <mat-error *ngIf="email.hasError('invalidEmail')">Email invalide</mat-error>
       <!-- @if (email.invalid) {
       <mat-error>{{errorMessage}}</mat-error>
       } -->
@@ -12,7 +12,7 @@
 
     <div class="manage-connexion-mode" [ngSwitch]="connexionMode">
       <div class="btn-custom continue" *ngSwitchCase="0">
-        <button mat-flat-button (click)="checkEmail()" [disabled]="email.invalid">Continuer</button>
+        <button mat-flat-button (click)="checkEmail()">Continuer</button>
       </div>
       <div class="manage-mdp" *ngSwitchCase="1">
         <div class="input-title">Mot de passe</div>
@@ -27,7 +27,7 @@
           <!-- {{password.errors | json }} -->
         </mat-form-field>
         <div class="btn-custom connexion">
-          <button mat-flat-button>Se connecter</button>
+          <button mat-flat-button (click)="signIn()">Se connecter</button>
         </div>
         <p class="btn-custom missing-mdp">Mot de passe oublié ?</p>
       </div>

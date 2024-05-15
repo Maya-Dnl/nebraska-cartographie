@@ -8,7 +8,8 @@ import { BuildingFormComponent } from './containers/building-form/building-form.
 const routes: Routes = [
  {path: "log-in", component: LogInComponent},
  {path: "main-map", component: MainMapComponent},
- {path: "new-building", component: BuildingFormComponent}
+ {path: "new-building", component: BuildingFormComponent},
+ {path: "**", component: MainMapComponent},
 ];
 
 @NgModule({
