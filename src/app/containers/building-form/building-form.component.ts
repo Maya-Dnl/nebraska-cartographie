@@ -20,16 +20,16 @@ export class BuildingFormComponent {
   constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
 
   generalInformationsFormGroup = this.formBuilder.group({
-    buildingName: ['toto', Validators.required],
-    address: ['toto'],
-    cityOrTown: ['toto', Validators.required],
+    buildingName: ['Maison Libération', Validators.required],
+    address: ['3 rue des Iris'],
+    cityOrTown: ['38000, Grenoble', Validators.required],
     latitude: [''],
     longitude: [''],
-    constructionUse: ['toto', Validators.required],
-    infosConstructionUse: ['toto'],
-    totalCostOfWork: ['toto', Validators.required],
-    buildingSurface: ['toto', Validators.required],
-    numberOfLevels: ['toto', Validators.required],
+    constructionUse: ['Logement individuel', Validators.required],
+    infosConstructionUse: ["Maison d'architecte construite en plein coeur de grenoble"],
+    totalCostOfWork: ['180 000 €', Validators.required],
+    buildingSurface: ['82 m²', Validators.required],
+    numberOfLevels: ['2', Validators.required],
   });
 
   selfConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
@@ -45,29 +45,29 @@ export class BuildingFormComponent {
 
 
   constructionWorksFormGroup = this.formBuilder.group({
-    startDate: ["2024-05-16T22:00:00.000Z", Validators.required],
+    startDate: ["2024-05-10T22:00:00.000Z", Validators.required],
     endDate: ["2024-05-16T22:00:00.000Z", Validators.required],
-    strawBaleSize: ['toto'],
-    strawBaleInfos: ['toto'],
-    strawBaleDensity: ['toto'],
-    cerealsUsed: ['toto', Validators.required],
-    supplyDistance: ['toto'],
-    selfConstruction: ['toto', Validators.required],
-    participatoryConstruction: ['toto', Validators.required],
-    complementaryStructure: ['toto', Validators.required],
-    natureComplementaryStructure: ['toto'],
-    infosNatureComplementaryStructure: ['toto'],
-    shearWallLength: ['toto'],
-    calculationNote: ['toto'],
-    numberOfRows: ['toto'],
-    arrayIntegration: ['toto'],
-    arrayIntegrationInfos: ['toto'],
-    natureInkingSupport: ['toto'],
-    infosNatureInkingSupport: ['toto'],
-    interiorCovering: ['toto'],
-    infosInteriorCovering: ['toto'],
-    exteriorCovering: ['toto'],
-    infosExteriorCovering: ['toto']
+    strawBaleSize: ['36 x 46 x 70 à 120'],
+    strawBaleInfos: ['Bottes de pailles rectangulaires de chez PailleCompany'],
+    strawBaleDensity: ['35 kg/m3'],
+    cerealsUsed: ['Orge', Validators.required],
+    supplyDistance: ['75 km'],
+    selfConstruction: ['Partiel', Validators.required],
+    participatoryConstruction: ['Oui', Validators.required],
+    complementaryStructure: ['Bois', Validators.required],
+    natureComplementaryStructure: ['Sapin'],
+    infosNatureComplementaryStructure: ['Mélange de bois de Sapin et de métal, fondations en béton armé'],
+    shearWallLength: ['10 m'],
+    calculationNote: ['Oui'],
+    numberOfRows: ['7'],
+    arrayIntegration: ['Pré-cadre flottant'],
+    arrayIntegrationInfos: ["Blabla sur l'intégration des baies"],
+    natureInkingSupport: ['Bois'],
+    infosNatureInkingSupport: ["Blabla sur le support d'ancrage"],
+    interiorCovering: ['Enduit terre'],
+    infosInteriorCovering: ["Blabla sur le revêtement intérieur"],
+    exteriorCovering: ['Enduit terre et chaux'],
+    infosExteriorCovering: ["Blabla sur le revêtement extérieur"]
   });
 
   selectWorks = this.formBuilder.group({
@@ -82,14 +82,14 @@ export class BuildingFormComponent {
   });
 
   contactsFormGroup = this.formBuilder.group({
-    contact: ['toto', Validators.required],
-    postalCode: ['toto', Validators.required],
-    email: ['toto', Validators.required],
-    phoneNumber: ['toto', Validators.required],
-    projectOwner: ['toto'],
-    projectManager: ['toto'],
-    architect: ['toto'],
-    structureDesignOffice: ['toto'],
+    contact: ['Mathilde Lapierre', Validators.required],
+    postalCode: ['38000, Grenoble', Validators.required],
+    email: ['mathilde.lapierre@gmail.com', Validators.required],
+    phoneNumber: ['0606060606', Validators.required],
+    projectOwner: ['Hamelin / Lapierre'],
+    projectManager: ['Hamelin / Lapierre'],
+    architect: ['Hamelin / Lapierre'],
+    structureDesignOffice: ['Nebraska'],
     controlOffice: ['toto'],
     strawBaleCompany: ['toto'],
     carpentryInstallationCompany: ['toto'],

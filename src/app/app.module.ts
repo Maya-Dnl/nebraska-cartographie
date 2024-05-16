@@ -20,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatTabsModule} from '@angular/material/tabs';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { environment } from '../environments/environment';
 import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
@@ -100,6 +101,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
+    MatTabsModule,
     MatSidenavModule,
     MatButtonModule,
     MatStepperModule,

@@ -1,12 +1,7 @@
 <div class="details-building-container">
   <div class="carousel">
-    <ng-image-slider
-      [images]="imageObject"
-      [infinite]="true"
-      [manageImageRatio]="false"
-      [imageSize]="imageSizeObject"
-      [autoSlide]="autoSlideObject"
-      [showArrow]="false" #nav>
+    <ng-image-slider [images]="imageObject" [infinite]="true" [manageImageRatio]="false" [imageSize]="imageSizeObject"
+      [autoSlide]="autoSlideObject" [showArrow]="false" #nav>
     </ng-image-slider>
     <div class="carousel-overlay">
       <div class="overlay-gradient-carousel previous">
@@ -18,9 +13,224 @@
     </div>
   </div>
   <div>
-    {{viewedBuilding?.generalInformations?.buildingName}}
-    {{viewedBuilding?.generalInformations?.buildingName}}
-    {{viewedBuilding?.generalInformations?.buildingName}}
-    {{viewedBuilding?.generalInformations?.buildingName}}
+    <mat-tab-group color="accent">
+      <mat-tab *ngIf="!GeneralInfoIsEmpty">
+        <ng-template mat-tab-label>
+          <mat-icon class="icon-margin">info</mat-icon>
+          Présentation
+        </ng-template>
+        <div class="presentation-tab container">
+          <div class="building-name">
+            {{GeneralInfo?.buildingName}}
+          </div>
+          <div class="custom-content">
+            <div class="align-items-custom" *ngIf="GeneralInfo?.cityOrTown">
+              <mat-icon color="accent">place</mat-icon>
+              {{GeneralInfo?.address}},
+              {{GeneralInfo?.cityOrTown}}
+            </div>
+            <div class="align-items-custom" *ngIf="GeneralInfo?.constructionUse">
+              <mat-icon color="accent">maps_home_work</mat-icon>
+              {{GeneralInfo?.constructionUse}}
+            </div>
+            <div class="align-items-custom" *ngIf="GeneralInfo?.infosConstructionUse">
+              <mat-icon color="accent">info</mat-icon>
+              {{GeneralInfo?.infosConstructionUse}}
+            </div>
+            <div class="align-items-custom" *ngIf="GeneralInfo?.totalCostOfWork">
+              <mat-icon color="accent">euro_symbol</mat-icon>
+              {{GeneralInfo?.totalCostOfWork}}
+            </div>
+            <div class="align-items-custom" *ngIf="GeneralInfo?.buildingSurface">
+              <mat-icon color="accent">aspect_ratio</mat-icon>
+              {{GeneralInfo?.buildingSurface}}
+            </div>
+            <div class="align-items-custom" *ngIf="GeneralInfo?.numberOfLevels">
+              <mat-icon color="accent">stairs</mat-icon>
+              {{GeneralInfo?.numberOfLevels}} niveaux
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab *ngIf="!ConstructionWIsEmpty">
+        <ng-template mat-tab-label>
+          <mat-icon class="icon-margin">construction</mat-icon>
+          Travaux/Construction
+        </ng-template>
+        <div class="custom-tab container">
+          <div class="custom-content">
+            <div *ngIf="ConstructionW?.startDate">
+              <div class="title-info">Début des travaux</div>
+              {{ConstructionW?.startDate}}
+            </div>
+            <div *ngIf="ConstructionW?.endDate">
+              <div class="title-info">Achèvement des travaux</div>
+              {{ConstructionW?.endDate}}
+            </div>
+            <div *ngIf="ConstructionW?.strawBaleSize">
+              <div class="title-info">Taille des bottes de paille</div>
+              {{ConstructionW?.strawBaleSize}}
+            </div>
+            <div *ngIf="ConstructionW?.strawBaleInfos">
+              <div class="title-info">Infos sur les bottes de paille</div>
+              {{ConstructionW?.strawBaleInfos}}
+            </div>
+            <div *ngIf="ConstructionW?.strawBaleDensity">
+              <div class="title-info">Densité des bottes de paille</div>
+              {{ConstructionW?.strawBaleDensity}}
+            </div>
+            <div *ngIf="ConstructionW?.cerealsUsed">
+              <div class="title-info">Céréales utilisées dans la botte</div>
+              {{ConstructionW?.cerealsUsed}}
+            </div>
+            <div *ngIf="ConstructionW?.supplyDistance">
+              <div class="title-info">Distances d'approvisionnement des bottes</div>
+              {{ConstructionW?.supplyDistance}}
+            </div>
+            <div *ngIf="ConstructionW?.selfConstruction">
+              <div class="title-info">Chantier en Autoconstruction</div>
+              {{ConstructionW?.selfConstruction}}
+            </div>
+            <div *ngIf="ConstructionW?.participatoryConstruction">
+              <div class="title-info">Chantier Participatif</div>
+              {{ConstructionW?.participatoryConstruction}}
+            </div>
+            <div *ngIf="ConstructionW?.complementaryStructure">
+              <div class="title-info">Structure complémentaire à la structure en paille porteuse</div>
+              {{ConstructionW?.complementaryStructure}}
+            </div>
+            <div *ngIf="ConstructionW?.natureComplementaryStructure">
+              <div class="title-info">Nature de la structure complémentaire</div>
+              {{ConstructionW?.natureComplementaryStructure}}
+            </div>
+            <div *ngIf="ConstructionW?.infosNatureComplementaryStructure">
+              <div class="title-info">Infos de la nature de la structure complémentaire</div>
+              {{ConstructionW?.infosNatureComplementaryStructure}}
+            </div>
+            <div *ngIf="ConstructionW?.shearWallLength">
+              <div class="title-info">Longueur maximum sans mur de refend </div>
+              {{ConstructionW?.shearWallLength}}
+            </div>
+            <div *ngIf="ConstructionW?.calculationNote">
+              <div class="title-info">Note de calcul</div>
+              {{ConstructionW?.calculationNote}}
+            </div>
+            <div *ngIf="ConstructionW?.numberOfRows">
+              <div class="title-info">Nombre de rangs de bottes</div>
+              {{ConstructionW?.numberOfRows}}
+            </div>
+            <div *ngIf="ConstructionW?.arrayIntegration">
+              <div class="title-info">Intégration des baies</div>
+              {{ConstructionW?.arrayIntegration}}
+            </div>
+            <div *ngIf="ConstructionW?.arrayIntegrationInfos">
+              <div class="title-info">Infos sur l’intégration des baies</div>
+              {{ConstructionW?.arrayIntegrationInfos}}
+            </div>
+            <div *ngIf="ConstructionW?.natureInkingSupport">
+              <div class="title-info">Nature du support d'ancrage</div>
+              {{ConstructionW?.natureInkingSupport}}
+            </div>
+            <div *ngIf="ConstructionW?.infosNatureInkingSupport">
+              <div class="title-info">Infos sur le support d'ancrage</div>
+              {{ConstructionW?.infosNatureInkingSupport}}
+            </div>
+            <div *ngIf="ConstructionW?.interiorCovering">
+              <div class="title-info">Revêtement intérieur</div>
+              {{ConstructionW?.interiorCovering}}
+            </div>
+            <div *ngIf="ConstructionW?.infosInteriorCovering">
+              <div class="title-info">Infos sur le revêtement intérieur</div>
+              {{ConstructionW?.infosInteriorCovering}}
+            </div>
+            <div *ngIf="ConstructionW?.exteriorCovering">
+              <div class="title-info">Revêtement extérieur</div>
+              {{ConstructionW?.exteriorCovering}}
+            </div>
+            <div *ngIf="ConstructionW?.infosExteriorCovering">
+              <div class="title-info">Infos sur le revêtement extérieur</div>
+              {{ConstructionW?.infosExteriorCovering}}
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab *ngIf="!ContactsIsEmpty">
+        <ng-template mat-tab-label>
+          <mat-icon class="icon-margin">feed</mat-icon>
+          À propos
+        </ng-template>
+        <div class="contacts-tab container">
+          <div class="custom-content">
+            <div *ngIf="Contacts?.contact">
+              <div class="title-info">Contact</div>
+              {{Contacts?.contact}}
+            </div>
+            <div *ngIf="Contacts?.postalCode">
+              <div class="title-info">Contact</div>
+              {{Contacts?.postalCode}}
+            </div>
+            <div *ngIf="Contacts?.email">
+              <div class="title-info">Email</div>
+              {{Contacts?.email}}
+            </div>
+            <div *ngIf="Contacts?.phoneNumber">
+              <div class="title-info">Numéro de téléphone</div>
+              {{Contacts?.phoneNumber}}
+            </div>
+            <div *ngIf="Contacts?.projectOwner">
+              <div class="title-info">Maître d'ouvrage</div>
+              {{Contacts?.projectOwner}}
+            </div>
+            <div *ngIf="Contacts?.projectManager">
+              <div class="title-info">Maître d'œuvre</div>
+              {{Contacts?.projectManager}}
+            </div>
+            <div *ngIf="Contacts?.architect">
+              <div class="title-info">Architecte</div>
+              {{Contacts?.architect}}
+            </div>
+            <div *ngIf="Contacts?.structureDesignOffice">
+              <div class="title-info">Bureau d'étude Structure</div>
+              {{Contacts?.structureDesignOffice}}
+            </div>
+            <div *ngIf="Contacts?.controlOffice">
+              <div class="title-info">Bureau contrôle</div>
+              {{Contacts?.controlOffice}}
+            </div>
+            <div *ngIf="Contacts?.strawBaleCompany">
+              <div class="title-info">Entreprise de mise en œuvre des bottes</div>
+              {{Contacts?.strawBaleCompany}}
+            </div>
+            <div *ngIf="Contacts?.carpentryInstallationCompany">
+              <div class="title-info">Entreprise de mise en œuvre de la charpente</div>
+              {{Contacts?.carpentryInstallationCompany}}
+            </div>
+            <div *ngIf="Contacts?.coatingImplementationCompany">
+              <div class="title-info">Entreprise de mise en oeuvre des enduits</div>
+              {{Contacts?.coatingImplementationCompany}}
+            </div>
+            <div *ngIf="Contacts?.projectDescriptionBox">
+              <div class="title-info">Description du projet</div>
+              {{Contacts?.projectDescriptionBox}}
+            </div>
+            <div *ngIf="Contacts?.difficultiesBox">
+              <div class="title-info">Difficultés rencontrés</div>
+              {{Contacts?.difficultiesBox}}
+            </div>
+            <div *ngIf="Contacts?.tipsAndTricksBox">
+              <div class="title-info">Trucs et astuces</div>
+              {{Contacts?.tipsAndTricksBox}}
+            </div>
+            <div *ngIf="Contacts?.otherCommentBox">
+              <div class="title-info">Autres commentaires</div>
+              {{Contacts?.otherCommentBox}}
+            </div>
+          </div>
+
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>
