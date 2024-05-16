@@ -1,6 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { Validators, FormBuilder, FormControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { BuildingModel } from '../../services/building/building.model';
+import { BuildingService } from '../../services/building/building.service';
+
 
 @Component({
   selector: 'app-building-form',
@@ -12,28 +15,29 @@ import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 export class BuildingFormComponent {
 
   maxDate = new Date();
-  
-  constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel','Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
-  
+  tempId = Date.now().toString();
+
+  constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
+
   generalInformationsFormGroup = this.formBuilder.group({
-    buildingNameCtrl: ['', Validators.required],
-    addressCtrl: [''],
-    cityOrTownCtrl: ['', Validators.required],
-    latitudeCtrl: [''],
-    longitudeCtrl: [''],
-    constructionUseCtrl: ['', Validators.required],
-    infosConstructionUseCtrl: [''],
-    totalCostOfWorkCtrl: ['', Validators.required],
-    buildingSurfaceCtrl: ['', Validators.required],
-    numberOfLevelsCtrl: ['', Validators.required],
+    buildingName: ['toto', Validators.required],
+    address: ['toto'],
+    cityOrTown: ['toto', Validators.required],
+    latitude: [''],
+    longitude: [''],
+    constructionUse: ['toto', Validators.required],
+    infosConstructionUse: ['toto'],
+    totalCostOfWork: ['toto', Validators.required],
+    buildingSurface: ['toto', Validators.required],
+    numberOfLevels: ['toto', Validators.required],
   });
 
-  selfConstructionOptions: string[] = ['Oui','Non', 'Partiel'];
-  participatoryConstructionOptions: string[] = ['Oui','Non', 'Partiel'];
+  selfConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
+  participatoryConstructionOptions: string[] = ['Oui', 'Non', 'Partiel<'];
   complementaryStructureOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre']
-  strawBaleSizeOptions: string[] = ['36 x 46 x 70 à 120' , '70 x 120 x 230' , '50 x 80 x 110 à 200', 'Autre']
+  strawBaleSizeOptions: string[] = ['36 x 46 x 70 à 120', '70 x 120 x 230', '50 x 80 x 110 à 200', 'Autre']
   cerealsUsedOptions: string[] = ['Blé', 'Orge', 'Avoine', 'Seigle', 'Triticale', 'Riz', 'Autre']
-  calculationNoteCtrlOptions: string[] = ['Oui', 'Non']
+  calculationNoteOptions: string[] = ['Oui', 'Non']
   arrayIntegrationOptions: string[] = ['Pré-cadre flottant', 'Elément coulissant', 'Elément fixe (poteau, montant, ..)', 'Autre']
   natureInkingSupportOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre']
   interiorCoveringOptions: string[] = ['Plaque de plâtre', 'Lambris', 'Enduit terre', 'Enduit chaux', 'Enduit terre et chaux', 'Enduit plâtre', 'Autre']
@@ -41,30 +45,29 @@ export class BuildingFormComponent {
 
 
   constructionWorksFormGroup = this.formBuilder.group({
-    selectWorksCtrl: ['', Validators.required],
-    startDateCtrl: ['', Validators.required],
-    endDateCtrl: ['', Validators.required],
-    strawBaleSizeCtrl: [''],
-    strawBaleInfosCtrl: [''],
-    strawBaleDensityCtrl: [''],
-    cerealsUsedCtrl: ['', Validators.required],
-    supplyDistanceCtrl: [''],
-    selfConstructionCtrl: ['', Validators.required],
-    participatoryConstructionCtrl: ['', Validators.required],
-    complementaryStructureCtrl: ['', Validators.required],
-    natureComplementaryStructureCtrl: [''],
-    infosNatureComplementaryStructureCtrl: [''],
-    shearWallLengthCtrl: [''],
-    calculationNoteCtrl: [''],
-    numberOfRowsCtrl: [''],
-    arrayIntegrationCtrl: [''],
-    arrayIntegrationInfosCtrl: [''],
-    natureInkingSupportCtrl: [''],
-    infosNatureInkingSupportCtrl: [''],
-    interiorCoveringCtrl: [''],
-    infosInteriorCoveringCtrl: [''],
-    exteriorCoveringCtrl: [''],
-    infosExteriorCoveringCtrl: ['']
+    startDate: ["2024-05-16T22:00:00.000Z", Validators.required],
+    endDate: ["2024-05-16T22:00:00.000Z", Validators.required],
+    strawBaleSize: ['toto'],
+    strawBaleInfos: ['toto'],
+    strawBaleDensity: ['toto'],
+    cerealsUsed: ['toto', Validators.required],
+    supplyDistance: ['toto'],
+    selfConstruction: ['toto', Validators.required],
+    participatoryConstruction: ['toto', Validators.required],
+    complementaryStructure: ['toto', Validators.required],
+    natureComplementaryStructure: ['toto'],
+    infosNatureComplementaryStructure: ['toto'],
+    shearWallLength: ['toto'],
+    calculationNote: ['toto'],
+    numberOfRows: ['toto'],
+    arrayIntegration: ['toto'],
+    arrayIntegrationInfos: ['toto'],
+    natureInkingSupport: ['toto'],
+    infosNatureInkingSupport: ['toto'],
+    interiorCovering: ['toto'],
+    infosInteriorCovering: ['toto'],
+    exteriorCovering: ['toto'],
+    infosExteriorCovering: ['toto']
   });
 
   selectWorks = this.formBuilder.group({
@@ -76,35 +79,36 @@ export class BuildingFormComponent {
   });
 
   picturesFormGroup = this.formBuilder.group({
-    thirdCtrl: ['', Validators.required],
   });
 
   contactsFormGroup = this.formBuilder.group({
-    contactCtrl: ['', Validators.required],
-    postalCodeCtrl: ['', Validators.required],
-    emailCtrl: ['', Validators.required],
-    phoneNumberCtrl: ['', Validators.required],
-    projectOwnerCtrl: [''],
-    projectManagerCtrl: [''],
-    architectCtrl: [''],
-    structureDesignOfficeCtrl: [''],
-    controlOfficeCtrl: [''],
-    strawBaleCompanyCtrl: [''],
-    carpentryInstallationCompanyCtrl: [''],
-    coatingImplementationCompanyCtrl: [''],
-    projectDescriptionBoxCtrl: [''],
-    difficultiesBoxCtrl: [''],
-    tipsAndTricksBoxCtrl: [''],
-    otherCommentBoxCtrl: [''],
+    contact: ['toto', Validators.required],
+    postalCode: ['toto', Validators.required],
+    email: ['toto', Validators.required],
+    phoneNumber: ['toto', Validators.required],
+    projectOwner: ['toto'],
+    projectManager: ['toto'],
+    architect: ['toto'],
+    structureDesignOffice: ['toto'],
+    controlOffice: ['toto'],
+    strawBaleCompany: ['toto'],
+    carpentryInstallationCompany: ['toto'],
+    coatingImplementationCompany: ['toto'],
+    projectDescriptionBox: ['toto'],
+    difficultiesBox: ['toto'],
+    tipsAndTricksBox: ['toto'],
+    otherCommentBox: ['toto'],
   });
 
   constructor(
+    private buildingService: BuildingService,
     private formBuilder: FormBuilder,
     private _adapter: DateAdapter<any>,
     @Inject(MAT_DATE_LOCALE) private _locale: string
   ) {
     this._adapter.setLocale(this._locale);
   }
+
   // onSubmit() {
   //   this.generalInformationsFormGroup.valid
   //   console.log('Valeurs du formulaire :', this.generalInformationsFormGroup.value);
@@ -112,5 +116,30 @@ export class BuildingFormComponent {
 
   checkFormStepOne() {
     this.generalInformationsFormGroup.updateValueAndValidity();
+  }
+
+  checkFormStepTwo() {
+    this.constructionWorksFormGroup.updateValueAndValidity();
+  }
+
+  // validation pitctures :
+  // checkFormStepThree() {
+  //   this.constructionWorksFormGroup.updateValueAndValidity();
+  // }
+
+  checkFormStepFour() {
+    this.contactsFormGroup.updateValueAndValidity();
+
+    let building: BuildingModel = {
+
+      id: this.tempId,
+      generalInformations: this.generalInformationsFormGroup.getRawValue(),
+      constructionWorks: this.constructionWorksFormGroup.getRawValue(),
+      pictures: {},
+      contacts: this.contactsFormGroup.getRawValue(),
+    }
+    
+    this.buildingService.SetPreviewBuilding(building);
+    console.log(building);
   }
 }
