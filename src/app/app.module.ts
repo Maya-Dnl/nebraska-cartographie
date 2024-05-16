@@ -41,6 +41,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { UploadImageComponent } from './components/upload-image/upload-image.component';
 
 
 
@@ -85,6 +86,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     DetailsBuildingComponent,
     LogInComponent,
     BuildingFormComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,
