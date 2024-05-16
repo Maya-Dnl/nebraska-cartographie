@@ -9,6 +9,8 @@ const routes: Routes = [
  {path: "log-in", component: LogInComponent},
  {path: "main-map", component: MainMapComponent},
  {path: "new-building", component: BuildingFormComponent},
+ {path: "preview", component: MainMapComponent},
+ {path: "preview/:id", component: MainMapComponent},
  {path: "**", component: MainMapComponent},
 ];
 

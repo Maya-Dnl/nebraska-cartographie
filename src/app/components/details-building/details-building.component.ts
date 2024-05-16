@@ -1,5 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { NgImageSliderComponent } from 'ng-image-slider';
+import { BuildingFormComponent } from '../../containers/building-form/building-form.component';
+import { BuildingModel } from '../../services/building/building.model';
 
 @Component({
   selector: 'app-details-building',
@@ -7,6 +9,9 @@ import { NgImageSliderComponent } from 'ng-image-slider';
   styleUrl: './details-building.component.scss'
 })
 export class DetailsBuildingComponent {
+
+  @Input() viewedBuilding: BuildingModel | null = null;
+
 
   @ViewChild('nav') slider: NgImageSliderComponent | undefined;
 
