@@ -10,41 +10,42 @@ import { BuildingModel } from '../../services/building/building.model';
   styleUrl: './main-map.component.scss'
 })
 export class MainMapComponent {
-  showFiller = false
-  viewedBuilding: BuildingModel | null = null;
-  opened = this.viewedBuilding != null;
-  
-  constructor(private router: Router, private buildingService: BuildingService)
-  {}
 
-  ngOnInit()
-  {
-   switch(this.router.url)
-   {
-    case "/":
-      this.InitHomeMap();
-      break;
-    case "/preview":
-      this.InitPreviewFromCache();
-      break;
+
+  FilteredBuildingList: BuildingModel[] = [];
+  selectedBuilding: BuildingModel | null = null;
+
+  showFiller = false
+  opened = this.selectedBuilding != null;
+
+
+  constructor(private router: Router, private buildingService: BuildingService) { }
+
+  ngOnInit() {
+    switch (this.router.url) {
+      case "/":
+        this.InitHomeMap();
+        break;
+      case "/preview":
+        this.InitPreviewFromCache();
+        break;
       default:
         this.InitPreviewFromServer();
 
-   }
+    }
   }
 
-  InitHomeMap()
-  {
+  InitHomeMap() {
 
   }
-  InitPreviewFromCache()
-  {
-    this.viewedBuilding = this.buildingService.GetPreviewBuilding();
+  
+  InitPreviewFromCache() {
+    this.selectedBuilding = this.buildingService.GetPreviewBuilding();
+    this.FilteredBuildingList = [this.selectedBuilding]
     this.opened = true;
   }
 
-  InitPreviewFromServer()
-  {
+  InitPreviewFromServer() {
 
   }
 

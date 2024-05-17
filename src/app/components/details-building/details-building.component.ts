@@ -2,6 +2,8 @@ import { Component, Input, SimpleChange, ViewChild } from '@angular/core';
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { BuildingFormComponent } from '../../containers/building-form/building-form.component';
 import { BConstructionWorks, BContacts, BGeneralInformations, BPictures, BuildingModel } from '../../services/building/building.model';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpMessageComponent } from '../pop-up-message/pop-up-message.component';
 
 @Component({
   selector: 'app-details-building',
@@ -25,6 +27,8 @@ export class DetailsBuildingComponent {
   Contacts: BContacts | undefined = undefined;
   ContactsIsEmpty: boolean | null = null;
 
+  constructor(public dialog: MatDialog) {}
+
   ngOnInit() {
     this.UpdateDetailObject();
   }
@@ -45,6 +49,14 @@ export class DetailsBuildingComponent {
     this.Contacts = this.viewedBuilding?.contacts;
     this.ContactsIsEmpty = ObjectIsEmpty(this.Contacts);
   }
+
+  openPopUpValidate(){
+    this.dialog.open(PopUpMessageComponent, {
+      width: '400px',
+      backdropClass: 'backdrop-blur',
+      panelClass: 'overlay-pop-up'
+    });
+  };
 
 
   @ViewChild('nav') slider: NgImageSliderComponent | undefined;

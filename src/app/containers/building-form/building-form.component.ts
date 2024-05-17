@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { Validators, FormBuilder, FormControl } from '@angular/forms';
+import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BuildingModel } from '../../services/building/building.model';
 import { BuildingService } from '../../services/building/building.service';
@@ -19,18 +19,7 @@ export class BuildingFormComponent {
 
   constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
 
-  generalInformationsFormGroup = this.formBuilder.group({
-    buildingName: ['Maison Libération', Validators.required],
-    address: ['3 rue des Iris'],
-    cityOrTown: ['38000, Grenoble', Validators.required],
-    latitude: [''],
-    longitude: [''],
-    constructionUse: ['Logement individuel', Validators.required],
-    infosConstructionUse: ["Maison d'architecte construite en plein coeur de grenoble"],
-    totalCostOfWork: ['180 000 €', Validators.required],
-    buildingSurface: ['82 m²', Validators.required],
-    numberOfLevels: ['2', Validators.required],
-  });
+  generalInformationsFormGroup: FormGroup | undefined = undefined
 
   selfConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
   participatoryConstructionOptions: string[] = ['Oui', 'Non', 'Partiel<'];
@@ -44,31 +33,7 @@ export class BuildingFormComponent {
   exteriorCoveringOptions: string[] = ['Bardage ventilé', 'Enduit terre', 'Enduit chaux', 'Enduit terre et chaux', 'Enduit plâtre', 'Panneau', 'Autre']
 
 
-  constructionWorksFormGroup = this.formBuilder.group({
-    startDate: ["2024-05-10T22:00:00.000Z", Validators.required],
-    endDate: ["2024-05-16T22:00:00.000Z", Validators.required],
-    strawBaleSize: ['36 x 46 x 70 à 120'],
-    strawBaleInfos: ['Bottes de pailles rectangulaires de chez PailleCompany'],
-    strawBaleDensity: ['35 kg/m3'],
-    cerealsUsed: ['Orge', Validators.required],
-    supplyDistance: ['75 km'],
-    selfConstruction: ['Partiel', Validators.required],
-    participatoryConstruction: ['Oui', Validators.required],
-    complementaryStructure: ['Bois', Validators.required],
-    natureComplementaryStructure: ['Sapin'],
-    infosNatureComplementaryStructure: ['Mélange de bois de Sapin et de métal, fondations en béton armé'],
-    shearWallLength: ['10 m'],
-    calculationNote: ['Oui'],
-    numberOfRows: ['7'],
-    arrayIntegration: ['Pré-cadre flottant'],
-    arrayIntegrationInfos: ["Blabla sur l'intégration des baies"],
-    natureInkingSupport: ['Bois'],
-    infosNatureInkingSupport: ["Blabla sur le support d'ancrage"],
-    interiorCovering: ['Enduit terre'],
-    infosInteriorCovering: ["Blabla sur le revêtement intérieur"],
-    exteriorCovering: ['Enduit terre et chaux'],
-    infosExteriorCovering: ["Blabla sur le revêtement extérieur"]
-  });
+  constructionWorksFormGroup: FormGroup | undefined = undefined;
 
   selectWorks = this.formBuilder.group({
     neuf: [false],
@@ -81,24 +46,7 @@ export class BuildingFormComponent {
   picturesFormGroup = this.formBuilder.group({
   });
 
-  contactsFormGroup = this.formBuilder.group({
-    contact: ['Mathilde Lapierre', Validators.required],
-    postalCode: ['38000, Grenoble', Validators.required],
-    email: ['mathilde.lapierre@gmail.com', Validators.required],
-    phoneNumber: ['0606060606', Validators.required],
-    projectOwner: ['Hamelin / Lapierre'],
-    projectManager: ['Hamelin / Lapierre'],
-    architect: ['Hamelin / Lapierre'],
-    structureDesignOffice: ['Nebraska'],
-    controlOffice: ['toto'],
-    strawBaleCompany: ['toto'],
-    carpentryInstallationCompany: ['toto'],
-    coatingImplementationCompany: ['toto'],
-    projectDescriptionBox: ['toto'],
-    difficultiesBox: ['toto'],
-    tipsAndTricksBox: ['toto'],
-    otherCommentBox: ['toto'],
-  });
+  contactsFormGroup: FormGroup | undefined = undefined;
 
   constructor(
     private buildingService: BuildingService,
@@ -109,17 +57,88 @@ export class BuildingFormComponent {
     this._adapter.setLocale(this._locale);
   }
 
+  ngOnInit() {
+
+    let editedBuilding = this.buildingService.GetPreviewBuilding();
+
+
+    let gi = editedBuilding != null ? editedBuilding.generalInformations : null;
+
+    this.generalInformationsFormGroup = this.formBuilder.group({
+      buildingName: [gi ? gi.buildingName : ''],
+      address: [gi ? gi.address : ''],
+      cityOrTown: [gi ? gi.cityOrTown : '', Validators.required],
+      latitude: [gi ? gi.latitude : '', Validators.required],
+      longitude: [gi ? gi.longitude : '', Validators.required],
+      constructionUse: [gi ? gi.constructionUse : '', Validators.required],
+      infosConstructionUse: [gi ? gi.infosConstructionUse : ''],
+      totalCostOfWork: [gi ? gi.totalCostOfWork : '', Validators.required],
+      buildingSurface: [gi ? gi.buildingSurface : '', Validators.required],
+      numberOfLevels: [gi ? gi.numberOfLevels : '', Validators.required],
+    });
+
+    let cw = editedBuilding != null ? editedBuilding.constructionWorks : null;
+
+    this.constructionWorksFormGroup = this.formBuilder.group({
+      startDate: [cw ? cw.startDate : '', Validators.required],
+      endDate: [cw ? cw.endDate : '', Validators.required],
+      strawBaleSize: [cw ? cw.strawBaleSize : ''],
+      strawBaleInfos: [cw ? cw.strawBaleInfos : ''],
+      strawBaleDensity: [cw ? cw.strawBaleDensity : ''],
+      cerealsUsed: [cw ? cw.cerealsUsed : '', Validators.required],
+      supplyDistance: [cw ? cw.supplyDistance : ''],
+      selfConstruction: [cw ? cw.selfConstruction : '', Validators.required],
+      participatoryConstruction: [cw ? cw.participatoryConstruction : '', Validators.required],
+      complementaryStructure: [cw ? cw.complementaryStructure : '', Validators.required],
+      natureComplementaryStructure: [cw ? cw.natureComplementaryStructure : ''],
+      infosNatureComplementaryStructure: [cw ? cw.infosNatureComplementaryStructure : ''],
+      shearWallLength: [cw ? cw.shearWallLength : ''],
+      calculationNote: [cw ? cw.calculationNote : ''],
+      numberOfRows: [cw ? cw.numberOfRows : ''],
+      arrayIntegration: [cw ? cw.arrayIntegration : ''],
+      arrayIntegrationInfos: [cw ? cw.arrayIntegrationInfos : ''],
+      natureInkingSupport: [cw ? cw.natureInkingSupport : ''],
+      infosNatureInkingSupport: [cw ? cw.infosNatureInkingSupport : ''],
+      interiorCovering: [cw ? cw.interiorCovering : ''],
+      infosInteriorCovering: [cw ? cw.infosInteriorCovering : ''],
+      exteriorCovering: [cw ? cw.exteriorCovering : ''],
+      infosExteriorCovering: [cw ? cw.infosExteriorCovering : '']
+    });
+
+    let c = editedBuilding != null ? editedBuilding.contacts : null;
+
+    this.contactsFormGroup = this.formBuilder.group({
+      contact: [c ? c.contact : '', Validators.required],
+      postalCode: [c ? c.postalCode : '', Validators.required],
+      email: [c ? c.email : '', Validators.required],
+      phoneNumber: [c ? c.phoneNumber : '', Validators.required],
+      projectOwner: [c ? c.projectOwner : ''],
+      projectManager: [c ? c.projectManager : ''],
+      architect: [c ? c.architect : ''],
+      structureDesignOffice: [c ? c.structureDesignOffice : ''],
+      controlOffice: [c ? c.controlOffice : ''],
+      strawBaleCompany: [c ? c.strawBaleCompany : ''],
+      carpentryInstallationCompany: [c ? c.carpentryInstallationCompany : ''],
+      coatingImplementationCompany: [c ? c.coatingImplementationCompany : ''],
+      projectDescriptionBox: [c ? c.projectDescriptionBox : ''],
+      difficultiesBox: [c ? c.difficultiesBox : ''],
+      tipsAndTricksBox: [c ? c.tipsAndTricksBox : ''],
+      otherCommentBox: [c ? c.otherCommentBox : ''],
+    });
+  
+  }
+
   // onSubmit() {
   //   this.generalInformationsFormGroup.valid
   //   console.log('Valeurs du formulaire :', this.generalInformationsFormGroup.value);
   // }
 
   checkFormStepOne() {
-    this.generalInformationsFormGroup.updateValueAndValidity();
+    this.generalInformationsFormGroup!.updateValueAndValidity();
   }
 
   checkFormStepTwo() {
-    this.constructionWorksFormGroup.updateValueAndValidity();
+    this.constructionWorksFormGroup!.updateValueAndValidity();
   }
 
   // validation pitctures :
@@ -128,17 +147,17 @@ export class BuildingFormComponent {
   // }
 
   checkFormStepFour() {
-    this.contactsFormGroup.updateValueAndValidity();
+    this.contactsFormGroup!.updateValueAndValidity();
 
     let building: BuildingModel = {
 
       id: this.tempId,
-      generalInformations: this.generalInformationsFormGroup.getRawValue(),
-      constructionWorks: this.constructionWorksFormGroup.getRawValue(),
+      generalInformations: this.generalInformationsFormGroup!.getRawValue(),
+      constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
       pictures: {},
-      contacts: this.contactsFormGroup.getRawValue(),
+      contacts: this.contactsFormGroup!.getRawValue(),
     }
-    
+
     this.buildingService.SetPreviewBuilding(building);
     console.log(building);
   }

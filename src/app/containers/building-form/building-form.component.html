@@ -1,6 +1,6 @@
 <div class="stepper-container container">
   <mat-stepper color="accent" [linear]="true" #stepper>
-    <mat-step [stepControl]="generalInformationsFormGroup">
+    <mat-step *ngIf="generalInformationsFormGroup" [stepControl]="generalInformationsFormGroup">
       <form [formGroup]="generalInformationsFormGroup">
         <ng-template matStepLabel>Informations Générales</ng-template>
         <div class="container step-container">
@@ -20,7 +20,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Adresse (facultatif)</div>
               <mat-form-field class="auto-size">
-                <input matInput placeholder="3 rue des Iris">
+                <input matInput placeholder="3 rue des Iris" formControlName="address">
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
@@ -37,13 +37,13 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Latitude</div>
               <mat-form-field class="auto-size">
-                <input matInput placeholder="45.16760093978442">
+                <input type="number" matInput placeholder="45.16760093978442" formControlName="latitude" required>
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Longitude</div>
               <mat-form-field class="auto-size">
-                <input matInput placeholder="5.713191260934383">
+                <input type="number" matInput placeholder="5.713191260934383" formControlName="longitude" required>
               </mat-form-field>
             </div>
           </div>
@@ -68,7 +68,7 @@
               <div class="input-title">Infos sur l’usage</div>
               <mat-form-field class="auto-size">
                 <input matInput
-                  placeholder="Maison d’architecte construite en plein coeur de Grenoble, habitation particulier.">
+                  placeholder="Maison d’architecte construite en plein coeur de Grenoble, habitation particulier." formControlName="infosConstructionUse">
               </mat-form-field>
             </div>
           </div>
@@ -117,7 +117,7 @@
     </mat-step>
 
 
-    <mat-step [stepControl]="constructionWorksFormGroup" label="Travaux / Construction">
+    <mat-step *ngIf="constructionWorksFormGroup" [stepControl]="constructionWorksFormGroup" label="Travaux / Construction">
       <form [formGroup]="constructionWorksFormGroup">
         <div class="container step-container">
           <div class="row">
@@ -433,7 +433,7 @@
     </mat-step>
 
 
-    <mat-step [stepControl]="contactsFormGroup" label="Participants, Contacts">
+    <mat-step *ngIf="contactsFormGroup" [stepControl]="contactsFormGroup" label="Participants, Contacts">
       <form [formGroup]="contactsFormGroup">
         <div class="container step-container">
           <div class="row">

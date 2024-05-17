@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -43,6 +43,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
+import { PopUpMessageComponent } from './components/pop-up-message/pop-up-message.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 
@@ -87,10 +90,12 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     DetailsBuildingComponent,
     LogInComponent,
     BuildingFormComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    PopUpMessageComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     CommonModule,
     MatFormFieldModule,
@@ -108,6 +113,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatCheckboxModule,
     MatDatepickerModule,
     MatAutocompleteModule,
+    MatDialogModule,
     NgImageSliderModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

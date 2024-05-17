@@ -12,8 +12,8 @@ export interface BGeneralInformations {
   buildingName: string | null;
   address: string | null;
   cityOrTown: string | null;
-  latitude: string | null;
-  longitude: string | null;
+  latitude: number | null;
+  longitude: number | null;
   constructionUse: string | null;
   infosConstructionUse: string | null;
   totalCostOfWork: string | null;

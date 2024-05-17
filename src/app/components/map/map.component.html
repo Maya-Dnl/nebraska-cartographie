@@ -1,4 +1,7 @@
-<div style="height: 100%; width: 100%"
-     leaflet 
-     [leafletOptions]="options">
+<div id="map" style="height: 100%; width: 100%" leaflet [leafletOptions]="options" [leafletLayers]="layers"
+     (leafletClick)="ClickMap($event)">
 </div>
+
+<!-- <div class="icon-marker"><mat-icon color="accent">house</mat-icon></div> -->
+
+<!-- [leafletFitBounds]="fitBounds" -->

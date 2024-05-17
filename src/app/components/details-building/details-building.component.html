@@ -51,6 +51,10 @@
             </div>
           </div>
         </div>
+        <button [routerLink]="['/new-building']" class="custom-nebraska modify-btn"
+          mat-button>Modifier<mat-icon>edit</mat-icon></button>
+        <button (click)="openPopUpValidate()" class="custom-nebraska" mat-flat-button color="accent">Ajouter ma
+          construction<mat-icon>thumb_up_alt</mat-icon></button>
       </mat-tab>
 
       <mat-tab *ngIf="!ConstructionWIsEmpty">
