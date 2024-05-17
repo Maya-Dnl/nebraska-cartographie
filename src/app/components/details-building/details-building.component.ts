@@ -4,6 +4,7 @@ import { BuildingFormComponent } from '../../containers/building-form/building-f
 import { BConstructionWorks, BContacts, BGeneralInformations, BPictures, BuildingModel } from '../../services/building/building.model';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpMessageComponent } from '../pop-up-message/pop-up-message.component';
+import { BuildingService } from '../../services/building/building.service';
 
 @Component({
   selector: 'app-details-building',
@@ -27,7 +28,7 @@ export class DetailsBuildingComponent {
   Contacts: BContacts | undefined = undefined;
   ContactsIsEmpty: boolean | null = null;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public buildingService: BuildingService) { }
 
   ngOnInit() {
     this.UpdateDetailObject();
@@ -50,7 +51,19 @@ export class DetailsBuildingComponent {
     this.ContactsIsEmpty = ObjectIsEmpty(this.Contacts);
   }
 
-  openPopUpValidate(){
+  saveBuildingPreview() {
+    if (this.viewedBuilding === null) {
+      throw new Error("Aucune construction à sauvegarder !")
+    }
+    this.buildingService.SaveBuildingFromPreview(this.viewedBuilding).then(() => {
+      this.buildingService.RemovePrevewBuilding();
+      this.openPopUpValidate()
+    }, (reason) => {
+      console.log(reason);
+    })
+  }
+
+  openPopUpValidate() {
     this.dialog.open(PopUpMessageComponent, {
       width: '400px',
       backdropClass: 'backdrop-blur',

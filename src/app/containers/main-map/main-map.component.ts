@@ -15,8 +15,8 @@ export class MainMapComponent {
   FilteredBuildingList: BuildingModel[] = [];
   selectedBuilding: BuildingModel | null = null;
 
-  showFiller = false
-  opened = this.selectedBuilding != null;
+  showFiller = false;
+  opened = false;
 
 
   constructor(private router: Router, private buildingService: BuildingService) { }
@@ -41,7 +41,11 @@ export class MainMapComponent {
   
   InitPreviewFromCache() {
     this.selectedBuilding = this.buildingService.GetPreviewBuilding();
-    this.FilteredBuildingList = [this.selectedBuilding]
+    if(this.selectedBuilding === null){
+      this.router.navigateByUrl("/");
+      return;
+    }
+    this.FilteredBuildingList = [this.selectedBuilding!]
     this.opened = true;
   }
 
