@@ -81,10 +81,66 @@ body {
 button.custom-nebraska {
   font-family: "Happy Monkey", system-ui;
   font-size: 16px;
-  background-color: #AB7A44;
   color: white!important;
   border: none;
   border-radius: 10px;
   margin: 30px 30px 15px 30px;
   padding: 10px;
+}
+
+button.modify-btn {
+  background-color: #FE9111;
+}
+
+.btn-custom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fafafa; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #bbb; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #999; 
+}
+
+.custom-pop-up {
+  font-family: "Happy Monkey", system-ui!important;
+  text-align: center;
+  background-color: teal;
+  color: white!important;
+  padding-top: 20px;
+}
+
+.custom-btn-popup {
+  font-family: "Happy Monkey", system-ui!important;
+  background-color: white!important;
+  color: teal!important;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.overlay-pop-up .mat-mdc-dialog-surface {
+  border-radius: 20px !important;
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(5px);
 }

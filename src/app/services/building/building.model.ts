@@ -1,27 +1,27 @@
 export interface BuildingModel {
 
   id: string;
-  generalInformations: GeneralInformations;
-  constructionWorks: ConstructionWorks;
-  pictures: Pictures;
-  contacts: Contacts;
+  generalInformations: BGeneralInformations;
+  constructionWorks: BConstructionWorks;
+  pictures: BPictures;
+  contacts: BContacts;
 
 }
 
- interface GeneralInformations {
-    buildingName: string | null;
-    address: string | null;
-    cityOrTown: string | null;
-    latitude: string | null;
-    longitude: string | null;
-    constructionUse: string | null;
-    infosConstructionUse: string | null;
-    totalCostOfWork: string | null;
-    buildingSurface: string | null;
-    numberOfLevels: string | null;
+export interface BGeneralInformations {
+  buildingName: string | null;
+  address: string | null;
+  cityOrTown: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  constructionUse: string | null;
+  infosConstructionUse: string | null;
+  totalCostOfWork: string | null;
+  buildingSurface: string | null;
+  numberOfLevels: string | null;
 }
 
- interface ConstructionWorks {
+export interface BConstructionWorks {
   startDate: string | null;
   endDate: string | null;
   strawBaleSize: string | null;
@@ -47,11 +47,11 @@ export interface BuildingModel {
   infosExteriorCovering: string | null;
 }
 
- interface Pictures {
+export interface BPictures {
 
 }
 
- interface Contacts {
+export interface BContacts {
   contact: string | null;
   postalCode: string | null;
   email: string | null;

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -20,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatTabsModule} from '@angular/material/tabs';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { environment } from '../environments/environment';
 import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
@@ -42,6 +43,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
+import { PopUpMessageComponent } from './components/pop-up-message/pop-up-message.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 
@@ -86,10 +90,12 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     DetailsBuildingComponent,
     LogInComponent,
     BuildingFormComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    PopUpMessageComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     CommonModule,
     MatFormFieldModule,
@@ -100,12 +106,14 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
+    MatTabsModule,
     MatSidenavModule,
     MatButtonModule,
     MatStepperModule,
     MatCheckboxModule,
     MatDatepickerModule,
     MatAutocompleteModule,
+    MatDialogModule,
     NgImageSliderModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

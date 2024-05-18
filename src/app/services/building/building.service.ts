@@ -1,6 +1,8 @@
 import { Router } from "@angular/router";
 import { BuildingModel } from "./building.model";
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
+import { addDoc, collection, CollectionReference, Firestore, QueryDocumentSnapshot, SnapshotOptions } from "@angular/fire/firestore";
+import { ReturnStatement } from "@angular/compiler";
 
 @Injectable({
   providedIn: "root",
@@ -8,6 +10,8 @@ import { Injectable } from "@angular/core";
 export class BuildingService {
 
   private buildingPreview: BuildingModel | null = null;
+
+  firestore: Firestore = inject(Firestore);
 
   constructor(private router: Router) { }
 
@@ -17,7 +21,7 @@ export class BuildingService {
     this.router.navigateByUrl("/preview");
   }
 
-  public GetPreviewBuilding(): BuildingModel {
+  public GetPreviewBuilding(): BuildingModel | null {
     if (this.buildingPreview != null) {
       return this.buildingPreview
     }
@@ -25,9 +29,33 @@ export class BuildingService {
     let jsonbuilding = localStorage.getItem("BuildingPreview");
     if (jsonbuilding != null) {
       this.buildingPreview = JSON.parse(jsonbuilding);
-      return this.buildingPreview! 
+      return this.buildingPreview!
     }
+    return null;
+  }
 
-    throw Error("Aucune construction en preview n'a ete enregistree")
+  public RemovePrevewBuilding() {
+    this.buildingPreview = null;
+    localStorage.removeItem("BuildingPreview");
+  }
+
+  public async SaveBuildingFromPreview(building: BuildingModel): Promise<void> {
+    let waitingBuildings: CollectionReference<BuildingModel> = collection(this.firestore, 'waitingBuildings').withConverter(buildingConverter);
+    await addDoc(waitingBuildings, building);
+  }
+}
+
+
+export const buildingConverter = {
+  toFirestore(building: BuildingModel) {
+    return { ...building }
+  },
+  fromFirestore(
+    snapshot: QueryDocumentSnapshot,
+    options: SnapshotOptions
+  ): BuildingModel {
+    const data = snapshot.data(options);
+    const building = { ...data as BuildingModel }
+    return building
   }
 }
