@@ -45,6 +45,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { PopUpMessageComponent } from './components/pop-up-message/pop-up-message.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DashboardAdminComponent } from './containers/dashboard-admin/dashboard-admin.component';
 
 
 
@@ -91,7 +92,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     LogInComponent,
     BuildingFormComponent,
     UploadImageComponent,
-    PopUpMessageComponent
+    PopUpMessageComponent,
+    DashboardAdminComponent
   ],
   imports: [
     BrowserModule,

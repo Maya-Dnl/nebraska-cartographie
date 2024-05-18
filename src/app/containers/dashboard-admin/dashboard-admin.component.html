@@ -1,0 +1,38 @@
+<div class="board-admin-content container">
+  <div class="array-buildings" *ngFor="let waitingBuilding of waitingBuildingsList">
+    <div class="validations-building">
+      <div class="left-content">
+        Construction {{ waitingBuilding.generalInformations.buildingName }} | DANIEL May-Wen | En attente de validation
+        Nebraska
+      </div>
+      <div class="right-content">
+        <mat-icon class="color-waiting-validation">hourglass_top</mat-icon>
+        <button class="custom-nebraska" mat-flat-button color="primary">Voir sur la carte</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="array-buildings" *ngFor="let waitingModidifcationsBuilding of waitingModidifcationsBuildingsList">
+    <div class="validations-building">
+      <div class="left-content">
+        Construction {{ waitingModidifcationsBuilding.generalInformations.buildingName }} | DANIEL May-Wen | En attente de modifications de l'utilisateur
+      </div>
+      <div class="right-content">
+        <mat-icon class="color-waiting-modifications">pending_actions</mat-icon>
+        <button class="custom-nebraska" mat-flat-button color="primary">Voir sur la carte</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="array-buildings" *ngFor="let publishedBuilding of publishedBuildingsList">
+    <div class="validations-building">
+      <div class="left-content">
+        Construction {{ publishedBuilding.generalInformations.buildingName }} | DANIEL May-Wen | Validée le 29/04/2024
+      </div>
+      <div class="right-content">
+        <mat-icon class="color-published">check_box</mat-icon>
+        <button class="custom-nebraska" mat-flat-button color="primary">Voir sur la carte</button>
+      </div>
+    </div>
+  </div>
+</div>
