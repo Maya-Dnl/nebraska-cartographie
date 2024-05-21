@@ -1,0 +1,46 @@
+.board-admin-content {
+  margin-top: 25px;
+}
+
+.validations-building {
+  display: flex;
+  background-color: #ab794446;
+  border-radius: 10px;
+  padding-left: 15px;
+  margin: 20px 0 20px 0;
+
+  .left-content {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 60%;
+  }
+
+  .right-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    width: 40%;
+  }
+}
+
+mat-icon {
+  width: auto;
+  height: auto;
+  font-size: 36px;
+  
+  &.color-waiting-validation {
+    color: rgba(0, 128, 128, 0.434);
+  }
+  
+  &.color-waiting-modifications {
+    color: #FE9111;
+  }
+
+  &.color-published {
+    color: rgb(4, 152, 152);
+  }
+
+}
+
