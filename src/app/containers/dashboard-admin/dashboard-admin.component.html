@@ -1,5 +1,5 @@
 <div class="board-admin-content container">
-  <div class="array-buildings" *ngFor="let waitingBuilding of waitingBuildingsList">
+  <div class="array-buildings" *ngFor="let waitingBuilding of waitingBuildings$ | async">
     <div class="validations-building">
       <div class="left-content">
         Construction {{ waitingBuilding.generalInformations.buildingName }} | DANIEL May-Wen | En attente de validation

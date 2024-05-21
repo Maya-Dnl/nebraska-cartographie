@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BuildingModel } from '../../services/building/building.model';
+import { collectionData, Firestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { collection } from 'firebase/firestore';
 
 export const MockBuilding: BuildingModel = {
   id: "",
@@ -71,23 +74,27 @@ export const MockBuilding: BuildingModel = {
 })
 export class DashboardAdminComponent {
 
-  waitingBuildingsList: BuildingModel[] = [
-    {
-      ...MockBuilding,
-      id: "1",
-      generalInformations: { ...MockBuilding.generalInformations, buildingName: "toto" }
-    },
-    {
-      ...MockBuilding,
-      id: "2",
-      generalInformations: { ...MockBuilding.generalInformations, buildingName: "titi" }
-    },
-    {
-      ...MockBuilding,
-      id: "3",
-      generalInformations: { ...MockBuilding.generalInformations, buildingName: "tata" }
-    },
-  ];
+  firestore: Firestore = inject(Firestore)
+
+  waitingBuildings$: Observable<any[]>;
+
+  // waitingBuildingsList: BuildingModel[] = [
+  //   {
+  //     ...MockBuilding,
+  //     id: "1",
+  //     generalInformations: { ...MockBuilding.generalInformations, buildingName: "toto" }
+  //   },
+  //   {
+  //     ...MockBuilding,
+  //     id: "2",
+  //     generalInformations: { ...MockBuilding.generalInformations, buildingName: "titi" }
+  //   },
+  //   {
+  //     ...MockBuilding,
+  //     id: "3",
+  //     generalInformations: { ...MockBuilding.generalInformations, buildingName: "tata" }
+  //   },
+  // ];
 
   waitingModidifcationsBuildingsList: BuildingModel[] = [
     {
@@ -124,4 +131,9 @@ export class DashboardAdminComponent {
       generalInformations: { ...MockBuilding.generalInformations, buildingName: "tata" }
     },
   ];
+
+  constructor() {
+    const waitingBuildingsCollection = collection(this.firestore, 'waitingBuildings')
+    this.waitingBuildings$ = collectionData(waitingBuildingsCollection);
+  }
 }
