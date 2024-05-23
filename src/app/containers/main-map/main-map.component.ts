@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { BuildingService } from '../../services/building/building.service';
 import { BuildingModel } from '../../services/building/building.model';
@@ -9,19 +9,20 @@ import { BuildingModel } from '../../services/building/building.model';
   templateUrl: './main-map.component.html',
   styleUrl: './main-map.component.scss'
 })
+
 export class MainMapComponent {
 
 
-  FilteredBuildingList: BuildingModel[] = [];
-  selectedBuilding: BuildingModel | null = null;
-
-  showFiller = false;
+  filteredBuildingList: BuildingModel[] = [];
+  selectedBuilding: BuildingModel | undefined = undefined;
   opened = false;
 
-
-  constructor(private router: Router, private buildingService: BuildingService) { }
+  constructor(private router: Router, private buildingService: BuildingService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    const id = this.route.snapshot.paramMap.get('id');
+
     switch (this.router.url) {
       case "/":
         this.InitHomeMap();
@@ -29,28 +30,39 @@ export class MainMapComponent {
       case "/preview":
         this.InitPreviewFromCache();
         break;
-      default:
-        this.InitPreviewFromServer();
-
+      case "/preview/" + id:
+        this.InitPreviewFromServer(id);
+        break;
+      default: 
+        this.router.navigateByUrl("/");
     }
   }
 
   InitHomeMap() {
 
   }
-  
+
   InitPreviewFromCache() {
-    this.selectedBuilding = this.buildingService.GetPreviewBuilding();
-    if(this.selectedBuilding === null){
+    this.selectedBuilding = this.buildingService.GetPreviewBuildingFromCache();
+    if (this.selectedBuilding === undefined) {
       this.router.navigateByUrl("/");
       return;
     }
-    this.FilteredBuildingList = [this.selectedBuilding!]
+    this.filteredBuildingList = [this.selectedBuilding!]
     this.opened = true;
   }
 
-  InitPreviewFromServer() {
+  async InitPreviewFromServer(id: string | null) {
+    if (id === null) {
+      throw Error ('id is null');
+    }
+    this.selectedBuilding = await this.buildingService.GetPreviewBuildingFromServer(id);
+    if(this.selectedBuilding === undefined)
+      {
+       // afficher une popup pour indiquer que le building n'a pas ete trouvé avec un bouton continuer pour retour a la home
+      }
+      this.filteredBuildingList = [this.selectedBuilding!]
+      this.opened = true;
 
   }
-
 }

@@ -59,7 +59,7 @@ export class BuildingFormComponent {
 
   ngOnInit() {
 
-    let editedBuilding = this.buildingService.GetPreviewBuilding();
+    let editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
 
 
     let gi = editedBuilding != null ? editedBuilding.generalInformations : null;

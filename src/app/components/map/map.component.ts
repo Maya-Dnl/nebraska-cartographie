@@ -18,13 +18,18 @@ export class MapComponent {
   // fitBounds: LatLngBounds | undefined = ;
   
   @Input() buildingList: BuildingModel[] = [];
-  @Input() selectedBuilding: BuildingModel | null = null;
+  @Input() selectedBuilding: BuildingModel | undefined;
 
   layers: Layer[] = [];
 
 constructor() {}
 
   ngOnInit()
+  {
+    this.UpdateMap();
+  }
+  
+  ngOnChanges()
   {
     this.UpdateMap();
   }

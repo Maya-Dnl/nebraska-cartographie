@@ -1,6 +1,6 @@
 import { Component, Input, SimpleChange, ViewChild } from '@angular/core';
 import { NgImageSliderComponent } from 'ng-image-slider';
-import { BuildingFormComponent } from '../../containers/building-form/building-form.component';
+// import { BuildingFormComponent } from '../../containers/building-form/building-form.component';
 import { BConstructionWorks, BContacts, BGeneralInformations, BPictures, BuildingModel } from '../../services/building/building.model';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpMessageComponent } from '../pop-up-message/pop-up-message.component';
@@ -13,7 +13,7 @@ import { BuildingService } from '../../services/building/building.service';
 })
 export class DetailsBuildingComponent {
 
-  @Input() viewedBuilding: BuildingModel | null = null;
+  @Input() viewedBuilding: BuildingModel | undefined;
 
 
   GeneralInfo: BGeneralInformations | undefined = undefined;
@@ -33,6 +33,7 @@ export class DetailsBuildingComponent {
   ngOnInit() {
     this.UpdateDetailObject();
   }
+
   ngOnChanges(Changes: SimpleChange) {
     this.UpdateDetailObject();
   }
@@ -52,7 +53,7 @@ export class DetailsBuildingComponent {
   }
 
   saveBuildingPreview() {
-    if (this.viewedBuilding === null) {
+    if (this.viewedBuilding === undefined) {
       throw new Error("Aucune construction à sauvegarder !")
     }
     this.buildingService.SaveBuildingFromPreview(this.viewedBuilding).then(() => {
