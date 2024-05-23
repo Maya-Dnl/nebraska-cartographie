@@ -2,27 +2,40 @@
   <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button> -->
-    <div class="overlay-gradient-navbar">
-      <div class="navbar-container-left">
-        <div [routerLink]="['/main-map']" id="logo">
-          <img src="assets/images/logo-nebraska.png" alt="logo-nebraska">
-        </div>
-      </div>
-      <div class="navbar-container-right">
-        <a [routerLink]="['/']" class="account-profil">
-          <mat-icon>map</mat-icon>
-        </a>
-        <a [routerLink]="['/dashboard-admin']" class="account-profil">
-          <mat-icon>dashboard</mat-icon>
-        </a>
-        <a [routerLink]="['/new-building']" class="account-profil">
-          <mat-icon>add_home_work</mat-icon>
-        </a>
-        <a [routerLink]="['/log-in']" class="account-profil">
-          <mat-icon>account_circle</mat-icon>
-        </a>
+  <div class="overlay-gradient-navbar">
+    <div class="navbar-container-left">
+      <div [routerLink]="['/main-map']" id="logo">
+        <img src="assets/images/logo-nebraska.png" alt="logo-nebraska">
       </div>
     </div>
+    <div class="navbar-container-right">
+      <div class="below-icon">
+        <a [routerLink]="['/']" class="custom-icon">
+          <mat-icon>map</mat-icon>
+        </a>
+        <div>Carte</div>
+      </div>
+      <div class="below-icon">
+        <a [routerLink]="['/new-building']" class="custom-icon">
+          <mat-icon>add_home_work</mat-icon>
+        </a>
+        <div>Ajouter</div>
+      </div>
+      <div class="below-icon">
+        <a [routerLink]="['/dashboard-admin']" class="custom-icon">
+          <mat-icon>dashboard</mat-icon>
+           <!-- matBadge="1" matBadgeColor="warn" -->
+        </a>
+        <div>Dashboard</div>
+      </div>
+      <div class="below-icon">
+        <a [routerLink]="['/log-in']" class="custom-icon">
+          <mat-icon>account_circle</mat-icon>
+        </a>
+        <div>Compte</div>
+      </div>
+    </div>
+  </div>
 </mat-toolbar>
 <div class="title-bar">
   <h1 class="adaptable-title">Recensement des constructions en Paille Porteuse de France</h1>

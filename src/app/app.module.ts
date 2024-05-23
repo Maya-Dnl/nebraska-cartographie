@@ -20,7 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { environment } from '../environments/environment';
 import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
@@ -40,6 +40,7 @@ import { BuildingFormComponent } from './containers/building-form/building-form.
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
@@ -116,6 +117,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatDatepickerModule,
     MatAutocompleteModule,
     MatDialogModule,
+    MatBadgeModule,
     NgImageSliderModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
