@@ -6,6 +6,9 @@ import { passwordMatchValidator } from './password-match.validator';
 import { EmailValidator } from './email.validator';
 import { AuthProcessService } from '../../services/authentication-service.service';
 import { Router } from '@angular/router';
+import { changeTitle } from '../../store/global.actions';
+import { AppState } from '../../store/app.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-log-in',
@@ -27,6 +30,7 @@ export class LogInComponent {
   private _email: string = "";
 
   constructor(private cdr: ChangeDetectorRef,
+    private store: Store<AppState>,
     private router: Router,
     public authProcess: AuthProcessService,
     private fb: FormBuilder) {
@@ -51,8 +55,10 @@ export class LogInComponent {
     this.authProcess.signInTestEmailExist(this._email).then(exist => {
       if (exist === true) {
         this.connexionMode = 1;
+        this.store.dispatch(changeTitle({ newTitle: 'Connexion' }));
       } else if (exist === false) {
         this.connexionMode = 2
+        this.store.dispatch(changeTitle({ newTitle: 'Inscription' }));
       } else {
         throw new Error("Le fetch de l'email est en erreur")
       }

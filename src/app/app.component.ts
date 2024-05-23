@@ -1,8 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { collection, collectionData, Firestore } from '@angular/fire/firestore';
+import { Store } from '@ngrx/store';
 import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure, FirebaseuiAngularLibraryService } from 'firebaseui-angular';
 import { Observable } from 'rxjs';
+import { AppState } from './store/app.state';
+import { changeTitle } from './store/global.actions';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,22 +20,30 @@ export class AppComponent {
   items$: Observable<any[]> = collectionData(this.aCollection);
 
   constructor(private firebaseuiAngularLibraryService: FirebaseuiAngularLibraryService,
-    private angularFireAuth: AngularFireAuth) {
+    private router: Router, private route: ActivatedRoute,
+    private angularFireAuth: AngularFireAuth, private store: Store<AppState>) {
     // firebaseuiAngularLibraryService.firebaseUiInstance.disableAutoSignIn();
   }
 
 
   ngOnInit(): void {
-    this.angularFireAuth.authState.subscribe(user => {
-      if (user) {
-        if (!user.emailVerified) {
-          user.sendEmailVerification();
-          this.logout();
-          alert("Veuillez verifier votre email avant de vous connecter")
-        }
+
+    this.router.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) {
+        this.route.firstChild?.data.subscribe(r =>
+          this.store.dispatch(changeTitle({ newTitle: r['title'] })))
       }
-    }
-    );
+    });
+    // this.angularFireAuth.authState.subscribe(user => {
+    //   if (user) {
+    //     if (!user.emailVerified) {
+    //       user.sendEmailVerification();
+    //       this.logout();
+    //       alert("Veuillez verifier votre email avant de vous connecter")
+    //     }
+    //   }
+    // }
+    // );
   }
 
   logout() {

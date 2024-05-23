@@ -1,3 +1,6 @@
+import { GlobalState } from "./global.reducer";
+
 export interface AppState {
-  title: string;
+  // title: string;
+  global: GlobalState;
 }
