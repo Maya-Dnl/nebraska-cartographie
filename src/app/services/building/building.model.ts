@@ -9,42 +9,42 @@ export interface BuildingModel {
 }
 
 export interface BGeneralInformations {
-  buildingName: string | null;
-  address: string | null;
-  cityOrTown: string | null;
-  latitude: number | null;
-  longitude: number | null;
-  constructionUse: string | null;
-  infosConstructionUse: string | null;
-  totalCostOfWork: string | null;
-  buildingSurface: string | null;
-  numberOfLevels: string | null;
+  buildingName: string | undefined;
+  address: string | undefined;
+  cityOrTown: string | undefined;
+  latitude: number | undefined;
+  longitude: number | undefined;
+  constructionUse: string | undefined;
+  infosConstructionUse: string | undefined;
+  totalCostOfWork: number | undefined;
+  buildingSurface: number | undefined;
+  numberOfLevels: number | undefined;
 }
 
 export interface BConstructionWorks {
-  startDate: string | null;
-  endDate: string | null;
-  strawBaleSize: string | null;
-  strawBaleInfos: string | null;
-  strawBaleDensity: string | null;
-  cerealsUsed: string | null;
-  supplyDistance: string | null;
-  selfConstruction: string | null;
-  participatoryConstruction: string | null;
-  complementaryStructure: string | null;
-  natureComplementaryStructure: string | null;
-  infosNatureComplementaryStructure: string | null;
-  shearWallLength: string | null;
-  calculationNote: string | null;
-  numberOfRows: string | null;
-  arrayIntegration: string | null;
-  arrayIntegrationInfos: string | null;
-  natureInkingSupport: string | null;
-  infosNatureInkingSupport: string | null;
-  interiorCovering: string | null;
-  infosInteriorCovering: string | null;
-  exteriorCovering: string | null;
-  infosExteriorCovering: string | null;
+  startDate: string | undefined;
+  endDate: string | undefined;
+  strawBaleSize: string | undefined;
+  strawBaleInfos: string | undefined;
+  strawBaleDensity: number | undefined;
+  cerealsUsed: string | undefined;
+  supplyDistance: number | undefined;
+  selfConstruction: string | undefined;
+  participatoryConstruction: string | undefined;
+  complementaryStructure: boolean | undefined;
+  natureComplementaryStructure: string | undefined;
+  infosNatureComplementaryStructure: string | undefined;
+  shearWallLength: string | undefined;
+  calculationNote: boolean | undefined;
+  numberOfRows: number | undefined;
+  arrayIntegration: string | undefined;
+  arrayIntegrationInfos: string | undefined;
+  natureInkingSupport: string | undefined;
+  infosNatureInkingSupport: string | undefined;
+  interiorCovering: string | undefined;
+  infosInteriorCovering: string | undefined;
+  exteriorCovering: string | undefined;
+  infosExteriorCovering: string | undefined;
 }
 
 export interface BPictures {
@@ -52,20 +52,20 @@ export interface BPictures {
 }
 
 export interface BContacts {
-  contact: string | null;
-  postalCode: string | null;
-  email: string | null;
-  phoneNumber: string | null;
-  projectOwner: string | null;
-  projectManager: string | null;
-  architect: string | null;
-  structureDesignOffice: string | null;
-  controlOffice: string | null;
-  strawBaleCompany: string | null;
-  carpentryInstallationCompany: string | null;
-  coatingImplementationCompany: string | null;
-  projectDescriptionBox: string | null;
-  difficultiesBox: string | null;
-  tipsAndTricksBox: string | null;
-  otherCommentBox: string | null;
+  contact: string | undefined;
+  postalCode: string | undefined;
+  email: string | undefined;
+  phoneNumber: string | undefined;
+  projectOwner: string | undefined;
+  projectManager: string | undefined;
+  architect: string | undefined;
+  structureDesignOffice: string | undefined;
+  controlOffice: string | undefined;
+  strawBaleCompany: string | undefined;
+  carpentryInstallationCompany: string | undefined;
+  coatingImplementationCompany: string | undefined;
+  projectDescriptionBox: string | undefined;
+  difficultiesBox: string | undefined;
+  tipsAndTricksBox: string | undefined;
+  otherCommentBox: string | undefined;
 }
