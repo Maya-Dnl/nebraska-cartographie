@@ -7,13 +7,13 @@ import { BuildingFormComponent } from './containers/building-form/building-form.
 import { DashboardAdminComponent } from './containers/dashboard-admin/dashboard-admin.component';
 
 const routes: Routes = [
- {path: "log-in", component: LogInComponent},
- {path: "main-map", component: MainMapComponent},
- {path: "new-building", component: BuildingFormComponent},
- {path: "preview", component: MainMapComponent},
- {path: "preview/:id", component: MainMapComponent},
- {path: "dashboard-admin", component: DashboardAdminComponent},
- {path: "**", component: MainMapComponent},
+ {path: "log-in", component: LogInComponent, data: {title: 'Connexion ou inscription'}},
+ {path: "main-map", component: MainMapComponent, data: {title: 'Recensement  des constructions en Paille Porteuse de France'}},
+ {path: "new-building", component: BuildingFormComponent, data: {title: 'Référencement d’une nouvelle construction'}},
+ {path: "preview", component: MainMapComponent, data: {title: 'Les informations-sont elles correctes ?'}},
+ {path: "preview/:id", component: MainMapComponent, data: {title: 'Les informations-sont elles correctes ?'}},
+ {path: "dashboard-admin", component: DashboardAdminComponent, data: {title: 'Gestion administrateur'}},
+ {path: "**", component: MainMapComponent, data: {title: 'Référencement des constructions en paille porteuse de France'}},
 ];
 
 @NgModule({

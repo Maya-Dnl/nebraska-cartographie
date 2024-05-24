@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "^17.2.0",
     "@angular/router": "^17.2.0",
     "@asymmetrik/ngx-leaflet": "^17.0.0",
+    "@ngrx/store": "^17.2.0",
+    "@ngrx/store-devtools": "^17.2.0",
     "firebase": "^10.11.0",
     "firebaseui-angular": "^6.2.1",
     "leaflet": "^1.9.4",
