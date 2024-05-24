@@ -8,12 +8,12 @@ import { DashboardAdminComponent } from './containers/dashboard-admin/dashboard-
 
 const routes: Routes = [
  {path: "log-in", component: LogInComponent, data: {title: 'Connexion ou inscription'}},
- {path: "main-map", component: MainMapComponent, data: {title: 'Home'}},
- {path: "new-building", component: BuildingFormComponent, data: {title: 'Nouvelle const'}},
- {path: "preview", component: MainMapComponent, data: {title: 'Preview nouvelle construction'}},
- {path: "preview/:id", component: MainMapComponent, data: {title: 'Preview construction'}},
- {path: "dashboard-admin", component: DashboardAdminComponent, data: {title: 'dash ou inscription'}},
- {path: "**", component: MainMapComponent, data: {title: 'Home'}},
+ {path: "main-map", component: MainMapComponent, data: {title: 'Recensement  des constructions en Paille Porteuse de France'}},
+ {path: "new-building", component: BuildingFormComponent, data: {title: 'Référencement d’une nouvelle construction'}},
+ {path: "preview", component: MainMapComponent, data: {title: 'Les informations-sont elles correctes ?'}},
+ {path: "preview/:id", component: MainMapComponent, data: {title: 'Les informations-sont elles correctes ?'}},
+ {path: "dashboard-admin", component: DashboardAdminComponent, data: {title: 'Gestion administrateur'}},
+ {path: "**", component: MainMapComponent, data: {title: 'Référencement des constructions en paille porteuse de France'}},
 ];
 
 @NgModule({
