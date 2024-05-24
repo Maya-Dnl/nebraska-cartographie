@@ -40,6 +40,7 @@ import { BuildingFormComponent } from './containers/building-form/building-form.
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
@@ -121,6 +122,7 @@ export const reducers: ActionReducerMap<AppState> = {
     MatDatepickerModule,
     MatAutocompleteModule,
     MatDialogModule,
+    MatBadgeModule,
     NgImageSliderModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

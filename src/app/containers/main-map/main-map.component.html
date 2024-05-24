@@ -1,4 +1,3 @@
-
 <mat-drawer-container class="main-map-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side" [(opened)]="opened">
     <app-details-building [viewedBuilding]="selectedBuilding"></app-details-building>
@@ -8,6 +7,6 @@
     <!-- <button type="button" mat-button (click)="drawer.toggle()">
       Toggle sidenav
     </button> -->
-    <app-map [buildingList]="FilteredBuildingList" [selectedBuilding]="selectedBuilding"></app-map>
+    <app-map [buildingList]="filteredBuildingList" [selectedBuilding]="selectedBuilding"></app-map>
   </div>
 </mat-drawer-container>
