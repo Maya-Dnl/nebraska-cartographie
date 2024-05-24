@@ -20,7 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatTabsModule } from '@angular/material/tabs';
+import {MatTabsModule} from '@angular/material/tabs';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { environment } from '../environments/environment';
 import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
@@ -47,6 +47,7 @@ import { UploadImageComponent } from './components/upload-image/upload-image.com
 import { PopUpMessageComponent } from './components/pop-up-message/pop-up-message.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardAdminComponent } from './containers/dashboard-admin/dashboard-admin.component';
+import { TechnicalAdminComponent } from './containers/technical-admin/technical-admin.component';
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { globalReducer } from './store/global.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -97,7 +98,8 @@ export const reducers: ActionReducerMap<AppState> = {
     BuildingFormComponent,
     UploadImageComponent,
     PopUpMessageComponent,
-    DashboardAdminComponent
+    DashboardAdminComponent,
+    TechnicalAdminComponent
   ],
   imports: [
     BrowserModule,

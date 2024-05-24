@@ -1,0 +1,3964 @@
+[
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2017-09-25" },
+      "constructionFin": { "__type": "Date", "iso": "2019-08-31" },
+      "surfacePlancher": 100,
+      "coutTravauxTTC": 140000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": false,
+      "travauxExtension": true,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 15,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "BARDAGE_VENTILE"
+      },
+      "codePostal": "59680",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 50.25985,
+        "longitude": 4.0847683
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2018-08-01" },
+      "constructionFin": { "__type": "Date", "iso": "2018-09-01" },
+      "surfacePlancher": 29,
+      "coutTravauxTTC": 12000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_AGRICOLE"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "codePostal": "87500",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.640156,
+        "longitude": -1.5022583
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2014-04-01" },
+      "constructionFin": { "__type": "Date", "iso": "2014-06-01" },
+      "surfacePlancher": 50,
+      "coutTravauxTTC": 80000,
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_AGRICOLE"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "codePostal": "38600",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 45.19305,
+        "longitude": 5.677631
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "surfacePlancher": 50,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "NON"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "codePostal": "22270",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.468758,
+        "longitude": -2.371755
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-08-01" },
+      "surfacePlancher": 30,
+      "coutTravauxTTC": 15000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_INDUSTRIEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "22290",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.678886,
+        "longitude": -3.0734267
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-02-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-12-01" },
+      "surfacePlancher": 100,
+      "coutTravauxTTC": 100000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "22300",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.740284,
+        "longitude": -3.355987
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2007-04-01" },
+      "constructionFin": { "__type": "Date", "iso": "2008-10-01" },
+      "surfacePlancher": 88,
+      "coutTravauxTTC": 19000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_70_X_120_X_230_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "23360",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 46.423096,
+        "longitude": 1.7799634
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2007-01-01" },
+      "constructionFin": { "__type": "Date", "iso": "2007-10-01" },
+      "surfacePlancher": 60,
+      "coutTravauxTTC": 5000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_50_X_80_X_110_a_200_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_INDUSTRIEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "24560",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.78177,
+        "longitude": 0.55334693
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2006-06-01" },
+      "surfacePlancher": 100,
+      "coutTravauxTTC": 75,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "SEIGLE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "05190",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.47162,
+        "longitude": 6.1597767
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-10-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-01-01" },
+      "surfacePlancher": 130,
+      "coutTravauxTTC": 130000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "NON"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "11420",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 43.203423,
+        "longitude": 1.7633903
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-07-01" },
+      "surfacePlancher": 30,
+      "coutTravauxTTC": 38000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "NON"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_INDUSTRIEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "TRITICALE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "18260",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.43103,
+        "longitude": 2.750307
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "surfacePlancher": 100,
+      "coutTravauxTTC": 45000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_50_X_80_X_110_a_200_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "38650",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.9576,
+        "longitude": 5.673584
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-07-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-08-01" },
+      "surfacePlancher": 63,
+      "coutTravauxTTC": 500,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "ORGE"
+      },
+      "codePostal": "32300",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 43.408756,
+        "longitude": 0.5001715
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-11-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-06-01" },
+      "surfacePlancher": 230,
+      "coutTravauxTTC": 450000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_PLATRE"
+      },
+      "codePostal": "34970",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 43.563858,
+        "longitude": 3.9022622
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-08-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-10-01" },
+      "surfacePlancher": 10,
+      "coutTravauxTTC": 2000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "AUTRE"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "35850",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.213326,
+        "longitude": -1.799307
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "surfacePlancher": 150,
+      "coutTravauxTTC": 150000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "NON"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "27740",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 49.299572,
+        "longitude": 1.2407136
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2007-06-01" },
+      "constructionFin": { "__type": "Date", "iso": "2007-12-01" },
+      "surfacePlancher": 110,
+      "coutTravauxTTC": 7000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "AUTRE"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "30250",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 43.806767,
+        "longitude": 4.038674
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "surfacePlancher": 100,
+      "coutTravauxTTC": 150000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 30,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "57260",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.843792,
+        "longitude": 6.7892942
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-04-01" },
+      "constructionFin": { "__type": "Date", "iso": "2008-10-01" },
+      "surfacePlancher": 150,
+      "coutTravauxTTC": 110000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_70_X_120_X_230_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "46130",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.914288,
+        "longitude": 1.8425487
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2014-07-01" },
+      "constructionFin": { "__type": "Date", "iso": "2015-05-01" },
+      "surfacePlancher": 141,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": false,
+      "travauxExtension": true,
+      "travauxRenov": true,
+      "travauxIte": true,
+      "travauxIti": false,
+      "niveaux": 1,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "codePostal": "39330",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 46.998417,
+        "longitude": 5.819151
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2005-06-01" },
+      "constructionFin": { "__type": "Date", "iso": "2006-11-01" },
+      "surfacePlancher": 20,
+      "coutTravauxTTC": 500,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "NON"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "AUTRE"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "ORGE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "47370",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.373604,
+        "longitude": 0.9552241
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-07-01" },
+      "surfacePlancher": 60,
+      "coutTravauxTTC": 30000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "20200",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 42.7324,
+        "longitude": 9.431631
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-03-01" },
+      "constructionFin": { "__type": "Date", "iso": "2010-06-01" },
+      "surfacePlancher": 130,
+      "coutTravauxTTC": 128500,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "64250",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 43.31227,
+        "longitude": -1.3479135
+      },
+      "supportAncrageInfos": "Béton léger isolant"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2007-03-01" },
+      "constructionFin": { "__type": "Date", "iso": "2007-06-01" },
+      "surfacePlancher": 25,
+      "coutTravauxTTC": 0,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "NON"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "AUTRE"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "35270",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.39125,
+        "longitude": -1.6912545
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-04-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-01-01" },
+      "surfacePlancher": 140,
+      "coutTravauxTTC": 300000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "AUTRE"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "80700",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 49.711296,
+        "longitude": 2.8650477
+      },
+      "supportAncrageInfos": "Béton léger isolant"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "surfacePlancher": 75,
+      "coutTravauxTTC": 30000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "NON"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "24150",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.804745,
+        "longitude": 0.7227977
+      },
+      "supportAncrageInfos": "Pierre"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-05-01" },
+      "constructionFin": { "__type": "Date", "iso": "2010-12-01" },
+      "surfacePlancher": 500,
+      "coutTravauxTTC": 100000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "ORGE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "16500",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 45.994305,
+        "longitude": 0.61973035
+      },
+      "supportAncrageInfos": "Pierre"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-06-01" },
+      "surfacePlancher": 42,
+      "coutTravauxTTC": 10000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "NON"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "19120",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.98082,
+        "longitude": 1.8276728
+      },
+      "supportAncrageInfos": "Pierre"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-05-01" },
+      "constructionFin": { "__type": "Date", "iso": "2011-06-01" },
+      "surfacePlancher": 95,
+      "coutTravauxTTC": 150000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "35480",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.805,
+        "longitude": -1.7998141
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "surfacePlancher": 170,
+      "coutTravauxTTC": 80000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "35610",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.53114,
+        "longitude": -1.573924
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2010-06-01" },
+      "surfacePlancher": 170,
+      "coutTravauxTTC": 60000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_PLATRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "57320",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 49.276474,
+        "longitude": 6.553259
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2007-11-01" },
+      "surfacePlancher": 28,
+      "coutTravauxTTC": 3000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "53270",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.04032,
+        "longitude": -0.38824132
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2007-06-01" },
+      "surfacePlancher": 158,
+      "coutTravauxTTC": 80000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "ORGE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "30520",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.165882,
+        "longitude": 4.0750003
+      },
+      "supportAncrageInfos": "Parpaing de ciment"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-06-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-02-01" },
+      "surfacePlancher": 85,
+      "coutTravauxTTC": 67000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 100,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "69620",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 45.918873,
+        "longitude": 4.5787354
+      },
+      "supportAncrageInfos": "Parpaing de ciment"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2006-02-01" },
+      "constructionFin": { "__type": "Date", "iso": "2008-04-01" },
+      "surfacePlancher": 120,
+      "coutTravauxTTC": 60000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_50_X_80_X_110_a_200_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "46600",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.99625,
+        "longitude": 1.6379536
+      },
+      "supportAncrageInfos": "Parpaing de ciment"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2007-07-01" },
+      "surfacePlancher": 120,
+      "coutTravauxTTC": 120000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "35630",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.30188,
+        "longitude": -1.777484
+      },
+      "supportAncrageInfos": "Brique de terre cuite"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-02-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-09-01" },
+      "surfacePlancher": 150,
+      "coutTravauxTTC": 60000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_70_X_120_X_230_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 100,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "64240",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 43.45643,
+        "longitude": -1.3247588
+      },
+      "supportAncrageInfos": "Brique de terre cuite"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-10-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-10-01" },
+      "surfacePlancher": 164,
+      "coutTravauxTTC": 60000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 100,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "65190",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 43.165836,
+        "longitude": 0.27292517
+      },
+      "supportAncrageInfos": "Brique de terre cuite"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-04-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-12-01" },
+      "surfacePlancher": 20,
+      "coutTravauxTTC": 6000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "ORGE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "56230",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.715813,
+        "longitude": -2.4945621
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "surfacePlancher": 50,
+      "coutTravauxTTC": 40000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "NON"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "46160",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.544563,
+        "longitude": 1.9706081
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-02-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-05-01" },
+      "surfacePlancher": 100,
+      "coutTravauxTTC": 60000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "NON"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "46190",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.880634,
+        "longitude": 2.0354729
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-06-01" },
+      "surfacePlancher": 100,
+      "coutTravauxTTC": 50000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_70_X_120_X_230_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "46220",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.48709,
+        "longitude": 1.1706933
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2018-03-01" },
+      "constructionFin": { "__type": "Date", "iso": "2019-06-03" },
+      "surfacePlancher": 9,
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_DE_LOISIRS"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "codePostal": "21220",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.195747,
+        "longitude": 5.039948
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2019-05-20" },
+      "constructionFin": { "__type": "Date", "iso": "2020-08-31" },
+      "surfacePlancher": 162,
+      "coutTravauxTTC": 150000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "AUTRE"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 25,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "36500",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 46.89392,
+        "longitude": 1.5625622
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2010-04-01" },
+      "constructionFin": { "__type": "Date", "iso": "2011-07-31" },
+      "surfacePlancher": 345,
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "AUTRE"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "codePostal": "32400",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 43.636673,
+        "longitude": -0.027263882
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-03-25" },
+      "constructionFin": { "__type": "Date", "iso": "2010-07-21" },
+      "surfacePlancher": 900,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_70_X_120_X_230_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_INDUSTRIEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 300,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "RIZ"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "26210",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 45.29606,
+        "longitude": 5.0411596
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2016-02-01" },
+      "constructionFin": { "__type": "Date", "iso": "2017-03-16" },
+      "surfacePlancher": 37,
+      "coutTravauxTTC": 15000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_70_X_120_X_230_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "BARDAGE_VENTILE"
+      },
+      "codePostal": "87120",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 45.77192,
+        "longitude": 1.7005801
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2018-06-01" },
+      "constructionFin": { "__type": "Date", "iso": "2019-05-01" },
+      "surfacePlancher": 40,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "codePostal": "23192",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.640156,
+        "longitude": -1.5138512
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2018-08-10" },
+      "constructionFin": { "__type": "Date", "iso": "2018-09-07" },
+      "surfacePlancher": 29,
+      "coutTravauxTTC": 12000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_AGRICOLE"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 1,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "BARDAGE_VENTILE"
+      },
+      "codePostal": "87500",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 45.588306,
+        "longitude": 1.1074259
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2010-06-01" },
+      "constructionFin": { "__type": "Date", "iso": "2010-10-01" },
+      "surfacePlancher": 17,
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_ADMINISTRATIF"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "codePostal": "03190",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 46.46077,
+        "longitude": 2.559048
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2018-06-01" },
+      "constructionFin": { "__type": "Date", "iso": "2019-05-31" },
+      "surfacePlancher": 40,
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": false,
+      "travauxExtension": true,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "codePostal": "23290",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 46.12698,
+        "longitude": 1.5325226
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2012-03-14" },
+      "constructionFin": { "__type": "Date", "iso": "2012-07-27" },
+      "surfacePlancher": 28,
+      "coutTravauxTTC": 85000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_DE_LOISIRS"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 22,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "01000",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 46.20515,
+        "longitude": 5.2460213
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2018-11-15" },
+      "constructionFin": { "__type": "Date", "iso": "2020-01-31" },
+      "surfacePlancher": 1000,
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_EDUCATIF"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "codePostal": "93111",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.882343,
+        "longitude": 2.4813042
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2010-06-01" },
+      "constructionFin": { "__type": "Date", "iso": "2010-10-01" },
+      "surfacePlancher": 17,
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_ADMINISTRATIF"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "codePostal": "3190",
+      "latitudeLongitude": { "__type": "GeoPoint", "latitude": 0, "longitude": 0 }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2007-09-01" },
+      "surfacePlancher": 338,
+      "coutTravauxTTC": 150000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL_GROUPE"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 100,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "56220",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.64011,
+        "longitude": -2.2992725
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2002-05-01" },
+      "constructionFin": { "__type": "Date", "iso": "2003-06-01" },
+      "surfacePlancher": 80,
+      "coutTravauxTTC": 11000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "AUTRE"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "45550",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.88354,
+        "longitude": 2.1538882
+      },
+      "bottesTailleInfos": "26 x 45 cm"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2010-01-01" },
+      "constructionFin": { "__type": "Date", "iso": "2011-12-01" },
+      "surfacePlancher": 120,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "entrepriseBottes": "Botmobil (Anaig Madec)",
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "28410",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.818367,
+        "longitude": 1.5605223
+      },
+      "entrepriseEnduits": "Botmobil (Anaig Madec)"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2012-03-01" },
+      "constructionFin": { "__type": "Date", "iso": "2017-03-01" },
+      "surfacePlancher": 70,
+      "coutTravauxTTC": 100000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_70_X_120_X_230_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "44170",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.624126,
+        "longitude": -1.6044141
+      },
+      "supportAncrageInfos": "Parpaing de ciment"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-07-01" },
+      "surfacePlancher": 100,
+      "coutTravauxTTC": 30000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "81430",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 43.906822,
+        "longitude": 2.4166007
+      },
+      "supportAncrageInfos": "Parpaing de ciment"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2019-04-29" },
+      "constructionFin": { "__type": "Date", "iso": "2019-12-24" },
+      "surfacePlancher": 128,
+      "coutTravauxTTC": 150000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 50,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "TRITICALE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "24450",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 45.544403,
+        "longitude": 0.9656249
+      },
+      "supportAncrageInfos": "Béton léger isolant"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-12-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-01-01" },
+      "surfacePlancher": 12,
+      "coutTravauxTTC": 300,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "AUTRE"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "56350",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.60255,
+        "longitude": -2.2440968
+      },
+      "supportAncrageInfos": "Pierre"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2018-06-01" },
+      "constructionFin": { "__type": "Date", "iso": "2019-06-01" },
+      "surfacePlancher": 40,
+      "coutTravauxTTC": 18000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 20,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "44640",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.2229,
+        "longitude": -1.825013
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2013-05-15" },
+      "constructionFin": { "__type": "Date", "iso": "2015-12-23" },
+      "surfacePlancher": 80,
+      "coutTravauxTTC": 50000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 20,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "36350",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 46.727627,
+        "longitude": 1.5623939
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2018-08-01" },
+      "constructionFin": { "__type": "Date", "iso": "2020-08-31" },
+      "surfacePlancher": 20,
+      "coutTravauxTTC": 3000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 15,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "65370",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 43.00537,
+        "longitude": 0.59147155
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2016-07-01" },
+      "surfacePlancher": 115,
+      "coutTravauxTTC": 650000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_70_X_120_X_230_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 20,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "59288",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 50.164715,
+        "longitude": 3.6553638
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2018-06-01" },
+      "constructionFin": { "__type": "Date", "iso": "2019-05-31" },
+      "surfacePlancher": 40,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 22,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "23290",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 46.12698,
+        "longitude": 1.5325226
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2020-01-01" },
+      "constructionFin": { "__type": "Date", "iso": "2020-10-01" },
+      "surfacePlancher": 20,
+      "coutTravauxTTC": 15000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "NON"
+      },
+      "architecte": "Trait Vivant Architectes",
+      "entrepriseBottes": "Collect'IF Paille, Trait Vivant, Nydia Solis",
+      "participatif": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "OUVRAGE_EXCEPTIONNEL"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "bottesDensite": 100,
+      "bottesDistanceApprovisionnement": 60,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "structCompl": false,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "BARDAGE_VENTILE"
+      },
+      "codePostal": "95000",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 49.017117,
+        "longitude": 2.074152
+      },
+      "entrepriseEnduits": "Collect'IF Paille, Trait Vivant, Nydia Solis"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-06-01" },
+      "surfacePlancher": 75,
+      "coutTravauxTTC": 90000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 30,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "86360",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 46.62855,
+        "longitude": 0.4340645
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-03-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-03-01" },
+      "noteCalcul": false,
+      "travauxNeuf": false,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "codePostal": "43199",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.6333,
+        "longitude": -1.5211729
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2014-07-01" },
+      "constructionFin": { "__type": "Date", "iso": "2015-05-30" },
+      "surfacePlancher": 141,
+      "coutTravauxTTC": 150000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": false,
+      "travauxExtension": false,
+      "travauxRenov": true,
+      "travauxIte": true,
+      "travauxIti": true,
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 35,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "AUTRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "26300",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.943424,
+        "longitude": 5.0794835
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "surfacePlancher": 2200,
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_EDUCATIF"
+      },
+      "travauxNeuf": false,
+      "travauxExtension": false,
+      "travauxRenov": true,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "codePostal": "93110",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.874577,
+        "longitude": 2.4863405
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2017-04-15" },
+      "surfacePlancher": 78,
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 30,
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "14350",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.931107,
+        "longitude": -0.82970047
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-05-01" },
+      "surfacePlancher": 30,
+      "coutTravauxTTC": 5000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_COMMERCIAL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "37350",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "BETON_ARME"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 46.94897,
+        "longitude": 0.8994116
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "surfacePlancher": 200,
+      "coutTravauxTTC": 20000,
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "BATIMENT_INDUSTRIEL"
+      },
+      "travauxExtension": true,
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "11270",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 43.2274,
+        "longitude": 1.8855113
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-07-01" },
+      "constructionFin": { "__type": "Date", "iso": "2010-07-01" },
+      "surfacePlancher": 230,
+      "coutTravauxTTC": 110000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_50_X_80_X_110_a_200_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 3,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "49360",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.018578,
+        "longitude": -0.7681347
+      },
+      "supportAncrageInfos": "Parpaing de ciment"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2009-12-01" },
+      "constructionFin": { "__type": "Date", "iso": "2011-12-01" },
+      "surfacePlancher": 112,
+      "coutTravauxTTC": 135000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "50810",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 49.093605,
+        "longitude": -0.9912137
+      },
+      "supportAncrageInfos": "Parpaing de ciment"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2018-10-01" },
+      "constructionFin": { "__type": "Date", "iso": "2019-10-30" },
+      "surfacePlancher": 200,
+      "coutTravauxTTC": 15800,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_50_X_80_X_110_a_200_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": false,
+      "travauxExtension": false,
+      "travauxRenov": true,
+      "travauxIte": true,
+      "travauxIti": false,
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 250,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "LAMBRIS"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "74450",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 45.95622,
+        "longitude": 6.476418
+      },
+      "supportAncrageInfos": "Parpaing de ciment"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-03-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-03-01" },
+      "surfacePlancher": 65,
+      "coutTravauxTTC": 45000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 15,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "TRITICALE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "codePostal": "43200",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 45.220062,
+        "longitude": 4.134988
+      },
+      "supportAncrageInfos": "Parpaing de ciment"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2018-05-01" },
+      "constructionFin": { "__type": "Date", "iso": "2019-02-28" },
+      "surfacePlancher": 100,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "77173",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.722816,
+        "longitude": 2.6768048
+      },
+      "supportAncrageInfos": "Parpaing de ciment"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2006-01-01" },
+      "constructionFin": { "__type": "Date", "iso": "2009-12-31" },
+      "surfacePlancher": 79,
+      "coutTravauxTTC": 20000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 30,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "TRITICALE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "18250",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.26223,
+        "longitude": 2.6481988
+      },
+      "supportAncrageInfos": "Brique de terre cuite"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2016-06-22" },
+      "constructionFin": { "__type": "Date", "iso": "2017-08-22" },
+      "surfacePlancher": 36,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "AUTRE"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": false,
+      "travauxExtension": true,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 25,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "17290",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 46.053513,
+        "longitude": -0.9729637
+      },
+      "supportAncrageInfos": "Brique de pierre ponce"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2008-03-01" },
+      "surfacePlancher": 120,
+      "coutTravauxTTC": 70000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "AUTRE"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 30,
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_CHAUX"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE_ET_CHAUX"
+      },
+      "codePostal": "42000",
+      "supportAncrage": {
+        "__type": "Pointer",
+        "className": "SupportAncrage",
+        "objectId": "MACONNERIE"
+      },
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 45.430122,
+        "longitude": 4.37914
+      },
+      "bottesTailleInfos": "26 x 45 cm",
+      "supportAncrageInfos": "Béton léger isolant"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2013-06-03" },
+      "constructionFin": { "__type": "Date", "iso": "2013-12-20" },
+      "surfacePlancher": 50,
+      "coutTravauxTTC": 90000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_50_X_80_X_110_a_200_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "PARTIEL"
+      },
+      "architecte": "Trait Vivant Architectes",
+      "participatif": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "PARTIEL"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": false,
+      "travauxExtension": true,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 50,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "BARDAGE_VENTILE"
+      },
+      "codePostal": "78160",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.86501,
+        "longitude": 2.09125
+      },
+      "entrepriseEnduits": "Enduits terre Frédérique Jonnard"
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2016-07-01" },
+      "surfacePlancher": 160,
+      "coutTravauxTTC": 400000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_50_X_80_X_110_a_200_CM"
+      },
+      "autoconstruction": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "architecte": "Trait Vivant Architectes",
+      "participatif": {
+        "__type": "Pointer",
+        "className": "YesNoPartial",
+        "objectId": "OUI"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 90,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "AUTRE"
+      },
+      "codePostal": "78340",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 48.81864,
+        "longitude": 1.9840596
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2005-01-01" },
+      "constructionFin": { "__type": "Date", "iso": "2005-03-01" },
+      "surfacePlancher": 23,
+      "coutTravauxTTC": 1000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "AUTRE"
+      },
+      "travauxNeuf": true,
+      "travauxExtension": false,
+      "travauxRenov": false,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 1,
+      "bottesDistanceApprovisionnement": 5,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "TRITICALE"
+      },
+      "revetInt": {
+        "__type": "Pointer",
+        "className": "RevetementInterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "revetExt": {
+        "__type": "Pointer",
+        "className": "RevetementExterieur",
+        "objectId": "ENDUIT_TERRE"
+      },
+      "codePostal": "18250",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 47.26223,
+        "longitude": 2.6481988
+      }
+    },
+    {
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "XXXXXXXXXXX"
+      },
+      "constructionDebut": { "__type": "Date", "iso": "2017-05-08" },
+      "constructionFin": { "__type": "Date", "iso": "2019-12-20" },
+      "surfacePlancher": 600,
+      "coutTravauxTTC": 500000,
+      "bottesTaille": {
+        "__type": "Pointer",
+        "className": "TaillesBottes",
+        "objectId": "T_36_X_46_X_70_a_120_CM"
+      },
+      "usageBatiment": {
+        "__type": "Pointer",
+        "className": "UsageBatiment",
+        "objectId": "LOGEMENT_INDIVIDUEL_GROUPE"
+      },
+      "noteCalcul": false,
+      "travauxNeuf": false,
+      "travauxExtension": false,
+      "travauxRenov": true,
+      "travauxIte": false,
+      "travauxIti": false,
+      "niveaux": 2,
+      "bottesDistanceApprovisionnement": 45,
+      "bottesCereale": {
+        "__type": "Pointer",
+        "className": "Cereale",
+        "objectId": "BLE"
+      },
+      "codePostal": "33730",
+      "latitudeLongitude": {
+        "__type": "GeoPoint",
+        "latitude": 44.48643,
+        "longitude": -0.44872847
+      }
+    }
+  ]
+  
