@@ -8,7 +8,8 @@
         <img src="assets/images/logo-nebraska.png" alt="logo-nebraska">
       </div>
     </div>
-    <div class="navbar-container-right">
+
+    <div class="navbar-container-right user-logged" *ngIf="user$ | async as user; else visitorBtn">
       <div class="below-icon">
         <a [routerLink]="['/']" class="custom-icon">
           <mat-icon>map</mat-icon>
@@ -24,15 +25,15 @@
       <div class="below-icon">
         <a [routerLink]="['/dashboard-admin']" class="custom-icon">
           <mat-icon>dashboard</mat-icon>
-           <!-- matBadge="1" matBadgeColor="warn" -->
+          <!-- matBadge="1" matBadgeColor="warn" -->
         </a>
         <div>Dashboard</div>
       </div>
       <div class="below-icon">
-        <a [routerLink]="['/log-in']" class="custom-icon">
+        <a (click)="openPopUpUserLogout()" class="custom-icon">
           <mat-icon>account_circle</mat-icon>
         </a>
-        <div>Compte</div>
+        <div>Déconnexion</div>
       </div>
     </div>
   </div>
@@ -41,3 +42,21 @@
 <div class="title-bar">
   <h1 class="adaptable-title">{{ title$ | async }}</h1>
 </div>
+
+
+<ng-template #visitorBtn>
+  <div class="navbar-container-right">
+    <div class="below-icon">
+      <a [routerLink]="['/']" class="custom-icon">
+        <mat-icon>map</mat-icon>
+      </a>
+      <div>Carte</div>
+    </div>
+    <div class="below-icon">
+      <a [routerLink]="['/log-in']" class="custom-icon">
+        <mat-icon>account_circle</mat-icon>
+      </a>
+      <div>Connexion</div>
+    </div>
+  </div>
+</ng-template>

@@ -2,17 +2,12 @@ import '@firebase/auth';
 
 import { EventEmitter, forwardRef, Inject, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-//import { MAT_LEGACY_SNACK_BAR_DEFAULT_OPTIONS as MAT_SNACK_BAR_DEFAULT_OPTIONS, MatLegacySnackBar as MatSnackBar, MatLegacySnackBarConfig as MatSnackBarConfig } from '@angular/material/legacy-snack-bar';
 import firebase from 'firebase/compat/app';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-
-//import { Accounts } from '../enums';
-//import { ICredentials, ISignInProcess, ISignUpProcess, NgxAuthFirebaseUIConfig } from '../interfaces';
-//import { NgxAuthFirebaseUIConfigToken } from '../tokens';
-//import { FirestoreSyncService } from './firestore-sync.service';
 
 import UserCredential = firebase.auth.UserCredential;
+import { userLogInSuccess, userLogOutSuccess } from '../store/global.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/app.state';
 
 export interface ICredentials {
   email: string;
@@ -20,46 +15,22 @@ export interface ICredentials {
 }
 
 
-//export const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-// export const appleAuthProvider = new firebase.auth.OAuthProvider("apple.com");
-// export const twitterAuthProvider = new firebase.auth.TwitterAuthProvider();
-// export const githubAuthProvider = new firebase.auth.GithubAuthProvider();
-// export const microsoftAuthProvider = new firebase.auth.OAuthProvider(
-//   "microsoft.com"
-// );
-// export const yahooAuthProvider = new firebase.auth.OAuthProvider("yahoo.com");
 
 export enum AuthProvider {
-  // ALL = "all",
-  // ANONYMOUS = "anonymous",
   EmailAndPassword = "firebase",
   Google = "google",
-  // Apple = "apple",
-  // Facebook = "facebook",
-  // Twitter = "twitter",
-  // Github = "github",
-  // Microsoft = "microsoft",
-  // Yahoo = "yahoo",
-  // PhoneNumber = "phoneNumber",
 }
 
 @Injectable({
   providedIn: "root",
 })
-export class AuthProcessService { //implements ISignInProcess, ISignUpProcess {
+export class AuthProcessService {
   onSuccessEmitter: EventEmitter<any> = new EventEmitter<any>();
   onErrorEmitter: EventEmitter<any> = new EventEmitter<any>();
 
   // Useful to know about auth state even between reloads.
   // Replace emailConfirmationSent and emailToConfirm.
-
-  get user$(): Observable<firebase.User | null> {
-    return this.afa.user;
-  }
-
-
-  user: firebase.User | null = null;
 
   messageOnAuthSuccess: string = '';
   messageOnAuthError: string = '';
@@ -72,20 +43,8 @@ export class AuthProcessService { //implements ISignInProcess, ISignUpProcess {
 
   constructor(
     public afa: AngularFireAuth,
-    // @Inject(forwardRef(() => NgxAuthFirebaseUIConfigToken))
-    // public config: NgxAuthFirebaseUIConfig,
-    //  private snackBar: MatSnackBar,
-    //private fireStoreService: FirestoreSyncService,
-    // @Inject(MAT_SNACK_BAR_DEFAULT_OPTIONS)
-    // private matSnackBarConfig: MatSnackBarConfig
+    private store: Store<AppState>
   ) { }
-
-  // listenToUserEvents() {
-  //   this.afa.user.subscribe((user: firebase.User | null) => {
-  //     this._user$.next(user);
-  //     this.user = user;
-  //   });
-  // }
 
   /**
    * Reset the password of the ngx-auth-firebaseui-user via email
@@ -97,11 +56,16 @@ export class AuthProcessService { //implements ISignInProcess, ISignUpProcess {
       console.log("Password reset email sent");
       return await this.afa.sendPasswordResetEmail(email);
     } catch (error) {
-      return this.notifyError(error);
+       this.handleError(error);
     }
   }
 
 
+  /**
+   * Savoir si le mail est deja connu de firebase
+   * @param email l'email de l'utilisateur
+   * @returns true si deja connu sinon false
+   */
   public async signInTestEmailExist(email: string): Promise<boolean | null> {
     try {
 
@@ -118,7 +82,10 @@ export class AuthProcessService { //implements ISignInProcess, ISignUpProcess {
     }
   }
 
-
+  /**
+   * Login with email and password
+   * @param credentials mail & password
+   */
   public async signInWith(credentials: ICredentials) {
     try {
       let signInResult: UserCredential;
@@ -126,8 +93,10 @@ export class AuthProcessService { //implements ISignInProcess, ISignUpProcess {
         credentials.email,
         credentials.password
       )
+      this.store.dispatch(userLogInSuccess({ user: {...signInResult.user!} }))
 
-      await this.handleSuccess(signInResult);
+  //  await  this.afa.signOut(); 
+
     } catch (err) {
       this.handleError(err);
     }
@@ -228,173 +197,43 @@ export class AuthProcessService { //implements ISignInProcess, ISignUpProcess {
         credentials.email,
         credentials.password
       );
-      this.user = userCredential.user;
 
-      if (this.user == null) {
-        throw new Error("User is null, Une erreur s'est produite !");
+      let user = userCredential.user;
+      if (user !== null) {
+        user.sendEmailVerification();
+        // Legacy fields
+        this.emailConfirmationSent = true;
+        this.emailToConfirm = credentials.email;
       }
-      //  await this.updateProfile(displayName, user.photoURL);
-
-      // if (this.config.enableFirestoreSync) {
-      //   await this.fireStoreService.getUserDocRefByUID(user.uid).set({
-      //     uid: user.uid,
-      //     displayName,
-      //     email: user.email,
-      //     photoURL: user.photoURL,
-      //   } as firebase.User);
-      // }
-
-      // if (this.config.enableEmailVerification) {
-      await this.user.sendEmailVerification();
-      //}
-
-      // Legacy fields
-      this.emailConfirmationSent = true;
-      this.emailToConfirm = credentials.email;
-
-      await this.handleSuccess(userCredential);
     } catch (err) {
       this.handleError(err);
     }
   }
 
-  async sendNewVerificationEmail(): Promise<void | never> {
-    if (!this.user) {
-      return Promise.reject(new Error("No signed in user"));
-    }
-    return this.user.sendEmailVerification();
-  }
+  // async sendNewVerificationEmail(user: firebase.user): Promise<void | never> {
+  //   if (!this.user) {
+  //     return Promise.reject(new Error("No signed in user"));
+  //   }
+  //   return this.user.sendEmailVerification();
+  // }
 
   async signOut() {
     try {
       await this.afa.signOut();
+      this.store.dispatch(userLogOutSuccess())
+
     } catch (error) {
-      this.notifyError(error);
+      this.handleError(error);
     }
   }
 
-  // /**
-  //  * Update the profile (name + photo url) of the authenticated ngx-auth-firebaseui-user in the
-  //  * firebase authentication feature (not in firestore)
-  //  *
-  //  * @param name - the new name of the authenticated ngx-auth-firebaseui-user
-  //  * @param photoURL - the new photo url of the authenticated ngx-auth-firebaseui-user
-  //  * @returns -
-  //  */
-  // public updateProfile(name: string, photoURL: string): Promise<void> {
-  //   return this.afa.currentUser.then((user: firebase.User) => {
-  //     if (!photoURL) {
-  //       return user.updateProfile({ displayName: name });
-  //     } else {
-  //       return user.updateProfile({ displayName: name, photoURL });
-  //     }
-  //   });
-  // }
-
-  // public parseUserInfo(user: firebase.User): firebase.UserInfo {
-  //   return {
-  //     uid: user.uid,
-  //     displayName: user.displayName,
-  //     email: user.email,
-  //     phoneNumber: user.phoneNumber,
-  //     photoURL: user.photoURL,
-  //     providerId:
-  //       user.providerData.length > 0 ? user.providerData[0].providerId : null,
-  //   };
-  // }
-
-  // public getUserPhotoUrl(): Observable<string | null> {
-  //   return this._user$.pipe(
-  //     map((user: firebase.User | null) => {
-  //       if (!user) {
-  //         return null;
-  //       } else if (user.photoURL) {
-  //         return user.photoURL;
-  //       } else if (user.emailVerified) {
-  //         return this.getPhotoPath(Accounts.CHECK);
-  //       } else if (user.isAnonymous) {
-  //         return this.getPhotoPath(Accounts.OFF);
-  //       } else {
-  //         return this.getPhotoPath(Accounts.NONE);
-  //       }
-  //     })
-  //   );
-  // }
-
-  // public getPhotoPath(image: string): string {
-  //   return `assets/user/${image}.svg`;
-  // }
-
-  // public signInWithPhoneNumber() {
-  //   // todo: 3.1.18
-  // }
-
-  async handleSuccess(userCredential: UserCredential) {
-
-    this.onSuccessEmitter.next(userCredential);
-
-
-    // if (this.config.enableFirestoreSync) {
-    //   try {
-    //     await this.fireStoreService.updateUserData(
-    //       this.parseUserInfo(userCredential.user)
-    //     );
-    //   } catch (e) {
-    //     console.error(
-    //       `Error occurred while updating user data with firestore: ${e}`
-    //     );
-    //   }
-    // }
-    // if (this.config.toastMessageOnAuthSuccess) {
-    //   const fallbackMessage = `Hello ${
-    //     userCredential.user.displayName ? userCredential.user.displayName : ""
-    //   }!`;
-    //   this.showToast(this.messageOnAuthSuccess || fallbackMessage);
-    // }
-  }
-
   handleError(error: any) {
-    this.notifyError(error);
     console.error(error);
   }
 
   // Refresh user info. Can be useful for instance to get latest status regarding email verification.
-  reloadUserInfo() {
-    return this.user$
-      .pipe(take(1))
-      .subscribe((user: firebase.User | null) => user && user.reload());
+  reloadUserInfo(user: firebase.User) {
+    user.reload();
   }
 
-  // Search for an error message.
-  // Consumers of this library are given the possibility to provide a
-  // function in case they want to instrument message based on error properties.
-  getMessageOnAuthError(error: any) {
-    // eslint-disable-next-line no-bitwise
-    return (
-      error.toString() || "Sorry, something went wrong. Please retry later."
-    );
-  }
-
-  // Show a toast using current snackbar config. If message is empty, no toast is displayed allowing to opt-out when needed.
-  // Default MatSnackBarConfig has no duration, meaning it stays visible forever.
-  // If that's the case, an action button is added to allow the end-user to dismiss the toast.
-  // showToast(message: string) {
-  //   if (message) {
-  //     this.snackBar.open(
-  //       message,
-  //       this.matSnackBarConfig.duration ? null : "OK"
-  //     );
-  //   }
-  // }
-
-  // showErrorToast(error: any) {
-  //   if (this.config.toastMessageOnAuthError) {
-  //     this.showToast(this.getMessageOnAuthError(error));
-  //   }
-  // }
-
-  notifyError(error: any) {
-    this.onErrorEmitter.emit(error);
-    //  this.showErrorToast(error);
-  }
 }

@@ -1,7 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { merge } from 'rxjs';
 import { passwordMatchValidator } from './password-match.validator';
 import { EmailValidator } from './email.validator';
 import { AuthProcessService } from '../../services/authentication-service.service';

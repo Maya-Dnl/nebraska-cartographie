@@ -53,6 +53,7 @@ import { globalReducer } from './store/global.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppState } from './store/app.state';
 import { PopUpUserAddBuildingComponent } from './components/pop-ups/user-add-building/pop-up-user-add-building.component';
+import { PopUpUserLogoutComponent } from './components/pop-ups/user-logout/popup-user-logout.component';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -100,6 +101,7 @@ export const reducers: ActionReducerMap<AppState> = {
     UploadImageComponent,
     PopUpUserValidFormBuildingComponent,
     PopUpUserAddBuildingComponent,
+    PopUpUserLogoutComponent,
     DashboardAdminComponent
   ],
   imports: [
