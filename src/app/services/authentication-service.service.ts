@@ -121,11 +121,11 @@ export class AuthProcessService { //implements ISignInProcess, ISignUpProcess {
 
   public async signInWith(credentials: ICredentials) {
     try {
-      let signInResult: UserCredential | any;
-      signInResult = (await this.afa.signInWithEmailAndPassword(
+      let signInResult: UserCredential;
+      signInResult = await this.afa.signInWithEmailAndPassword(
         credentials.email,
         credentials.password
-      )) as UserCredential;
+      )
 
       await this.handleSuccess(signInResult);
     } catch (err) {
