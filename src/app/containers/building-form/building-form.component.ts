@@ -17,7 +17,7 @@ export class BuildingFormComponent {
   maxDate = new Date();
   tempId = Date.now().toString();
 
-  constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
+  // constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
 
   generalInformationsFormGroup: FormGroup | undefined = undefined
 
@@ -59,7 +59,7 @@ export class BuildingFormComponent {
 
   ngOnInit() {
 
-    let editedBuilding = this.buildingService.GetPreviewBuilding();
+    let editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
 
 
     let gi = editedBuilding != null ? editedBuilding.generalInformations : null;

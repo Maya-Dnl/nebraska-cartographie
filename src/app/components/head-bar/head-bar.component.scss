@@ -1,14 +1,17 @@
 #logo img {
   height: 55px;
   margin: 15px 0px 10px 15px;
+  cursor: pointer;
 }
 
 .mat-toolbar {
+  font-family: "Happy Monkey", system-ui;
   background-image: url("/assets/images/nebraska-nav-bar-maison-teophile.jpg");
   background-position: 180px 0;
   height: 70px;
   box-shadow: -1px 10px 20px 0px rgba(0,0,0,0.60);
   padding: 0;
+  line-height: 15px;
 }
 
 .overlay-gradient-navbar {
@@ -43,15 +46,18 @@
   padding: 0px 15px;
 }
 
-.account-profil mat-icon {
+.custom-icon mat-icon {
   width: auto;
   height: 100%;
-  font-size: 38px;
+  font-size: 36px;
   color: white;
-  margin: 10px 10px 0 10px;
+  margin: 0 18px;
 }
 
-// .account-profil mat-icon {
-//   width: 50px;
-//   height: 50px;
-// }
+.below-icon {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  font-size: 13px;
+}

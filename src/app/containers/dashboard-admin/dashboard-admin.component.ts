@@ -3,6 +3,8 @@ import { BuildingModel } from '../../services/building/building.model';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { collection } from 'firebase/firestore';
+import { Router } from '@angular/router';
+import { BuildingService } from '../../services/building/building.service';
 
 export const MockBuilding: BuildingModel = {
   id: "",
@@ -76,7 +78,7 @@ export class DashboardAdminComponent {
 
   firestore: Firestore = inject(Firestore)
 
-  waitingBuildings$: Observable<any[]>;
+  waitingBuildings$: Observable<BuildingModel[]> | undefined;
 
   // waitingBuildingsList: BuildingModel[] = [
   //   {
@@ -132,8 +134,12 @@ export class DashboardAdminComponent {
     },
   ];
 
-  constructor() {
-    const waitingBuildingsCollection = collection(this.firestore, 'waitingBuildings')
-    this.waitingBuildings$ = collectionData(waitingBuildingsCollection);
+  constructor(private router: Router, private buildingService: BuildingService) {}
+
+  ngOnInit() {
+    this.waitingBuildings$ = this.buildingService.getWaitingBuildings();
   }
+
+  viewOnMap(buildingId: string) {
+    this.router.navigate(['/preview', buildingId]); }
 }

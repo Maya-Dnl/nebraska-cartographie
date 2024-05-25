@@ -1,10 +1,11 @@
 import { Component, Input, SimpleChange, ViewChild } from '@angular/core';
 import { NgImageSliderComponent } from 'ng-image-slider';
-import { BuildingFormComponent } from '../../containers/building-form/building-form.component';
+// import { BuildingFormComponent } from '../../containers/building-form/building-form.component';
 import { BConstructionWorks, BContacts, BGeneralInformations, BPictures, BuildingModel } from '../../services/building/building.model';
 import { MatDialog } from '@angular/material/dialog';
-import { PopUpMessageComponent } from '../pop-up-message/pop-up-message.component';
+import { PopUpUserValidFormBuildingComponent } from '../pop-ups/user-valid-form-building/pop-up-user-valid-form-building.component';
 import { BuildingService } from '../../services/building/building.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-details-building',
@@ -13,7 +14,7 @@ import { BuildingService } from '../../services/building/building.service';
 })
 export class DetailsBuildingComponent {
 
-  @Input() viewedBuilding: BuildingModel | null = null;
+  @Input() viewedBuilding: BuildingModel | undefined;
 
 
   GeneralInfo: BGeneralInformations | undefined = undefined;
@@ -28,11 +29,12 @@ export class DetailsBuildingComponent {
   Contacts: BContacts | undefined = undefined;
   ContactsIsEmpty: boolean | null = null;
 
-  constructor(public dialog: MatDialog, public buildingService: BuildingService) { }
+  constructor(public dialog: MatDialog, public buildingService: BuildingService, private router: Router) { }
 
   ngOnInit() {
     this.UpdateDetailObject();
   }
+
   ngOnChanges(Changes: SimpleChange) {
     this.UpdateDetailObject();
   }
@@ -52,7 +54,7 @@ export class DetailsBuildingComponent {
   }
 
   saveBuildingPreview() {
-    if (this.viewedBuilding === null) {
+    if (this.viewedBuilding === undefined) {
       throw new Error("Aucune construction à sauvegarder !")
     }
     this.buildingService.SaveBuildingFromPreview(this.viewedBuilding).then(() => {
@@ -64,11 +66,15 @@ export class DetailsBuildingComponent {
   }
 
   openPopUpValidate() {
-    this.dialog.open(PopUpMessageComponent, {
+    let popupOpened = this.dialog.open(PopUpUserValidFormBuildingComponent, {
       width: '400px',
       backdropClass: 'backdrop-blur',
       panelClass: 'overlay-pop-up'
     });
+    popupOpened.afterClosed().subscribe(result => {
+      this.router.navigateByUrl("my-buildings")
+    });
+    
   };
 
 
