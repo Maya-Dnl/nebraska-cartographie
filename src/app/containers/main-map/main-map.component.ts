@@ -33,6 +33,9 @@ export class MainMapComponent {
       case "/preview/" + id:
         this.InitPreviewFromServer(id);
         break;
+      case "/my-buildings":
+        this.InitMyBuildings();
+        break;
       default: 
         this.router.navigateByUrl("/");
     }
@@ -64,5 +67,9 @@ export class MainMapComponent {
       this.filteredBuildingList = [this.selectedBuilding!]
       this.opened = true;
 
+  }
+
+  InitMyBuildings() {
+    
   }
 }
