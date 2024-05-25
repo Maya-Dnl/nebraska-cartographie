@@ -6,25 +6,27 @@ import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure, Firebas
 import { Observable } from 'rxjs';
 import { AppState } from './store/app.state';
 import { changeTitle } from './store/global.actions';
-import { Title } from '@angular/platform-browser';
+// import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { selectApplicationMode } from './store/global.selectors';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  firestore: Firestore = inject(Firestore)
-  aCollection = collection(this.firestore, 'items')
-  items$: Observable<any[]> = collectionData(this.aCollection);
 
-  constructor(private firebaseuiAngularLibraryService: FirebaseuiAngularLibraryService,
-    private router: Router, private route: ActivatedRoute,
-    private angularFireAuth: AngularFireAuth, private store: Store<AppState>) {
+export class AppComponent {
+  // firestore: Firestore = inject(Firestore)
+  // aCollection = collection(this.firestore, 'items')
+  // items$: Observable<any[]> = collectionData(this.aCollection);
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private store: Store<AppState>) {
     // firebaseuiAngularLibraryService.firebaseUiInstance.disableAutoSignIn();
   }
-
 
   ngOnInit(): void {
 
@@ -34,6 +36,12 @@ export class AppComponent {
           this.store.dispatch(changeTitle({ newTitle: r['title'] })))
       }
     });
+
+    // this.store.select(selectApplicationMode).subscribe(mode => {
+
+    // })
+
+
     // this.angularFireAuth.authState.subscribe(user => {
     //   if (user) {
     //     if (!user.emailVerified) {
