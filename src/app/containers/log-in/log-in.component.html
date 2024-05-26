@@ -63,5 +63,12 @@
       </form>
       </div>
     </div>
+
+    <div *ngIf="!isProductionEnvironment" class="btn-custom developpement-mode">
+      <button (click)="MockUserConnection(0)" mat-flat-button>Tech Admin</button>
+      <button (click)="MockUserConnection(1)" mat-flat-button>Nebraska Admin</button>
+      <button (click)="MockUserConnection(2)" mat-flat-button>Contributor</button>
+    </div>
+
   </div>
 </div>

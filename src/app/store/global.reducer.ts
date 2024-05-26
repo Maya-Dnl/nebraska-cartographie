@@ -1,8 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { GlobalActions, userLogInSuccess } from "./global.actions";
-import firebase from 'firebase/compat/app';
-
-import UserCredential = firebase.auth.UserCredential;
+import { UserModel } from "./models/user.model";
 
 export enum ApplicationMode {
   normalMode = 0,
@@ -12,7 +10,7 @@ export enum ApplicationMode {
 export interface GlobalState {
   title: string;
   applicationMode: ApplicationMode;
-  user: firebase.User | null;
+  user: UserModel | null;
 }
 
 export const initialState: GlobalState = {

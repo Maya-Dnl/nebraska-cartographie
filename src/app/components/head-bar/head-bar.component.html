@@ -10,31 +10,99 @@
     </div>
 
     <div class="navbar-container-right user-logged" *ngIf="user$ | async as user; else visitorBtn">
-      <div class="below-icon">
-        <a [routerLink]="['/']" class="custom-icon">
-          <mat-icon>map</mat-icon>
-        </a>
-        <div>Carte</div>
-      </div>
-      <div class="below-icon">
-        <a [routerLink]="['/new-building']" class="custom-icon">
-          <mat-icon>add_home_work</mat-icon>
-        </a>
-        <div>Ajouter</div>
-      </div>
-      <div class="below-icon">
-        <a [routerLink]="['/dashboard-admin']" class="custom-icon">
-          <mat-icon>dashboard</mat-icon>
-          <!-- matBadge="1" matBadgeColor="warn" -->
-        </a>
-        <div>Dashboard</div>
-      </div>
-      <div class="below-icon">
-        <a (click)="openPopUpUserLogout()" class="custom-icon">
-          <mat-icon>account_circle</mat-icon>
-        </a>
-        <div>Déconnexion</div>
-      </div>
+
+      @switch (user.role) {
+        @case (userRole.techAdministrator) {
+          <div class="below-icon">
+            <a (click)="openPopUpUserLogout()" class="custom-icon">
+              <mat-icon>import_export</mat-icon>
+            </a>
+            <div>Sync</div>
+          </div>
+          <div class="below-icon">
+            <a [routerLink]="['/']" class="custom-icon">
+              <mat-icon>map</mat-icon>
+            </a>
+            <div>Carte</div>
+          </div>
+          <div class="below-icon">
+            <a [routerLink]="['/dashboard-admin']" class="custom-icon">
+              <mat-icon>dashboard</mat-icon>
+              <!-- matBadge="1" matBadgeColor="warn" -->
+            </a>
+            <div>Dashboard</div>
+          </div>
+          <div class="below-icon">
+            <a [routerLink]="['/new-building']" class="custom-icon">
+              <mat-icon>add_home_work</mat-icon>
+            </a>
+            <div>Ajouter</div>
+          </div>
+          <div class="below-icon">
+            <a (click)="openPopUpUserLogout()" class="custom-icon">
+              <mat-icon>account_circle</mat-icon>
+            </a>
+            <div>Quitter</div>
+          </div>
+        }
+        @case (userRole.nebraskaAdministrator) {
+          <div class="below-icon">
+            <a [routerLink]="['/']" class="custom-icon">
+              <mat-icon>map</mat-icon>
+            </a>
+            <div>Carte</div>
+          </div>
+          <div class="below-icon">
+            <a [routerLink]="['/dashboard-admin']" class="custom-icon">
+              <mat-icon>dashboard</mat-icon>
+              <!-- matBadge="1" matBadgeColor="warn" -->
+            </a>
+            <div>Dashboard</div>
+          </div>
+          <div class="below-icon">
+            <a [routerLink]="['/new-building']" class="custom-icon">
+              <mat-icon>add_home_work</mat-icon>
+            </a>
+            <div>Ajouter</div>
+          </div>
+          <div class="below-icon">
+            <a (click)="openPopUpUserLogout()" class="custom-icon">
+              <mat-icon>account_circle</mat-icon>
+            </a>
+            <div>Quitter</div>
+          </div>
+        }
+        @case (userRole.contributor) {
+          <div class="below-icon">
+            <a [routerLink]="['/']" class="custom-icon">
+              <mat-icon>map</mat-icon>
+            </a>
+            <div>Carte</div>
+          </div>
+          <div class="below-icon">
+            <a [routerLink]="['/dashboard-admin']" class="custom-icon">
+              <mat-icon>home</mat-icon>
+              <!-- matBadge="1" matBadgeColor="warn" -->
+            </a>
+            <div>Mes bâtis</div>
+          </div>
+          <div class="below-icon">
+            <a [routerLink]="['/new-building']" class="custom-icon">
+              <mat-icon>add_home_work</mat-icon>
+            </a>
+            <div>Ajouter</div>
+          </div>
+          <div class="below-icon">
+            <a (click)="openPopUpUserLogout()" class="custom-icon">
+              <mat-icon>account_circle</mat-icon>
+            </a>
+            <div>Quitter</div>
+          </div>
+        }
+        @default {}
+        }
+
+      
     </div>
   </div>
 </mat-toolbar>

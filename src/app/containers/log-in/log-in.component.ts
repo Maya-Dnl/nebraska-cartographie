@@ -4,9 +4,11 @@ import { passwordMatchValidator } from './password-match.validator';
 import { EmailValidator } from './email.validator';
 import { AuthProcessService } from '../../services/authentication-service.service';
 import { Router } from '@angular/router';
-import { changeTitle } from '../../store/global.actions';
+import { changeTitle, userLogInSuccess } from '../../store/global.actions';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
+import { environment } from '../../../environments/environment';
+import { UserRole } from '../../store/models/user.model';
 
 @Component({
   selector: 'app-log-in',
@@ -15,17 +17,17 @@ import { Store } from '@ngrx/store';
 })
 
 export class LogInComponent {
+
   email = new FormControl('', [Validators.required, EmailValidator]);
   registerForm: FormGroup;
-
   password = new FormControl('', [Validators.required]);
-
   hidePassword = true;
-
   connexionMode: ConnexionMode = ConnexionMode.undefined;
 
 
   private _email: string = "";
+
+  isProductionEnvironment = environment.production;
 
   constructor(private cdr: ChangeDetectorRef,
     private store: Store<AppState>,
@@ -65,17 +67,53 @@ export class LogInComponent {
 
 
   signIn() {
-  
-    if(this._email == null || this.password.value == null)
-      {
-        return;
-      }
-    this.authProcess.signInWith({email: this._email, password: this.password.value}).then(() => {
-  
-          this.router.navigateByUrl("/");
-        
+
+    if (this._email == null || this.password.value == null) {
+      return;
+    }
+    this.authProcess.signInWith({ email: this._email, password: this.password.value }).then(() => {
+
+      this.router.navigateByUrl("/");
+
     })
   }
+
+  MockUserConnection(userRole: UserRole) {
+    switch (userRole) {
+      case UserRole.techAdministrator:
+        this.store.dispatch(userLogInSuccess({
+          user: {
+            id: "mocktechadmin",
+            mail: "maya@gmail.com",
+            creationDate: "",
+            role: 0
+          }
+        }));
+        break;
+      case UserRole.nebraskaAdministrator:
+        this.store.dispatch(userLogInSuccess({
+          user: {
+            id: "mocknebraskaadmin",
+            mail: "nebraska@gmail.com",
+            creationDate: "",
+            role: 1
+          }
+        }));
+        break;
+      case UserRole.contributor:
+        this.store.dispatch(userLogInSuccess({
+          user: {
+            id: "mockcontributor",
+            mail: "jojo@gmail.com",
+            creationDate: "",
+            role: 2
+          }
+        }));
+        break;
+
+    }
+  }
+
 }
 
 export enum ConnexionMode {

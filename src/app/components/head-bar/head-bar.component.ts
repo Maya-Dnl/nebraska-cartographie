@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopUpUserLogoutComponent } from '../pop-ups/user-logout/popup-user-logout.component';
 import { Router } from '@angular/router';
 import { AuthProcessService } from '../../services/authentication-service.service';
+import { UserRole } from '../../store/models/user.model';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { AuthProcessService } from '../../services/authentication-service.servic
 })
 export class HeadBarComponent {
 
+  public userRole = UserRole;
   
   constructor(private store: Store<AppState>, private router: Router, public dialog: MatDialog, public authProcess: AuthProcessService) {}
 

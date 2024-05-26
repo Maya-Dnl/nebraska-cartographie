@@ -8,6 +8,7 @@ import UserCredential = firebase.auth.UserCredential;
 import { userLogInSuccess, userLogOutSuccess } from '../store/global.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
+import { UserRole } from '../store/models/user.model';
 
 export interface ICredentials {
   email: string;
@@ -93,7 +94,27 @@ export class AuthProcessService {
         credentials.email,
         credentials.password
       )
-      this.store.dispatch(userLogInSuccess({ user: {...signInResult.user!} }))
+
+      let role: UserRole
+
+      switch(signInResult.user?.email) {
+        case "maya.dnl29@gmail.com":
+          role = UserRole.techAdministrator
+          break;
+        case "carto.nebraska@gmail.com":
+          role = UserRole.nebraskaAdministrator
+          break;
+        default:
+          role = UserRole.contributor
+          break;
+      };
+
+      this.store.dispatch(userLogInSuccess({ user: {
+        id: signInResult.user?.uid!,
+        mail: signInResult.user?.email!,
+        creationDate: signInResult.user?.metadata.creationTime!,
+        role: role
+       }}));
 
   //  await  this.afa.signOut(); 
 
