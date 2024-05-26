@@ -50,14 +50,15 @@ export class LogInComponent {
     }
 
     console.log(this.email.value)
+
     this._email = this.email.value;
     this.email.disable();
     this.authProcess.signInTestEmailExist(this._email).then(exist => {
       if (exist === true) {
-        this.connexionMode = 1;
+        this.connexionMode = ConnexionMode.connexion;
         this.store.dispatch(changeTitle({ newTitle: 'Connexion' }));
       } else if (exist === false) {
-        this.connexionMode = 2
+        this.connexionMode = ConnexionMode.inscription
         this.store.dispatch(changeTitle({ newTitle: 'Inscription' }));
       } else {
         throw new Error("Le fetch de l'email est en erreur")
@@ -77,6 +78,8 @@ export class LogInComponent {
 
     })
   }
+
+  
 
   MockUserConnection(userRole: UserRole) {
     switch (userRole) {

@@ -1,6 +1,6 @@
 import '@firebase/auth';
 
-import { EventEmitter, forwardRef, Inject, Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 
@@ -15,7 +15,6 @@ export interface ICredentials {
   password: string;
 }
 
-
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 export enum AuthProvider {
@@ -26,6 +25,7 @@ export enum AuthProvider {
 @Injectable({
   providedIn: "root",
 })
+
 export class AuthProcessService {
   onSuccessEmitter: EventEmitter<any> = new EventEmitter<any>();
   onErrorEmitter: EventEmitter<any> = new EventEmitter<any>();
@@ -35,12 +35,6 @@ export class AuthProcessService {
 
   messageOnAuthSuccess: string = '';
   messageOnAuthError: string = '';
-
-  // Legacy field that is set to true after sign up.
-  // Value is lost in case of reload. The idea here is to know if we just sent a verification email.
-  emailConfirmationSent: boolean | null = null;
-  // Legacy filed that contain the mail to confirm. Same lifecycle than emailConfirmationSent.
-  emailToConfirm: string | null = null;
 
   constructor(
     public afa: AngularFireAuth,
@@ -69,7 +63,6 @@ export class AuthProcessService {
    */
   public async signInTestEmailExist(email: string): Promise<boolean | null> {
     try {
-
       let result = (await this.afa.fetchSignInMethodsForEmail(email));
       console.log(result);
       if (result.find(v => v == "password")) {
@@ -208,11 +201,10 @@ export class AuthProcessService {
    * Sign up new users via email and password.
    * After that the ngx-auth-firebaseui-user should verify and confirm an email sent via the firebase
    *
-   * @param displayName - the displayName if the new ngx-auth-firebaseui-user
    * @param credentials email and password
    * @returns -
    */
-  public async signUp(displayName: string, credentials: ICredentials) {
+  public async signUp(credentials: ICredentials) {
     try {
       const userCredential: UserCredential = await this.afa.createUserWithEmailAndPassword(
         credentials.email,
@@ -222,10 +214,9 @@ export class AuthProcessService {
       let user = userCredential.user;
       if (user !== null) {
         user.sendEmailVerification();
-        // Legacy fields
-        this.emailConfirmationSent = true;
-        this.emailToConfirm = credentials.email;
+        this.signOut()
       }
+
     } catch (err) {
       this.handleError(err);
     }
