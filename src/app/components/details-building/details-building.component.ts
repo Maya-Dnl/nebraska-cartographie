@@ -102,7 +102,6 @@ export class DetailsBuildingComponent {
   }
 }
 
-
 function ObjectIsEmpty(MyObject: object | undefined): boolean {
 
   if (MyObject == undefined) { return true; }

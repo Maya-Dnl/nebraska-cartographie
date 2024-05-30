@@ -51,8 +51,6 @@ import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { globalReducer } from './store/global.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppState } from './store/app.state';
-import { PopUpUserAddBuildingComponent } from './components/pop-ups/user-add-building/pop-up-user-add-building.component';
-import { PopUpUserCreationAccountSuccessComponent } from './components/pop-ups/user-creation-account-success/pop-up-user-creation-account-success.component';
 import { PopUpUserConfirmComponent } from './components/pop-ups/user-confirm-popup/popup-user-confirm.component';
 
 
@@ -99,8 +97,6 @@ export const reducers: ActionReducerMap<AppState> = {
     LogInComponent,
     BuildingFormComponent,
     UploadImageComponent,
-    PopUpUserAddBuildingComponent,
-    PopUpUserCreationAccountSuccessComponent,
     PopUpUserConfirmComponent,
     DashboardAdminComponent
   ],

@@ -17,24 +17,25 @@ import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../pop-ups/user-con
 export class HeadBarComponent {
 
   public userRole = UserRole;
-  
-  constructor(private store: Store<AppState>, private router: Router, public dialog: MatDialog, public authProcess: AuthProcessService) {}
+
+  constructor(private store: Store<AppState>,
+    private router: Router,
+    public dialog: MatDialog,
+    public authProcess: AuthProcessService) { }
 
   title$ = this.store.select(selectTitle);
   user$ = this.store.select(selectUser);
 
   openPopUpUserLogout() {
-    let popupOpened = this.dialog.open(PopUpUserConfirmComponent, {
+    this.dialog.open(PopUpUserConfirmComponent, {
       width: '400px',
       backdropClass: 'backdrop-blur',
-      panelClass: 'overlay-pop-up',
+      panelClass: ['overlay-pop-up', 'error-popup'],
       data: { message: 'Etes-vous sûr de vouloir vous déconnecter ?', modePopup: ModeConfirmPopup.YesNo },
-    });
-    
-    popupOpened.afterClosed().subscribe(async result => {
-      if(result === true) {
-       await this.authProcess.signOut()
-       this.router.navigateByUrl("/")
+    }).afterClosed().subscribe(async result => {
+      if (result === true) {
+        await this.authProcess.signOut()
+        this.router.navigateByUrl("/")
       }
     });
   };

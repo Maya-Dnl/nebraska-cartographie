@@ -10,7 +10,6 @@ import { Store } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
 import { UserRole } from '../../store/models/user.model';
 import { MatDialog } from '@angular/material/dialog';
-import { PopUpUserCreationAccountSuccessComponent } from '../../components/pop-ups/user-creation-account-success/pop-up-user-creation-account-success.component';
 import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../../components/pop-ups/user-confirm-popup/popup-user-confirm.component';
 
 @Component({
@@ -130,13 +129,12 @@ export class LogInComponent {
       password: passwordConfirm
     });
 
-    let popupOpened = this.dialog.open(PopUpUserCreationAccountSuccessComponent, {
+    this.dialog.open(PopUpUserConfirmComponent, {
       width: '400px',
       backdropClass: 'backdrop-blur',
-      panelClass: 'overlay-pop-up'
-    });
-
-    popupOpened.afterClosed().subscribe(result => {
+      panelClass: 'overlay-pop-up',
+      data: { message: 'Votre compte a bien été créé, veuillez vérifier vos emails et cliquer sur le lien afin de le valider avant de vous connecter.', modePopup: ModeConfirmPopup.Ok }
+    }).afterClosed().subscribe(result => {
       this.resetLogin();
     });
   };
