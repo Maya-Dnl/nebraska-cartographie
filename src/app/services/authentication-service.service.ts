@@ -50,7 +50,6 @@ export class AuthProcessService {
    */
   public async resetPassword(email: string): Promise<void> {
     try {
-      console.log("Password reset email sent");
       return await this.afa.sendPasswordResetEmail(email);
     } catch (error) {
       this.handleError(error);

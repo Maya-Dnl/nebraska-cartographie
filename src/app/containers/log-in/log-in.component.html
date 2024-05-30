@@ -10,7 +10,7 @@
       } -->
     </mat-form-field>
 
-    <div class="manage-connexion-mode" [ngSwitch]="connexionMode">
+    <div class="manage-connexion-mode" [ngSwitch]="ConnectionMode">
       <div class="btn-custom continue" *ngSwitchCase="0">
         <button mat-flat-button (click)="checkEmail()">Continuer</button>
       </div>
@@ -29,7 +29,7 @@
         <div class="btn-custom connexion">
           <button mat-flat-button (click)="signIn()">Se connecter</button>
         </div>
-        <p class="btn-custom missing-mdp">Mot de passe oublié ?</p>
+        <p (click)="resetPassword()" class="btn-custom missing-mdp">Mot de passe oublié ?</p>
       </div>
       <div *ngSwitchCase="2">
         <form [formGroup]="registerForm">

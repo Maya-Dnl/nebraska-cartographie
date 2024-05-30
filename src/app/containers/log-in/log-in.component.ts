@@ -25,7 +25,7 @@ export class LogInComponent {
   registerForm: FormGroup;
   password = new FormControl('', [Validators.required]);
   hidePassword = true;
-  connexionMode: ConnexionMode = ConnexionMode.undefined;
+  ConnectionMode: ConnectionMode = ConnectionMode.undefined;
 
 
   private _email: string = "";
@@ -59,10 +59,10 @@ export class LogInComponent {
     this.email.disable();
     this.authProcess.signInTestEmailExist(this._email).then(exist => {
       if (exist === true) {
-        this.connexionMode = ConnexionMode.connexion;
+        this.ConnectionMode = ConnectionMode.connection;
         this.store.dispatch(changeTitle({ newTitle: 'Connexion' }));
       } else if (exist === false) {
-        this.connexionMode = ConnexionMode.inscription
+        this.ConnectionMode = ConnectionMode.inscription
         this.store.dispatch(changeTitle({ newTitle: 'Inscription' }));
       } else {
         throw new Error("Le fetch de l'email est en erreur")
@@ -74,7 +74,6 @@ export class LogInComponent {
     if (this._email == null || this.password.value == null) {
       return;
     }
-
     this.authProcess.signInWith({ email: this._email, password: this.password.value })
       .then((signInResult: SignInResult) => {
         switch (signInResult) {
@@ -143,7 +142,7 @@ export class LogInComponent {
   };
 
   resetLogin() {
-    this.connexionMode = ConnexionMode.connexion
+    this.ConnectionMode = ConnectionMode.connection
     this.email.disable();
   };
 
@@ -160,6 +159,16 @@ export class LogInComponent {
         data: { message: 'Un nouveau mail de confirmation vous a été envoyé, veuillez vérifier votre boîte mail.', modePopup: ModeConfirmPopup.Ok }
       })
     }).catch((err) => console.log(err));
+  }
+
+  resetPassword() {
+    this.authProcess.resetPassword(this._email);
+    this.dialog.open(PopUpUserConfirmComponent, {
+      width: '400px',
+      backdropClass: 'backdrop-blur',
+      panelClass: 'overlay-pop-up',
+      data: { message: 'Un mail de réinitialisation de mot de passe vous a été envoyé, veuillez vérifier votre boîte mail. ', modePopup: ModeConfirmPopup.Ok }
+    })
   }
 
 
@@ -199,8 +208,8 @@ export class LogInComponent {
   }
 }
 
-export enum ConnexionMode {
+export enum ConnectionMode {
   undefined = 0,
-  connexion = 1,
+  connection = 1,
   inscription = 2
 }
