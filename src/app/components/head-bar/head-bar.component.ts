@@ -3,10 +3,10 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import { selectTitle, selectUser } from '../../store/global.selectors';
 import { MatDialog } from '@angular/material/dialog';
-import { PopUpUserLogoutComponent } from '../pop-ups/user-logout/popup-user-logout.component';
 import { Router } from '@angular/router';
 import { AuthProcessService } from '../../services/authentication-service.service';
 import { UserRole } from '../../store/models/user.model';
+import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../pop-ups/user-confirm-popup/popup-user-confirm.component';
 
 
 @Component({
@@ -24,10 +24,11 @@ export class HeadBarComponent {
   user$ = this.store.select(selectUser);
 
   openPopUpUserLogout() {
-    let popupOpened = this.dialog.open(PopUpUserLogoutComponent, {
+    let popupOpened = this.dialog.open(PopUpUserConfirmComponent, {
       width: '400px',
       backdropClass: 'backdrop-blur',
-      panelClass: 'overlay-pop-up'
+      panelClass: 'overlay-pop-up',
+      data: { message: 'Etes-vous sûr de vouloir vous déconnecter ?', modePopup: ModeConfirmPopup.YesNo },
     });
     
     popupOpened.afterClosed().subscribe(async result => {

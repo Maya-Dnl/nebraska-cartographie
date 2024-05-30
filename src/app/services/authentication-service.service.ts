@@ -1,14 +1,15 @@
 import '@firebase/auth';
-
 import { EventEmitter, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
-
-import UserCredential = firebase.auth.UserCredential;
 import { userLogInSuccess, userLogOutSuccess } from '../store/global.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import { UserRole } from '../store/models/user.model';
+import { MatDialog } from '@angular/material/dialog';
+
+import UserCredential = firebase.auth.UserCredential;
+
 
 export interface ICredentials {
   email: string;
@@ -38,7 +39,8 @@ export class AuthProcessService {
 
   constructor(
     public afa: AngularFireAuth,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    public dialog: MatDialog
   ) { }
 
   /**
@@ -51,10 +53,9 @@ export class AuthProcessService {
       console.log("Password reset email sent");
       return await this.afa.sendPasswordResetEmail(email);
     } catch (error) {
-       this.handleError(error);
+      this.handleError(error);
     }
   }
-
 
   /**
    * Savoir si le mail est deja connu de firebase
@@ -80,17 +81,21 @@ export class AuthProcessService {
    * Login with email and password
    * @param credentials mail & password
    */
-  public async signInWith(credentials: ICredentials) {
-    try {
-      let signInResult: UserCredential;
-      signInResult = await this.afa.signInWithEmailAndPassword(
-        credentials.email,
-        credentials.password
-      )
+  public async signInWith(credentials: ICredentials): Promise<SignInResult> {
+
+    return await this.afa.signInWithEmailAndPassword(
+      credentials.email,
+      credentials.password
+    ).then(async (signInResult) => {
+
+      if (signInResult.user?.emailVerified === false) {
+        await this.signOut();
+        return SignInResult.emailNotVerified
+      };
 
       let role: UserRole
 
-      switch(signInResult.user?.email) {
+      switch (signInResult.user?.email) {
         case "maya.dnl29@gmail.com":
           role = UserRole.techAdministrator
           break;
@@ -102,100 +107,28 @@ export class AuthProcessService {
           break;
       };
 
-      this.store.dispatch(userLogInSuccess({ user: {
-        id: signInResult.user?.uid!,
-        mail: signInResult.user?.email!,
-        creationDate: signInResult.user?.metadata.creationTime!,
-        role: role
-       }}));
+      this.store.dispatch(userLogInSuccess({
+        user: {
+          id: signInResult.user?.uid!,
+          mail: signInResult.user?.email!,
+          creationDate: signInResult.user?.metadata.creationTime!,
+          role: role
+        }
+      }));
 
-  //  await  this.afa.signOut(); 
+      return SignInResult.signInSuccess;
 
-    } catch (err) {
-      this.handleError(err);
-    }
+    }).catch((err) => {
+      if (err.code === 'auth/wrong-password') {
+        return SignInResult.wrongCredentials
+      } else if (err.code === 'auth/too-many-requests')
+        {
+          return SignInResult.tooManyRequests
+        }
+      console.error(err)
+      throw err;
+    }).finally(() => { console.log("end of signin process") });
   }
-
-  // /**
-  //  * General sign in mechanism to authenticate the users with a firebase project
-  //  * using a traditional way, via username and password or by using an authentication provider
-  //  * like google, facebook, twitter and github
-  //  *
-  //  * @param provider - the provider to authenticate with (google, facebook, twitter, github)
-  //  * @param credentials optional email and password
-  //  */
-  // public async signInWith(provider: AuthProvider, credentials?: ICredentials) {
-  //   try {
-  //     let signInResult: UserCredential | any;
-
-  //     switch (provider) {
-  //       // case AuthProvider.ANONYMOUS:
-  //       //   signInResult = (await this.afa.signInAnonymously()) as UserCredential;
-  //       //   break;
-
-  //       case AuthProvider.EmailAndPassword:
-  //         signInResult = (await this.afa.signInWithEmailAndPassword(
-  //           credentials.email,
-  //           credentials.password
-  //         )) as UserCredential;
-  //         break;
-
-  //       case AuthProvider.Google:
-  //         signInResult = (await this.afa.signInWithPopup(
-  //           googleAuthProvider
-  //         )) as UserCredential;
-  //         break;
-
-  //       // case AuthProvider.Apple:
-  //       //   signInResult = (await this.afa.signInWithPopup(
-  //       //     appleAuthProvider
-  //       //   )) as UserCredential;
-  //       //   break;
-
-  //       // case AuthProvider.Facebook:
-  //       //   signInResult = (await this.afa.signInWithPopup(
-  //       //     facebookAuthProvider
-  //       //   )) as UserCredential;
-  //       //   break;
-
-  //       // case AuthProvider.Twitter:
-  //       //   signInResult = (await this.afa.signInWithPopup(
-  //       //     twitterAuthProvider
-  //       //   )) as UserCredential;
-  //       //   break;
-
-  //       // case AuthProvider.Github:
-  //       //   signInResult = (await this.afa.signInWithPopup(
-  //       //     githubAuthProvider
-  //       //   )) as UserCredential;
-  //       //   break;
-
-  //       // case AuthProvider.Microsoft:
-  //       //   signInResult = (await this.afa.signInWithPopup(
-  //       //     microsoftAuthProvider
-  //       //   )) as UserCredential;
-  //       //   break;
-
-  //       // case AuthProvider.Yahoo:
-  //       //   signInResult = (await this.afa.signInWithPopup(
-  //       //     yahooAuthProvider
-  //       //   )) as UserCredential;
-  //       //   break;
-
-  //       // case AuthProvider.PhoneNumber:
-  //       //   // coming soon - see feature/sms branch
-  //       //   break;
-
-  //       default:
-  //         throw new Error(
-  //           `${AuthProvider[provider]} is not available as auth provider`
-  //         );
-  //     }
-  //     await this.handleSuccess(signInResult);
-  //   } catch (err) {
-  //     this.handleError(err);
-  //   }
-  // }
 
   /**
    * Sign up new users via email and password.
@@ -222,12 +155,15 @@ export class AuthProcessService {
     }
   }
 
-  // async sendNewVerificationEmail(user: firebase.user): Promise<void | never> {
-  //   if (!this.user) {
-  //     return Promise.reject(new Error("No signed in user"));
-  //   }
-  //   return this.user.sendEmailVerification();
-  // }
+  async sendEmailVerification(credentials: ICredentials) {
+    return this.afa.signInWithEmailAndPassword(
+      credentials.email,
+      credentials.password
+    ).then((user) => {
+      user.user?.sendEmailVerification();
+      this.signOut();
+    }).catch(err => console.log(err))
+  }
 
   async signOut() {
     try {
@@ -248,4 +184,11 @@ export class AuthProcessService {
     user.reload();
   }
 
+}
+
+export enum SignInResult {
+  wrongCredentials = 0,
+  emailNotVerified = 1,
+  signInSuccess = 2,
+  tooManyRequests = 3
 }

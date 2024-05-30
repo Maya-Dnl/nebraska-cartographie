@@ -22,7 +22,7 @@ export class BuildingFormComponent {
   generalInformationsFormGroup: FormGroup | undefined = undefined
 
   selfConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
-  participatoryConstructionOptions: string[] = ['Oui', 'Non', 'Partiel<'];
+  participatoryConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
   complementaryStructureOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre']
   strawBaleSizeOptions: string[] = ['36 x 46 x 70 à 120', '70 x 120 x 230', '50 x 80 x 110 à 200', 'Autre']
   cerealsUsedOptions: string[] = ['Blé', 'Orge', 'Avoine', 'Seigle', 'Triticale', 'Riz', 'Autre']

@@ -2,13 +2,16 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { passwordMatchValidator } from './password-match.validator';
 import { EmailValidator } from './email.validator';
-import { AuthProcessService } from '../../services/authentication-service.service';
+import { AuthProcessService, SignInResult } from '../../services/authentication-service.service';
 import { Router } from '@angular/router';
 import { changeTitle, userLogInSuccess } from '../../store/global.actions';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
 import { UserRole } from '../../store/models/user.model';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpUserCreationAccountSuccessComponent } from '../../components/pop-ups/user-creation-account-success/pop-up-user-creation-account-success.component';
+import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../../components/pop-ups/user-confirm-popup/popup-user-confirm.component';
 
 @Component({
   selector: 'app-log-in',
@@ -33,7 +36,8 @@ export class LogInComponent {
     private store: Store<AppState>,
     private router: Router,
     public authProcess: AuthProcessService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    public dialog: MatDialog) {
 
     this.registerForm = this.fb.group({
       passwordSubscribe: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
@@ -66,20 +70,98 @@ export class LogInComponent {
     })
   }
 
-
   signIn() {
-
     if (this._email == null || this.password.value == null) {
       return;
     }
-    this.authProcess.signInWith({ email: this._email, password: this.password.value }).then(() => {
 
-      this.router.navigateByUrl("/");
+    this.authProcess.signInWith({ email: this._email, password: this.password.value })
+      .then((signInResult: SignInResult) => {
+        switch (signInResult) {
+          case SignInResult.emailNotVerified:
+            this.dialog.open(PopUpUserConfirmComponent, {
+              width: '400px',
+              backdropClass: 'backdrop-blur',
+              panelClass: 'overlay-pop-up',
+              data: { message: "Vous n'avez pas encore validé votre email.", modePopup: ModeConfirmPopup.ResendMailConfirm }
+            }).afterClosed().subscribe(result => {
+              if (result === 'ResendMailConfirm') {
+                this.resendVerificationEmail()
+              }
+              return
+            });
+            break;
+          case SignInResult.wrongCredentials:
+            this.dialog.open(PopUpUserConfirmComponent, {
+              width: '400px',
+              backdropClass: 'backdrop-blur',
+              panelClass: ['overlay-pop-up', 'error-popup'],
+              data: { message: "L'email et/ou le mot de passe est incorrect.", modePopup: ModeConfirmPopup.Ok }
+            })
+            break;
+            case SignInResult.wrongCredentials:
+              this.dialog.open(PopUpUserConfirmComponent, {
+                width: '400px',
+                backdropClass: 'backdrop-blur',
+                panelClass: ['overlay-pop-up', 'error-popup'],
+                data: { message: "Trop de tentatives, réessayez plus tard !", modePopup: ModeConfirmPopup.Ok }
+              })
+              break;
+          case SignInResult.signInSuccess:
+            this.router.navigateByUrl("/");
+            break;
+        }
+      });
+  };
 
-    })
+  async signUp() {
+    let passwordSubscribe = this.registerForm.controls['passwordSubscribe'].value;
+    let passwordConfirm = this.registerForm.controls['passwordConfirm'].value;
+
+    if (this._email === null
+      || passwordSubscribe === null
+      || passwordConfirm === null
+      || passwordSubscribe !== passwordConfirm
+    ) {
+      return;
+    }
+
+    await this.authProcess.signUp({
+      email: this._email,
+      password: passwordConfirm
+    });
+
+    let popupOpened = this.dialog.open(PopUpUserCreationAccountSuccessComponent, {
+      width: '400px',
+      backdropClass: 'backdrop-blur',
+      panelClass: 'overlay-pop-up'
+    });
+
+    popupOpened.afterClosed().subscribe(result => {
+      this.resetLogin();
+    });
+  };
+
+  resetLogin() {
+    this.connexionMode = ConnexionMode.connexion
+    this.email.disable();
+  };
+
+  resendVerificationEmail() {
+    // Call service and get promise
+    this.authProcess.sendEmailVerification({
+      email: this._email,
+      password: this.password.value!
+    }).then(() => {
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: 'overlay-pop-up',
+        data: { message: 'Un nouveau mail de confirmation vous a été envoyé, veuillez vérifier votre boîte mail.', modePopup: ModeConfirmPopup.Ok }
+      })
+    }).catch((err) => console.log(err));
   }
 
-  
 
   MockUserConnection(userRole: UserRole) {
     switch (userRole) {
@@ -113,10 +195,8 @@ export class LogInComponent {
           }
         }));
         break;
-
     }
   }
-
 }
 
 export enum ConnexionMode {

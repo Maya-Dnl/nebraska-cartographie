@@ -57,7 +57,7 @@
         </mat-form-field>
         <mat-error *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('passwordConfirm')?.dirty" >Les mots de passe doivent être identiques</mat-error>
         <div class="btn-custom connexion">
-          <button mat-flat-button [disabled]="registerForm.invalid">S'inscrire</button>
+          <button mat-flat-button (click)="signUp()" [disabled]="registerForm.invalid">S'inscrire</button>
         </div>
     
       </form>
