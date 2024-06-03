@@ -27,7 +27,7 @@
           <div class="custom-content">
             <div class="align-items-custom" *ngIf="GeneralInfo?.cityOrTown">
               <mat-icon color="accent">place</mat-icon>
-              {{GeneralInfo?.address}},
+              {{GeneralInfo?.address}} 
               {{GeneralInfo?.cityOrTown}}
             </div>
             <div class="align-items-custom" *ngIf="GeneralInfo?.constructionUse">
@@ -40,11 +40,11 @@
             </div>
             <div class="align-items-custom" *ngIf="GeneralInfo?.totalCostOfWork">
               <mat-icon color="accent">euro_symbol</mat-icon>
-              {{GeneralInfo?.totalCostOfWork}}
+              {{GeneralInfo?.totalCostOfWork}} €
             </div>
             <div class="align-items-custom" *ngIf="GeneralInfo?.buildingSurface">
               <mat-icon color="accent">aspect_ratio</mat-icon>
-              {{GeneralInfo?.buildingSurface}}
+              {{GeneralInfo?.buildingSurface}} m²
             </div>
             <div class="align-items-custom" *ngIf="GeneralInfo?.numberOfLevels">
               <mat-icon color="accent">stairs</mat-icon>

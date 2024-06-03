@@ -1,5 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { GlobalActions } from "./global.actions";
+import { GlobalActions, userLogInSuccess } from "./global.actions";
+import { UserModel } from "./models/user.model";
 
 export enum ApplicationMode {
   normalMode = 0,
@@ -9,16 +10,19 @@ export enum ApplicationMode {
 export interface GlobalState {
   title: string;
   applicationMode: ApplicationMode;
+  user: UserModel | null;
 }
 
 export const initialState: GlobalState = {
   title: '',
-  applicationMode: ApplicationMode.normalMode
+  applicationMode: ApplicationMode.normalMode,
+  user: null
 };
 
 export const globalReducer = createReducer (
   initialState,
   on(GlobalActions.changeTitle, (state, { newTitle }) => ({ ...state, title: newTitle})),
-  on(GlobalActions.selectGpsPointMode, (state) => ({...state, applicationMode: ApplicationMode.selectGpsPointMode}))
+  on(GlobalActions.selectGpsPointMode, (state) => ({...state, applicationMode: ApplicationMode.selectGpsPointMode})),
+  on(GlobalActions.userLogInSuccess, (state, { user }) => ({...state, user: user})),
+  on(GlobalActions.userLogOutSuccess, (state) => ({...state, user: null, applicationMode: ApplicationMode.normalMode}))
 );
-
