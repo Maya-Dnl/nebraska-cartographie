@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { BuildingService } from '../../services/building/building.service';
 import { BuildingModel } from '../../services/building/building.model';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpUserConfirmComponent, ModeConfirmPopup } from '../../components/pop-ups/user-confirm-popup/popup-user-confirm.component';
 
 @Component({
   selector: 'app-main-map',
@@ -17,7 +19,10 @@ export class MainMapComponent {
   selectedBuilding: BuildingModel | undefined = undefined;
   opened = false;
 
-  constructor(private router: Router, private buildingService: BuildingService, private route: ActivatedRoute) { }
+  constructor(private router: Router,
+    private buildingService: BuildingService,
+    private route: ActivatedRoute,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -36,7 +41,7 @@ export class MainMapComponent {
       case "/my-buildings":
         this.InitMyBuildings();
         break;
-      default: 
+      default:
         this.router.navigateByUrl("/");
     }
   }
@@ -57,19 +62,24 @@ export class MainMapComponent {
 
   async InitPreviewFromServer(id: string | null) {
     if (id === null) {
-      throw Error ('id is null');
+      throw Error('id is null');
     }
     this.selectedBuilding = await this.buildingService.GetPreviewBuildingFromServer(id);
-    if(this.selectedBuilding === undefined)
-      {
-       // afficher une popup pour indiquer que le building n'a pas ete trouvé avec un bouton continuer pour retour a la home
-      }
-      this.filteredBuildingList = [this.selectedBuilding!]
-      this.opened = true;
+    if (this.selectedBuilding === undefined) {
+      // afficher une popup pour indiquer que le building n'a pas ete trouvé avec un bouton continuer pour retour a la home
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: ['overlay-pop-up', 'error-popup'],
+        data: { message: "Aucune construction n'a été trouvé, cliquer sur continuer pour revenir sur la carte.", modePopup: ModeConfirmPopup.Ok }
+      })
+    }
+    this.filteredBuildingList = [this.selectedBuilding!]
+    this.opened = true;
 
   }
 
   InitMyBuildings() {
-    
+
   }
 }

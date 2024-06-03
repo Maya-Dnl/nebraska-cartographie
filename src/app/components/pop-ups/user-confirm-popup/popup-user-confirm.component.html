@@ -1,0 +1,17 @@
+<div>
+  <mat-dialog-content class="custom-pop-up">{{message}}
+    <mat-dialog-actions>
+      <div class="btn-custom">
+        @if (modePopup === 0) {
+          <button class="custom-btn-popup" mat-dialog-close>Ok</button>
+        }@else if (modePopup === 1) {
+          <button class="custom-btn-popup" [mat-dialog-close]="true">Oui</button>
+          <button class="custom-btn-popup" mat-dialog-close>Non</button>
+        }@else if (modePopup === 2) {
+          <button class="custom-btn-popup" [mat-dialog-close]="'ResendMailConfirm'">Renvoyer l'email</button>
+          <button class="custom-btn-popup" mat-dialog-close>Ok</button>
+        }
+      </div>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</div>

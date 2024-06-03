@@ -9,9 +9,7 @@
               <div class="input-title">Nom de la construction*</div>
               <mat-form-field class="auto-size">
                 <input matInput placeholder="Maison Libération" formControlName="buildingName" required>
-                <mat-error *ngIf="generalInformationsFormGroup.get('buildingName')!.hasError('required')">Ce champ
-                  est
-                  requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('buildingName')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -27,8 +25,7 @@
               <div class="input-title">Ville ou Commune*</div>
               <mat-form-field class="auto-size">
                 <input matInput placeholder="38000, Grenoble" formControlName="cityOrTown" required>
-                <mat-error *ngIf="generalInformationsFormGroup.get('cityOrTown')!.hasError('required')">Ce champ est
-                  requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('cityOrTown')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -76,15 +73,13 @@
                   <mat-option [value]="constructionUseOption">{{constructionUseOption}}</mat-option>
                   }
                 </mat-autocomplete> -->
-                <mat-error *ngIf="generalInformationsFormGroup.get('constructionUse')!.hasError('required')">Ce
-                  champ est requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('constructionUse')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
 
               <div class="input-title">Coût total des travaux TTC (hors études...)*</div>
               <mat-form-field class="auto-size">
                 <input matInput placeholder="180 000€" formControlName="totalCostOfWork" required>
-                <mat-error *ngIf="generalInformationsFormGroup.get('totalCostOfWork')!.hasError('required')">Ce champ
-                  est requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('totalCostOfWork')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
 
@@ -103,9 +98,7 @@
               <div class="input-title">Surface de la construction en m²*</div>
               <mat-form-field class="auto-size">
                 <input matInput placeholder="82m²" formControlName="buildingSurface" required>
-                <mat-error *ngIf="generalInformationsFormGroup.get('buildingSurface')!.hasError('required')">Ce
-                  champ
-                  est requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('buildingSurface')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
 
@@ -114,8 +107,7 @@
               <mat-form-field class="auto-size">
                 <input matInput placeholder="ex: RDC = 1, un étage = 2 niveaux, sous-sol non compté"
                   formControlName="numberOfLevels" required>
-                <mat-error *ngIf="generalInformationsFormGroup.get('numberOfLevels')!.hasError('required')">Ce champ
-                  est requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('numberOfLevels')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -123,7 +115,6 @@
         <div class="btn-custom">
           <button class="custom-nebraska" mat-flat-button color="accent" matStepperNext
             (click)="checkFormStepOne()">Suivant</button>
-          <!-- <mat-error *ngIf="generalInformationsFormGroup.valid!.hasError('required')">Ce champ est requis</mat-error> -->
         </div>
       </form>
     </mat-step>
@@ -152,8 +143,7 @@
                 <input matInput [matDatepicker]="pickerStart" formControlName="startDate" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
                 <mat-datepicker #pickerStart></mat-datepicker>
-                <mat-error *ngIf="constructionWorksFormGroup.get('startDate')!.hasError('required')">Ce champ est
-                  requis</mat-error>
+                <mat-error *ngIf="constructionWorksFormGroup.get('startDate')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
@@ -163,8 +153,7 @@
                 <input matInput [matDatepicker]="pickerEnd" formControlName="endDate" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                 <mat-datepicker #pickerEnd></mat-datepicker>
-                <mat-error *ngIf="constructionWorksFormGroup.get('endDate')!.hasError('required')">Ce champ est
-                  requis</mat-error>
+                <mat-error *ngIf="constructionWorksFormGroup.get('endDate')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -217,8 +206,7 @@
                   <mat-option [value]="cerealsUsedOption">{{cerealsUsedOption}}</mat-option>
                   }
                 </mat-autocomplete>
-                <mat-error *ngIf="constructionWorksFormGroup.get('cerealsUsed')!.hasError('required')">Ce champ est
-                  requis</mat-error>
+                <mat-error *ngIf="constructionWorksFormGroup.get('cerealsUsed')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
@@ -277,8 +265,7 @@
                       <mat-option [value]="complementaryStructureOption">{{complementaryStructureOption}}</mat-option>
                       }
                     </mat-autocomplete>
-                    <mat-error *ngIf="constructionWorksFormGroup.get('complementaryStructure')!.hasError('required')">Ce
-                      champ est requis</mat-error>
+                    <mat-error *ngIf="constructionWorksFormGroup.get('complementaryStructure')!.hasError('required')">Ce champ est requis</mat-error>
                   </mat-form-field>
                 </div>
               </div>

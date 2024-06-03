@@ -3,9 +3,9 @@ import { NgImageSliderComponent } from 'ng-image-slider';
 // import { BuildingFormComponent } from '../../containers/building-form/building-form.component';
 import { BConstructionWorks, BContacts, BGeneralInformations, BPictures, BuildingModel } from '../../services/building/building.model';
 import { MatDialog } from '@angular/material/dialog';
-import { PopUpUserValidFormBuildingComponent } from '../pop-ups/user-valid-form-building/pop-up-user-valid-form-building.component';
 import { BuildingService } from '../../services/building/building.service';
 import { Router } from '@angular/router';
+import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../pop-ups/user-confirm-popup/popup-user-confirm.component';
 
 @Component({
   selector: 'app-details-building',
@@ -59,24 +59,20 @@ export class DetailsBuildingComponent {
     }
     this.buildingService.SaveBuildingFromPreview(this.viewedBuilding).then(() => {
       this.buildingService.RemovePrevewBuilding();
-      this.openPopUpValidate()
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: 'overlay-pop-up',
+        data: { message: "Merci pour votre ajout. Votre construction est en attente de validation par l’association Nebraska. Vous serez tenus informé par e-mail.",
+        modePopup: ModeConfirmPopup.Ok
+         }
+      }).afterClosed().subscribe(result => {
+        this.router.navigateByUrl("my-buildings")
+      });
     }, (reason) => {
       console.log(reason);
     })
   }
-
-  openPopUpValidate() {
-    let popupOpened = this.dialog.open(PopUpUserValidFormBuildingComponent, {
-      width: '400px',
-      backdropClass: 'backdrop-blur',
-      panelClass: 'overlay-pop-up'
-    });
-    popupOpened.afterClosed().subscribe(result => {
-      this.router.navigateByUrl("my-buildings")
-    });
-    
-  };
-
 
   @ViewChild('nav') slider: NgImageSliderComponent | undefined;
 
@@ -105,7 +101,6 @@ export class DetailsBuildingComponent {
     this.slider!.next();
   }
 }
-
 
 function ObjectIsEmpty(MyObject: object | undefined): boolean {
 

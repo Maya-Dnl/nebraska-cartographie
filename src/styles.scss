@@ -126,6 +126,10 @@ button.modify-btn {
   padding-top: 20px;
 }
 
+.error-popup .custom-pop-up{
+  background-color: #FF7E6F!important;;
+}
+
 .custom-btn-popup {
   font-family: "Happy Monkey", system-ui!important;
   background-color: white!important;
@@ -133,13 +137,17 @@ button.modify-btn {
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  margin-top: 20px;
+  min-width: 80px;
+  margin: 10px;
   padding: 10px;
+  cursor: pointer;
 }
 
 .overlay-pop-up .mat-mdc-dialog-surface {
   border-radius: 20px !important;
 }
+
+
 
 .backdrop-blur {
   backdrop-filter: blur(5px);
