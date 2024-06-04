@@ -5,6 +5,7 @@ import { MainMapComponent } from './containers/main-map/main-map.component';
 import { LogInComponent } from './containers/log-in/log-in.component';
 import { BuildingFormComponent } from './containers/building-form/building-form.component';
 import { DashboardAdminComponent } from './containers/dashboard-admin/dashboard-admin.component';
+import { TechnicalAdminComponent } from './containers/technical-admin/technical-admin.component';
 
 const routes: Routes = [
  {path: "log-in", component: LogInComponent, data: {title: 'Connexion ou inscription'}},
@@ -14,7 +15,8 @@ const routes: Routes = [
  {path: "preview", component: MainMapComponent, data: {title: 'Les informations-sont elles correctes ?'}},
  {path: "preview/:id", component: MainMapComponent, data: {title: 'Les informations-sont elles correctes ?'}},
  {path: "dashboard-admin", component: DashboardAdminComponent, data: {title: 'Gestion administrateur'}},
- {path: "**", component: MainMapComponent, data: {title: 'Recensement des constructions en paille porteuse de France'}},
+ {path: "technical-admin", component: TechnicalAdminComponent, data: {title: 'Gestion administrateur'}},
+ {path: "**", component: MainMapComponent, data: {title: 'Référencement des constructions en paille porteuse de France'}}
 ];
 
 @NgModule({
