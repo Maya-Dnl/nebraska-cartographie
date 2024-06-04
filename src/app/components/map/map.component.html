@@ -1,6 +1,7 @@
-<div id="map" style="height: 100%; width: 100%" leaflet [leafletOptions]="options" [leafletLayers]="layers"
-     (leafletClick)="ClickMap($event)">
-</div>
+
+     <div *ngIf="options !== undefined" id="map" style="height: 100%; width: 100%" leaflet [leafletOptions]="options" [leafletLayers]="layers"
+          (leafletClick)="ClickMap($event)">
+     </div>
 
 <!-- <div class="icon-marker"><mat-icon color="accent">house</mat-icon></div> -->
 

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
-import { selectTitle, selectUser } from '../../store/global.selectors';
+import { selectApplicationMode, selectTitle, selectUser } from '../../store/global.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthProcessService } from '../../services/authentication-service.service';
 import { UserRole } from '../../store/models/user.model';
 import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../pop-ups/user-confirm-popup/popup-user-confirm.component';
+import { activeGpsPointMode, changeTitle } from '../../store/global.actions';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class HeadBarComponent {
 
   public userRole = UserRole;
 
-  constructor(private store: Store<AppState>,
+  constructor(
+    private store: Store<AppState>,
     private router: Router,
     public dialog: MatDialog,
     public authProcess: AuthProcessService) { }
@@ -39,6 +41,23 @@ export class HeadBarComponent {
       }
     });
   };
+
+  openPopupUserAddNewBuilding() {
+    this.router.navigateByUrl("/")
+    this.dialog.open(PopUpUserConfirmComponent, {
+      width: '400px',
+      backdropClass: 'backdrop-blur',
+      panelClass: 'overlay-pop-up',
+      data: { message: "Bonjour, vous vous apprêter à remplir un document afin que Nebraska puisse ajouter votre construction en paille porteuse sur sa carte. Veuillez sélectionner à l'aide de la croix, le lieu approximatif de votre construction afin de renseigner automatiquement les coordonnées GPS dans le document", modePopup: ModeConfirmPopup.YesNo }
+    }).afterClosed().subscribe(result => {
+      if (result === true) {
+        this.store.dispatch(activeGpsPointMode())
+        this.store.dispatch(changeTitle({
+          newTitle: "Veuillez sélectionner la position de votre construction"
+        }))
+      }
+    });
+  }
 }
 
 
