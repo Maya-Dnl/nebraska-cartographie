@@ -99,7 +99,7 @@ export const reducers: ActionReducerMap<AppState> = {
     BuildingFormComponent,
     UploadImageComponent,
     DashboardAdminComponent,
-    TechnicalAdminComponent
+    TechnicalAdminComponent,
     PopUpUserConfirmComponent
   ],
   imports: [
