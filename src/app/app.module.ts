@@ -36,6 +36,7 @@ import { LogInComponent } from './containers/log-in/log-in.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 import { BuildingFormComponent } from './containers/building-form/building-form.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -44,7 +45,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
-import { PopUpMessageComponent } from './components/pop-up-message/pop-up-message.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardAdminComponent } from './containers/dashboard-admin/dashboard-admin.component';
 import { TechnicalAdminComponent } from './containers/technical-admin/technical-admin.component';
@@ -52,6 +52,7 @@ import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { globalReducer } from './store/global.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppState } from './store/app.state';
+import { PopUpUserConfirmComponent } from './components/pop-ups/user-confirm-popup/popup-user-confirm.component';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -97,9 +98,9 @@ export const reducers: ActionReducerMap<AppState> = {
     LogInComponent,
     BuildingFormComponent,
     UploadImageComponent,
-    PopUpMessageComponent,
     DashboardAdminComponent,
     TechnicalAdminComponent
+    PopUpUserConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -123,6 +124,7 @@ export const reducers: ActionReducerMap<AppState> = {
     MatCheckboxModule,
     MatDatepickerModule,
     MatAutocompleteModule,
+    MatSelectModule,
     MatDialogModule,
     MatBadgeModule,
     NgImageSliderModule,

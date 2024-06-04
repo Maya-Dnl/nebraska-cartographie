@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BuildingModel } from '../../services/building/building.model';
 import { BuildingService } from '../../services/building/building.service';
@@ -17,12 +17,12 @@ export class BuildingFormComponent {
   maxDate = new Date();
   tempId = Date.now().toString();
 
-  constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
+  // constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
 
   generalInformationsFormGroup: FormGroup | undefined = undefined
 
   selfConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
-  participatoryConstructionOptions: string[] = ['Oui', 'Non', 'Partiel<'];
+  participatoryConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
   complementaryStructureOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre']
   strawBaleSizeOptions: string[] = ['36 x 46 x 70 à 120', '70 x 120 x 230', '50 x 80 x 110 à 200', 'Autre']
   cerealsUsedOptions: string[] = ['Blé', 'Orge', 'Avoine', 'Seigle', 'Triticale', 'Riz', 'Autre']

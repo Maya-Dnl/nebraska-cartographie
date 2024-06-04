@@ -1,8 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { BuildingService } from '../../services/building/building.service';
 import { BuildingModel } from '../../services/building/building.model';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpUserConfirmComponent, ModeConfirmPopup } from '../../components/pop-ups/user-confirm-popup/popup-user-confirm.component';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app.state';
+import { selectApplicationMode } from '../../store/global.selectors';
+import { ApplicationMode } from '../../store/global.reducer';
 
 @Component({
   selector: 'app-main-map',
@@ -12,34 +18,59 @@ import { BuildingModel } from '../../services/building/building.model';
 
 export class MainMapComponent {
 
-
-  filteredBuildingList: BuildingModel[] = [];
+  filteredBuildingList: BuildingModel[] | undefined = undefined;
   selectedBuilding: BuildingModel | undefined = undefined;
   opened = false;
 
-  constructor(private router: Router, private buildingService: BuildingService, private route: ActivatedRoute) { }
 
-  ngOnInit() {
+
+  constructor(
+    private store: Store<AppState>,
+    private router: Router,
+    private buildingService: BuildingService,
+    private route: ActivatedRoute,
+    public dialog: MatDialog) { }
+
+  async ngOnInit() {
 
     const id = this.route.snapshot.paramMap.get('id');
 
+    this.store.select(selectApplicationMode).subscribe(result => {
+      if (result === ApplicationMode.GpsPointMode) {
+        this.CleanMap()
+      }
+    });
+
     switch (this.router.url) {
+      // display all published buildings | saved in Firebase
       case "/":
         this.InitHomeMap();
         break;
+      // display in progress building before save in Firebase
       case "/preview":
         this.InitPreviewFromCache();
         break;
+      // display waiting building saved in Firebase | Wait validation by Nebraska
       case "/preview/" + id:
-        this.InitPreviewFromServer(id);
+        await this.InitPreviewFromServer(id);
         break;
-      default: 
+      // display contributor's buildings
+      case "/my-buildings":
+        this.InitMyBuildings();
+        break;
+      default:
         this.router.navigateByUrl("/");
     }
   }
 
-  InitHomeMap() {
+  CleanMap() {
+    this.filteredBuildingList = [];
+    this.selectedBuilding = undefined;
+    this.opened = false;
+  }
 
+  InitHomeMap() {
+    this.filteredBuildingList = [];
   }
 
   InitPreviewFromCache() {
@@ -54,15 +85,24 @@ export class MainMapComponent {
 
   async InitPreviewFromServer(id: string | null) {
     if (id === null) {
-      throw Error ('id is null');
+      throw Error('id is null');
     }
     this.selectedBuilding = await this.buildingService.GetPreviewBuildingFromServer(id);
-    if(this.selectedBuilding === undefined)
-      {
-       // afficher une popup pour indiquer que le building n'a pas ete trouvé avec un bouton continuer pour retour a la home
-      }
-      this.filteredBuildingList = [this.selectedBuilding!]
-      this.opened = true;
+    if (this.selectedBuilding === undefined) {
+      // afficher une popup pour indiquer que le building n'a pas ete trouvé avec un bouton continuer pour retour a la home
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: ['overlay-pop-up', 'error-popup'],
+        data: { message: "Aucune construction n'a été trouvé, cliquer sur Ok pour revenir sur la carte.", modePopup: ModeConfirmPopup.Ok }
+      })
+    }
+    this.filteredBuildingList = [this.selectedBuilding!]
+    this.opened = true;
+
+  }
+
+  InitMyBuildings() {
 
   }
 }

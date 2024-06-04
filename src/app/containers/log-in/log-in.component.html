@@ -10,7 +10,7 @@
       } -->
     </mat-form-field>
 
-    <div class="manage-connexion-mode" [ngSwitch]="connexionMode">
+    <div class="manage-connexion-mode" [ngSwitch]="ConnectionMode">
       <div class="btn-custom continue" *ngSwitchCase="0">
         <button mat-flat-button (click)="checkEmail()">Continuer</button>
       </div>
@@ -29,7 +29,7 @@
         <div class="btn-custom connexion">
           <button mat-flat-button (click)="signIn()">Se connecter</button>
         </div>
-        <p class="btn-custom missing-mdp">Mot de passe oublié ?</p>
+        <p (click)="resetPassword()" class="btn-custom missing-mdp">Mot de passe oublié ?</p>
       </div>
       <div *ngSwitchCase="2">
         <form [formGroup]="registerForm">
@@ -57,11 +57,18 @@
         </mat-form-field>
         <mat-error *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('passwordConfirm')?.dirty" >Les mots de passe doivent être identiques</mat-error>
         <div class="btn-custom connexion">
-          <button mat-flat-button [disabled]="registerForm.invalid">S'inscrire</button>
+          <button mat-flat-button (click)="signUp()" [disabled]="registerForm.invalid">S'inscrire</button>
         </div>
     
       </form>
       </div>
     </div>
+
+    <div *ngIf="!isProductionEnvironment" class="btn-custom developpement-mode">
+      <button (click)="MockUserConnection(0)" mat-flat-button>Tech Admin</button>
+      <button (click)="MockUserConnection(1)" mat-flat-button>Nebraska Admin</button>
+      <button (click)="MockUserConnection(2)" mat-flat-button>Contributor</button>
+    </div>
+
   </div>
 </div>

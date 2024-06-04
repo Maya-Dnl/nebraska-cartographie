@@ -1,12 +1,9 @@
-<mat-drawer-container class="main-map-container" autosize>
+<mat-drawer-container *ngIf="filteredBuildingList" class="main-map-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side" [(opened)]="opened">
     <app-details-building [viewedBuilding]="selectedBuilding"></app-details-building>
   </mat-drawer>
 
   <div class="sidenav-content">
-    <!-- <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button> -->
     <app-map [buildingList]="filteredBuildingList" [selectedBuilding]="selectedBuilding"></app-map>
   </div>
 </mat-drawer-container>

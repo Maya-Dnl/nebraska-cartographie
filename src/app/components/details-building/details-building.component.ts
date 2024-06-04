@@ -3,8 +3,9 @@ import { NgImageSliderComponent } from 'ng-image-slider';
 // import { BuildingFormComponent } from '../../containers/building-form/building-form.component';
 import { BConstructionWorks, BContacts, BGeneralInformations, BPictures, BuildingModel } from '../../services/building/building.model';
 import { MatDialog } from '@angular/material/dialog';
-import { PopUpMessageComponent } from '../pop-up-message/pop-up-message.component';
 import { BuildingService } from '../../services/building/building.service';
+import { Router } from '@angular/router';
+import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../pop-ups/user-confirm-popup/popup-user-confirm.component';
 
 @Component({
   selector: 'app-details-building',
@@ -28,7 +29,7 @@ export class DetailsBuildingComponent {
   Contacts: BContacts | undefined = undefined;
   ContactsIsEmpty: boolean | null = null;
 
-  constructor(public dialog: MatDialog, public buildingService: BuildingService) { }
+  constructor(public dialog: MatDialog, public buildingService: BuildingService, private router: Router) { }
 
   ngOnInit() {
     this.UpdateDetailObject();
@@ -58,20 +59,20 @@ export class DetailsBuildingComponent {
     }
     this.buildingService.SaveBuildingFromPreview(this.viewedBuilding).then(() => {
       this.buildingService.RemovePrevewBuilding();
-      this.openPopUpValidate()
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: 'overlay-pop-up',
+        data: { message: "Merci pour votre ajout. Votre construction est en attente de validation par l’association Nebraska. Vous serez tenus informé par e-mail.",
+        modePopup: ModeConfirmPopup.Ok
+         }
+      }).afterClosed().subscribe(result => {
+        this.router.navigateByUrl("my-buildings")
+      });
     }, (reason) => {
       console.log(reason);
     })
   }
-
-  openPopUpValidate() {
-    this.dialog.open(PopUpMessageComponent, {
-      width: '400px',
-      backdropClass: 'backdrop-blur',
-      panelClass: 'overlay-pop-up'
-    });
-  };
-
 
   @ViewChild('nav') slider: NgImageSliderComponent | undefined;
 
@@ -100,7 +101,6 @@ export class DetailsBuildingComponent {
     this.slider!.next();
   }
 }
-
 
 function ObjectIsEmpty(MyObject: object | undefined): boolean {
 

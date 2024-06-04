@@ -9,9 +9,7 @@
               <div class="input-title">Nom de la construction*</div>
               <mat-form-field class="auto-size">
                 <input matInput placeholder="Maison Libération" formControlName="buildingName" required>
-                <mat-error *ngIf="generalInformationsFormGroup.get('buildingName')!.hasError('required')">Ce champ
-                  est
-                  requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('buildingName')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -27,8 +25,7 @@
               <div class="input-title">Ville ou Commune*</div>
               <mat-form-field class="auto-size">
                 <input matInput placeholder="38000, Grenoble" formControlName="cityOrTown" required>
-                <mat-error *ngIf="generalInformationsFormGroup.get('cityOrTown')!.hasError('required')">Ce champ est
-                  requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('cityOrTown')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -52,35 +49,46 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Usage de la construction*</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Logement Individuel" matInput
-                  [matAutocomplete]="constructionUsage" formControlName="constructionUse" required>
+                <mat-select placeholder="Logement Individuel" formControlName="constructionUse">
+                  <mat-option value="one">Logement collectif</mat-option>
+                  <mat-option value="two">Logement individuel</mat-option>
+                  <mat-option value="three">Logement individuel groupé</mat-option>
+                  <mat-option value="four">Bâtiment administratif</mat-option>
+                  <mat-option value="five">Bâtiment commercial</mat-option>
+                  <mat-option value="six">Bâtiment industriel</mat-option>
+                  <mat-option value="seven">Bâtiment de loisir</mat-option>
+                  <mat-option value="eight">Bâtiment de santé</mat-option>
+                  <mat-option value="nine">Bâtiment de retraite</mat-option>
+                  <mat-option value="ten">Bâtiment éducatif</mat-option>
+                  <mat-option value="eleven">Bâtiment socio-culturel</mat-option>
+                  <mat-option value="twelve">Bâtiment agricole</mat-option>
+                  <mat-option value="thirteen">Ouvrage exeptionnel</mat-option>
+                  <mat-option value="fourteen">autre</mat-option>
+                </mat-select>
+          
+                <!-- <input type="text" placeholder="Logement Individuel" matInput [matAutocomplete]="constructionUsage"
+                  formControlName="constructionUse" required>
                 <mat-autocomplete #constructionUsage="matAutocomplete">
                   @for (constructionUseOption of constructionUseOptions; track constructionUseOption) {
                   <mat-option [value]="constructionUseOption">{{constructionUseOption}}</mat-option>
                   }
-                </mat-autocomplete>
-                <!-- <input matInput placeholder="Maison individuelle" formControlName="constructionUse" required> -->
-                <mat-error *ngIf="generalInformationsFormGroup.get('constructionUse')!.hasError('required')">Ce
-                  champ est requis</mat-error>
+                </mat-autocomplete> -->
+                <mat-error *ngIf="generalInformationsFormGroup.get('constructionUse')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
-            </div>
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Infos sur l’usage</div>
-              <mat-form-field class="auto-size">
-                <input matInput
-                  placeholder="Maison d’architecte construite en plein coeur de Grenoble, habitation particulier." formControlName="infosConstructionUse">
-              </mat-form-field>
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Coût total des travaux TTC (hors études...)*</div>
               <mat-form-field class="auto-size">
                 <input matInput placeholder="180 000€" formControlName="totalCostOfWork" required>
-                <mat-error *ngIf="generalInformationsFormGroup.get('totalCostOfWork')!.hasError('required')">Ce
-                  champ
-                  est requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('totalCostOfWork')!.hasError('required')">Ce champ est requis</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="title-and-input-content col-md-12 col-lg-6">
+              <div class="input-title">Infos sur l’usage</div>
+              <mat-form-field class="auto-size text-area-height">
+                <textarea style="resize: none;" matInput maxlength="400" maxlength="400"
+                  placeholder="Maison d’architecte construite en plein coeur de Grenoble, habitation particulier."
+                  formControlName="infosConstructionUse" rows="6"></textarea>
               </mat-form-field>
             </div>
           </div>
@@ -90,20 +98,16 @@
               <div class="input-title">Surface de la construction en m²*</div>
               <mat-form-field class="auto-size">
                 <input matInput placeholder="82m²" formControlName="buildingSurface" required>
-                <mat-error *ngIf="generalInformationsFormGroup.get('buildingSurface')!.hasError('required')">Ce
-                  champ
-                  est requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('buildingSurface')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
-          </div>
 
-          <div class="row">
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Nombre de niveau (ex: RDC = 1, un étage = 2 niveaux, sous-sol non compté)*</div>
+              <div class="input-title">Nombre de niveau*</div>
               <mat-form-field class="auto-size">
-                <input matInput placeholder="2" formControlName="numberOfLevels" required>
-                <mat-error *ngIf="generalInformationsFormGroup.get('numberOfLevels')!.hasError('required')">Ce champ
-                  est requis</mat-error>
+                <input matInput placeholder="ex: RDC = 1, un étage = 2 niveaux, sous-sol non compté"
+                  formControlName="numberOfLevels" required>
+                <mat-error *ngIf="generalInformationsFormGroup.get('numberOfLevels')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -111,13 +115,13 @@
         <div class="btn-custom">
           <button class="custom-nebraska" mat-flat-button color="accent" matStepperNext
             (click)="checkFormStepOne()">Suivant</button>
-          <!-- <mat-error *ngIf="generalInformationsFormGroup.valid!.hasError('required')">Ce champ est requis</mat-error> -->
         </div>
       </form>
     </mat-step>
 
 
-    <mat-step *ngIf="constructionWorksFormGroup" [stepControl]="constructionWorksFormGroup" label="Travaux / Construction">
+    <mat-step *ngIf="constructionWorksFormGroup" [stepControl]="constructionWorksFormGroup"
+      label="Travaux / Construction">
       <form [formGroup]="constructionWorksFormGroup">
         <div class="container step-container">
           <div class="row">
@@ -139,8 +143,7 @@
                 <input matInput [matDatepicker]="pickerStart" formControlName="startDate" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
                 <mat-datepicker #pickerStart></mat-datepicker>
-                <mat-error *ngIf="constructionWorksFormGroup.get('startDate')!.hasError('required')">Ce champ est
-                  requis</mat-error>
+                <mat-error *ngIf="constructionWorksFormGroup.get('startDate')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
@@ -150,8 +153,7 @@
                 <input matInput [matDatepicker]="pickerEnd" formControlName="endDate" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                 <mat-datepicker #pickerEnd></mat-datepicker>
-                <mat-error *ngIf="constructionWorksFormGroup.get('endDate')!.hasError('required')">Ce champ est
-                  requis</mat-error>
+                <mat-error *ngIf="constructionWorksFormGroup.get('endDate')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -162,8 +164,8 @@
                 <div class="title-and-input-content col">
                   <div class="input-title">Taille des bottes de paille</div>
                   <mat-form-field class="auto-size">
-                    <input type="text" placeholder="36 x 46 x 70 à 120" matInput
-                      [matAutocomplete]="autoStrawBaleSize" formControlName="strawBaleSize" required>
+                    <input type="text" placeholder="36 x 46 x 70 à 120" matInput [matAutocomplete]="autoStrawBaleSize"
+                      formControlName="strawBaleSize" required>
                     <mat-autocomplete #autoStrawBaleSize="matAutocomplete">
                       @for (strawBaleSizeOption of strawBaleSizeOptions; track strawBaleSizeOption) {
                       <mat-option [value]="strawBaleSizeOption">{{strawBaleSizeOption}}</mat-option>
@@ -185,7 +187,7 @@
               <div class="title-and-input-content">
                 <div class="input-title">Infos sur la taille des bottes</div>
                 <mat-form-field class="auto-size text-area-height ">
-                  <textarea style="resize: none;" matInput placeholder="Plus d'informations sur la taille des bottes"
+                  <textarea style="resize: none;" matInput maxlength="400" placeholder="Plus d'informations sur la taille des bottes"
                     formControlName="strawBaleInfos" rows="6"></textarea>
                 </mat-form-field>
               </div>
@@ -197,15 +199,14 @@
               <div class="input-title">Céréales utilisés dans la botte*</div>
               <mat-form-field class="auto-size">
                 <!-- <input matInput placeholder="Blé" formControlName="cerealsUsed" required> -->
-                <input type="text" placeholder="Blé" matInput
-                  [matAutocomplete]="autoCerealsUsed" formControlName="cerealsUsed" required>
+                <input type="text" placeholder="Blé" matInput [matAutocomplete]="autoCerealsUsed"
+                  formControlName="cerealsUsed" required>
                 <mat-autocomplete #autoCerealsUsed="matAutocomplete">
                   @for (cerealsUsedOption of cerealsUsedOptions; track cerealsUsedOption) {
                   <mat-option [value]="cerealsUsedOption">{{cerealsUsedOption}}</mat-option>
                   }
                 </mat-autocomplete>
-                <mat-error *ngIf="constructionWorksFormGroup.get('cerealsUsed')!.hasError('required')">Ce champ est
-                  requis</mat-error>
+                <mat-error *ngIf="constructionWorksFormGroup.get('cerealsUsed')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
@@ -220,7 +221,8 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Chantier en Autoconstruction*</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Non" matInput [matAutocomplete]="autoSelfConstruction" formControlName="selfConstruction" required>
+                <input type="text" placeholder="Non" matInput [matAutocomplete]="autoSelfConstruction"
+                  formControlName="selfConstruction" required>
                 <mat-autocomplete #autoSelfConstruction="matAutocomplete">
                   @for (selfConstructionOption of selfConstructionOptions; track selfConstructionOption) {
                   <mat-option [value]="selfConstructionOption">{{selfConstructionOption}}</mat-option>
@@ -234,16 +236,15 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Chantier Participatif*</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Non" matInput [matAutocomplete]="autoParticipatoryConstruction" formControlName="participatoryConstruction"
-                  required>
+                <input type="text" placeholder="Non" matInput [matAutocomplete]="autoParticipatoryConstruction"
+                  formControlName="participatoryConstruction" required>
                 <mat-autocomplete #autoParticipatoryConstruction="matAutocomplete">
                   @for (participatoryConstructionOption of participatoryConstructionOptions; track
                   participatoryConstructionOption) {
                   <mat-option [value]="participatoryConstructionOption">{{participatoryConstructionOption}}</mat-option>
                   }
                 </mat-autocomplete>
-                <mat-error
-                  *ngIf="constructionWorksFormGroup.get('participatoryConstruction')!.hasError('required')">Ce
+                <mat-error *ngIf="constructionWorksFormGroup.get('participatoryConstruction')!.hasError('required')">Ce
                   champ est requis</mat-error>
               </mat-form-field>
             </div>
@@ -256,18 +257,15 @@
                   <div class="input-title">Structure complémentaire à la structure en paille porteuse (poteau, mur de
                     refend, …)</div>
                   <mat-form-field class="auto-size">
-                    <input type="text" placeholder="Non" matInput 
-                      [matAutocomplete]="autoComplementaryStructure" formControlName="complementaryStructure"
-                      required>
+                    <input type="text" placeholder="Non" matInput [matAutocomplete]="autoComplementaryStructure"
+                      formControlName="complementaryStructure" required>
                     <mat-autocomplete #autoComplementaryStructure="matAutocomplete">
                       @for (complementaryStructureOption of complementaryStructureOptions; track
                       complementaryStructureOption) {
                       <mat-option [value]="complementaryStructureOption">{{complementaryStructureOption}}</mat-option>
                       }
                     </mat-autocomplete>
-                    <mat-error
-                      *ngIf="constructionWorksFormGroup.get('complementaryStructure')!.hasError('required')">Ce
-                      champ est requis</mat-error>
+                    <mat-error *ngIf="constructionWorksFormGroup.get('complementaryStructure')!.hasError('required')">Ce champ est requis</mat-error>
                   </mat-form-field>
                 </div>
               </div>
@@ -284,7 +282,7 @@
               <div class="title-and-input-content">
                 <div class="input-title">Infos de la nature de la structure complémentaire</div>
                 <mat-form-field class="auto-size text-area-height">
-                  <textarea style="resize: none;" matInput
+                  <textarea style="resize: none;" matInput maxlength="400"
                     placeholder="Plus d'informations sur la structure complémentaire ?"
                     formControlName="infosNatureComplementaryStructure" rows="6"></textarea>
                 </mat-form-field>
@@ -302,8 +300,8 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Note de calcul</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Non" matInput
-                  [matAutocomplete]="autoCalculationNote" formControlName="calculationNote" required>
+                <input type="text" placeholder="Non" matInput [matAutocomplete]="autoCalculationNote"
+                  formControlName="calculationNote" required>
                 <mat-autocomplete #autoCalculationNote="matAutocomplete">
                   @for (calculationNoteOption of calculationNoteOptions; track calculationNoteOption) {
                   <mat-option [value]="calculationNoteOption">{{calculationNoteOption}}</mat-option>
@@ -326,8 +324,8 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Intégration des baies</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Pré-cadre flottant" matInput
-                  [matAutocomplete]="autoArrayIntegration" formControlName="arrayIntegration">
+                <input type="text" placeholder="Pré-cadre flottant" matInput [matAutocomplete]="autoArrayIntegration"
+                  formControlName="arrayIntegration">
                 <mat-autocomplete #autoArrayIntegration="matAutocomplete">
                   @for (arrayIntegrationOption of arrayIntegrationOptions; track arrayIntegrationOption) {
                   <mat-option [value]="arrayIntegrationOption">{{arrayIntegrationOption}}</mat-option>
@@ -338,7 +336,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Infos sur l’intégration des baies</div>
               <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput placeholder="Plus d'informations sur l’intégration des baies ?"
+                <textarea style="resize: none;" matInput maxlength="400" placeholder="Plus d'informations sur l’intégration des baies ?"
                   formControlName="arrayIntegrationInfos"></textarea>
               </mat-form-field>
             </div>
@@ -348,8 +346,8 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Nature du support d'ancrage</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Bois" matInput
-                  [matAutocomplete]="autoNatureInkingSupport" formControlName="natureInkingSupport">
+                <input type="text" placeholder="Bois" matInput [matAutocomplete]="autoNatureInkingSupport"
+                  formControlName="natureInkingSupport">
                 <mat-autocomplete #autoNatureInkingSupport="matAutocomplete">
                   @for (natureInkingSupportOption of natureInkingSupportOptions; track natureInkingSupportOption) {
                   <mat-option [value]="natureInkingSupportOption">{{natureInkingSupportOption}}</mat-option>
@@ -360,7 +358,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Infos sur le support d'ancrage</div>
               <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput placeholder="Plus d'informations sur le support d'ancrage ?"
+                <textarea style="resize: none;" matInput maxlength="400" placeholder="Plus d'informations sur le support d'ancrage ?"
                   formControlName="infosNatureInkingSupport"></textarea>
               </mat-form-field>
             </div>
@@ -370,8 +368,8 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Revêtement intérieur</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Enduit terre" matInput
-                  [matAutocomplete]="autoInteriorCovering" formControlName="interiorCovering">
+                <input type="text" placeholder="Enduit terre" matInput [matAutocomplete]="autoInteriorCovering"
+                  formControlName="interiorCovering">
                 <mat-autocomplete #autoInteriorCovering="matAutocomplete">
                   @for (interiorCoveringOption of interiorCoveringOptions; track interiorCoveringOption) {
                   <mat-option [value]="interiorCoveringOption">{{interiorCoveringOption}}</mat-option>
@@ -382,7 +380,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Infos sur le revêtement intérieur</div>
               <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput placeholder="Plus d'informations sur le revêtement intérieur ?"
+                <textarea style="resize: none;" matInput maxlength="400" placeholder="Plus d'informations sur le revêtement intérieur ?"
                   formControlName="infosInteriorCovering"></textarea>
               </mat-form-field>
             </div>
@@ -392,8 +390,8 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Revêtement extérieur</div>
               <mat-form-field class="auto-size">
-                <input type="text" placeholder="Bardage ventilé" matInput
-                  [matAutocomplete]="autoExteriorCovering" formControlName="exteriorCovering">
+                <input type="text" placeholder="Bardage ventilé" matInput [matAutocomplete]="autoExteriorCovering"
+                  formControlName="exteriorCovering">
                 <mat-autocomplete #autoExteriorCovering="matAutocomplete">
                   @for (exteriorCoveringOption of exteriorCoveringOptions; track exteriorCoveringOption) {
                   <mat-option [value]="exteriorCoveringOption">{{exteriorCoveringOption}}</mat-option>
@@ -404,7 +402,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Infos sur le revêtement extérieur</div>
               <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput placeholder="Plus d'informations sur le revêtement extérieur ?"
+                <textarea style="resize: none;" matInput maxlength="400" placeholder="Plus d'informations sur le revêtement extérieur ?"
                   formControlName="infosExteriorCovering"></textarea>
               </mat-form-field>
             </div>
@@ -412,7 +410,8 @@
         </div>
         <div class="btn-custom">
           <button class="custom-nebraska" mat-flat-button color="primary" matStepperPrevious>Précédent</button>
-          <button (click)="checkFormStepTwo()" class="custom-nebraska" mat-flat-button color="accent" matStepperNext>Suivant</button>
+          <button (click)="checkFormStepTwo()" class="custom-nebraska" mat-flat-button color="accent"
+            matStepperNext>Suivant</button>
         </div>
       </form>
     </mat-step>
@@ -546,14 +545,14 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Description du projet</div>
               <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput placeholder="Description plus approffondie de votre projet"
+                <textarea style="resize: none;" matInput maxlength="400" placeholder="Description plus approffondie de votre projet"
                   formControlName="projectDescriptionBox"></textarea>
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Difficultés rencontrés</div>
               <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput placeholder="Parlez nous des difficultés rencontrées"
+                <textarea style="resize: none;" matInput maxlength="400" placeholder="Parlez nous des difficultés rencontrées"
                   formControlName="difficultiesBox"></textarea>
               </mat-form-field>
             </div>
@@ -563,14 +562,14 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Trucs et astuces</div>
               <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput placeholder="Partagez vos trucs et astuces !"
+                <textarea style="resize: none;" matInput maxlength="400" placeholder="Partagez vos trucs et astuces !"
                   formControlName="tipsAndTricksBox"></textarea>
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Autre commentaires</div>
               <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput placeholder="Autre chose à dire ?"
+                <textarea style="resize: none;" matInput maxlength="400" placeholder="Autre chose à dire ?"
                   formControlName="otherCommentBox"></textarea>
               </mat-form-field>
             </div>
@@ -578,7 +577,8 @@
         </div>
         <div class="btn-custom">
           <button class="custom-nebraska" mat-flat-button color="primary" matStepperPrevious>Précédent</button>
-          <button (click)="checkFormStepFour()" class="custom-nebraska" mat-flat-button color="accent" matStepperNext>Valider</button>
+          <button (click)="checkFormStepFour()" class="custom-nebraska" mat-flat-button color="accent"
+            matStepperNext>Valider</button>
         </div>
       </form>
     </mat-step>
