@@ -33,13 +33,13 @@
             <div>Dashboard</div>
           </div>
           <div class="below-icon">
-            <a [routerLink]="['/new-building']" class="custom-icon">
+            <a (click)="openPopupUserAddNewBuilding()" class="custom-icon">
               <mat-icon>add_home_work</mat-icon>
             </a>
             <div>Ajouter</div>
           </div>
           <div class="below-icon">
-            <a (click)="openPopUpUserLogout()" class="custom-icon">
+            <a (click)="openPopUpUserLogout()"  class="custom-icon">
               <mat-icon>account_circle</mat-icon>
             </a>
             <div>Quitter</div>
@@ -60,7 +60,7 @@
             <div>Dashboard</div>
           </div>
           <div class="below-icon">
-            <a [routerLink]="['/new-building']" class="custom-icon">
+            <a (click)="openPopupUserAddNewBuilding()" class="custom-icon">
               <mat-icon>add_home_work</mat-icon>
             </a>
             <div>Ajouter</div>
@@ -80,14 +80,14 @@
             <div>Carte</div>
           </div>
           <div class="below-icon">
-            <a [routerLink]="['/dashboard-admin']" class="custom-icon">
+            <a class="custom-icon">
               <mat-icon>home</mat-icon>
               <!-- matBadge="1" matBadgeColor="warn" -->
             </a>
             <div>Mes bâtis</div>
           </div>
           <div class="below-icon">
-            <a [routerLink]="['/new-building']" class="custom-icon">
+            <a (click)="openPopupUserAddNewBuilding()" class="custom-icon">
               <mat-icon>add_home_work</mat-icon>
             </a>
             <div>Ajouter</div>
@@ -110,7 +110,6 @@
 <div class="title-bar">
   <h1 class="adaptable-title">{{ title$ | async }}</h1>
 </div>
-
 
 <ng-template #visitorBtn>
   <div class="navbar-container-right">

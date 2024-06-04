@@ -14,7 +14,7 @@ const routes: Routes = [
  {path: "preview", component: MainMapComponent, data: {title: 'Les informations-sont elles correctes ?'}},
  {path: "preview/:id", component: MainMapComponent, data: {title: 'Les informations-sont elles correctes ?'}},
  {path: "dashboard-admin", component: DashboardAdminComponent, data: {title: 'Gestion administrateur'}},
- {path: "**", component: MainMapComponent, data: {title: 'Référencement des constructions en paille porteuse de France'}},
+ {path: "**", component: MainMapComponent, data: {title: 'Recensement des constructions en paille porteuse de France'}},
 ];
 
 @NgModule({

@@ -7,10 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class PopUpUserConfirmComponent {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {message: string, modePopup: ModeConfirmPopup}) {
-
-
-   }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {message: string, modePopup: ModeConfirmPopup}) {}
 
   public message = this.data.message;
   public modePopup = this.data.modePopup;

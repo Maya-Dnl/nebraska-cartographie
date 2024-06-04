@@ -4,7 +4,7 @@ import { UserModel } from "./models/user.model";
 
 export enum ApplicationMode {
   normalMode = 0,
-  selectGpsPointMode = 1
+  GpsPointMode = 1
 }
 
 export interface GlobalState {
@@ -22,7 +22,7 @@ export const initialState: GlobalState = {
 export const globalReducer = createReducer (
   initialState,
   on(GlobalActions.changeTitle, (state, { newTitle }) => ({ ...state, title: newTitle})),
-  on(GlobalActions.selectGpsPointMode, (state) => ({...state, applicationMode: ApplicationMode.selectGpsPointMode})),
+  on(GlobalActions.activeGpsPointMode, (state) => ({...state, applicationMode: ApplicationMode.GpsPointMode})),
   on(GlobalActions.userLogInSuccess, (state, { user }) => ({...state, user: user})),
   on(GlobalActions.userLogOutSuccess, (state) => ({...state, user: null, applicationMode: ApplicationMode.normalMode}))
 );
