@@ -1,6 +1,5 @@
-import { Component, Output } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { BuildingService } from '../../services/building/building.service';
 import { BuildingModel } from '../../services/building/building.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,7 +28,9 @@ export class MainMapComponent {
     private router: Router,
     private buildingService: BuildingService,
     private route: ActivatedRoute,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    // private renderer: Renderer2
+  ) { }
 
   async ngOnInit() {
 
@@ -67,6 +68,7 @@ export class MainMapComponent {
     this.filteredBuildingList = [];
     this.selectedBuilding = undefined;
     this.opened = false;
+    // this.renderer.setStyle(document.body, 'cursor', 'crosshair');
   }
 
   InitHomeMap() {

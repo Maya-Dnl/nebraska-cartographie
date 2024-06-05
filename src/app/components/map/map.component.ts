@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import L, { icon, latLng, Layer, marker, tileLayer } from 'leaflet';
 import { BuildingModel } from '../../services/building/building.model';
 
@@ -27,7 +27,8 @@ export class MapComponent {
   @Input() buildingList: BuildingModel[] = [];
   @Input() selectedBuilding: BuildingModel | undefined;
 
-  constructor(private changeDetector: ChangeDetectorRef) { }
+  constructor(
+    private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
     console.log("ngOnInit");
