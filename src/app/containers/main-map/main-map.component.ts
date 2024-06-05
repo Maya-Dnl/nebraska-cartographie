@@ -68,17 +68,24 @@ export class MainMapComponent {
   }
 
   CleanMap() {
-    this.filteredBuildingList = [];
-    this.selectedBuilding = undefined;
-    this.opened = false;
+    setTimeout(() => {
+      this.filteredBuildingList = [];
+      this.selectedBuilding = undefined;
+      this.opened = false;
+    }, 100);
+
   }
 
   InitHomeMap() {
-    this.filteredBuildingList = [];
+    setTimeout(() => {
+      this.filteredBuildingList = [];
+    }, 100);
   }
 
   InitSelectMap() {
-    this.filteredBuildingList = [];
+    setTimeout(() => {
+      this.filteredBuildingList = [];
+    }, 100);
   }
 
   InitPreviewFromCache() {
@@ -87,8 +94,10 @@ export class MainMapComponent {
       this.router.navigateByUrl("/");
       return;
     }
-    this.filteredBuildingList = [this.selectedBuilding!]
-    this.opened = true;
+    setTimeout(() => {
+      this.filteredBuildingList = [this.selectedBuilding!]
+      this.opened = true;
+    }, 100);
   }
 
   async InitPreviewFromServer(id: string | null) {
@@ -105,12 +114,17 @@ export class MainMapComponent {
         data: { message: "Aucune construction n'a été trouvé, cliquer sur Ok pour revenir sur la carte.", modePopup: ModeConfirmPopup.Ok }
       })
     }
-    this.filteredBuildingList = [this.selectedBuilding!]
-    this.opened = true;
-
+    setTimeout(() => {
+      this.filteredBuildingList = [this.selectedBuilding!]
+      this.opened = true;
+    }, 100);
+   
+ 
   }
 
   InitMyBuildings() {
-
+    setTimeout(() => {
+      this.filteredBuildingList = [];
+    }, 100);
   }
 }

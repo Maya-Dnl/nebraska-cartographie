@@ -3,6 +3,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BuildingModel } from '../../services/building/building.model';
 import { BuildingService } from '../../services/building/building.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { __param } from 'tslib';
 
 
 @Component({
@@ -17,10 +19,10 @@ export class BuildingFormComponent {
   maxDate = new Date();
   tempId = Date.now().toString();
 
-  // constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
 
   generalInformationsFormGroup: FormGroup | undefined = undefined
-
+ 
+  constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
   selfConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
   participatoryConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
   complementaryStructureOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre']
@@ -49,9 +51,12 @@ export class BuildingFormComponent {
   contactsFormGroup: FormGroup | undefined = undefined;
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private buildingService: BuildingService,
     private formBuilder: FormBuilder,
     private _adapter: DateAdapter<any>,
+    
     @Inject(MAT_DATE_LOCALE) private _locale: string
   ) {
     this._adapter.setLocale(this._locale);
@@ -61,15 +66,24 @@ export class BuildingFormComponent {
 
     let editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
 
+    let latitude = undefined;
+    let longitude = undefined;
+
+    this.route.queryParams.subscribe(params => {
+      latitude = params['latitude'];
+      longitude = params['longitude'];
+    });
 
     let gi = editedBuilding != null ? editedBuilding.generalInformations : null;
 
+
+    // Conditon ? si oui : si non 
     this.generalInformationsFormGroup = this.formBuilder.group({
       buildingName: [gi ? gi.buildingName : ''],
       address: [gi ? gi.address : ''],
       cityOrTown: [gi ? gi.cityOrTown : '', Validators.required],
-      latitude: [gi ? gi.latitude : '', Validators.required],
-      longitude: [gi ? gi.longitude : '', Validators.required],
+      latitude: [latitude ? latitude : (gi ? gi.latitude : ""), [Validators.required, Validators.max(51.2), Validators.min(41.2)]],
+      longitude: [longitude ? longitude : (gi ? gi.longitude : ""), [Validators.required, Validators.max(8.3), Validators.min(-5.2)]],
       constructionUse: [gi ? gi.constructionUse : '', Validators.required],
       infosConstructionUse: [gi ? gi.infosConstructionUse : ''],
       totalCostOfWork: [gi ? gi.totalCostOfWork : '', Validators.required],
@@ -125,7 +139,7 @@ export class BuildingFormComponent {
       tipsAndTricksBox: [c ? c.tipsAndTricksBox : ''],
       otherCommentBox: [c ? c.otherCommentBox : ''],
     });
-  
+
   }
 
   // onSubmit() {

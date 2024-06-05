@@ -27,7 +27,7 @@
           <!-- {{password.errors | json }} -->
         </mat-form-field>
         <div class="btn-custom connexion">
-          <button mat-flat-button (click)="signIn()">Se connecter</button>
+          <button [routerLink]="['/home-map']" mat-flat-button (click)="signIn()">Se connecter</button>
         </div>
         <p (click)="resetPassword()" class="btn-custom missing-mdp">Mot de passe oublié ?</p>
       </div>
@@ -65,9 +65,9 @@
     </div>
 
     <div *ngIf="!isProductionEnvironment" class="btn-custom developpement-mode">
-      <button (click)="MockUserConnection(0)" mat-flat-button>Tech Admin</button>
-      <button (click)="MockUserConnection(1)" mat-flat-button>Nebraska Admin</button>
-      <button (click)="MockUserConnection(2)" mat-flat-button>Contributor</button>
+      <button [routerLink]="['/home-map']" (click)="MockUserConnection(0)" mat-flat-button>Tech Admin</button>
+      <button [routerLink]="['/home-map']" (click)="MockUserConnection(1)" mat-flat-button>Nebraska Admin</button>
+      <button [routerLink]="['/home-map']" (click)="MockUserConnection(2)" mat-flat-button>Contributor</button>
     </div>
 
   </div>

@@ -1,11 +1,11 @@
 
      <div  [class.cursor-crosshair-map]="crossMode"
-          *ngIf="options !== undefined" id="map" class="display-map"
-          leaflet [leafletOptions]="options" [leafletLayers]="layers"
-          (leafletClick)="ClickMap($event)">
+           *ngIf="options !== undefined" id="map" class="display-map"
+           leaflet [leafletOptions]="options" [leafletLayers]="layers"
+           (leafletClick)="ClickMap($event)">
      </div>
      @if (crossMode && layers.length === 1) {
-          <button class="custom-btn-validate-position" >Valider ma position</button>
+          <button (click)="ValidPositionSelected()" class="custom-btn-validate-position">Valider ma position</button>
      }
 
 <!-- <div class="icon-marker"><mat-icon color="accent">house</mat-icon></div> -->

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import L, { icon, LatLng, latLng, Layer, LeafletEvent, map, marker, tileLayer } from 'leaflet';
 import { BuildingModel } from '../../services/building/building.model';
+import { Router } from '@angular/router';
 
 const initOptions = {
   layers: [
@@ -29,7 +30,9 @@ export class MapComponent {
   @Input() selectedBuilding: BuildingModel | undefined;
   @Input() crossMode: boolean = false;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
     console.log("ngOnInit");
@@ -45,6 +48,7 @@ export class MapComponent {
   // }
 
   UpdateMap() {
+    console.log("UpdateMap")
     this.buildingList.forEach(building => {
       let size = 34;
 
@@ -91,5 +95,17 @@ export class MapComponent {
         this.layers = [];
         this.layers.push(markerPoint);
     }
+  }
+
+  ValidPositionSelected() {
+      const markerPoint: L.Marker<any> = this.layers[0] as L.Marker<any>;
+      const latlng = markerPoint.getLatLng();
+
+      const params = {
+        latitude: latlng.lat,
+        longitude: latlng.lng
+      };
+    
+      this.router.navigate(['/new-building'], { queryParams: params });
   }
 }
