@@ -1,3 +1,25 @@
-// .icon-marker{
-//   color:#008080;
-// }
+.display-map {
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
+.cursor-crosshair-map {
+  cursor: crosshair;
+}
+
+.custom-btn-validate-position {
+  cursor: pointer;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1;
+  font-family: "Happy Monkey", system-ui;
+  background-color: teal;
+  font-size: 16px;
+  color: white!important;
+  border: none;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 10px;
+}

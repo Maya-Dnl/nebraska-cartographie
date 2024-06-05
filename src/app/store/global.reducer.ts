@@ -21,7 +21,7 @@ export const initialState: GlobalState = {
 
 export const globalReducer = createReducer (
   initialState,
-  on(GlobalActions.changeTitle, (state, { newTitle }) => ({ ...state, title: newTitle})),
+  on(GlobalActions.changeTitle, (state, { newTitle }) => ({ ...state, title: newTitle, applicationMode: ApplicationMode.normalMode})),
   on(GlobalActions.activeGpsPointMode, (state) => ({...state, applicationMode: ApplicationMode.GpsPointMode})),
   on(GlobalActions.userLogInSuccess, (state, { user }) => ({...state, user: user})),
   on(GlobalActions.userLogOutSuccess, (state) => ({...state, user: null, applicationMode: ApplicationMode.normalMode}))

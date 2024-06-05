@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BuildingService } from '../../services/building/building.service';
 import { BuildingModel } from '../../services/building/building.model';
@@ -20,16 +20,14 @@ export class MainMapComponent {
   filteredBuildingList: BuildingModel[] | undefined = undefined;
   selectedBuilding: BuildingModel | undefined = undefined;
   opened = false;
-
-
+  applicationGpsPointMode = false;
 
   constructor(
     private store: Store<AppState>,
     private router: Router,
     private buildingService: BuildingService,
     private route: ActivatedRoute,
-    public dialog: MatDialog,
-    // private renderer: Renderer2
+    public dialog: MatDialog
   ) { }
 
   async ngOnInit() {
@@ -37,16 +35,21 @@ export class MainMapComponent {
     const id = this.route.snapshot.paramMap.get('id');
 
     this.store.select(selectApplicationMode).subscribe(result => {
-      if (result === ApplicationMode.GpsPointMode) {
+      this.applicationGpsPointMode = (result === ApplicationMode.GpsPointMode);
+      if (this.applicationGpsPointMode) {
         this.CleanMap()
       }
     });
 
     switch (this.router.url) {
       // display all published buildings | saved in Firebase
-      case "/":
+      case "/home-map":
         this.InitHomeMap();
         break;
+      // display all published buildings when we click on map icon
+      case "/select-map":
+        this.InitSelectMap();
+      break;
       // display in progress building before save in Firebase
       case "/preview":
         this.InitPreviewFromCache();
@@ -60,7 +63,7 @@ export class MainMapComponent {
         this.InitMyBuildings();
         break;
       default:
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/home-map");
     }
   }
 
@@ -68,10 +71,13 @@ export class MainMapComponent {
     this.filteredBuildingList = [];
     this.selectedBuilding = undefined;
     this.opened = false;
-    // this.renderer.setStyle(document.body, 'cursor', 'crosshair');
   }
 
   InitHomeMap() {
+    this.filteredBuildingList = [];
+  }
+
+  InitSelectMap() {
     this.filteredBuildingList = [];
   }
 

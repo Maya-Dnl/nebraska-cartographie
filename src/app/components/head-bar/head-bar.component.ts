@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
-import { selectApplicationMode, selectTitle, selectUser } from '../../store/global.selectors';
+import { selectTitle, selectUser } from '../../store/global.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthProcessService } from '../../services/authentication-service.service';
@@ -43,7 +43,7 @@ export class HeadBarComponent {
   };
 
   openPopupUserAddNewBuilding() {
-    this.router.navigateByUrl("/")
+    this.router.navigateByUrl("/select-map")
     this.dialog.open(PopUpUserConfirmComponent, {
       width: '400px',
       backdropClass: 'backdrop-blur',
@@ -51,10 +51,13 @@ export class HeadBarComponent {
       data: { message: "Bonjour, vous vous apprêter à remplir un document afin que Nebraska puisse ajouter votre construction en paille porteuse sur sa carte. Veuillez sélectionner à l'aide de la croix, le lieu approximatif de votre construction afin de renseigner automatiquement les coordonnées GPS dans le document", modePopup: ModeConfirmPopup.YesNo }
     }).afterClosed().subscribe(result => {
       if (result === true) {
-        this.store.dispatch(activeGpsPointMode())
         this.store.dispatch(changeTitle({
           newTitle: "Veuillez sélectionner la position de votre construction"
         }))
+        this.store.dispatch(activeGpsPointMode())
+      }
+      else {
+        this.router.navigateByUrl("/home-map")
       }
     });
   }
