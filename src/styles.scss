@@ -78,13 +78,21 @@ body {
   font-family: "Happy Monkey", system-ui;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
 button.custom-nebraska {
   font-family: "Happy Monkey", system-ui;
   font-size: 16px;
   color: white!important;
   border: none;
   border-radius: 10px;
-  margin: 20px;
+  margin: 10px;
   padding: 10px;
 }
 
@@ -146,8 +154,6 @@ button.modify-btn {
 .overlay-pop-up .mat-mdc-dialog-surface {
   border-radius: 20px !important;
 }
-
-
 
 .backdrop-blur {
   backdrop-filter: blur(5px);

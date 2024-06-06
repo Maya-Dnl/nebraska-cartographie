@@ -35,12 +35,18 @@
               <div class="input-title">Latitude</div>
               <mat-form-field class="auto-size">
                 <input type="number" matInput placeholder="45.16760093978442" formControlName="latitude" required>
+                <mat-error *ngIf="generalInformationsFormGroup.get('latitude')!.hasError('required')">Ce champ est requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('latitude')!.hasError('max')">La construction doit être située en France</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('latitude')!.hasError('min')">La construction doit être située en France</mat-error>
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Longitude</div>
               <mat-form-field class="auto-size">
                 <input type="number" matInput placeholder="5.713191260934383" formControlName="longitude" required>
+                <mat-error *ngIf="generalInformationsFormGroup.get('longitude')!.hasError('required')">Ce champ est requis</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('longitude')!.hasError('max')">La construction doit être située en France</mat-error>
+                <mat-error *ngIf="generalInformationsFormGroup.get('longitude')!.hasError('min')">La construction doit être située en France</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -50,35 +56,16 @@
               <div class="input-title">Usage de la construction*</div>
               <mat-form-field class="auto-size">
                 <mat-select placeholder="Logement Individuel" formControlName="constructionUse">
-                  <mat-option value="one">Logement collectif</mat-option>
-                  <mat-option value="two">Logement individuel</mat-option>
-                  <mat-option value="three">Logement individuel groupé</mat-option>
-                  <mat-option value="four">Bâtiment administratif</mat-option>
-                  <mat-option value="five">Bâtiment commercial</mat-option>
-                  <mat-option value="six">Bâtiment industriel</mat-option>
-                  <mat-option value="seven">Bâtiment de loisir</mat-option>
-                  <mat-option value="eight">Bâtiment de santé</mat-option>
-                  <mat-option value="nine">Bâtiment de retraite</mat-option>
-                  <mat-option value="ten">Bâtiment éducatif</mat-option>
-                  <mat-option value="eleven">Bâtiment socio-culturel</mat-option>
-                  <mat-option value="twelve">Bâtiment agricole</mat-option>
-                  <mat-option value="thirteen">Ouvrage exeptionnel</mat-option>
-                  <mat-option value="fourteen">autre</mat-option>
-                </mat-select>
-          
-                <!-- <input type="text" placeholder="Logement Individuel" matInput [matAutocomplete]="constructionUsage"
-                  formControlName="constructionUse" required>
-                <mat-autocomplete #constructionUsage="matAutocomplete">
-                  @for (constructionUseOption of constructionUseOptions; track constructionUseOption) {
-                  <mat-option [value]="constructionUseOption">{{constructionUseOption}}</mat-option>
+                  @for (item of constructionUseOptions; track $index) {
+                    <mat-option [value]="item">{{item}}</mat-option>
                   }
-                </mat-autocomplete> -->
+                </mat-select>
                 <mat-error *ngIf="generalInformationsFormGroup.get('constructionUse')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
 
               <div class="input-title">Coût total des travaux TTC (hors études...)*</div>
               <mat-form-field class="auto-size">
-                <input matInput placeholder="180 000€" formControlName="totalCostOfWork" required>
+                <input type="number" matInput placeholder="180 000€" formControlName="totalCostOfWork" required>
                 <mat-error *ngIf="generalInformationsFormGroup.get('totalCostOfWork')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
@@ -97,7 +84,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Surface de la construction en m²*</div>
               <mat-form-field class="auto-size">
-                <input matInput placeholder="82m²" formControlName="buildingSurface" required>
+                <input type="number" matInput placeholder="82m²" formControlName="buildingSurface" required>
                 <mat-error *ngIf="generalInformationsFormGroup.get('buildingSurface')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>
             </div>
@@ -105,7 +92,7 @@
             <div class="title-and-input-content col-md-12 col-lg-6">
               <div class="input-title">Nombre de niveau*</div>
               <mat-form-field class="auto-size">
-                <input matInput placeholder="ex: RDC = 1, un étage = 2 niveaux, sous-sol non compté"
+                <input type="number" matInput placeholder="ex: RDC = 1, un étage = 2 niveaux, sous-sol non compté"
                   formControlName="numberOfLevels" required>
                 <mat-error *ngIf="generalInformationsFormGroup.get('numberOfLevels')!.hasError('required')">Ce champ est requis</mat-error>
               </mat-form-field>

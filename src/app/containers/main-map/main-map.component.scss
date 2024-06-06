@@ -1,8 +1,17 @@
 .main-map-container {
   height: 100%;
   width: 100%;
+  z-index: 0;
 }
 
 .sidenav-content {
   height: 100%;
+}
+
+.action-buttons {
+  z-index: 1;
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  align-items: center;
 }

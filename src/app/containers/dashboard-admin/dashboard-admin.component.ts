@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { BuildingModel } from '../../services/building/building.model';
-import { collectionData, Firestore } from '@angular/fire/firestore';
+import { Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { collection } from 'firebase/firestore';
 import { Router } from '@angular/router';
 import { BuildingService } from '../../services/building/building.service';
+import { UserRole } from '../../store/models/user.model';
 
 export const MockBuilding: BuildingModel = {
   id: "",
@@ -80,24 +80,6 @@ export class DashboardAdminComponent {
 
   waitingBuildings$: Observable<BuildingModel[]> | undefined;
 
-  // waitingBuildingsList: BuildingModel[] = [
-  //   {
-  //     ...MockBuilding,
-  //     id: "1",
-  //     generalInformations: { ...MockBuilding.generalInformations, buildingName: "toto" }
-  //   },
-  //   {
-  //     ...MockBuilding,
-  //     id: "2",
-  //     generalInformations: { ...MockBuilding.generalInformations, buildingName: "titi" }
-  //   },
-  //   {
-  //     ...MockBuilding,
-  //     id: "3",
-  //     generalInformations: { ...MockBuilding.generalInformations, buildingName: "tata" }
-  //   },
-  // ];
-
   waitingModidifcationsBuildingsList: BuildingModel[] = [
     {
       ...MockBuilding,
@@ -134,12 +116,24 @@ export class DashboardAdminComponent {
     },
   ];
 
-  constructor(private router: Router, private buildingService: BuildingService) {}
+  constructor(
+    private router: Router,
+    private buildingService: BuildingService
+  ) {}
 
   ngOnInit() {
     this.waitingBuildings$ = this.buildingService.getWaitingBuildings();
+    // UserRole.nebraskaAdministrator
   }
 
   viewOnMap(buildingId: string) {
-    this.router.navigate(['/preview', buildingId]); }
+    this.router.navigate(['/preview', buildingId]);
+    // if(UserRole.nebraskaAdministrator) {
+    //   this.displayBtnAdmin()
+    // }
+  }
+
+  // displayBtnAdmin() {
+
+  // }
 }

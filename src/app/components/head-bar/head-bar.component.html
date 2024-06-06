@@ -4,7 +4,7 @@
   </button> -->
   <div class="overlay-gradient-navbar">
     <div class="navbar-container-left">
-      <div [routerLink]="['/main-map']" id="logo">
+      <div [routerLink]="['/home-map']" id="logo">
         <img src="assets/images/logo-nebraska.png" alt="logo-nebraska">
       </div>
     </div>
@@ -20,7 +20,7 @@
             <div>Sync</div>
           </div>
           <div class="below-icon">
-            <a [routerLink]="['/']" class="custom-icon">
+            <a [routerLink]="['/home-map']" class="custom-icon">
               <mat-icon>map</mat-icon>
             </a>
             <div>Carte</div>
@@ -47,7 +47,7 @@
         }
         @case (userRole.nebraskaAdministrator) {
           <div class="below-icon">
-            <a [routerLink]="['/']" class="custom-icon">
+            <a [routerLink]="['/home-map']" class="custom-icon">
               <mat-icon>map</mat-icon>
             </a>
             <div>Carte</div>
@@ -74,7 +74,7 @@
         }
         @case (userRole.contributor) {
           <div class="below-icon">
-            <a [routerLink]="['/']" class="custom-icon">
+            <a [routerLink]="['/home-map']" class="custom-icon">
               <mat-icon>map</mat-icon>
             </a>
             <div>Carte</div>
@@ -114,7 +114,7 @@
 <ng-template #visitorBtn>
   <div class="navbar-container-right">
     <div class="below-icon">
-      <a [routerLink]="['/']" class="custom-icon">
+      <a [routerLink]="['/home-map']" class="custom-icon">
         <mat-icon>map</mat-icon>
       </a>
       <div>Carte</div>
