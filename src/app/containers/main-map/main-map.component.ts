@@ -6,8 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopUpUserConfirmComponent, ModeConfirmPopup } from '../../components/pop-ups/user-confirm-popup/popup-user-confirm.component';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
-import { selectApplicationMode } from '../../store/global.selectors';
-import { ApplicationMode } from '../../store/global.reducer';
+import { selectUser } from '../../store/global.selectors';
+import { Observable } from 'rxjs';
+import { UserModel, UserRole } from '../../store/models/user.model';
 
 @Component({
   selector: 'app-main-map',
@@ -20,7 +21,9 @@ export class MainMapComponent {
   filteredBuildingList: BuildingModel[] | undefined = undefined;
   selectedBuilding: BuildingModel | undefined = undefined;
   opened = false;
-  applicationGpsPointMode = false;
+  mainMapMode: MainMapMode | undefined = undefined;
+
+  user$ : Observable<UserModel | null> = this.store.select(selectUser)
 
   constructor(
     private store: Store<AppState>,
@@ -33,13 +36,6 @@ export class MainMapComponent {
   async ngOnInit() {
 
     const id = this.route.snapshot.paramMap.get('id');
-
-    this.store.select(selectApplicationMode).subscribe(result => {
-      this.applicationGpsPointMode = (result === ApplicationMode.GpsPointMode);
-      if (this.applicationGpsPointMode) {
-        this.CleanMap()
-      }
-    });
 
     switch (this.router.url) {
       // display all published buildings | saved in Firebase
@@ -77,18 +73,21 @@ export class MainMapComponent {
   }
 
   InitHomeMap() {
+    this.mainMapMode = MainMapMode.homeMapMode;
     setTimeout(() => {
       this.filteredBuildingList = [];
     }, 100);
   }
 
   InitSelectMap() {
+    this.mainMapMode = MainMapMode.selectMapMode;
     setTimeout(() => {
       this.filteredBuildingList = [];
     }, 100);
   }
 
   InitPreviewFromCache() {
+    this.mainMapMode = MainMapMode.previewCacheMode;
     this.selectedBuilding = this.buildingService.GetPreviewBuildingFromCache();
     if (this.selectedBuilding === undefined) {
       this.router.navigateByUrl("/");
@@ -101,6 +100,7 @@ export class MainMapComponent {
   }
 
   async InitPreviewFromServer(id: string | null) {
+    this.mainMapMode = MainMapMode.previewServerMode;
     if (id === null) {
       throw Error('id is null');
     }
@@ -118,13 +118,41 @@ export class MainMapComponent {
       this.filteredBuildingList = [this.selectedBuilding!]
       this.opened = true;
     }, 100);
-   
- 
   }
 
   InitMyBuildings() {
+    this.mainMapMode = MainMapMode.myBuildingsMode;
     setTimeout(() => {
       this.filteredBuildingList = [];
     }, 100);
   }
+
+  saveBuildingPreview() {
+    if (this.selectedBuilding === undefined) {
+      throw new Error("Aucune construction à sauvegarder !")
+    }
+    this.buildingService.SaveBuildingFromPreview(this.selectedBuilding).then(() => {
+      this.buildingService.RemovePrevewBuilding();
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: 'overlay-pop-up',
+        data: { message: "Merci pour votre ajout. Votre construction est en attente de validation par l’association Nebraska. Vous serez tenus informé par e-mail.",
+        modePopup: ModeConfirmPopup.Ok
+         }
+      }).afterClosed().subscribe(result => {
+        this.router.navigateByUrl("my-buildings")
+      });
+    }, (reason) => {
+      console.log(reason);
+    })
+  }
+}
+
+export enum MainMapMode {
+  homeMapMode = 0,
+  selectMapMode = 1,
+  previewCacheMode = 2,
+  previewServerMode = 3,
+  myBuildingsMode = 4
 }

@@ -29,7 +29,10 @@ export class DetailsBuildingComponent {
   Contacts: BContacts | undefined = undefined;
   ContactsIsEmpty: boolean | null = null;
 
-  constructor(public dialog: MatDialog, public buildingService: BuildingService, private router: Router) { }
+  constructor(
+    public dialog: MatDialog,
+    public buildingService: BuildingService,
+    private router: Router) { }
 
   ngOnInit() {
     this.UpdateDetailObject();
@@ -53,26 +56,26 @@ export class DetailsBuildingComponent {
     this.ContactsIsEmpty = ObjectIsEmpty(this.Contacts);
   }
 
-  saveBuildingPreview() {
-    if (this.viewedBuilding === undefined) {
-      throw new Error("Aucune construction à sauvegarder !")
-    }
-    this.buildingService.SaveBuildingFromPreview(this.viewedBuilding).then(() => {
-      this.buildingService.RemovePrevewBuilding();
-      this.dialog.open(PopUpUserConfirmComponent, {
-        width: '400px',
-        backdropClass: 'backdrop-blur',
-        panelClass: 'overlay-pop-up',
-        data: { message: "Merci pour votre ajout. Votre construction est en attente de validation par l’association Nebraska. Vous serez tenus informé par e-mail.",
-        modePopup: ModeConfirmPopup.Ok
-         }
-      }).afterClosed().subscribe(result => {
-        this.router.navigateByUrl("my-buildings")
-      });
-    }, (reason) => {
-      console.log(reason);
-    })
-  }
+  // saveBuildingPreview() {
+  //   if (this.viewedBuilding === undefined) {
+  //     throw new Error("Aucune construction à sauvegarder !")
+  //   }
+  //   this.buildingService.SaveBuildingFromPreview(this.viewedBuilding).then(() => {
+  //     this.buildingService.RemovePrevewBuilding();
+  //     this.dialog.open(PopUpUserConfirmComponent, {
+  //       width: '400px',
+  //       backdropClass: 'backdrop-blur',
+  //       panelClass: 'overlay-pop-up',
+  //       data: { message: "Merci pour votre ajout. Votre construction est en attente de validation par l’association Nebraska. Vous serez tenus informé par e-mail.",
+  //       modePopup: ModeConfirmPopup.Ok
+  //        }
+  //     }).afterClosed().subscribe(result => {
+  //       this.router.navigateByUrl("my-buildings")
+  //     });
+  //   }, (reason) => {
+  //     console.log(reason);
+  //   })
+  // }
 
   @ViewChild('nav') slider: NgImageSliderComponent | undefined;
 

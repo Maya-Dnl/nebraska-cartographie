@@ -2,6 +2,12 @@ import { Component, Input } from '@angular/core';
 import L, { icon, LatLng, latLng, Layer, LeafletEvent, map, marker, tileLayer } from 'leaflet';
 import { BuildingModel } from '../../services/building/building.model';
 import { Router } from '@angular/router';
+import { AppState } from '../../store/app.state';
+import { Store } from '@ngrx/store';
+import { BuildingService } from '../../services/building/building.service';
+import { PopUpUserConfirmComponent, ModeConfirmPopup } from '../pop-ups/user-confirm-popup/popup-user-confirm.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UserRole } from '../../store/models/user.model';
 
 const initOptions = {
   layers: [
@@ -25,19 +31,22 @@ export class MapComponent {
 
   layers: Layer[] = [];
   options: any = undefined;
+  // userRole: UserRole = UserRole.nebraskaAdministrator;
 
+  @Input() viewedBuilding: BuildingModel | undefined;
   @Input() buildingList: BuildingModel[] = [];
   @Input() selectedBuilding: BuildingModel | undefined;
   @Input() crossMode: boolean = false;
 
   constructor(
-    private router: Router
+    private buildingService: BuildingService,
+    private router: Router,
+    private store: Store<AppState>,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    console.log("ngOnInit");
     this.UpdateMap();
-    console.log(this.options);
   }
 
   // ngOnChanges()
@@ -48,7 +57,6 @@ export class MapComponent {
   // }
 
   UpdateMap() {
-    console.log("UpdateMap")
     this.buildingList.forEach(building => {
       let size = 34;
 

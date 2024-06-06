@@ -16,7 +16,7 @@ const routes: Routes = [
  {path: "preview", component: MainMapComponent, data: {title: 'Les informations-sont elles correctes ?'}},
  {path: "preview/:id", component: MainMapComponent, data: {title: 'Les informations-sont elles correctes ?'}},
  {path: "dashboard-admin", component: DashboardAdminComponent, data: {title: 'Gestion administrateur'}},
- {path: "technical-admin", component: TechnicalAdminComponent, data: {title: 'Gestion administrateur'}},
+ {path: "technical-admin", component: TechnicalAdminComponent, data: {title: 'Gestion dev administrateur'}},
  {path: "**", redirectTo: "home-map" }
 ];
 

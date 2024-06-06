@@ -1,8 +1,7 @@
 import { Router } from "@angular/router";
 import { BuildingModel } from "./building.model";
 import { inject, Injectable } from "@angular/core";
-import { addDoc, collection, collectionData, CollectionReference, doc, DocumentReference, Firestore, getDoc, QueryDocumentSnapshot, SnapshotOptions } from "@angular/fire/firestore";
-import { ReturnStatement } from "@angular/compiler";
+import { addDoc, collection, collectionData, CollectionReference, doc, Firestore, getDoc, QueryDocumentSnapshot, SnapshotOptions } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 
 @Injectable({
