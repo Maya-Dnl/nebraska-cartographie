@@ -1,26 +1,30 @@
 #logo img {
-  height: 70px;
-  margin: 10px 0px 10px 15px;
+  height: 55px;
+  margin: 15px 0px 10px 15px;
+  cursor: pointer;
 }
 
 .mat-toolbar {
+  font-family: "Happy Monkey", system-ui;
   background-image: url("/assets/images/nebraska-nav-bar-maison-teophile.jpg");
   background-position: 180px 0;
-  height: 100px;
+  height: 70px;
   box-shadow: -1px 10px 20px 0px rgba(0,0,0,0.60);
+  padding: 0;
+  line-height: 15px;
 }
 
 .overlay-gradient-navbar {
+  display: flex;
+  width: 100%;
   background: linear-gradient(to right, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.010) 20%, rgba(0,0,0,0.010) 80%, rgba(0,0,0,0.70) 100%);
 }
 
-.mat-toolbar-row {
-  height: 100px;
-}
 .title-bar {
-  justify-content: center;
+  margin-top: 40px 0 30px 0;
+  text-align: center;
   h1 {
-    font-size: 28px;
+    font-size: 26px;
   }
 }
 
@@ -28,7 +32,7 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  height: 100px;
+  height: 70px;
   width: 50%;
 }
 
@@ -37,19 +41,24 @@
   flex-direction: row;
   justify-content: end;
   align-items: center;
-
+  height: 70px;
   width: 50%;
   padding: 0px 15px;
 }
 
-.account-profil mat-icon {
+.custom-icon mat-icon {
   width: auto;
   height: 100%;
-  font-size: 48px;
+  font-size: 36px;
   color: white;
+  margin: 0 18px;
+  cursor: pointer;
 }
 
-// .account-profil mat-icon {
-//   width: 50px;
-//   height: 50px;
-// }
+.below-icon {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  font-size: 13px;
+}

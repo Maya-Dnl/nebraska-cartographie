@@ -1,13 +1,30 @@
-
-<mat-drawer-container class="main-map-container" autosize>
+<mat-drawer-container *ngIf="filteredBuildingList" class="main-map-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side" [(opened)]="opened">
-    <app-details-building></app-details-building>
+    <app-details-building [viewedBuilding]="selectedBuilding"></app-details-building>
   </mat-drawer>
 
   <div class="sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-    <app-map></app-map>
+    <app-map [crossMode]="mainMapMode === 1" [buildingList]="filteredBuildingList"
+      [selectedBuilding]="selectedBuilding"></app-map>
   </div>
 </mat-drawer-container>
+
+
+<div class="action-buttons" *ngIf="user$ | async as user">
+
+  @if (mainMapMode === 2 && user.role === 2) {
+    <button mat-flat-button class="custom-nebraska" color="warn"><mat-icon>delete</mat-icon>Supprimer</button>
+    <button [routerLink]="['/new-building']" class="custom-nebraska modify-btn"
+    mat-button>Modifier<mat-icon>edit</mat-icon></button>
+  <button (click)="saveBuildingPreview()" class="custom-nebraska" mat-flat-button color="accent">Ajouter ma
+    construction<mat-icon>thumb_up_alt</mat-icon></button>
+  }
+
+  @if (mainMapMode === 3 && user.role === 1) {
+    <button mat-flat-button class="custom-nebraska" color="warn"><mat-icon>delete</mat-icon>Supprimer</button>
+    <button [routerLink]="['/new-building']" class="custom-nebraska modify-btn"
+    mat-button>Modifier ?<mat-icon>edit</mat-icon></button>
+  <button (click)="saveBuildingPreview()" class="custom-nebraska" mat-flat-button color="accent">Valider<mat-icon>thumb_up_alt</mat-icon></button>
+  }
+
+</div>

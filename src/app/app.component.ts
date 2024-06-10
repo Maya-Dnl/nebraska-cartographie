@@ -1,53 +1,45 @@
-import { Component, inject } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { collection, collectionData, Firestore } from '@angular/fire/firestore';
+import { Component} from '@angular/core';
+import { Store } from '@ngrx/store';
 import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure, FirebaseuiAngularLibraryService } from 'firebaseui-angular';
-import { Observable } from 'rxjs';
+import { AppState } from './store/app.state';
+import { changeTitle } from './store/global.actions';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+// import { selectApplicationMode } from './store/global.selectors';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+
 export class AppComponent {
-  firestore: Firestore = inject(Firestore)
-  aCollection = collection(this.firestore, 'items')
-  items$: Observable<any[]> = collectionData(this.aCollection);
 
-  constructor(private firebaseuiAngularLibraryService: FirebaseuiAngularLibraryService,
-    private angularFireAuth: AngularFireAuth) {
-    // firebaseuiAngularLibraryService.firebaseUiInstance.disableAutoSignIn();
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private store: Store<AppState>) {
   }
-
 
   ngOnInit(): void {
-    this.angularFireAuth.authState.subscribe(user => {
-      if (user) {
-        if (!user.emailVerified) {
-          user.sendEmailVerification();
-          this.logout();
-          alert("Veuillez verifier votre email avant de vous connecter")
-        }
+    this.router.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) {
+        this.route.firstChild?.data.subscribe(r =>
+          this.store.dispatch(changeTitle({ newTitle: r['title'] })))
       }
-    }
-    );
+    });
   }
+  
+  // successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult
+  // ) {
+  //   console.log("successCallback", signInSuccessData)
+  // }
 
-  logout() {
-    this.angularFireAuth.signOut();
-  }
+  // errorCallback(errorData: FirebaseUISignInFailure
+  // ) {
+  //   console.log("errorData", errorData)
+  // }
 
-  successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult
-  ) {
-    console.log("successCallback", signInSuccessData)
-  }
-
-  errorCallback(errorData: FirebaseUISignInFailure
-  ) {
-    console.log("errorData", errorData)
-  }
-
-  uiShownCallback() {
-    console.log("uiShownCallback")
-  }
+  // uiShownCallback() {
+  //   console.log("uiShownCallback")
+  // }
 }

@@ -1,0 +1,38 @@
+<!-- <h1>Storage</h1>
+<label for="fileUpload">Choose a File</label>
+<input id="fileUpload" type="file" #upload>
+<button (click)="uploadFile(upload)">Upload</button>
+
+
+<button (click)="compressFilebase()">Upload and compress Image</button>
+<img [src]="imgResultBeforeCompression" *ngIf="imgResultBeforeCompression" />
+<img [src]="imgResultAfterCompression" *ngIf="imgResultAfterCompression" />
+
+ -->
+<div class="row">
+    @for (item of imgResultThumb; let i = $index; track item) {
+
+    <div class="col-md-12 col-lg-6">
+        <div class="text-center">
+            <img class="rounded" [src]="imgResultThumb[i]" *ngIf="imgResultThumb[i]" />
+            <button class="custom-nebraska" mat-button (click)="compressFileToFixed(i)">Ajouter une photo</button>
+        </div>
+
+    </div>
+
+    }
+    @empty {
+    <li> There are no items. </li>
+    }
+</div>
+
+<!-- 
+
+<button (click)="compressFileToFixed(2)">Upload Picture 2</button>
+<img [src]="imgResultThumb[2]" *ngIf="imgResultThumb[2]" />
+
+<button (click)="compressFileToFixed(3)">Upload Picture 3</button>
+<img [src]="imgResultThumb[3]" *ngIf="imgResultThumb[3]" />
+
+
+<button (click)="SavePictures()">Save Picture</button> -->

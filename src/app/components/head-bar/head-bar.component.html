@@ -3,21 +3,127 @@
     <mat-icon>menu</mat-icon>
   </button> -->
   <div class="overlay-gradient-navbar">
-    <mat-toolbar-row class="top-nav-bar">
-      <div class="navbar-container-left">
-        <div id="logo">
-          <img src="assets/images/logo-nebraska.png" alt="logo-nebraska">
-        </div>
+    <div class="navbar-container-left">
+      <div [routerLink]="['/home-map']" id="logo">
+        <img src="assets/images/logo-nebraska.png" alt="logo-nebraska">
       </div>
-      <div class="navbar-container-right">
-        <div class="account-profil">
-          <mat-icon>account_circle</mat-icon>
-        </div>
-      </div>
-    </mat-toolbar-row>
-  </div>
+    </div>
 
+    <div class="navbar-container-right user-logged" *ngIf="user$ | async as user; else visitorBtn">
+
+      @switch (user.role) {
+        @case (userRole.techAdministrator) {
+          <div class="below-icon">
+            <a (click)="openPopUpUserLogout()" class="custom-icon">
+              <mat-icon>import_export</mat-icon>
+            </a>
+            <div>Sync</div>
+          </div>
+          <div class="below-icon">
+            <a [routerLink]="['/home-map']" class="custom-icon">
+              <mat-icon>map</mat-icon>
+            </a>
+            <div>Carte</div>
+          </div>
+          <div class="below-icon">
+            <a [routerLink]="['/dashboard-admin']" class="custom-icon">
+              <mat-icon>dashboard</mat-icon>
+              <!-- matBadge="1" matBadgeColor="warn" -->
+            </a>
+            <div>Dashboard</div>
+          </div>
+          <div class="below-icon">
+            <a (click)="openPopupUserAddNewBuilding()" class="custom-icon">
+              <mat-icon>add_home_work</mat-icon>
+            </a>
+            <div>Ajouter</div>
+          </div>
+          <div class="below-icon">
+            <a (click)="openPopUpUserLogout()"  class="custom-icon">
+              <mat-icon>account_circle</mat-icon>
+            </a>
+            <div>Quitter</div>
+          </div>
+        }
+        @case (userRole.nebraskaAdministrator) {
+          <div class="below-icon">
+            <a [routerLink]="['/home-map']" class="custom-icon">
+              <mat-icon>map</mat-icon>
+            </a>
+            <div>Carte</div>
+          </div>
+          <div class="below-icon">
+            <a [routerLink]="['/dashboard-admin']" class="custom-icon">
+              <mat-icon>dashboard</mat-icon>
+              <!-- matBadge="1" matBadgeColor="warn" -->
+            </a>
+            <div>Dashboard</div>
+          </div>
+          <div class="below-icon">
+            <a (click)="openPopupUserAddNewBuilding()" class="custom-icon">
+              <mat-icon>add_home_work</mat-icon>
+            </a>
+            <div>Ajouter</div>
+          </div>
+          <div class="below-icon">
+            <a (click)="openPopUpUserLogout()" class="custom-icon">
+              <mat-icon>account_circle</mat-icon>
+            </a>
+            <div>Quitter</div>
+          </div>
+        }
+        @case (userRole.contributor) {
+          <div class="below-icon">
+            <a [routerLink]="['/home-map']" class="custom-icon">
+              <mat-icon>map</mat-icon>
+            </a>
+            <div>Carte</div>
+          </div>
+          <div class="below-icon">
+            <a class="custom-icon">
+              <mat-icon>home</mat-icon>
+              <!-- matBadge="1" matBadgeColor="warn" -->
+            </a>
+            <div>Mes bâtis</div>
+          </div>
+          <div class="below-icon">
+            <a (click)="openPopupUserAddNewBuilding()" class="custom-icon">
+              <mat-icon>add_home_work</mat-icon>
+            </a>
+            <div>Ajouter</div>
+          </div>
+          <div class="below-icon">
+            <a (click)="openPopUpUserLogout()" class="custom-icon">
+              <mat-icon>account_circle</mat-icon>
+            </a>
+            <div>Quitter</div>
+          </div>
+        }
+        @default {}
+        }
+
+      
+    </div>
+  </div>
 </mat-toolbar>
-<mat-toolbar-row class="title-bar">
-  <h1 class="adaptable-title">Recensement des constructions en Paille Porteuse de France</h1>
-</mat-toolbar-row>
+
+<div class="title-bar">
+  <h1 class="adaptable-title">{{ title$ | async }}</h1>
+</div>
+
+<ng-template #visitorBtn>
+  <div class="navbar-container-right">
+    <div class="below-icon">
+      <a [routerLink]="['/home-map']" class="custom-icon">
+        <mat-icon>map</mat-icon>
+      </a>
+      <div>Carte</div>
+    </div>
+    <div class="below-icon">
+      <a [routerLink]="['/log-in']" class="custom-icon">
+        <mat-icon>account_circle</mat-icon>
+      </a>
+      <div>Connexion</div>
+    </div>
+  </div>
+</ng-template>

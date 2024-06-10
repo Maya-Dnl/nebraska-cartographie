@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   firebase: {
     apiKey: "AIzaSyCOjGmXthBDL3xBJmmOfQys6sXAthq3jYY",
     authDomain: "nebraska-cartographie.firebaseapp.com",

@@ -1,0 +1,50 @@
+.step-container {
+  margin-top: 30px;
+  font-family: "Happy Monkey", system-ui;
+  background-color: #ab794446;
+  border-radius: 10px;
+  padding: 30px;
+  height: 100%;
+
+  .text-area-height {
+    height: 188px;
+  }
+
+  .input-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+}
+
+.stepper-container {
+  margin: auto;
+
+  mat-form-field.auto-size {
+    width: 100%;
+    max-width: 450px;
+  }
+}
+
+.checkbox-section {
+  margin: 0px 0px 20px 0px;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.btn-custom {
+  display: flex;
+  justify-content: center;
+
+  // button {
+  //   font-family: "Happy Monkey", system-ui;
+  //   font-size: 16px;
+  //   color: white;
+  //   border: none;
+  //   border-radius: 10px;
+  //   margin: 30px 30px;
+  //   padding: 10px;
+  // }
+}
