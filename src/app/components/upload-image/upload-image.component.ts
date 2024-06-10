@@ -1,8 +1,14 @@
-import { Component, Input, inject, input } from '@angular/core';
-import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { Component, EventEmitter, Input, Output, inject, input } from '@angular/core';
+import { FullMetadata, Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { DOC_ORIENTATION, NgxImageCompressService } from 'ngx-image-compress';
 import { Observable } from 'rxjs';
 import { placeholder } from './upload-image.placeholder';
+
+export interface SavedPictureEventType
+{
+  metadata: FullMetadata,
+  index: number
+};
 
 @Component({
   selector: 'app-upload-image',
@@ -13,6 +19,8 @@ export class UploadImageComponent {
   constructor(private imageCompress: NgxImageCompressService) { }
 
   @Input() numberOfPictures: number = 1;
+  @Input() buildingId: string | undefined;
+  @Output() pictureSaved = new EventEmitter<SavedPictureEventType>();
 
   private readonly storage: Storage = inject(Storage);
 
@@ -33,24 +41,6 @@ export class UploadImageComponent {
       this.imgResultCompress[index] = "";
     });
   };
-  // compressFilebase() {
-  //   this.imageCompress.uploadFile().then(({ image, orientation }) => {
-  //     this.imgResultBeforeCompression = image;
-
-  //     console.log('Size in bytes of the uploaded image was:', this.imageCompress.byteCount(image));
-
-  //     this.imageCompress
-  //       .compressFile(image, orientation, 50, 90, 300) // 50% ratio, 50% quality
-  //       .then(compressedImage => {
-  //         this.imgResultAfterCompression = compressedImage;
-  //         console.log('Size in bytes after compression is now:', this.imageCompress.byteCount(compressedImage));
-  //       });
-  //   });
-  // }
-
-
-
-
 
   compressFileToFixed(index: number) {
     const MAX_MEGABYTE = 1;
@@ -84,21 +74,23 @@ export class UploadImageComponent {
   TempImgResultAfterCompAndThumb(result: string, index: number)
   {
     this.imgResultCompress[index] = result;
-    this.imageCompress
-    .compressFile(result,DOC_ORIENTATION.Default, 100, 100, 500, 300) // 50% ratio, 50% quality
-    .then(compressedImage => {
-      this.imgResultThumb[index] = compressedImage;
-      console.log('Size in bytes after compression is now:', this.imageCompress.byteCount(compressedImage));
-    });
+     this.SavePictures(index).then(result => this.pictureSaved.emit({index, metadata: result.metadata})).then(val =>{
+      this.imageCompress
+      .compressFile(result,DOC_ORIENTATION.Default, 100, 100, 500, 300) // 50% ratio, 50% quality
+      .then(compressedImage => {
+        this.imgResultThumb[index] = compressedImage;
+        console.log('Size in bytes after compression is now:', this.imageCompress.byteCount(compressedImage));
+      });
+     });
   }
 
-  SavePictures() {
-    for (let i = 1; i < this.imgResultCompress.length; i++) {
-      let file = this.base64ToFile(this.imgResultCompress[i], "test-" + i + ".jpeg")
+  async SavePictures(index: number) {
+      let file = this.base64ToFile(this.imgResultCompress[index], this.buildingId! + "-" + index + ".jpeg")
       if (file) {
         const storageRef = ref(this.storage, file.name);
-        uploadBytesResumable(storageRef, file);}
+       return await uploadBytesResumable(storageRef, file)
     }
+    throw new Error("imgResultCompress error")
   }
 
   private base64ToFile(dataURI: string, filename: string): File {
@@ -110,6 +102,7 @@ export class UploadImageComponent {
     for (let i = 0; i < binary.length; i++) {
       array.push(binary.charCodeAt(i));
     }
+
     let byteArray = new Uint8Array(array);
 
     // Créer un Blob à partir du tableau d'octets

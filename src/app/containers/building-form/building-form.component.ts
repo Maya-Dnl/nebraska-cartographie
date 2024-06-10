@@ -5,6 +5,8 @@ import { BuildingModel } from '../../services/building/building.model';
 import { BuildingService } from '../../services/building/building.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { __param } from 'tslib';
+import { v4 as uuidv4 } from 'uuid';
+import { FullMetadata } from 'firebase/storage';
 
 
 @Component({
@@ -16,9 +18,9 @@ import { __param } from 'tslib';
 
 export class BuildingFormComponent {
 
-  maxDate = new Date();
-  tempId = Date.now().toString();
 
+  maxDate = new Date();
+  tempId: string | undefined = undefined;
 
   generalInformationsFormGroup: FormGroup | undefined = undefined
  
@@ -51,7 +53,6 @@ export class BuildingFormComponent {
   contactsFormGroup: FormGroup | undefined = undefined;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private buildingService: BuildingService,
     private formBuilder: FormBuilder,
@@ -66,6 +67,7 @@ export class BuildingFormComponent {
 
     let editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
 
+    this.tempId = editedBuilding != null ? editedBuilding.id : uuidv4();
     let latitude = undefined;
     let longitude = undefined;
 
@@ -75,6 +77,7 @@ export class BuildingFormComponent {
     });
 
     let gi = editedBuilding != null ? editedBuilding.generalInformations : null;
+
 
 
     // Conditon ? si oui : si non 
@@ -159,13 +162,15 @@ export class BuildingFormComponent {
   // checkFormStepThree() {
   //   this.constructionWorksFormGroup.updateValueAndValidity();
   // }
-
+  SavedPicture($event: FullMetadata) {
+  }
+  
   checkFormStepFour() {
     this.contactsFormGroup!.updateValueAndValidity();
 
     let building: BuildingModel = {
 
-      id: this.tempId,
+      id: this.tempId!,
       generalInformations: this.generalInformationsFormGroup!.getRawValue(),
       constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
       pictures: {},

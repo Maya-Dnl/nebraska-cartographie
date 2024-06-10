@@ -407,12 +407,13 @@
     <mat-step [stepControl]="picturesFormGroup" label="Photos">
       <form [formGroup]="picturesFormGroup">
         <div class="container step-container">
-          <app-upload-image [numberOfPictures]="4"></app-upload-image>
+          <app-upload-image [numberOfPictures]="4" [buildingId]="tempId" (pictureSaved)="SavedPicture($event)" ></app-upload-image>
           <div class="btn-custom">
           </div>
         </div>
         <div class="btn-custom">
           <button class="custom-nebraska" mat-flat-button color="primary" matStepperPrevious>Précédent</button>
+          <!-- <button class="custom-nebraska" mat-flat-button color="primary">Précédent</button> -->
           <button class="custom-nebraska" mat-flat-button color="accent" matStepperNext>Suivant</button>
         </div>
       </form>
