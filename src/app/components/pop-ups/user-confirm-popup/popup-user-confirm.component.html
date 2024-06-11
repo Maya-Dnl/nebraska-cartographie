@@ -11,6 +11,10 @@
           <button class="custom-btn-popup" [mat-dialog-close]="'ResendMailConfirm'">Renvoyer l'email</button>
           <button class="custom-btn-popup" mat-dialog-close>Ok</button>
         }
+        @else if (modePopup === 3) {
+          <button class="custom-btn-popup" [mat-dialog-close]="true">Ok</button>
+          <button class="custom-btn-popup" mat-dialog-close>Retour</button>
+        }
       </div>
     </mat-dialog-actions>
   </mat-dialog-content>

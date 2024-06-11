@@ -17,5 +17,6 @@ export class PopUpUserConfirmComponent {
 export enum ModeConfirmPopup{
  Ok = 0,
  YesNo = 1,
- ResendMailConfirm = 2
+ ResendMailConfirm = 2,
+ OkOrBack = 3
 }
