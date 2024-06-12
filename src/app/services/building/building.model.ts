@@ -26,6 +26,7 @@ export interface BConstructionWorks {
   endDate: string | undefined;
   strawBaleSize: string | undefined;
   strawBaleInfos: string | undefined;
+  typeOfInstallation: string | undefined;
   strawBaleDensity: number | undefined;
   cerealsUsed: string | undefined;
   supplyDistance: number | undefined;
@@ -34,7 +35,7 @@ export interface BConstructionWorks {
   complementaryStructure: boolean | undefined;
   natureComplementaryStructure: string | undefined;
   infosNatureComplementaryStructure: string | undefined;
-  shearWallLength: string | undefined;
+  shearWallLength: number | undefined;
   calculationNote: boolean | undefined;
   numberOfRows: number | undefined;
   arrayIntegration: string | undefined;
@@ -55,7 +56,7 @@ export interface BContacts {
   contact: string | undefined;
   postalCode: string | undefined;
   email: string | undefined;
-  phoneNumber: string | undefined;
+  phoneNumber: number | undefined;
   projectOwner: string | undefined;
   projectManager: string | undefined;
   architect: string | undefined;

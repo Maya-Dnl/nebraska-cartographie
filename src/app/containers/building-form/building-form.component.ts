@@ -22,17 +22,19 @@ export class BuildingFormComponent {
 
   generalInformationsFormGroup: FormGroup | undefined = undefined
  
-  constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre']
+  constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre'];
   selfConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
   participatoryConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
-  complementaryStructureOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre']
-  strawBaleSizeOptions: string[] = ['36 x 46 x 70 à 120', '70 x 120 x 230', '50 x 80 x 110 à 200', 'Autre']
-  cerealsUsedOptions: string[] = ['Blé', 'Orge', 'Avoine', 'Seigle', 'Triticale', 'Riz', 'Autre']
-  calculationNoteOptions: string[] = ['Oui', 'Non']
-  arrayIntegrationOptions: string[] = ['Pré-cadre flottant', 'Elément coulissant', 'Elément fixe (poteau, montant, ..)', 'Autre']
-  natureInkingSupportOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre']
-  interiorCoveringOptions: string[] = ['Plaque de plâtre', 'Lambris', 'Enduit terre', 'Enduit chaux', 'Enduit terre et chaux', 'Enduit plâtre', 'Autre']
-  exteriorCoveringOptions: string[] = ['Bardage ventilé', 'Enduit terre', 'Enduit chaux', 'Enduit terre et chaux', 'Enduit plâtre', 'Panneau', 'Autre']
+  complementaryStructureOptions: string[] = ['Oui', 'Non'];
+  natureComplementaryStructureOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre'];
+  strawBaleSizeOptions: string[] = ['Petites bottes', 'Bottes matelas', 'Grosses bottes', 'Autre'];
+  typeOfInstallationOptions: string[] = ['À plat', 'Sur chants'];
+  cerealsUsedOptions: string[] = ['Blé', 'Orge', 'Avoine', 'Seigle', 'Triticale', 'Riz', 'Autre'];
+  calculationNoteOptions: string[] = ['Oui', 'Non'];
+  arrayIntegrationOptions: string[] = ['Pré-cadre flottant', 'Elément coulissant', 'Elément fixe (poteau, montant, ..)', 'Autre'];
+  natureInkingSupportOptions: string[] = ['Bois', 'Béton armé', 'Métal', 'Maconnerie (brique, parpaing, pierre..)', 'Autre'];
+  interiorCoveringOptions: string[] = ['Plaque de plâtre', 'Lambris', 'Enduit terre', 'Enduit chaux', 'Enduit terre et chaux', 'Enduit plâtre', 'Autre'];
+  exteriorCoveringOptions: string[] = ['Bardage ventilé', 'Enduit terre', 'Enduit chaux', 'Enduit terre et chaux', 'Enduit plâtre', 'Panneau', 'Autre'];
 
 
   constructionWorksFormGroup: FormGroup | undefined = undefined;
@@ -79,14 +81,14 @@ export class BuildingFormComponent {
 
     // Conditon ? si oui : si non 
     this.generalInformationsFormGroup = this.formBuilder.group({
-      buildingName: [gi ? gi.buildingName : ''],
+      buildingName: [gi ? gi.buildingName : '', Validators.required],
       address: [gi ? gi.address : ''],
       cityOrTown: [gi ? gi.cityOrTown : '', Validators.required],
       latitude: [latitude ? latitude : (gi ? gi.latitude : ""), [Validators.required, Validators.max(51.2), Validators.min(41.2)]],
       longitude: [longitude ? longitude : (gi ? gi.longitude : ""), [Validators.required, Validators.max(8.3), Validators.min(-5.2)]],
       constructionUse: [gi ? gi.constructionUse : '', Validators.required],
       infosConstructionUse: [gi ? gi.infosConstructionUse : ''],
-      totalCostOfWork: [gi ? gi.totalCostOfWork : '', Validators.required],
+      totalCostOfWork: [gi ? gi.totalCostOfWork : ''],
       buildingSurface: [gi ? gi.buildingSurface : '', Validators.required],
       numberOfLevels: [gi ? gi.numberOfLevels : '', Validators.required],
     });
@@ -95,15 +97,16 @@ export class BuildingFormComponent {
 
     this.constructionWorksFormGroup = this.formBuilder.group({
       startDate: [cw ? cw.startDate : '', Validators.required],
-      endDate: [cw ? cw.endDate : '', Validators.required],
-      strawBaleSize: [cw ? cw.strawBaleSize : ''],
+      endDate: [cw ? cw.endDate : ''],
+      strawBaleSize: [cw ? cw.strawBaleSize : '', Validators.required],
       strawBaleInfos: [cw ? cw.strawBaleInfos : ''],
+      typeOfInstallation: [cw ? cw.typeOfInstallation : ''],
       strawBaleDensity: [cw ? cw.strawBaleDensity : ''],
-      cerealsUsed: [cw ? cw.cerealsUsed : '', Validators.required],
+      cerealsUsed: [cw ? cw.cerealsUsed : ''],
       supplyDistance: [cw ? cw.supplyDistance : ''],
       selfConstruction: [cw ? cw.selfConstruction : '', Validators.required],
       participatoryConstruction: [cw ? cw.participatoryConstruction : '', Validators.required],
-      complementaryStructure: [cw ? cw.complementaryStructure : '', Validators.required],
+      complementaryStructure: [cw ? cw.complementaryStructure : ''],
       natureComplementaryStructure: [cw ? cw.natureComplementaryStructure : ''],
       infosNatureComplementaryStructure: [cw ? cw.infosNatureComplementaryStructure : ''],
       shearWallLength: [cw ? cw.shearWallLength : ''],
@@ -123,9 +126,9 @@ export class BuildingFormComponent {
 
     this.contactsFormGroup = this.formBuilder.group({
       contact: [c ? c.contact : '', Validators.required],
-      postalCode: [c ? c.postalCode : '', Validators.required],
-      email: [c ? c.email : '', Validators.required],
-      phoneNumber: [c ? c.phoneNumber : '', Validators.required],
+      postalCode: [c ? c.postalCode : ''],
+      email: [c ? c.email : ''],
+      phoneNumber: [c ? c.phoneNumber : ''],
       projectOwner: [c ? c.projectOwner : ''],
       projectManager: [c ? c.projectManager : ''],
       architect: [c ? c.architect : ''],
@@ -174,5 +177,9 @@ export class BuildingFormComponent {
 
     this.buildingService.SetPreviewBuilding(building);
     console.log(building);
+  }
+
+  resetPosition() {
+    this.router.navigateByUrl("/select-map")
   }
 }

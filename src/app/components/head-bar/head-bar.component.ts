@@ -49,13 +49,11 @@ export class HeadBarComponent {
       backdropClass: 'backdrop-blur',
       panelClass: 'overlay-pop-up',
       data: {
-        message: `Bonjour,\n
-        Vous vous apprêter à remplir
-        un document afin que Nebraska puisse référencer 
-        votre construction en paille porteuse sur sa carte.\n
-        Veuillez sélectionner à l'aide de la croix,
-        le lieu approximatif de votre construction puis cliquez sur "Valider ma position"\n
-        ( Zoomer au maximum sur la carte afin de faciliter le référencement )`,
+        message: `Vous vous apprêtez à remplir un document afin que Nebraska
+        puisse référencer votre construction en paille porteuse sur sa carte.<br><br>Veuillez
+        sélectionner, à l'aide de la croix, le lieu approximatif de votre construction,
+        puis cliquez sur "Valider ma position".<br><br>(Veuillez zoomer au maximum sur la carte afin
+        de faciliter le référencement.)`,
         modePopup: ModeConfirmPopup.OkOrBack
       }
     }).afterClosed().subscribe(result => {

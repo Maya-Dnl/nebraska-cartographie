@@ -1,5 +1,6 @@
 <div>
-  <mat-dialog-content class="custom-pop-up">{{message}}
+  <mat-dialog-content class="custom-pop-up">
+    <div [innerHTML]="message"></div>
     <mat-dialog-actions>
       <div class="btn-custom">
         @if (modePopup === 0) {

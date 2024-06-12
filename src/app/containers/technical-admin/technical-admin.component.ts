@@ -37,6 +37,7 @@ export class TechnicalAdminComponent {
           selfConstruction: oldData.autoconstruction?.__type,
           shearWallLength: undefined,
           startDate: oldData.constructionDebut?.__type,
+          typeOfInstallation: undefined,
           strawBaleDensity: oldData.bottesDensite,
           strawBaleInfos: oldData.bottesTailleInfos,
           strawBaleSize: oldData.bottesTaille?.__type,

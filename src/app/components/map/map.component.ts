@@ -1,17 +1,15 @@
 import { Component, Input } from '@angular/core';
-import L, { icon, LatLng, latLng, Layer, LeafletEvent, map, marker, tileLayer } from 'leaflet';
+import L, { icon, latLng, Layer, LeafletEvent, map, marker, tileLayer } from 'leaflet';
 import { BuildingModel } from '../../services/building/building.model';
 import { Router } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
 import { BuildingService } from '../../services/building/building.service';
-import { PopUpUserConfirmComponent, ModeConfirmPopup } from '../pop-ups/user-confirm-popup/popup-user-confirm.component';
 import { MatDialog } from '@angular/material/dialog';
-import { UserRole } from '../../store/models/user.model';
 
 const initOptions = {
   layers: [
-    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 15, minZoom: 6 })
+    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 15, minZoom: 5.5 })
   ],
   zoom: 5,
   center: latLng(46.630765, 1.850898)
@@ -78,7 +76,7 @@ export class MapComponent {
     if (this.selectedBuilding != null) {
       this.options = {
         layers: [
-          tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, minZoom: 5.5 })
+          tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 15, minZoom: 5.5 })
         ],
         zoom: 10,
         center: latLng([this.selectedBuilding.generalInformations.latitude!, this.selectedBuilding.generalInformations.longitude!])
