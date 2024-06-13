@@ -18,5 +18,6 @@ export enum ModeConfirmPopup{
  Ok = 0,
  YesNo = 1,
  ResendMailConfirm = 2,
- OkOrBack = 3
+ OkOrBack = 3,
+ AgreeOrBack = 4
 }

@@ -16,6 +16,10 @@
           <button class="custom-btn-popup" [mat-dialog-close]="true">Ok</button>
           <button class="custom-btn-popup" mat-dialog-close>Retour</button>
         }
+        @else if (modePopup === 4) {
+          <button class="custom-btn-popup" [mat-dialog-close]="true">J'accepte</button>
+          <button class="custom-btn-popup" mat-dialog-close>Retour</button>
+        }
       </div>
     </mat-dialog-actions>
   </mat-dialog-content>

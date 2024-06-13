@@ -5,6 +5,8 @@ import { BuildingModel } from '../../services/building/building.model';
 import { BuildingService } from '../../services/building/building.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { __param } from 'tslib';
+import { MatDialog } from '@angular/material/dialog';
+import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../../components/pop-ups/user-confirm-popup/popup-user-confirm.component';
 
 
 @Component({
@@ -58,6 +60,7 @@ export class BuildingFormComponent {
     private buildingService: BuildingService,
     private formBuilder: FormBuilder,
     private _adapter: DateAdapter<any>,
+    public dialog: MatDialog,
 
     @Inject(MAT_DATE_LOCALE) private _locale: string
   ) {
@@ -147,11 +150,25 @@ export class BuildingFormComponent {
     });
   }
 
+  // dateFilter(date: Date | null): boolean {
+  //   // console.log("Je suis bien dans dateFilter")
+  //   const startDate = this.constructionWorksFormGroup!.get('startDate')?.value;
+  //   // console.log(startDate)
+  //   return date !== null && (!startDate || (date >= startDate));
+  // }
+
   dateFilter(date: Date | null): boolean {
-    // console.log("Je suis bien dans dateFilter")
+    // console.log("Je suis bien dans dateFilter");
     const startDate = this.constructionWorksFormGroup!.get('startDate')?.value;
-    // console.log(startDate)
-    return date !== null && (!startDate || (date >= startDate));
+    // console.log(startDate);
+
+    if (date === null) {
+      return false;
+    }
+    if (startDate === undefined || startDate === null) {
+      return true;
+    }
+    return date >= startDate;
   }
 
   // onSubmit() {
@@ -174,25 +191,37 @@ export class BuildingFormComponent {
 
   checkFormStepFour() {
     this.contactsFormGroup!.updateValueAndValidity();
+    this.dialog.open(PopUpUserConfirmComponent, {
+      width: '400px',
+      backdropClass: 'backdrop-blur',
+      panelClass: 'overlay-pop-up',
+      data: {
+        message: `L'association Nebraska s'engage à respecter la confidentialité de vos données. 
+        L'utilisation de vos informations personnelles est strictement limitée à un usage interne.<br>
+        <br>En cliquant sur le bouton "J'accepte", vous confirmez avoir pris connaissance de ce message
+        et acceptez que le modérateur de Nebraska puisse, si nécessaire, modifier la fiche que vous
+        venez de remplir.`,
+        modePopup: ModeConfirmPopup.AgreeOrBack
+      }
+    }).afterClosed().subscribe(result => {
+      if (result === true) {
 
-    let building: BuildingModel = {
+        let building: BuildingModel = {
 
-      id: this.tempId,
-      generalInformations: this.generalInformationsFormGroup!.getRawValue(),
-      constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
-      pictures: {},
-      contacts: this.contactsFormGroup!.getRawValue(),
-    }
+          id: this.tempId,
+          generalInformations: this.generalInformationsFormGroup!.getRawValue(),
+          constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
+          pictures: {},
+          contacts: this.contactsFormGroup!.getRawValue(),
+        }
 
-    this.buildingService.SetPreviewBuilding(building);
-    console.log(building);
+        this.buildingService.SetPreviewBuilding(building);
+        console.log(building);
+      }
+    })
   }
 
   resetPosition() {
     this.router.navigateByUrl("/select-map")
   }
-
-
-
-
 }
