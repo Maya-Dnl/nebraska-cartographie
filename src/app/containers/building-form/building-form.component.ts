@@ -21,7 +21,7 @@ export class BuildingFormComponent {
 
 
   generalInformationsFormGroup: FormGroup | undefined = undefined
- 
+
   constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre'];
   selfConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
   participatoryConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
@@ -58,7 +58,7 @@ export class BuildingFormComponent {
     private buildingService: BuildingService,
     private formBuilder: FormBuilder,
     private _adapter: DateAdapter<any>,
-    
+
     @Inject(MAT_DATE_LOCALE) private _locale: string
   ) {
     this._adapter.setLocale(this._locale);
@@ -77,7 +77,6 @@ export class BuildingFormComponent {
     });
 
     let gi = editedBuilding != null ? editedBuilding.generalInformations : null;
-
 
     // Conditon ? si oui : si non 
     this.generalInformationsFormGroup = this.formBuilder.group({
@@ -143,6 +142,16 @@ export class BuildingFormComponent {
       otherCommentBox: [c ? c.otherCommentBox : ''],
     });
 
+    this.constructionWorksFormGroup.get('startDate')?.valueChanges.subscribe(startDate => {
+      this.constructionWorksFormGroup!.get('endDate')?.updateValueAndValidity();
+    });
+  }
+
+  dateFilter(date: Date | null): boolean {
+    // console.log("Je suis bien dans dateFilter")
+    const startDate = this.constructionWorksFormGroup!.get('startDate')?.value;
+    // console.log(startDate)
+    return date !== null && (!startDate || (date >= startDate));
   }
 
   // onSubmit() {
@@ -182,4 +191,8 @@ export class BuildingFormComponent {
   resetPosition() {
     this.router.navigateByUrl("/select-map")
   }
+
+
+
+
 }

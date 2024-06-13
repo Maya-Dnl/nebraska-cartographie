@@ -138,6 +138,19 @@ button.modify-btn {
   background-color: #FF7E6F!important;;
 }
 
+.btn-error-popup {
+  font-family: "Happy Monkey", system-ui!important;
+  background-color: white!important;
+  color: black!important;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  min-width: 80px;
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
 .custom-btn-popup {
   font-family: "Happy Monkey", system-ui!important;
   background-color: white!important;

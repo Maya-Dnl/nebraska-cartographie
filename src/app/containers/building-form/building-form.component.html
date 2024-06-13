@@ -23,7 +23,7 @@
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Ville ou Commune*</div>
+              <div class="input-title">Ville ou Commune de la construction *</div>
               <mat-form-field class="auto-size">
                 <input matInput placeholder="38000, Grenoble" formControlName="cityOrTown" required>
                 <mat-error *ngIf="generalInformationsFormGroup.get('cityOrTown')!.hasError('required')">Ce champ est
@@ -34,7 +34,7 @@
 
           <div class="row">
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Latitude*
+              <div class="input-title">Latitude *
                 <mat-icon class="cusor-pointer" (click)="resetPosition()" color="accent">edit</mat-icon>
               </div>
               <mat-form-field class="auto-size">
@@ -48,7 +48,7 @@
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Longitude*
+              <div class="input-title">Longitude *
                 <mat-icon class="cusor-pointer" (click)="resetPosition()" color="accent">edit</mat-icon>
               </div>
               <mat-form-field class="auto-size">
@@ -65,7 +65,7 @@
 
           <div class="row">
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Usage de la construction*</div>
+              <div class="input-title">Usage de la construction *</div>
               <mat-form-field class="auto-size">
                 <mat-select placeholder="Logement Individuel" formControlName="constructionUse" required>
                   @for (item of constructionUseOptions; track $index) {
@@ -94,7 +94,7 @@
 
           <div class="row">
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Surface de la construction en m²*</div>
+              <div class="input-title">Surface de la construction en m² *</div>
               <mat-form-field class="auto-size">
                 <input type="number" matInput placeholder="82m²" formControlName="buildingSurface" required>
                 <mat-error *ngIf="generalInformationsFormGroup.get('buildingSurface')!.hasError('required')">Ce champ
@@ -103,7 +103,7 @@
             </div>
 
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Nombre de niveau*</div>
+              <div class="input-title">Nombre de niveau *</div>
               <mat-form-field class="auto-size">
                 <input type="number" matInput
                   placeholder="ex: RDC = 1 niveau, un étage = 2 niveaux, sous-sol non compté"
@@ -128,7 +128,7 @@
         <div class="container step-container">
           <div class="row">
             <section class="checkbox-section col" [formGroup]="selectWorks">
-              <div class="input-title">Nature des travaux :*</div>
+              <div class="input-title">Nature des travaux : *</div>
               <p><mat-checkbox formControlName="neuf">Neuf</mat-checkbox></p>
               <p><mat-checkbox formControlName="extension">Extension</mat-checkbox></p>
               <p><mat-checkbox formControlName="renovation">Rénovation</mat-checkbox></p>
@@ -139,10 +139,10 @@
 
           <div class="row">
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Début des travaux*</div>
+              <div class="input-title">Début des travaux *</div>
               <mat-form-field class="auto-size">
                 <mat-label>JJ/MM/AAAA</mat-label>
-                <input matInput [matDatepicker]="pickerStart" formControlName="startDate" required>
+                <input matInput [matDatepicker]="pickerStart" (click)="pickerStart.open()" matInput formControlName="startDate" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
                 <mat-datepicker #pickerStart></mat-datepicker>
                 <mat-error *ngIf="constructionWorksFormGroup.get('startDate')!.hasError('required')">Ce champ est
@@ -153,7 +153,7 @@
               <div class="input-title">Achèvement des travaux</div>
               <mat-form-field class="auto-size">
                 <mat-label>JJ/MM/AAAA</mat-label>
-                <input matInput [matDatepicker]="pickerEnd" formControlName="endDate">
+                <input matInput [matDatepicker]="pickerEnd" (click)="pickerEnd.open()" matInput [matDatepickerFilter]="dateFilter.bind(this)" formControlName="endDate">
                 <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                 <mat-datepicker #pickerEnd></mat-datepicker>
               </mat-form-field>
@@ -164,7 +164,7 @@
             <div class="col-md-12 col-lg-6">
               <div class="row">
                 <div class="title-and-input-content col">
-                  <div class="input-title">Taille des bottes de paille*</div>
+                  <div class="input-title">Taille des bottes de paille *</div>
                   <mat-form-field class="auto-size">
                     <mat-select placeholder="Petites bottes" matInput formControlName="strawBaleSize" required>
                       @for (item of strawBaleSizeOptions; track $index) {
@@ -230,7 +230,7 @@
 
           <div class="row">
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Chantier en Autoconstruction*</div>
+              <div class="input-title">Chantier en Autoconstruction *</div>
               <mat-form-field class="auto-size">
                 <mat-select placeholder="Non" matInput formControlName="selfConstruction" required>
                   @for (item of selfConstructionOptions; track $index) {
@@ -243,7 +243,7 @@
             </div>
 
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Chantier Participatif*</div>
+              <div class="input-title">Chantier Participatif *</div>
               <mat-form-field class="auto-size">
                 <mat-select placeholder="Non" matInput formControlName="participatoryConstruction" required>
                   @for (item of participatoryConstructionOptions; track $index) {
@@ -442,7 +442,7 @@
           <div class="private-square">
             <div class="row">
               <div class="title-and-input-content col-md-12 col-lg-6">
-                <div class="input-title">Contact*</div>
+                <div class="input-title">Contact *</div>
                 <mat-form-field class="auto-size">
                   <input matInput placeholder="Nom Prénom" formControlName="contact" required>
                   <mat-error *ngIf="contactsFormGroup.get('contact')!.hasError('required')">Ce champ est
