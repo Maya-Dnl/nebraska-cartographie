@@ -74,20 +74,24 @@ export class UploadImageComponent {
   TempImgResultAfterCompAndThumb(result: string, index: number)
   {
     this.imgResultCompress[index] = result;
-     this.SavePictures(index).then(result => this.pictureSaved.emit({index, metadata: result.metadata})).then(val =>{
-      this.imageCompress
-      .compressFile(result,DOC_ORIENTATION.Default, 100, 100, 500, 300) // 50% ratio, 50% quality
-      .then(compressedImage => {
-        this.imgResultThumb[index] = compressedImage;
-        console.log('Size in bytes after compression is now:', this.imageCompress.byteCount(compressedImage));
-      });
-     });
+     this.SavePictures(index).then(
+      result => this.pictureSaved.emit({index, metadata: result.metadata}), err => alert(err))
+     .then(val =>{
+      this.imageCompress.compressFile(result,DOC_ORIENTATION.Default, 100, 100, 500, 300) // 50% ratio, 50% quality
+        .then(compressedImage => {
+          this.imgResultThumb[index] = compressedImage;
+          console.log('Size in bytes after compression is now:', this.imageCompress.byteCount(compressedImage));
+        }, (err)=> alert(err));
+     }, (err)=> console.log("eeeeeeee"));
   }
 
-  async SavePictures(index: number) {
+   async SavePictures(index: number) {
       let file = this.base64ToFile(this.imgResultCompress[index], this.buildingId! + "-" + index + ".jpeg")
+  
       if (file) {
+        console.log("FILE")
         const storageRef = ref(this.storage, file.name);
+        console.log(storageRef);
        return await uploadBytesResumable(storageRef, file)
     }
     throw new Error("imgResultCompress error")

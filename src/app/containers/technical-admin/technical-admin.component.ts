@@ -72,9 +72,7 @@ export class TechnicalAdminComponent {
           numberOfLevels: oldData.niveaux,
           totalCostOfWork: oldData.coutTravauxTTC
         },
-        pictures: {
-        
-        }
+        pictures: []
           
     
       }

@@ -404,7 +404,7 @@
     </mat-step>
 
 
-    <mat-step [stepControl]="picturesFormGroup" label="Photos">
+    <mat-step *ngIf="picturesFormGroup" [stepControl]="picturesFormGroup" label="Photos">
       <form [formGroup]="picturesFormGroup">
         <div class="container step-container">
           <app-upload-image [numberOfPictures]="4" [buildingId]="tempId" (pictureSaved)="SavedPicture($event)" ></app-upload-image>

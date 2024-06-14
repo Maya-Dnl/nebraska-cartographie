@@ -23,7 +23,7 @@ export class DetailsBuildingComponent {
   ConstructionW: BConstructionWorks | undefined = undefined;
   ConstructionWIsEmpty: boolean | null = null;
 
-  Pictures: BPictures | undefined = undefined;
+  Pictures: BPictures[] | undefined = undefined;
   PicturesIsEmpty: boolean | null = null;
 
   Contacts: BContacts | undefined = undefined;

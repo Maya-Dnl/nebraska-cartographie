@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { __param } from 'tslib';
 import { v4 as uuidv4 } from 'uuid';
 import { FullMetadata } from 'firebase/storage';
+import { SavedPictureEventType } from '../../components/upload-image/upload-image.component';
 
 
 @Component({
@@ -47,8 +48,7 @@ export class BuildingFormComponent {
     isolationInt: [false]
   });
 
-  picturesFormGroup = this.formBuilder.group({
-  });
+  picturesFormGroup: FormGroup | undefined = undefined;
 
   contactsFormGroup: FormGroup | undefined = undefined;
 
@@ -143,6 +143,14 @@ export class BuildingFormComponent {
       otherCommentBox: [c ? c.otherCommentBox : ''],
     });
 
+    let p = editedBuilding != null ? editedBuilding.pictures : null;
+
+    this.picturesFormGroup = this.formBuilder.group({
+      picture1: [p && p[0] != null ? p[0].id : ''],
+      picture2: [p && p[1] != null ? p[1].id : ''],
+      picture3: [p && p[2] != null ? p[2].id : ''],
+      picture4: [p && p[3] != null ? p[3].id : ''],
+    });
   }
 
   // onSubmit() {
@@ -162,7 +170,9 @@ export class BuildingFormComponent {
   // checkFormStepThree() {
   //   this.constructionWorksFormGroup.updateValueAndValidity();
   // }
-  SavedPicture($event: FullMetadata) {
+  SavedPicture($event: SavedPictureEventType) {
+
+    console.log("saved picture ! ", $event)
   }
   
   checkFormStepFour() {
@@ -173,7 +183,7 @@ export class BuildingFormComponent {
       id: this.tempId!,
       generalInformations: this.generalInformationsFormGroup!.getRawValue(),
       constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
-      pictures: {},
+      pictures: [],
       contacts: this.contactsFormGroup!.getRawValue(),
     }
 
