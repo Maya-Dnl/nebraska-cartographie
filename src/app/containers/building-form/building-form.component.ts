@@ -7,6 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { __param } from 'tslib';
 import { MatDialog } from '@angular/material/dialog';
 import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../../components/pop-ups/user-confirm-popup/popup-user-confirm.component';
+import { selectUser } from '../../store/global.selectors';
+import { AppState } from '../../store/app.state';
+import { Store } from '@ngrx/store';
 
 
 @Component({
@@ -20,6 +23,8 @@ export class BuildingFormComponent {
 
   maxDate = new Date();
   tempId = Date.now().toString();
+
+  user$ = this.store.select(selectUser);
 
 
   generalInformationsFormGroup: FormGroup | undefined = undefined
@@ -57,6 +62,7 @@ export class BuildingFormComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private store: Store<AppState>,
     private buildingService: BuildingService,
     private formBuilder: FormBuilder,
     private _adapter: DateAdapter<any>,
@@ -148,27 +154,7 @@ export class BuildingFormComponent {
     this.constructionWorksFormGroup.get('startDate')?.valueChanges.subscribe(startDate => {
       this.constructionWorksFormGroup!.get('endDate')?.updateValueAndValidity();
     });
-  }
 
-  // dateFilter(date: Date | null): boolean {
-  //   // console.log("Je suis bien dans dateFilter")
-  //   const startDate = this.constructionWorksFormGroup!.get('startDate')?.value;
-  //   // console.log(startDate)
-  //   return date !== null && (!startDate || (date >= startDate));
-  // }
-
-  dateFilter(date: Date | null): boolean {
-    // console.log("Je suis bien dans dateFilter");
-    const startDate = this.constructionWorksFormGroup!.get('startDate')?.value;
-    // console.log(startDate);
-
-    if (date === null) {
-      return false;
-    }
-    if (startDate === undefined || startDate === null) {
-      return true;
-    }
-    return date >= startDate;
   }
 
   // onSubmit() {

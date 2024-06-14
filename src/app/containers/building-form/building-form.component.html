@@ -1,4 +1,4 @@
-<div class="stepper-container container">
+<div class="stepper-container container" *ngIf="user$ | async as user">
   <mat-stepper color="accent" [linear]="true" #stepper>
     <mat-step *ngIf="generalInformationsFormGroup" [stepControl]="generalInformationsFormGroup">
       <form [formGroup]="generalInformationsFormGroup">
@@ -142,9 +142,10 @@
               <div class="input-title">Début des travaux *</div>
               <mat-form-field class="auto-size">
                 <mat-label>JJ/MM/AAAA</mat-label>
-                <input matInput [matDatepicker]="pickerStart" (click)="pickerStart.open()" matInput formControlName="startDate" required>
+                <input #startInput matInput [matDatepicker]="pickerStart" (click)="pickerStart.open()" matInput formControlName="startDate" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
                 <mat-datepicker #pickerStart></mat-datepicker>
+                <mat-error *ngIf="constructionWorksFormGroup.get('startDate')!.hasError('matDatepickerParse')">Merci de rentrer une date valide</mat-error>
                 <mat-error *ngIf="constructionWorksFormGroup.get('startDate')!.hasError('required')">Ce champ est
                   requis</mat-error>
               </mat-form-field>
@@ -153,9 +154,11 @@
               <div class="input-title">Achèvement des travaux</div>
               <mat-form-field class="auto-size">
                 <mat-label>JJ/MM/AAAA</mat-label>
-                <input matInput [matDatepicker]="pickerEnd" (click)="pickerEnd.open()" matInput [matDatepickerFilter]="dateFilter.bind(this)" formControlName="endDate">
+                <input matInput [matDatepicker]="pickerEnd" (click)="pickerEnd.open()" matInput [min]="constructionWorksFormGroup.get('startDate')!.value" formControlName="endDate">
                 <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                 <mat-datepicker #pickerEnd></mat-datepicker>
+                <mat-error *ngIf="constructionWorksFormGroup.get('endDate')!.hasError('matDatepickerParse')">Merci de rentrer une date valide</mat-error>
+                <!-- <div> {{constructionWorksFormGroup.get('endDate')!.errors | json }}</div> -->
               </mat-form-field>
             </div>
           </div>
