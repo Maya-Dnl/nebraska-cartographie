@@ -46,9 +46,7 @@ export const MockBuilding: BuildingModel = {
     strawBaleSize: "",
     supplyDistance: undefined,
   },
-  pictures: {
-
-  },
+  pictures: [],
   contacts: {
     architect: "",
     carpentryInstallationCompany: "",
