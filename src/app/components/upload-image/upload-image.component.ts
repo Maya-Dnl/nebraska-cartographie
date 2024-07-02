@@ -92,7 +92,9 @@ export class UploadImageComponent {
         console.log("FILE")
         const storageRef = ref(this.storage, file.name);
         console.log(storageRef);
-       return await uploadBytesResumable(storageRef, file)
+       var task =  uploadBytesResumable(storageRef, file)
+       task.catch(err => alert(err));
+       return task;
     }
     throw new Error("imgResultCompress error")
   }
