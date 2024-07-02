@@ -43,3 +43,9 @@
   border: solid 1px black;
   padding: 15px;
 }
+
+.align-items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

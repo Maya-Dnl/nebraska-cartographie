@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BuildingModel } from '../../services/building/building.model';
@@ -23,9 +23,7 @@ export class BuildingFormComponent {
 
   maxDate = new Date();
   tempId = Date.now().toString();
-
   user$ = this.store.select(selectUser);
-
 
   generalInformationsFormGroup: FormGroup | undefined = undefined
 
@@ -74,6 +72,12 @@ export class BuildingFormComponent {
   }
 
   ngOnInit() {
+
+    let userMail: string | undefined;
+
+    this.user$.subscribe(user => {
+     userMail = user?.mail
+    })
 
     let editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
 
@@ -135,7 +139,7 @@ export class BuildingFormComponent {
     this.contactsFormGroup = this.formBuilder.group({
       contact: [c ? c.contact : '', Validators.required],
       postalCode: [c ? c.postalCode : ''],
-      email: [c ? c.email : ''],
+      email: [c ? c.email : userMail],
       phoneNumber: [c ? c.phoneNumber : ''],
       projectOwner: [c ? c.projectOwner : ''],
       projectManager: [c ? c.projectManager : ''],
@@ -154,7 +158,6 @@ export class BuildingFormComponent {
     this.constructionWorksFormGroup.get('startDate')?.valueChanges.subscribe(startDate => {
       this.constructionWorksFormGroup!.get('endDate')?.updateValueAndValidity();
     });
-
   }
 
   // onSubmit() {

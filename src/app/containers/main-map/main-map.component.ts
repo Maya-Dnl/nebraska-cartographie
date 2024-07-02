@@ -22,6 +22,7 @@ export class MainMapComponent {
   selectedBuilding: BuildingModel | undefined = undefined;
   opened = false;
   mainMapMode: MainMapMode | undefined = undefined;
+  selectedBuildingId: null | string = null;
 
   user$ : Observable<UserModel | null> = this.store.select(selectUser)
 
@@ -35,7 +36,7 @@ export class MainMapComponent {
 
   async ngOnInit() {
 
-    const id = this.route.snapshot.paramMap.get('id');
+    this.selectedBuildingId = this.route.snapshot.paramMap.get('id');
 
     switch (this.router.url) {
       // display all published buildings | saved in Firebase
@@ -51,8 +52,8 @@ export class MainMapComponent {
         this.InitPreviewFromCache();
         break;
       // display waiting building saved in Firebase | Wait validation by Nebraska
-      case "/preview/" + id:
-        await this.InitPreviewFromServer(id);
+      case "/preview/" + this.selectedBuildingId:
+        await this.InitPreviewFromServer(this.selectedBuildingId);
         break;
       // display contributor's buildings
       case "/my-buildings":
@@ -146,6 +147,10 @@ export class MainMapComponent {
     }, (reason) => {
       console.log(reason);
     })
+  }
+
+  publishBuilding() {
+    this.buildingService.publishBuilding(this.selectedBuildingId!)
   }
 }
 
