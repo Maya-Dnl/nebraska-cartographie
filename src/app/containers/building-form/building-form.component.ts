@@ -5,6 +5,8 @@ import { BuildingModel } from '../../services/building/building.model';
 import { BuildingService } from '../../services/building/building.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { __param } from 'tslib';
+import { v4 as uuidv4 } from 'uuid';
+import { SavedPictureEventType } from '../../components/upload-image/upload-image.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../../components/pop-ups/user-confirm-popup/popup-user-confirm.component';
 import { selectUser } from '../../store/global.selectors';
@@ -22,7 +24,8 @@ import { Store } from '@ngrx/store';
 export class BuildingFormComponent {
 
   maxDate = new Date();
-  tempId = Date.now().toString();
+  // tempId = Date.now().toString();
+  tempId: string | undefined = undefined;
   user$ = this.store.select(selectUser);
 
   generalInformationsFormGroup: FormGroup | undefined = undefined
@@ -52,14 +55,13 @@ export class BuildingFormComponent {
     isolationInt: [false]
   });
 
-  picturesFormGroup = this.formBuilder.group({
-  });
+  picturesFormGroup: FormGroup | undefined = undefined;
 
   contactsFormGroup: FormGroup | undefined = undefined;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
+    private router: Router,
     private store: Store<AppState>,
     private buildingService: BuildingService,
     private formBuilder: FormBuilder,
@@ -81,6 +83,7 @@ export class BuildingFormComponent {
 
     let editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
 
+    this.tempId = editedBuilding != null ? editedBuilding.id : uuidv4();
     let latitude = undefined;
     let longitude = undefined;
 
@@ -90,6 +93,8 @@ export class BuildingFormComponent {
     });
 
     let gi = editedBuilding != null ? editedBuilding.generalInformations : null;
+
+
 
     // Conditon ? si oui : si non 
     this.generalInformationsFormGroup = this.formBuilder.group({
@@ -155,6 +160,14 @@ export class BuildingFormComponent {
       otherCommentBox: [c ? c.otherCommentBox : ''],
     });
 
+    let p = editedBuilding != null ? editedBuilding.pictures : null;
+
+    this.picturesFormGroup = this.formBuilder.group({
+      picture1: [p && p[0] != null ? p[0].id : ''],
+      picture2: [p && p[1] != null ? p[1].id : ''],
+      picture3: [p && p[2] != null ? p[2].id : ''],
+      picture4: [p && p[3] != null ? p[3].id : ''],
+    });
     this.constructionWorksFormGroup.get('startDate')?.valueChanges.subscribe(startDate => {
       this.constructionWorksFormGroup!.get('endDate')?.updateValueAndValidity();
     });
@@ -177,7 +190,11 @@ export class BuildingFormComponent {
   // checkFormStepThree() {
   //   this.constructionWorksFormGroup.updateValueAndValidity();
   // }
+  SavedPicture($event: SavedPictureEventType) {
 
+    console.log("saved picture ! ", $event)
+  }
+  
   checkFormStepFour() {
     this.contactsFormGroup!.updateValueAndValidity();
     this.dialog.open(PopUpUserConfirmComponent, {
@@ -197,12 +214,12 @@ export class BuildingFormComponent {
 
         let building: BuildingModel = {
 
-          id: this.tempId,
-          generalInformations: this.generalInformationsFormGroup!.getRawValue(),
-          constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
-          pictures: {},
-          contacts: this.contactsFormGroup!.getRawValue(),
-        }
+      id: this.tempId!,
+      generalInformations: this.generalInformationsFormGroup!.getRawValue(),
+      constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
+      pictures: [],
+      contacts: this.contactsFormGroup!.getRawValue(),
+    }
 
         this.buildingService.SetPreviewBuilding(building);
         console.log(building);

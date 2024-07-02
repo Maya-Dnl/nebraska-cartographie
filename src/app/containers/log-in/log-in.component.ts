@@ -45,6 +45,7 @@ export class LogInComponent {
   }
 
   checkEmail() {
+    console.log("testmail");
     this.email.markAsTouched();
     this.email.updateValueAndValidity();
 

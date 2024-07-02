@@ -3,7 +3,7 @@ export interface BuildingModel {
   id: string;
   generalInformations: BGeneralInformations;
   constructionWorks: BConstructionWorks;
-  pictures: BPictures;
+  pictures: BPictures[];
   contacts: BContacts;
 
 }
@@ -49,7 +49,8 @@ export interface BConstructionWorks {
 }
 
 export interface BPictures {
-
+  index: number
+  id: string
 }
 
 export interface BContacts {
