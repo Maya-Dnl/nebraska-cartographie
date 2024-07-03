@@ -11,6 +11,26 @@ export class TechnicalAdminComponent {
 
   oldData = oldBuildingsData as ConstructionData[]
 
+  map(oldValue: string | undefined): any{
+    if(oldValue === undefined)
+      {
+        return;
+      }
+
+    switch (oldValue) {
+      case "BARDAGE_VENTILE":
+        return "BARDAGE_VENTILE";
+
+      // bottesTaille
+      case "T_36_X_46_X_70_a_120_CM":
+        return "";
+    
+      default:
+        throw new Error("la valeur " + oldValue + " n'est pas connue");
+    }
+  }
+
+
   ImportOldDataWithCheckByGPSPoint() {
     this.oldData.forEach(oldData => {
 
@@ -23,8 +43,8 @@ export class TechnicalAdminComponent {
           calculationNote: oldData.noteCalcul,
           cerealsUsed: oldData.bottesCereale?.__type,
           complementaryStructure: oldData.structCompl,
-          endDate: oldData.constructionFin?.__type,
-          exteriorCovering: oldData.revetExt?.__type,
+          endDate: "",//this.map(oldData.constructionFin?.__type),
+          exteriorCovering: this.map(oldData.revetExt?.objectId),
           infosExteriorCovering: undefined,
           infosInteriorCovering: undefined,
           infosNatureComplementaryStructure: undefined,
@@ -37,6 +57,7 @@ export class TechnicalAdminComponent {
           selfConstruction: oldData.autoconstruction?.__type,
           shearWallLength: undefined,
           startDate: oldData.constructionDebut?.__type,
+          typeOfInstallation: undefined,
           strawBaleDensity: oldData.bottesDensite,
           strawBaleInfos: oldData.bottesTailleInfos,
           strawBaleSize: oldData.bottesTaille?.__type,
@@ -72,9 +93,7 @@ export class TechnicalAdminComponent {
           numberOfLevels: oldData.niveaux,
           totalCostOfWork: oldData.coutTravauxTTC
         },
-        pictures: {
-        
-        }
+        pictures: []
           
     
       }

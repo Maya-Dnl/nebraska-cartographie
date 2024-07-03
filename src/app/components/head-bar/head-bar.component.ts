@@ -48,12 +48,21 @@ export class HeadBarComponent {
       width: '400px',
       backdropClass: 'backdrop-blur',
       panelClass: 'overlay-pop-up',
-      data: { message: "Bonjour, vous vous apprêter à remplir un document afin que Nebraska puisse référencer votre construction en paille porteuse sur sa carte. Veuillez sélectionner à l'aide de la croix, le lieu approximatif de votre construction puis cliquez sur 'Valider ma position' afin de renseigner automatiquement les coordonnées GPS dans le document", modePopup: ModeConfirmPopup.YesNo }
+      data: {
+        message: `Vous vous apprêtez à remplir un document afin que Nebraska
+        puisse référencer votre construction en paille porteuse sur sa carte.<br><br>Veuillez
+        sélectionner, à l'aide de la croix, le lieu approximatif de votre construction,
+        puis cliquez sur "Valider ma position".<br><br>(Veuillez zoomer au maximum sur la carte afin
+        de faciliter le référencement.)`,
+        modePopup: ModeConfirmPopup.OkOrBack
+      }
     }).afterClosed().subscribe(result => {
       if (result === true) {
+        
         this.store.dispatch(changeTitle({
           newTitle: "Veuillez sélectionner la position de votre construction"
         }))
+        
         this.store.dispatch(activeGpsPointMode())
       }
       else {

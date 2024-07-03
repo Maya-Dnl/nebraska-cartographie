@@ -38,16 +38,15 @@ export const MockBuilding: BuildingModel = {
     numberOfRows: undefined,
     participatoryConstruction: "",
     selfConstruction: "",
-    shearWallLength: "",
+    shearWallLength: undefined,
     startDate: "",
+    typeOfInstallation: "",
     strawBaleDensity: undefined,
     strawBaleInfos: "",
     strawBaleSize: "",
     supplyDistance: undefined,
   },
-  pictures: {
-
-  },
+  pictures: [],
   contacts: {
     architect: "",
     carpentryInstallationCompany: "",
@@ -57,7 +56,7 @@ export const MockBuilding: BuildingModel = {
     difficultiesBox: "",
     email: "",
     otherCommentBox: "",
-    phoneNumber: "",
+    phoneNumber: undefined,
     postalCode: "",
     projectDescriptionBox: "",
     projectManager: "",

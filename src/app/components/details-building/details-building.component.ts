@@ -16,6 +16,12 @@ export class DetailsBuildingComponent {
 
   @Input() viewedBuilding: BuildingModel | undefined;
 
+  imageObject: Array<object> = [{
+    image: 'assets/images/360_F_435592117assets_q7GtFAXFiKdxygr8qNOcNy79wzax89Qp.jpg',
+    thumbImage: 'assets/images/360_F_435592117_q7GtFAXFiKdxygr8qNOcNy79wzax89Qp.jpg',
+    alt: 'No picture for this building',
+    order: 1
+  }];
 
   GeneralInfo: BGeneralInformations | undefined = undefined;
   GeneralInfoIsEmpty: boolean | null = null;
@@ -23,7 +29,7 @@ export class DetailsBuildingComponent {
   ConstructionW: BConstructionWorks | undefined = undefined;
   ConstructionWIsEmpty: boolean | null = null;
 
-  Pictures: BPictures | undefined = undefined;
+  Pictures: BPictures[] | undefined = undefined;
   PicturesIsEmpty: boolean | null = null;
 
   Contacts: BContacts | undefined = undefined;
@@ -50,7 +56,13 @@ export class DetailsBuildingComponent {
     this.ConstructionWIsEmpty = ObjectIsEmpty(this.ConstructionW);
 
     this.Pictures = this.viewedBuilding?.pictures;
-    this.PicturesIsEmpty = ObjectIsEmpty(this.Pictures);
+    this.PicturesIsEmpty = false; // Always display picture
+
+    if(this.Pictures !== undefined && this.Pictures.length > 0)
+      {
+        // UPDATE PICTURE FROM FIREBASE STORAGE
+      }
+    
 
     this.Contacts = this.viewedBuilding?.contacts;
     this.ContactsIsEmpty = ObjectIsEmpty(this.Contacts);
@@ -79,20 +91,6 @@ export class DetailsBuildingComponent {
 
   @ViewChild('nav') slider: NgImageSliderComponent | undefined;
 
-  imageObject: Array<object> = [{
-    image: 'assets/images/interieur-maison-liberation.jpeg',
-    thumbImage: 'assets/images/interieur-maison-liberation.jpeg',
-    alt: 'alt of image',
-    //  title: 'interieur-maison'
-    order: 1
-  }, {
-    image: 'assets/images/isolation-paille.png',
-    thumbImage: 'assets/images/isolation-paille.png',
-    //  title: 'isolation-paille',
-    alt: 'Image alt',
-    order: 2
-  }
-  ];
   imageSizeObject = { width: 600, height: 400, space: 0 }
   autoSlideObject = { interval: 5, stopOnHover: false }
 
