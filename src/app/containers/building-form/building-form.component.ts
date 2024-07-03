@@ -30,7 +30,7 @@ export class BuildingFormComponent {
 
   generalInformationsFormGroup: FormGroup | undefined = undefined
 
-  constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre'];
+  constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisirs', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre'];
   selfConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
   participatoryConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
   complementaryStructureOptions: string[] = ['Oui', 'Non'];

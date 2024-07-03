@@ -1,13 +1,18 @@
 import { Router } from "@angular/router";
 import { BuildingModel } from "./building.model";
 import { inject, Injectable } from "@angular/core";
-import { addDoc, deleteDoc, collection, collectionData, CollectionReference, doc, Firestore, getDoc, QueryDocumentSnapshot, SnapshotOptions } from "@angular/fire/firestore";
+import { addDoc, deleteDoc, collection, collectionData, CollectionReference, doc, Firestore, getDoc, QueryDocumentSnapshot, SnapshotOptions, DocumentData, DocumentReference } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
+
+  export const publishedBuildingsCollectionName = "publishedBuildings"
+  export const waitingBuildingsCollectionName = "waitingBuildings"
 
 @Injectable({
   providedIn: "root",
 })
 export class BuildingService {
+
+
 
   private buildingPreview: BuildingModel | null = null;
 
@@ -35,7 +40,7 @@ export class BuildingService {
   }
 
   public async GetPreviewBuildingFromServer(id: string): Promise<BuildingModel | undefined> {
-    const documentReference = doc(this.firestore, 'waitingBuildings', id);
+    const documentReference = doc(this.firestore, waitingBuildingsCollectionName, id);
     const docSnapshot = await getDoc(documentReference);
     const building = docSnapshot.data() as BuildingModel | undefined;
     return building;
@@ -46,13 +51,19 @@ export class BuildingService {
     localStorage.removeItem("BuildingPreview");
   }
 
-  public async SaveBuildingFromPreview(building: BuildingModel): Promise<void> {
-    let waitingBuildings: CollectionReference<BuildingModel> = collection(this.firestore, 'waitingBuildings').withConverter(buildingConverter);
+  public async SaveBuildingFromPreview(building: BuildingModel): Promise<DocumentReference<BuildingModel, DocumentData>> {
+    let waitingBuildings: CollectionReference<BuildingModel> = collection(this.firestore, waitingBuildingsCollectionName).withConverter(buildingConverter);
     const addedBuildingDocumentReference = await addDoc(waitingBuildings, building);
+    return addedBuildingDocumentReference;
   }
 
   public getWaitingBuildings(): Observable<BuildingModel[]> {
-    const waitingBuildingsCollection = collection(this.firestore, 'waitingBuildings').withConverter(buildingConverter);
+    const waitingBuildingsCollection = collection(this.firestore, waitingBuildingsCollectionName).withConverter(buildingConverter);
+    return collectionData(waitingBuildingsCollection, { idField: 'id' }) as Observable<BuildingModel[]>;
+  }
+
+  public getPublishedBuildings(): Observable<BuildingModel[]> {
+    const waitingBuildingsCollection = collection(this.firestore, publishedBuildingsCollectionName).withConverter(buildingConverter);
     return collectionData(waitingBuildingsCollection, { idField: 'id' }) as Observable<BuildingModel[]>;
   }
 
@@ -68,9 +79,9 @@ export class BuildingService {
       throw new Error("Building is undefined for id : " + id)
     }
     console.log(building);
-    let publishedBuildings: CollectionReference<BuildingModel> = collection(this.firestore, 'publishedBuildings').withConverter(buildingConverter);
+    let publishedBuildings: CollectionReference<BuildingModel> = collection(this.firestore, publishedBuildingsCollectionName).withConverter(buildingConverter);
     await addDoc(publishedBuildings, building);
-    const documentReference = doc(this.firestore, 'waitingBuildings', id);
+    const documentReference = doc(this.firestore, waitingBuildingsCollectionName, id);
     await deleteDoc(documentReference);
   }
 }
