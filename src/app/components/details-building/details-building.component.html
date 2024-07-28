@@ -48,7 +48,7 @@
             </div>
             <div class="align-items-custom" *ngIf="GeneralInfo?.numberOfLevels">
               <mat-icon color="accent">stairs</mat-icon>
-              {{GeneralInfo?.numberOfLevels}} niveaux
+              {{GeneralInfo?.numberOfLevels}} niv
             </div>
           </div>
         </div>
@@ -67,11 +67,11 @@
           <div class="custom-content">
             <div *ngIf="ConstructionW?.startDate">
               <div class="title-info">Début des travaux</div>
-              {{ConstructionW?.startDate}}
+              {{ConstructionW?.startDate | date:'dd/MM/yyyy'}}
             </div>
             <div *ngIf="ConstructionW?.endDate">
               <div class="title-info">Achèvement des travaux</div>
-              {{ConstructionW?.endDate}}
+              {{ConstructionW?.endDate | date:'dd/MM/yyyy'}}
             </div>
             <div *ngIf="ConstructionW?.strawBaleSize">
               <div class="title-info">Taille des bottes de paille</div>
@@ -90,8 +90,8 @@
               {{ConstructionW?.cerealsUsed}}
             </div>
             <div *ngIf="ConstructionW?.supplyDistance">
-              <div class="title-info">Distances d'approvisionnement des bottes</div>
-              {{ConstructionW?.supplyDistance}}
+              <div class="title-info">Distance d'approvisionnement des bottes</div>
+              {{ConstructionW?.supplyDistance}} Km
             </div>
             <div *ngIf="ConstructionW?.selfConstruction">
               <div class="title-info">Chantier en Autoconstruction</div>
@@ -115,7 +115,7 @@
             </div>
             <div *ngIf="ConstructionW?.shearWallLength">
               <div class="title-info">Longueur maximum sans mur de refend </div>
-              {{ConstructionW?.shearWallLength}}
+              {{ConstructionW?.shearWallLength}} m
             </div>
             <div *ngIf="ConstructionW?.calculationNote">
               <div class="title-info">Note de calcul</div>
@@ -123,7 +123,7 @@
             </div>
             <div *ngIf="ConstructionW?.numberOfRows">
               <div class="title-info">Nombre de rangs de bottes</div>
-              {{ConstructionW?.numberOfRows}}
+              {{ConstructionW?.numberOfRows}} rangs
             </div>
             <div *ngIf="ConstructionW?.arrayIntegration">
               <div class="title-info">Intégration des baies</div>

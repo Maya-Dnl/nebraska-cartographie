@@ -37,14 +37,15 @@
 .btn-custom {
   display: flex;
   justify-content: center;
+}
 
-  // button {
-  //   font-family: "Happy Monkey", system-ui;
-  //   font-size: 16px;
-  //   color: white;
-  //   border: none;
-  //   border-radius: 10px;
-  //   margin: 30px 30px;
-  //   padding: 10px;
-  // }
+.private-square {
+  border: solid 1px black;
+  padding: 15px;
+}
+
+.align-items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

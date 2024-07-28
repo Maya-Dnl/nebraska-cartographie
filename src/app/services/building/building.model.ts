@@ -12,13 +12,13 @@ export interface BGeneralInformations {
   buildingName: string | undefined;
   address: string | undefined;
   cityOrTown: string | undefined;
-  latitude: number | undefined;
-  longitude: number | undefined;
+  latitude: string | undefined;
+  longitude: string | undefined;
   constructionUse: string | undefined;
   infosConstructionUse: string | undefined;
-  totalCostOfWork: number | undefined;
-  buildingSurface: number | undefined;
-  numberOfLevels: number | undefined;
+  totalCostOfWork: string | undefined;
+  buildingSurface: string | undefined;
+  numberOfLevels: string | undefined;
 }
 
 export interface BConstructionWorks {
@@ -26,17 +26,18 @@ export interface BConstructionWorks {
   endDate: string | undefined;
   strawBaleSize: string | undefined;
   strawBaleInfos: string | undefined;
-  strawBaleDensity: number | undefined;
+  typeOfInstallation: string | undefined;
+  strawBaleDensity: string | undefined;
   cerealsUsed: string | undefined;
-  supplyDistance: number | undefined;
+  supplyDistance: string | undefined;
   selfConstruction: string | undefined;
   participatoryConstruction: string | undefined;
-  complementaryStructure: boolean | undefined;
+  complementaryStructure: string | undefined;
   natureComplementaryStructure: string | undefined;
   infosNatureComplementaryStructure: string | undefined;
   shearWallLength: string | undefined;
-  calculationNote: boolean | undefined;
-  numberOfRows: number | undefined;
+  calculationNote: string | undefined;
+  numberOfRows: string | undefined;
   arrayIntegration: string | undefined;
   arrayIntegrationInfos: string | undefined;
   natureInkingSupport: string | undefined;
@@ -48,7 +49,7 @@ export interface BConstructionWorks {
 }
 
 export interface BPictures {
-  index: number
+  index: string
   id: string
 }
 
