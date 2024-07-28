@@ -46,16 +46,20 @@ export class AuthProcessService {
   ) { }
 
   /**
-   * Reset the password of the ngx-auth-firebaseui-user via email
+   * Reset password for a user via email.
    *
-   * @param email - the email to reset
+   * @param email The email address of the user
+   * @returns Promise<void>
    */
   public async resetPassword(email: string): Promise<void> {
-    try {
-      return await this.afa.sendPasswordResetEmail(email);
-    } catch (error) {
-      this.handleError(error);
-    }
+    return new Promise<void>(async (resolve, reject) => {
+      try {
+        await this.afa.sendPasswordResetEmail(email);
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 
   /**
@@ -140,24 +144,28 @@ export class AuthProcessService {
    * After that the ngx-auth-firebaseui-user should verify and confirm an email sent via the firebase
    *
    * @param credentials email and password
-   * @returns -
+   * @returns Promise<void>
    */
-  public async signUp(credentials: ICredentials) {
-    try {
-      const userCredential: UserCredential = await this.afa.createUserWithEmailAndPassword(
-        credentials.email,
-        credentials.password
-      );
+  public async signUp(credentials: ICredentials): Promise<void> {
+    return new Promise<void>(async (resolve, reject) => {
+      try {
+        const userCredential: UserCredential = await this.afa.createUserWithEmailAndPassword(
+          credentials.email,
+          credentials.password
+        );
 
-      let user = userCredential.user;
-      if (user !== null) {
-        user.sendEmailVerification();
-        this.signOut()
+        const user = userCredential.user;
+        if (user) {
+          await user.sendEmailVerification();
+          await this.signOut();
+          resolve();
+        } else {
+          reject(new Error('User creation failed'));
+        }
+      } catch (error) {
+        reject(error);
       }
-
-    } catch (err) {
-      this.handleError(err);
-    }
+    });
   }
 
   async sendEmailVerification(credentials: ICredentials) {
