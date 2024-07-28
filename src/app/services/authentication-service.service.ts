@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import { UserRole } from '../store/models/user.model';
 import { MatDialog } from '@angular/material/dialog';
+import { getAuth, fetchSignInMethodsForEmail } from "firebase/auth";
+
 
 import UserCredential = firebase.auth.UserCredential;
 
@@ -62,18 +64,23 @@ export class AuthProcessService {
    * @returns true si deja connu sinon false
    */
   public async signInTestEmailExist(email: string): Promise<boolean | null> {
-    try {
-      let result = (await this.afa.fetchSignInMethodsForEmail(email));
-      console.log(result);
-      if (result.find(v => v == "password")) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (err) {
-      this.handleError(err);
-      return null;
-    }
+    const auth = getAuth();
+    return fetchSignInMethodsForEmail(auth, email)
+      .then((signInMethods) => {
+        console.log(signInMethods);
+        if (signInMethods.includes('password')) {
+          console.log('Le fournisseur de connexion par mot de passe est activé pour cet email.');
+          return true;
+        } else {
+          console.log('Le fournisseur de connexion par mot de passe n\'est pas activé pour cet email.');
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.error('Erreur lors de la récupération des méthodes de connexion :', error);
+        return null;
+      });
+
   }
 
   /**
@@ -120,10 +127,9 @@ export class AuthProcessService {
     }).catch((err) => {
       if (err.code === 'auth/wrong-password') {
         return SignInResult.wrongCredentials
-      } else if (err.code === 'auth/too-many-requests')
-        {
-          return SignInResult.tooManyRequests
-        }
+      } else if (err.code === 'auth/too-many-requests') {
+        return SignInResult.tooManyRequests
+      }
       console.error(err)
       throw err;
     }).finally(() => { console.log("end of signin process") });
