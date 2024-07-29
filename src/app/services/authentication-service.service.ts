@@ -87,56 +87,61 @@ export class AuthProcessService {
 
   }
 
+
+
   /**
-   * Login with email and password
-   * @param credentials mail & password
+   * Sign in users via email and password.
+   * 
+   * @param credentials email and password
+   * @returns Promise<SignInResult>
    */
   public async signInWith(credentials: ICredentials): Promise<SignInResult> {
+    return new Promise<SignInResult>(async (resolve, reject) => {
+      try {
+        const userCredential: UserCredential = await this.afa.signInWithEmailAndPassword(
+          credentials.email,
+          credentials.password
+        );
 
-    return await this.afa.signInWithEmailAndPassword(
-      credentials.email,
-      credentials.password
-    ).then(async (signInResult) => {
+        const user = userCredential.user;
+        if (user && !user.emailVerified) {
+          resolve(SignInResult.emailNotVerified);
+        } else {
 
-      if (signInResult.user?.emailVerified === false) {
-        await this.signOut();
-        return SignInResult.emailNotVerified
-      };
+          let role: UserRole
 
-      let role: UserRole
-
-      switch (signInResult.user?.email) {
-        case "maya.dnl29@gmail.com":
-          role = UserRole.techAdministrator
-          break;
-        case "carto.nebraska@gmail.com":
-          role = UserRole.nebraskaAdministrator
-          break;
-        default:
-          role = UserRole.contributor
-          break;
-      };
-
-      this.store.dispatch(userLogInSuccess({
-        user: {
-          id: signInResult.user?.uid!,
-          mail: signInResult.user?.email!,
-          creationDate: signInResult.user?.metadata.creationTime!,
-          role: role
+          switch (user?.email) {
+            case "maya.dnl29@gmail.com":
+              role = UserRole.techAdministrator
+              break;
+            case "carto.nebraska@gmail.com":
+              role = UserRole.nebraskaAdministrator
+              break;
+            default:
+              role = UserRole.contributor
+              break;
+          };
+    
+          this.store.dispatch(userLogInSuccess({
+            user: {
+              id: user?.uid!,
+              mail: user?.email!,
+              creationDate: user?.metadata.creationTime!,
+              role: role
+            }
+          }));
+          resolve(SignInResult.signInSuccess);
         }
-      }));
-
-      return SignInResult.signInSuccess;
-
-    }).catch((err) => {
-      if (err.code === 'auth/wrong-password') {
-        return SignInResult.wrongCredentials
-      } else if (err.code === 'auth/too-many-requests') {
-        return SignInResult.tooManyRequests
+      } catch (error: any) {
+        if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found' || error.code ===   'auth/invalid-credential') {
+          resolve(SignInResult.wrongCredentials);
+        } else if (error.code === 'auth/too-many-requests') {
+          resolve(SignInResult.tooManyRequests);
+        } else {
+          reject(error); // Pour les autres erreurs, rejetez la promesse
+        }
       }
-      console.error(err)
-      throw err;
-    }).finally(() => { console.log("end of signin process") });
+    });
   }
 
   /**

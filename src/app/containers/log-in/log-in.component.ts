@@ -44,11 +44,12 @@ export class LogInComponent {
       passwordConfirm: ['', [Validators.required]]
     }, { validator: passwordMatchValidator });
   }
-
+  
   signIn() {
     if (this.emailLogin.invalid || this.passwordLogin.invalid) {
       return;
     }
+  
     this.authProcess.signInWith({ email: this.emailLogin.value!, password: this.passwordLogin.value! })
       .then((signInResult: SignInResult) => {
         switch (signInResult) {
@@ -84,8 +85,28 @@ export class LogInComponent {
             this.router.navigateByUrl("/");
             break;
         }
+      })
+      .catch((error) => {
+        let errorMessage = 'Une erreur est survenue. Veuillez réessayer plus tard.';
+        
+        if (error.code) {
+          switch (error.code) {
+            case 'auth/invalid-email':
+              errorMessage = 'L\'email fourni n\'est pas valide. Veuillez fournir un email valide.';
+              break;
+            // Ajoutez d'autres cas d'erreur Firebase si nécessaire
+          }
+        }
+  
+        this.dialog.open(PopUpUserConfirmComponent, {
+          width: '400px',
+          backdropClass: 'backdrop-blur',
+          panelClass: ['overlay-pop-up', 'error-popup'],
+          data: { message: errorMessage, modePopup: ModeConfirmPopup.Ok }
+        });
       });
   }
+  
 
   async signUp() {
     let emailSubscribe = this.registerForm.controls['emailSubscribe'].value;
