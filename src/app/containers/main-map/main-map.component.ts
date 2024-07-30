@@ -124,7 +124,11 @@ export class MainMapComponent {
         backdropClass: 'backdrop-blur',
         panelClass: ['overlay-pop-up', 'error-popup'],
         data: { message: "Aucune construction n'a été trouvé, cliquer sur Ok pour revenir sur la carte.", modePopup: ModeConfirmPopup.Ok }
-      })
+      }).afterClosed().subscribe(async result => {
+        if (result === true) {
+          this.router.navigateByUrl("home-map")
+        }
+      });
     }
     setTimeout(() => {
       this.filteredBuildingList$ = of([this.selectedBuilding!])
