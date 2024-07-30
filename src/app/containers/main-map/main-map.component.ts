@@ -78,6 +78,12 @@ export class MainMapComponent {
 
   }
 
+  onDrawerToggle() {
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 30); // Vous pouvez ajuster ce délai si nécessaire
+  }
+
   InitHomeMap() {
     this.mainMapMode = MainMapMode.homeMapMode;
     setTimeout(() => {

@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import L, { icon, LatLng, latLng, Layer, LeafletEvent, map, marker, tileLayer } from 'leaflet';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges } from '@angular/core';
+import L, { icon, LatLng, latLng, Layer, map, marker, tileLayer } from 'leaflet';
 import { BuildingModel } from '../../services/building/building.model';
 import { Router } from '@angular/router';
 import { AppState } from '../../store/app.state';
@@ -18,18 +18,12 @@ const initOptions = {
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrl: './map.component.scss'
+  styleUrls: ['./map.component.scss']
 })
-
-export class MapComponent {
-
-  // corner1 = L.latLng(40.712, -74.227);
-  // corner2 = L.latLng(40.774, -74.125);
-  // bounds = L.latLngBounds(this.corner1, this.corner2);
-
+export class MapComponent implements OnInit, OnChanges {
   layers: Layer[] = [];
-  options: any = undefined;
-  // userRole: UserRole = UserRole.nebraskaAdministrator;
+  options: any = initOptions;
+  map: L.Map | undefined;
 
   @Input() viewedBuilding: BuildingModel | undefined;
   @Input() buildingList: BuildingModel[] | null = [];
@@ -46,70 +40,113 @@ export class MapComponent {
   ) { }
 
   ngOnInit() {
-    this.UpdateMap();
+    this.UpdateMarkers();
   }
 
-  ngOnChanges()
-  {
-    console.log("ngOnChanges map");
-    this.UpdateMap();
-    console.log(this.options);
+  ngOnChanges() {
+    this.UpdateMarkers();
   }
 
-  UpdateMap() {
+  onMapReady(map: L.Map) {
+    this.map = map;
+    this.map.on('zoomend', () => {
+      console.log("Current Zoom Level:", this.map?.getZoom());
+      this.UpdateMarkers();
+    });
+
+
+    this.map.on('resize', () => {
+      this.CenterMap();
+    });
+  }
+
+  CenterMap() {
+    if (this.map) {
+      this.map.invalidateSize();
+      if (this.selectedBuilding) {
+        this.map.setView(
+          latLng([+this.selectedBuilding.generalInformations.latitude!, +this.selectedBuilding.generalInformations.longitude!]),
+          this.map.getZoom()
+        );
+      } else {
+        this.map.setView(initOptions.center, this.map.getZoom());
+      }
+    }
+  }
+
+ 
+
+  UpdateMarkers() {
+    if (!this.map) return;
+
+    // Clear existing layers
+    this.layers.forEach(layer => this.map!.removeLayer(layer));
     this.layers = [];
+    const currentZoom = this.map.getZoom();
+    const baseSize = 4; // Taille de base des icônes
+
     if (this.buildingList) {
       this.buildingList.forEach(building => {
-        let size = 34;
+        let size = baseSize * currentZoom;
 
-        if (this.selectedBuilding != null && building.id === this.selectedBuilding.id) {
-          size = 50;
-        }
-
-        let markerPoint = marker([+building.generalInformations.latitude!, +building.generalInformations.longitude!],
-          {
+        let markerPoint: any = null;
+        if (this.selectedBuilding && building.id === this.selectedBuilding.id) {
+          markerPoint = marker([+building.generalInformations.latitude!, +building.generalInformations.longitude!], {
+            icon: icon({
+              iconUrl: "assets/images/home_48dp_select.png",
+              className: "marker-point",
+              iconSize: [45, 45],
+            })
+          });
+        } else {
+          markerPoint = marker([+building.generalInformations.latitude!, +building.generalInformations.longitude!], {
             icon: icon({
               iconUrl: "assets/images/home_48dp.png",
               className: "marker-point",
               iconSize: [size, size],
             })
           });
-          markerPoint.on("click", (e) => this.onMarkerClick(e, markerPoint))
+        }
+
+        markerPoint.on("click", (e: any) => this.onMarkerClick(e, markerPoint));
+        markerPoint.addTo(this.map!);
         this.layers.push(markerPoint);
       });
 
-      if (this.selectedBuilding != null) {
-        this.options = {
-          layers: [
-            tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 15, minZoom: 5.5 })
-          ],
-          zoom: 10,
-          center: latLng([+this.selectedBuilding.generalInformations.latitude!, +this.selectedBuilding.generalInformations.longitude!])
-        };
-      }
-      else {
-        this.options = initOptions;
+      if (this.selectedBuilding) {
+        this.map.setView(
+          latLng([+this.selectedBuilding.generalInformations.latitude!, +this.selectedBuilding.generalInformations.longitude!]),
+          this.map.getZoom()
+        );
       }
     }
   }
+
   onMarkerClick(e: L.LeafletMouseEvent, markerPoint: L.Marker<any>): void {
     this.onBuildingClicked.emit(markerPoint.getLatLng());
   }
 
   ClickMap(value: any) {
     if (this.crossMode === true) {
-      let size = 34;
-      let markerPoint = marker([value.latlng.lat, value.latlng.lng],
-        {
-          icon: icon({
-            iconUrl: "assets/images/home_48dp.png",
-            className: "marker-point",
-            iconSize: [size, size],
-          })
+
+      if (this.map && this.map.getZoom() < 15) {
+        //POPUP veuillez zoom a max avant de placer votre construction
+        return;
+      }
+
+
+      const size = 34;
+      const markerPoint = marker([value.latlng.lat, value.latlng.lng], {
+        icon: icon({
+          iconUrl: "assets/images/home_48dp.png",
+          className: "marker-point",
+          iconSize: [size, size],
         })
-      this.layers = [];
-      this.layers.push(markerPoint);
-    }else{
+      });
+      this.layers.forEach(layer => this.map!.removeLayer(layer));
+      this.layers = [markerPoint];
+      markerPoint.addTo(this.map!);
+    } else {
       console.log(value);
     }
   }
@@ -117,6 +154,10 @@ export class MapComponent {
   ValidPositionSelected() {
     const markerPoint: L.Marker<any> = this.layers[0] as L.Marker<any>;
     const latlng = markerPoint.getLatLng();
+
+    if (this.map && this.map.getZoom() < 15) {
+      throw new Error("Veuillez zoomer au maximum pour placer votre repère");      
+    }
 
     const params = {
       latitude: latlng.lat,
