@@ -40,11 +40,11 @@ export class MapComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    this.UpdateMap();
+    this.UpdateMarkers();
   }
 
   ngOnChanges() {
-    this.UpdateMap();
+    this.UpdateMarkers();
   }
 
   onMapReady(map: L.Map) {
@@ -74,11 +74,7 @@ export class MapComponent implements OnInit, OnChanges {
     }
   }
 
-  UpdateMap() {
-    if (this.map) {
-      this.UpdateMarkers();
-    }
-  }
+ 
 
   UpdateMarkers() {
     if (!this.map) return;
@@ -132,6 +128,13 @@ export class MapComponent implements OnInit, OnChanges {
 
   ClickMap(value: any) {
     if (this.crossMode === true) {
+
+      if (this.map && this.map.getZoom() < 15) {
+        //POPUP veuillez zoom a max avant de placer votre construction
+        return;
+      }
+
+
       const size = 34;
       const markerPoint = marker([value.latlng.lat, value.latlng.lng], {
         icon: icon({
@@ -153,8 +156,7 @@ export class MapComponent implements OnInit, OnChanges {
     const latlng = markerPoint.getLatLng();
 
     if (this.map && this.map.getZoom() < 15) {
-      console.log("Veuillez zoomer au maximum pour placer votre repère");
-      return;
+      throw new Error("Veuillez zoomer au maximum pour placer votre repère");      
     }
 
     const params = {
