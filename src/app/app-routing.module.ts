@@ -12,6 +12,7 @@ const routes: Routes = [
  {path: "home-map", component: MainMapComponent, data: {title: 'Référencement des constructions en Paille Porteuse de France'}},
  {path: "select-map", component: MainMapComponent, data: {title: 'Veuillez sélectionner la position de votre construction'}},
  {path: "new-building", component: BuildingFormComponent, data: {title: 'Référencement d’une nouvelle construction'}},
+ {path: "edit-building/:id", component: BuildingFormComponent, data: {title: 'Edition d’une construction'}},
  {path: "my-buildings", component: MainMapComponent, data: {title: 'Mes constructions en Paille Porteuse'}},
  {path: "preview", component: MainMapComponent, data: {title: 'Les informations sont-elles correctes ?'}},
  {path: "preview/:id", component: MainMapComponent, data: {title: 'Les informations sont-elles correctes ?'}},

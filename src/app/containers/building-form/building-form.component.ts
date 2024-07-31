@@ -59,6 +59,7 @@ export class BuildingFormComponent {
 
   contactsFormGroup: FormGroup | undefined = undefined;
 
+  editedBuildingId: string | undefined | null = undefined;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -73,7 +74,7 @@ export class BuildingFormComponent {
     this._adapter.setLocale(this._locale);
   }
 
-  ngOnInit() {
+  async ngOnInit() {
 
     let userMail: string | undefined;
 
@@ -81,7 +82,27 @@ export class BuildingFormComponent {
       userMail = user?.mail
     })
 
+
     let editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
+
+    this.editedBuildingId = this.route.snapshot.paramMap.get('id');
+    if (this.editedBuildingId != null) {
+      editedBuilding = await this.buildingService.GetPreviewBuildingFromServer(this.editedBuildingId)
+      if (editedBuilding === undefined) {
+        // afficher une popup pour indiquer que le building n'a pas ete trouvé avec un bouton continuer pour retour a la home
+        this.dialog.open(PopUpUserConfirmComponent, {
+          width: '400px',
+          backdropClass: 'backdrop-blur',
+          panelClass: ['overlay-pop-up', 'error-popup'],
+          data: { message: "Aucune construction n'a été trouvé, cliquer sur Ok pour revenir sur la carte.", modePopup: ModeConfirmPopup.Ok }
+        }).afterClosed().subscribe(async result => {
+          if (result === true) {
+            this.router.navigateByUrl("home-map")
+          }
+        });
+      }
+    }
+
 
     this.tempId = editedBuilding != null ? editedBuilding.id : uuidv4();
     let latitude = undefined;
@@ -222,6 +243,7 @@ export class BuildingFormComponent {
   checkFormStepFour() {
     this.contactsFormGroup!.updateValueAndValidity();
 
+    // check validity
     if (this.contactsFormGroup?.invalid) {
       this.dialog.open(PopUpUserConfirmComponent, {
         width: '400px',
@@ -231,37 +253,56 @@ export class BuildingFormComponent {
           message: `Veuillez remplir tous les champs requis.`,
           modePopup: ModeConfirmPopup.Ok
         }
-      })
-    } else {
-      this.dialog.open(PopUpUserConfirmComponent, {
-        width: '400px',
-        backdropClass: 'backdrop-blur',
-        panelClass: 'overlay-pop-up',
-        data: {
-          message: `L'association Nebraska s'engage à respecter la confidentialité de vos données. 
+      });
+      return;
+    }
+
+    // Server edit mode
+    if (this.editedBuildingId != null) {
+      let building: BuildingModel = {
+
+        id: this.tempId!,
+        generalInformations: this.generalInformationsFormGroup!.getRawValue(),
+        constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
+        pictures: [],
+        contacts: this.contactsFormGroup!.getRawValue(),
+      }
+
+      this.buildingService.UpdateBuildingFromPreview(building, this.editedBuildingId);
+      this.router.navigateByUrl("/preview/" + this.editedBuildingId);
+      return;
+    }
+
+    // add to preview
+    this.dialog.open(PopUpUserConfirmComponent, {
+      width: '400px',
+      backdropClass: 'backdrop-blur',
+      panelClass: 'overlay-pop-up',
+      data: {
+        message: `L'association Nebraska s'engage à respecter la confidentialité de vos données. 
         L'utilisation de vos informations personnelles est strictement limitée à un usage interne.<br>
         <br>En cliquant sur le bouton "J'accepte", vous confirmez avoir pris connaissance de ce message
         et acceptez que le modérateur de Nebraska puisse, si nécessaire, modifier la fiche que vous
         venez de remplir.`,
-          modePopup: ModeConfirmPopup.AgreeOrBack
+        modePopup: ModeConfirmPopup.AgreeOrBack
+      }
+    }).afterClosed().subscribe(result => {
+      if (result === true) {
+
+        let building: BuildingModel = {
+
+          id: this.tempId!,
+          generalInformations: this.generalInformationsFormGroup!.getRawValue(),
+          constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
+          pictures: [],
+          contacts: this.contactsFormGroup!.getRawValue(),
         }
-      }).afterClosed().subscribe(result => {
-        if (result === true) {
 
-          let building: BuildingModel = {
+        this.buildingService.SetPreviewBuilding(building);
+        console.log(building);
+      }
+    })
 
-            id: this.tempId!,
-            generalInformations: this.generalInformationsFormGroup!.getRawValue(),
-            constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
-            pictures: [],
-            contacts: this.contactsFormGroup!.getRawValue(),
-          }
-
-          this.buildingService.SetPreviewBuilding(building);
-          console.log(building);
-        }
-      })
-    }
   }
 
   resetPosition() {

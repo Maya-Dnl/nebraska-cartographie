@@ -11,6 +11,7 @@ import { firstValueFrom, lastValueFrom, Observable, of } from 'rxjs';
 import { UserModel, UserRole } from '../../store/models/user.model';
 import { LatLng } from 'leaflet';
 
+
 @Component({
   selector: 'app-main-map',
   templateUrl: './main-map.component.html',
@@ -25,6 +26,10 @@ export class MainMapComponent {
   selectedBuilding: BuildingModel | undefined = undefined;
   opened = false;
   mainMapMode: MainMapMode | undefined = undefined;
+
+  public userRole = UserRole;
+  public MainMapMode = MainMapMode;
+  
   selectedBuildingId: null | string = null;
 
   user$: Observable<UserModel | null> = this.store.select(selectUser)
@@ -199,3 +204,4 @@ export enum MainMapMode {
   previewServerMode = 3,
   myBuildingsMode = 4
 }
+
