@@ -167,6 +167,17 @@ export class MainMapComponent {
 
   publishBuilding() {
     this.buildingService.publishBuilding(this.selectedBuildingId!)
+    this.dialog.open(PopUpUserConfirmComponent, {
+      width: '400px',
+      backdropClass: 'backdrop-blur',
+      panelClass: 'overlay-pop-up',
+      data: {
+        message: "Félicitation ! Cette nouvelle construction est inscrite sur la carte de référencement ! 🎊",
+        modePopup: ModeConfirmPopup.Ok
+      }
+    }).afterClosed().subscribe(result => {
+      this.router.navigateByUrl("dashboard-admin")
+    });
   }
 
   onBuildingClicked($event: LatLng) {

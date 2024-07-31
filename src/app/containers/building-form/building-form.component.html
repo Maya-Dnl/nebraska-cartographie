@@ -34,10 +34,11 @@
 
           <div class="row">
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Latitude *</div>
+              <div class="input-title">Latitude *
+                <mat-icon class="cusor-pointer" (click)="resetPosition()" color="accent">edit</mat-icon>
+              </div>
               <mat-form-field class="auto-size">
                 <input type="number" matInput placeholder="45.16760093978442" formControlName="latitude" required>
-                <mat-icon class="cusor-pointer" (click)="resetPosition()" color="accent">edit</mat-icon>
                 <mat-error *ngIf="generalInformationsFormGroup.get('latitude')!.hasError('required')">Ce champ est
                   requis</mat-error>
                 <mat-error *ngIf="generalInformationsFormGroup.get('latitude')!.hasError('max')">La construction doit
