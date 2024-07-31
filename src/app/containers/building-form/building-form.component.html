@@ -448,7 +448,7 @@
               <div class="title-and-input-content col-md-12 col-lg-6">
                 <div class="input-title">Contact *</div>
                 <mat-form-field class="auto-size">
-                  <input matInput placeholder="Nom Prénom" formControlName="contact" required>
+                  <input matInput placeholder="Nom/Prénom" formControlName="contact" required>
                   <mat-error *ngIf="contactsFormGroup.get('contact')!.hasError('required')">Ce champ est
                     requis</mat-error>
                 </mat-form-field>
@@ -465,7 +465,7 @@
               <div class="title-and-input-content col-md-12 col-lg-6">
                 <div class="input-title">Adresse e-mail</div>
                 <mat-form-field class="auto-size">
-                  <input matInput placeholder="exemple@exemple.com" formControlName="email">
+                  <input matInput formControlName="email">
                 </mat-form-field>
               </div>
               <div class="title-and-input-content col-md-12 col-lg-6">

@@ -23,6 +23,14 @@ export class DetailsBuildingComponent {
     order: 1
   }];
 
+  imageSizeObject = { width: 445, height: 360, space: 75 }
+  //autoSlideObject = { interval: 5, stopOnHover: false }
+
+  autoSlideObject = { interval: 0, stopOnHover: false }
+
+  // imageSizeObject = { width: 600, height: 400, space: 0 }
+  // autoSlideObject = { interval: 5, stopOnHover: false }
+
   GeneralInfo: BGeneralInformations | undefined = undefined;
   GeneralInfoIsEmpty: boolean | null = null;
 
@@ -91,8 +99,7 @@ export class DetailsBuildingComponent {
 
   @ViewChild('nav') slider: NgImageSliderComponent | undefined;
 
-  imageSizeObject = { width: 600, height: 400, space: 0 }
-  autoSlideObject = { interval: 5, stopOnHover: false }
+
 
   prevImageClick() {
     this.slider!.prev();

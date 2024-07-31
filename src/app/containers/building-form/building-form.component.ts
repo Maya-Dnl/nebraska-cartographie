@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BuildingModel } from '../../services/building/building.model';
@@ -23,15 +23,14 @@ import { Store } from '@ngrx/store';
 
 export class BuildingFormComponent {
 
-
   maxDate = new Date();
+  // tempId = Date.now().toString();
   tempId: string | undefined = undefined;
   user$ = this.store.select(selectUser);
 
-
   generalInformationsFormGroup: FormGroup | undefined = undefined
 
-  constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisir', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre'];
+  constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisirs', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre'];
   selfConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
   participatoryConstructionOptions: string[] = ['Oui', 'Non', 'Partiel'];
   complementaryStructureOptions: string[] = ['Oui', 'Non'];
@@ -75,6 +74,12 @@ export class BuildingFormComponent {
   }
 
   ngOnInit() {
+
+    let userMail: string | undefined;
+
+    this.user$.subscribe(user => {
+      userMail = user?.mail
+    })
 
     let editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
 
@@ -139,7 +144,7 @@ export class BuildingFormComponent {
     this.contactsFormGroup = this.formBuilder.group({
       contact: [c ? c.contact : '', Validators.required],
       postalCode: [c ? c.postalCode : ''],
-      email: [c ? c.email : ''],
+      email: [c ? c.email : userMail],
       phoneNumber: [c ? c.phoneNumber : ''],
       projectOwner: [c ? c.projectOwner : ''],
       projectManager: [c ? c.projectManager : ''],
@@ -166,7 +171,6 @@ export class BuildingFormComponent {
     this.constructionWorksFormGroup.get('startDate')?.valueChanges.subscribe(startDate => {
       this.constructionWorksFormGroup!.get('endDate')?.updateValueAndValidity();
     });
-
   }
 
   // onSubmit() {
@@ -176,10 +180,34 @@ export class BuildingFormComponent {
 
   checkFormStepOne() {
     this.generalInformationsFormGroup!.updateValueAndValidity();
+    if (this.generalInformationsFormGroup?.invalid) {
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: ['overlay-pop-up', 'error-popup'],
+        data: {
+          message: `Veuillez remplir tous les champs requis.`,
+          modePopup: ModeConfirmPopup.Ok
+        }
+      });
+      return;
+    }
   }
 
   checkFormStepTwo() {
     this.constructionWorksFormGroup!.updateValueAndValidity();
+    if (this.constructionWorksFormGroup?.invalid) {
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: ['overlay-pop-up', 'error-popup'],
+        data: {
+          message: `Veuillez remplir tous les champs requis.`,
+          modePopup: ModeConfirmPopup.Ok
+        }
+      });
+      return;
+    }
   }
 
   // validation pitctures :
@@ -190,37 +218,50 @@ export class BuildingFormComponent {
 
     console.log("saved picture ! ", $event)
   }
-  
+
   checkFormStepFour() {
     this.contactsFormGroup!.updateValueAndValidity();
-    this.dialog.open(PopUpUserConfirmComponent, {
-      width: '400px',
-      backdropClass: 'backdrop-blur',
-      panelClass: 'overlay-pop-up',
-      data: {
-        message: `L'association Nebraska s'engage à respecter la confidentialité de vos données. 
+
+    if (this.contactsFormGroup?.invalid) {
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: ['overlay-pop-up', 'error-popup'],
+        data: {
+          message: `Veuillez remplir tous les champs requis.`,
+          modePopup: ModeConfirmPopup.Ok
+        }
+      })
+    } else {
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: 'overlay-pop-up',
+        data: {
+          message: `L'association Nebraska s'engage à respecter la confidentialité de vos données. 
         L'utilisation de vos informations personnelles est strictement limitée à un usage interne.<br>
         <br>En cliquant sur le bouton "J'accepte", vous confirmez avoir pris connaissance de ce message
         et acceptez que le modérateur de Nebraska puisse, si nécessaire, modifier la fiche que vous
         venez de remplir.`,
-        modePopup: ModeConfirmPopup.AgreeOrBack
-      }
-    }).afterClosed().subscribe(result => {
-      if (result === true) {
+          modePopup: ModeConfirmPopup.AgreeOrBack
+        }
+      }).afterClosed().subscribe(result => {
+        if (result === true) {
 
-        let building: BuildingModel = {
+          let building: BuildingModel = {
 
-      id: this.tempId!,
-      generalInformations: this.generalInformationsFormGroup!.getRawValue(),
-      constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
-      pictures: [],
-      contacts: this.contactsFormGroup!.getRawValue(),
+            id: this.tempId!,
+            generalInformations: this.generalInformationsFormGroup!.getRawValue(),
+            constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
+            pictures: [],
+            contacts: this.contactsFormGroup!.getRawValue(),
+          }
+
+          this.buildingService.SetPreviewBuilding(building);
+          console.log(building);
+        }
+      })
     }
-
-        this.buildingService.SetPreviewBuilding(building);
-        console.log(building);
-      }
-    })
   }
 
   resetPosition() {

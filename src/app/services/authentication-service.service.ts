@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import { UserRole } from '../store/models/user.model';
 import { MatDialog } from '@angular/material/dialog';
+import { getAuth, fetchSignInMethodsForEmail } from "firebase/auth";
+
 
 import UserCredential = firebase.auth.UserCredential;
 
@@ -44,16 +46,20 @@ export class AuthProcessService {
   ) { }
 
   /**
-   * Reset the password of the ngx-auth-firebaseui-user via email
+   * Reset password for a user via email.
    *
-   * @param email - the email to reset
+   * @param email The email address of the user
+   * @returns Promise<void>
    */
   public async resetPassword(email: string): Promise<void> {
-    try {
-      return await this.afa.sendPasswordResetEmail(email);
-    } catch (error) {
-      this.handleError(error);
-    }
+    return new Promise<void>(async (resolve, reject) => {
+      try {
+        await this.afa.sendPasswordResetEmail(email);
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 
   /**
@@ -62,71 +68,80 @@ export class AuthProcessService {
    * @returns true si deja connu sinon false
    */
   public async signInTestEmailExist(email: string): Promise<boolean | null> {
-    try {
-      let result = (await this.afa.fetchSignInMethodsForEmail(email));
-      console.log(result);
-      if (result.find(v => v == "password")) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (err) {
-      this.handleError(err);
-      return null;
-    }
+    const auth = getAuth();
+    return fetchSignInMethodsForEmail(auth, email)
+      .then((signInMethods) => {
+        console.log(signInMethods);
+        if (signInMethods.includes('password')) {
+          console.log('Le fournisseur de connexion par mot de passe est activé pour cet email.');
+          return true;
+        } else {
+          console.log('Le fournisseur de connexion par mot de passe n\'est pas activé pour cet email.');
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.error('Erreur lors de la récupération des méthodes de connexion :', error);
+        return null;
+      });
+
   }
 
+
+
   /**
-   * Login with email and password
-   * @param credentials mail & password
+   * Sign in users via email and password.
+   * 
+   * @param credentials email and password
+   * @returns Promise<SignInResult>
    */
   public async signInWith(credentials: ICredentials): Promise<SignInResult> {
+    return new Promise<SignInResult>(async (resolve, reject) => {
+      try {
+        const userCredential: UserCredential = await this.afa.signInWithEmailAndPassword(
+          credentials.email,
+          credentials.password
+        );
 
-    return await this.afa.signInWithEmailAndPassword(
-      credentials.email,
-      credentials.password
-    ).then(async (signInResult) => {
+        const user = userCredential.user;
+        if (user && !user.emailVerified) {
+          resolve(SignInResult.emailNotVerified);
+        } else {
 
-      if (signInResult.user?.emailVerified === false) {
-        await this.signOut();
-        return SignInResult.emailNotVerified
-      };
+          let role: UserRole
 
-      let role: UserRole
-
-      switch (signInResult.user?.email) {
-        case "maya.dnl29@gmail.com":
-          role = UserRole.techAdministrator
-          break;
-        case "carto.nebraska@gmail.com":
-          role = UserRole.nebraskaAdministrator
-          break;
-        default:
-          role = UserRole.contributor
-          break;
-      };
-
-      this.store.dispatch(userLogInSuccess({
-        user: {
-          id: signInResult.user?.uid!,
-          mail: signInResult.user?.email!,
-          creationDate: signInResult.user?.metadata.creationTime!,
-          role: role
+          switch (user?.email) {
+            case "maya.dnl29@gmail.com":
+              role = UserRole.techAdministrator
+              break;
+            case "carto.nebraska@gmail.com":
+              role = UserRole.nebraskaAdministrator
+              break;
+            default:
+              role = UserRole.contributor
+              break;
+          };
+    
+          this.store.dispatch(userLogInSuccess({
+            user: {
+              id: user?.uid!,
+              mail: user?.email!,
+              creationDate: user?.metadata.creationTime!,
+              role: role
+            }
+          }));
+          resolve(SignInResult.signInSuccess);
         }
-      }));
-
-      return SignInResult.signInSuccess;
-
-    }).catch((err) => {
-      if (err.code === 'auth/wrong-password') {
-        return SignInResult.wrongCredentials
-      } else if (err.code === 'auth/too-many-requests')
-        {
-          return SignInResult.tooManyRequests
+      } catch (error: any) {
+        if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found' || error.code ===   'auth/invalid-credential') {
+          resolve(SignInResult.wrongCredentials);
+        } else if (error.code === 'auth/too-many-requests') {
+          resolve(SignInResult.tooManyRequests);
+        } else {
+          reject(error); // Pour les autres erreurs, rejetez la promesse
         }
-      console.error(err)
-      throw err;
-    }).finally(() => { console.log("end of signin process") });
+      }
+    });
   }
 
   /**
@@ -134,24 +149,28 @@ export class AuthProcessService {
    * After that the ngx-auth-firebaseui-user should verify and confirm an email sent via the firebase
    *
    * @param credentials email and password
-   * @returns -
+   * @returns Promise<void>
    */
-  public async signUp(credentials: ICredentials) {
-    try {
-      const userCredential: UserCredential = await this.afa.createUserWithEmailAndPassword(
-        credentials.email,
-        credentials.password
-      );
+  public async signUp(credentials: ICredentials): Promise<void> {
+    return new Promise<void>(async (resolve, reject) => {
+      try {
+        const userCredential: UserCredential = await this.afa.createUserWithEmailAndPassword(
+          credentials.email,
+          credentials.password
+        );
 
-      let user = userCredential.user;
-      if (user !== null) {
-        user.sendEmailVerification();
-        this.signOut()
+        const user = userCredential.user;
+        if (user) {
+          await user.sendEmailVerification();
+          await this.signOut();
+          resolve();
+        } else {
+          reject(new Error('User creation failed'));
+        }
+      } catch (error) {
+        reject(error);
       }
-
-    } catch (err) {
-      this.handleError(err);
-    }
+    });
   }
 
   async sendEmailVerification(credentials: ICredentials) {

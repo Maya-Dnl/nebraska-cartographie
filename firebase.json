@@ -1,7 +1,12 @@
 {
   "hosting": [
     {
-      "target": "nebraska-cartographie",
+      "target": "staging",
+      "source": ".",
+      "frameworksBackend": {}
+    },
+    {
+      "target": "production",
       "source": ".",
       "frameworksBackend": {}
     }

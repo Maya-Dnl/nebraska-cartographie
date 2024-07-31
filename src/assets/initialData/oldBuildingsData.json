@@ -2391,29 +2391,6 @@
         "className": "_User",
         "objectId": "XXXXXXXXXXX"
       },
-      "constructionDebut": { "__type": "Date", "iso": "2010-06-01" },
-      "constructionFin": { "__type": "Date", "iso": "2010-10-01" },
-      "surfacePlancher": 17,
-      "usageBatiment": {
-        "__type": "Pointer",
-        "className": "UsageBatiment",
-        "objectId": "BATIMENT_ADMINISTRATIF"
-      },
-      "travauxNeuf": true,
-      "travauxExtension": false,
-      "travauxRenov": false,
-      "travauxIte": false,
-      "travauxIti": false,
-      "niveaux": 1,
-      "codePostal": "3190",
-      "latitudeLongitude": { "__type": "GeoPoint", "latitude": 0, "longitude": 0 }
-    },
-    {
-      "owner": {
-        "__type": "Pointer",
-        "className": "_User",
-        "objectId": "XXXXXXXXXXX"
-      },
       "constructionDebut": { "__type": "Date", "iso": "2007-09-01" },
       "surfacePlancher": 338,
       "coutTravauxTTC": 150000,

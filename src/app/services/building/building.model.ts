@@ -12,13 +12,13 @@ export interface BGeneralInformations {
   buildingName: string | undefined;
   address: string | undefined;
   cityOrTown: string | undefined;
-  latitude: number | undefined;
-  longitude: number | undefined;
+  latitude: string | undefined;
+  longitude: string | undefined;
   constructionUse: string | undefined;
   infosConstructionUse: string | undefined;
-  totalCostOfWork: number | undefined;
-  buildingSurface: number | undefined;
-  numberOfLevels: number | undefined;
+  totalCostOfWork: string | undefined;
+  buildingSurface: string | undefined;
+  numberOfLevels: string | undefined;
 }
 
 export interface BConstructionWorks {
@@ -27,17 +27,17 @@ export interface BConstructionWorks {
   strawBaleSize: string | undefined;
   strawBaleInfos: string | undefined;
   typeOfInstallation: string | undefined;
-  strawBaleDensity: number | undefined;
+  strawBaleDensity: string | undefined;
   cerealsUsed: string | undefined;
-  supplyDistance: number | undefined;
+  supplyDistance: string | undefined;
   selfConstruction: string | undefined;
   participatoryConstruction: string | undefined;
-  complementaryStructure: boolean | undefined;
+  complementaryStructure: string | undefined;
   natureComplementaryStructure: string | undefined;
   infosNatureComplementaryStructure: string | undefined;
-  shearWallLength: number | undefined;
-  calculationNote: boolean | undefined;
-  numberOfRows: number | undefined;
+  shearWallLength: string | undefined;
+  calculationNote: string | undefined;
+  numberOfRows: string | undefined;
   arrayIntegration: string | undefined;
   arrayIntegrationInfos: string | undefined;
   natureInkingSupport: string | undefined;
@@ -49,7 +49,7 @@ export interface BConstructionWorks {
 }
 
 export interface BPictures {
-  index: number
+  index: string
   id: string
 }
 
@@ -57,7 +57,7 @@ export interface BContacts {
   contact: string | undefined;
   postalCode: string | undefined;
   email: string | undefined;
-  phoneNumber: number | undefined;
+  phoneNumber: string | undefined;
   projectOwner: string | undefined;
   projectManager: string | undefined;
   architect: string | undefined;

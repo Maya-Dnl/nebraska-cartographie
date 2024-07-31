@@ -1,4 +1,5 @@
 <div class="details-building-container">
+  <!-- <button (click)="ClosePanel()">Close</button> -->
   <div class="carousel">
     <ng-image-slider [images]="imageObject" [infinite]="true" [manageImageRatio]="false" [imageSize]="imageSizeObject"
       [autoSlide]="autoSlideObject" [showArrow]="false" #nav>
@@ -67,11 +68,11 @@
           <div class="custom-content">
             <div *ngIf="ConstructionW?.startDate">
               <div class="title-info">Début des travaux</div>
-              {{ConstructionW?.startDate}}
+              {{ConstructionW?.startDate | date:'dd/MM/yyyy'}}
             </div>
             <div *ngIf="ConstructionW?.endDate">
               <div class="title-info">Achèvement des travaux</div>
-              {{ConstructionW?.endDate}}
+              {{ConstructionW?.endDate | date:'dd/MM/yyyy'}}
             </div>
             <div *ngIf="ConstructionW?.strawBaleSize">
               <div class="title-info">Taille des bottes de paille</div>
