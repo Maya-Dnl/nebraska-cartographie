@@ -166,8 +166,8 @@ export class TechnicalAdminComponent {
           cityOrTown: "",
           constructionUse: this.map(oldData.usageBatiment?.objectId),
           infosConstructionUse: "",
-          latitude: oldData.latitudeLongitude.latitude?.toString(),
-          longitude: oldData.latitudeLongitude.longitude?.toString(),
+          latitude: oldData.latitudeLongitude.latitude.toString(),
+          longitude: oldData.latitudeLongitude.longitude.toString(),
           numberOfLevels: this.UndefinedToEmpty(oldData.niveaux?.toString()),
           totalCostOfWork: this.UndefinedToEmpty(oldData.coutTravauxTTC?.toString())
         },

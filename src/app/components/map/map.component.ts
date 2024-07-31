@@ -6,6 +6,7 @@ import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
 import { BuildingService } from '../../services/building/building.service';
 import { MatDialog } from '@angular/material/dialog';
+import { PopUpUserConfirmComponent, ModeConfirmPopup } from '../pop-ups/user-confirm-popup/popup-user-confirm.component';
 
 const initOptions = {
   layers: [
@@ -130,7 +131,15 @@ export class MapComponent implements OnInit, OnChanges {
     if (this.crossMode === true) {
 
       if (this.map && this.map.getZoom() < 15) {
-        //POPUP veuillez zoom a max avant de placer votre construction
+        this.dialog.open(PopUpUserConfirmComponent, {
+          width: '400px',
+          backdropClass: 'backdrop-blur',
+          panelClass: 'overlay-pop-up',
+          data: {
+            message: `Veuillez zoomer au maximum avant de placer votre repère.`,
+            modePopup: ModeConfirmPopup.Ok
+          }
+        }) 
         return;
       }
 
