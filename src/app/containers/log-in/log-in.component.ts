@@ -57,7 +57,7 @@ export class LogInComponent {
             this.dialog.open(PopUpUserConfirmComponent, {
               width: '400px',
               backdropClass: 'backdrop-blur',
-              panelClass: 'overlay-pop-up',
+              panelClass: ['overlay-pop-up', 'error-popup'],
               data: { message: "Vous n'avez pas encore validé votre email.", modePopup: ModeConfirmPopup.ResendMailConfirm }
             }).afterClosed().subscribe(result => {
               if (result === 'ResendMailConfirm') {
