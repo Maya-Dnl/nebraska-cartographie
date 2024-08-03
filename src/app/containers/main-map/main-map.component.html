@@ -1,6 +1,6 @@
 <mat-drawer-container *ngIf="filteredBuildingList$ | async" class="main-map-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side" [(opened)]="opened" (openedChange)="onDrawerToggle()">
-    <mat-icon (click)="opened = false">close</mat-icon>
+    <mat-icon class="close-btn" (click)="opened = false">arrow_back</mat-icon>
     <app-details-building [viewedBuilding]="selectedBuilding"></app-details-building>
   </mat-drawer>
 
