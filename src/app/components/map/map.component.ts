@@ -29,6 +29,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() viewedBuilding: BuildingModel | undefined;
   @Input() buildingList: BuildingModel[] | null = [];
   @Input() selectedBuilding: BuildingModel | undefined;
+  @Input() selectedBuildingId : string |null = null;
   @Input() crossMode: boolean = false;
 
   @Output() onBuildingClicked = new EventEmitter<LatLng>();
@@ -56,9 +57,18 @@ export class MapComponent implements OnInit, OnChanges {
     });
 
 
-    this.map.on('resize', () => {
+    this.map.on('resize', (event) => {
+      console.log("resize", event)
       this.CenterMap();
     });
+
+
+    if (this.selectedBuilding) {
+      this.map.setView(
+        latLng([+this.selectedBuilding.generalInformations.latitude!, +this.selectedBuilding.generalInformations.longitude!]),
+        this.map.getZoom()
+      );
+    }
   }
 
   CenterMap() {
@@ -75,7 +85,7 @@ export class MapComponent implements OnInit, OnChanges {
     }
   }
 
- 
+
 
   UpdateMarkers() {
     if (!this.map) return;
@@ -114,17 +124,15 @@ export class MapComponent implements OnInit, OnChanges {
         this.layers.push(markerPoint);
       });
 
-      if (this.selectedBuilding) {
-        this.map.setView(
-          latLng([+this.selectedBuilding.generalInformations.latitude!, +this.selectedBuilding.generalInformations.longitude!]),
-          this.map.getZoom()
-        );
-      }
+
     }
   }
 
   onMarkerClick(e: L.LeafletMouseEvent, markerPoint: L.Marker<any>): void {
     this.onBuildingClicked.emit(markerPoint.getLatLng());
+    setTimeout(() => {
+      this.CenterMap();
+    }, 500);
   }
 
   ClickMap(value: any) {
@@ -139,7 +147,7 @@ export class MapComponent implements OnInit, OnChanges {
             message: `Veuillez zoomer au maximum avant de placer votre repère.`,
             modePopup: ModeConfirmPopup.Ok
           }
-        }) 
+        })
         return;
       }
 
@@ -165,12 +173,23 @@ export class MapComponent implements OnInit, OnChanges {
     const latlng = markerPoint.getLatLng();
 
     if (this.map && this.map.getZoom() < 15) {
-      throw new Error("Veuillez zoomer au maximum pour placer votre repère");      
+      throw new Error("Veuillez zoomer au maximum pour placer votre repère");
+    }
+
+    if (this.selectedBuilding) {
+
+      const params = {
+        latitude: latlng.lat,
+        longitude: latlng.lng,
+      };
+
+      this.router.navigate(['/edit-building/' + this.selectedBuildingId], { queryParams: params });
+      return;
     }
 
     const params = {
       latitude: latlng.lat,
-      longitude: latlng.lng
+      longitude: latlng.lng,
     };
 
     this.router.navigate(['/new-building'], { queryParams: params });

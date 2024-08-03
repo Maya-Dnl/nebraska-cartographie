@@ -306,6 +306,10 @@ export class BuildingFormComponent {
   }
 
   resetPosition() {
+    if (this.editedBuildingId) {
+      this.router.navigateByUrl("/select-map/" + this.editedBuildingId);
+      return;
+    }
     this.router.navigateByUrl("/select-map")
   }
 }

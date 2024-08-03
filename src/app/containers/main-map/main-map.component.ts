@@ -55,6 +55,9 @@ export class MainMapComponent {
       case "/select-map":
         this.InitSelectMap();
         break;
+     case "/select-map/" + this.selectedBuildingId:
+        this.EditSelectMap(this.selectedBuildingId!);
+        break;
       // display in progress building before save in Firebase
       case "/preview":
         this.InitPreviewFromCache();
@@ -100,6 +103,31 @@ export class MainMapComponent {
     this.mainMapMode = MainMapMode.selectMapMode;
     setTimeout(() => {
       this.filteredBuildingList$ = of([]);
+    }, 100);
+  }
+
+  async EditSelectMap(id: string) {
+    this.mainMapMode = MainMapMode.selectMapMode;
+    if (id === null) {
+      throw Error('id is null');
+    }
+    this.selectedBuilding = await this.buildingService.GetPreviewBuildingFromServer(id);
+    if (this.selectedBuilding === undefined) {
+      // afficher une popup pour indiquer que le building n'a pas ete trouvé avec un bouton continuer pour retour a la home
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: ['overlay-pop-up', 'error-popup'],
+        data: { message: "Aucune construction n'a été trouvé, cliquer sur Ok pour revenir sur la carte.", modePopup: ModeConfirmPopup.Ok }
+      }).afterClosed().subscribe(async result => {
+        if (result === true) {
+          this.router.navigateByUrl("home-map")
+        }
+      });
+    }
+    setTimeout(() => {
+      this.filteredBuildingList$ = of([this.selectedBuilding!])
+      this.opened = true;
     }, 100);
   }
 

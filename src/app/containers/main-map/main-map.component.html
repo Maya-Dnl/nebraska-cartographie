@@ -6,7 +6,7 @@
 
   <div class="sidenav-content">
     <app-map [crossMode]="mainMapMode === 1" [buildingList]="filteredBuildingList$ | async"
-      [selectedBuilding]="selectedBuilding" (onBuildingClicked)="onBuildingClicked($event)"></app-map>
+      [selectedBuilding]="selectedBuilding" [selectedBuildingId]="selectedBuildingId" (onBuildingClicked)="onBuildingClicked($event)"></app-map>
   </div>
 </mat-drawer-container>
 
