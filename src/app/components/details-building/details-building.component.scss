@@ -7,6 +7,13 @@
   height: 400px;
   background-color: white;
   position: relative;
+
+  ::ng-deep {
+    .img-div.image-popup.ng-star-inserted {
+      box-shadow: none !important;
+    }
+  }
+
 }
 
 .carousel-overlay {
@@ -104,3 +111,13 @@ mat-tab-group {
   margin: 20px 0 10px 0;
 }
 
+.loading-template {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Par exemple, plein écran */
+}
+
+.spinner {
+  text-align: center;
+}

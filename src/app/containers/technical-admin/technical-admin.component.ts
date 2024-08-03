@@ -114,7 +114,11 @@ export class TechnicalAdminComponent {
 
       let newBuilding: BuildingModel = {
 
-        id: oldData.latitudeLongitude.latitude + "" + oldData.latitudeLongitude.longitude,
+        filesId: "",
+        ownerUserId: "",
+        privatePartId: "",
+        firebaseId: "",
+
         constructionWorks: {
           arrayIntegration: "",
           arrayIntegrationInfos: "",

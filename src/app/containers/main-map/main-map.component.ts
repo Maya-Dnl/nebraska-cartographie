@@ -29,10 +29,11 @@ export class MainMapComponent {
 
   public userRole = UserRole;
   public MainMapMode = MainMapMode;
-  
+
   selectedBuildingId: null | string = null;
 
   user$: Observable<UserModel | null> = this.store.select(selectUser)
+  private userId: string | undefined;
 
   constructor(
     private store: Store<AppState>,
@@ -46,6 +47,12 @@ export class MainMapComponent {
 
     this.selectedBuildingId = this.route.snapshot.paramMap.get('id');
 
+
+
+    this.user$.subscribe(user => {
+      this.userId = user?.id
+    })
+
     switch (this.router.url) {
       // display all published buildings | saved in Firebase
       case "/home-map":
@@ -54,6 +61,9 @@ export class MainMapComponent {
       // display all published buildings when we click on map icon
       case "/select-map":
         this.InitSelectMap();
+        break;
+      case "/select-map/" + this.selectedBuildingId:
+        this.EditSelectMap(this.selectedBuildingId!);
         break;
       // display in progress building before save in Firebase
       case "/preview":
@@ -103,6 +113,31 @@ export class MainMapComponent {
     }, 100);
   }
 
+  async EditSelectMap(id: string) {
+    this.mainMapMode = MainMapMode.selectMapMode;
+    if (id === null) {
+      throw Error('id is null');
+    }
+    this.selectedBuilding = await this.buildingService.GetPreviewBuildingFromServer(id);
+    if (this.selectedBuilding === undefined) {
+      // afficher une popup pour indiquer que le building n'a pas ete trouvé avec un bouton continuer pour retour a la home
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: ['overlay-pop-up', 'error-popup'],
+        data: { message: "Aucune construction n'a été trouvé, cliquer sur Ok pour revenir sur la carte.", modePopup: ModeConfirmPopup.Ok }
+      }).afterClosed().subscribe(async result => {
+        if (result === true) {
+          this.router.navigateByUrl("home-map")
+        }
+      });
+    }
+    setTimeout(() => {
+      this.filteredBuildingList$ = of([this.selectedBuilding!])
+      this.opened = true;
+    }, 100);
+  }
+
   InitPreviewFromCache() {
     this.mainMapMode = MainMapMode.previewCacheMode;
     this.selectedBuilding = this.buildingService.GetPreviewBuildingFromCache();
@@ -144,7 +179,7 @@ export class MainMapComponent {
   InitMyBuildings() {
     this.mainMapMode = MainMapMode.myBuildingsMode;
     setTimeout(() => {
-      this.filteredBuildingList$ = of([]);
+      this.filteredBuildingList$ = this.buildingService.getAllBuildingsByOwner(this.userId!);
     }, 100);
   }
 

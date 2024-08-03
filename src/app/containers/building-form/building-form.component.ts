@@ -1,7 +1,7 @@
 import { Component, Inject, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
-import { BuildingModel } from '../../services/building/building.model';
+import { BPictures, BuildingModel } from '../../services/building/building.model';
 import { BuildingService } from '../../services/building/building.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { __param } from 'tslib';
@@ -25,9 +25,10 @@ export class BuildingFormComponent {
 
   maxDate = new Date();
   // tempId = Date.now().toString();
-  tempId: string | undefined = undefined;
+  fileId: string | undefined = undefined;
   user$ = this.store.select(selectUser);
 
+  userId: string |undefined = undefined;
   generalInformationsFormGroup: FormGroup | undefined = undefined
 
   constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisirs', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre'];
@@ -56,10 +57,13 @@ export class BuildingFormComponent {
   });
 
   picturesFormGroup: FormGroup | undefined = undefined;
-
+  tempPictures: BPictures[] = [];
   contactsFormGroup: FormGroup | undefined = undefined;
 
   editedBuildingId: string | undefined | null = undefined;
+  
+  editedBuilding: BuildingModel | undefined | null = undefined;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -80,15 +84,16 @@ export class BuildingFormComponent {
 
     this.user$.subscribe(user => {
       userMail = user?.mail
+      this.userId = user?.id
     })
 
 
-    let editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
+     this.editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
 
     this.editedBuildingId = this.route.snapshot.paramMap.get('id');
     if (this.editedBuildingId != null) {
-      editedBuilding = await this.buildingService.GetPreviewBuildingFromServer(this.editedBuildingId)
-      if (editedBuilding === undefined) {
+      this.editedBuilding = await this.buildingService.GetPreviewBuildingFromServer(this.editedBuildingId)
+      if (this.editedBuilding === undefined) {
         // afficher une popup pour indiquer que le building n'a pas ete trouvé avec un bouton continuer pour retour a la home
         this.dialog.open(PopUpUserConfirmComponent, {
           width: '400px',
@@ -104,7 +109,7 @@ export class BuildingFormComponent {
     }
 
 
-    this.tempId = editedBuilding != null ? editedBuilding.id : uuidv4();
+    this.fileId = this.editedBuilding != null ? this.editedBuilding.filesId : uuidv4();
     let latitude = undefined;
     let longitude = undefined;
 
@@ -113,7 +118,7 @@ export class BuildingFormComponent {
       longitude = params['longitude'];
     });
 
-    let gi = editedBuilding != null ? editedBuilding.generalInformations : null;
+    let gi = this.editedBuilding != null ? this.editedBuilding.generalInformations : null;
 
 
 
@@ -131,7 +136,7 @@ export class BuildingFormComponent {
       numberOfLevels: [gi ? gi.numberOfLevels : '', Validators.required],
     });
 
-    let cw = editedBuilding != null ? editedBuilding.constructionWorks : null;
+    let cw = this.editedBuilding != null ? this.editedBuilding.constructionWorks : null;
 
     this.constructionWorksFormGroup = this.formBuilder.group({
       startDate: [cw ? cw.startDate : '', Validators.required],
@@ -160,7 +165,7 @@ export class BuildingFormComponent {
       infosExteriorCovering: [cw ? cw.infosExteriorCovering : '']
     });
 
-    let c = editedBuilding != null ? editedBuilding.contacts : null;
+    let c = this.editedBuilding != null ? this.editedBuilding.contacts : null;
 
     this.contactsFormGroup = this.formBuilder.group({
       contact: [c ? c.contact : '', Validators.required],
@@ -181,18 +186,30 @@ export class BuildingFormComponent {
       otherCommentBox: [c ? c.otherCommentBox : ''],
     });
 
-    let p = editedBuilding != null ? editedBuilding.pictures : null;
+    this.tempPictures = this.editedBuilding != null ? this.editedBuilding.pictures : this.tempPictures;
 
-    this.picturesFormGroup = this.formBuilder.group({
-      picture1: [p && p[0] != null ? p[0].id : ''],
-      picture2: [p && p[1] != null ? p[1].id : ''],
-      picture3: [p && p[2] != null ? p[2].id : ''],
-      picture4: [p && p[3] != null ? p[3].id : ''],
-    });
+    this.picturesFormGroup = this.formBuilder.group({});
+
     this.constructionWorksFormGroup.get('startDate')?.valueChanges.subscribe(startDate => {
       this.constructionWorksFormGroup!.get('endDate')?.updateValueAndValidity();
     });
   }
+
+
+  SavedPicture($event: SavedPictureEventType) {
+    console.log("save pictures");
+    if(this.editedBuilding != null)
+      {
+        this.editedBuilding.pictures[$event.index] = 
+        {
+          alt: "picture presentation" + $event.index,
+          index: $event.index.toString()
+        }
+      }else{
+
+      }
+  }
+
 
   // onSubmit() {
   //   this.generalInformationsFormGroup.valid
@@ -235,10 +252,6 @@ export class BuildingFormComponent {
   // checkFormStepThree() {
   //   this.constructionWorksFormGroup.updateValueAndValidity();
   // }
-  SavedPicture($event: SavedPictureEventType) {
-
-    console.log("saved picture ! ", $event)
-  }
 
   checkFormStepFour() {
     this.contactsFormGroup!.updateValueAndValidity();
@@ -259,12 +272,17 @@ export class BuildingFormComponent {
 
     // Server edit mode
     if (this.editedBuildingId != null) {
+
+
       let building: BuildingModel = {
 
-        id: this.tempId!,
+        filesId: this.fileId!,
+        firebaseId: this.editedBuildingId,
+        ownerUserId: this.userId!,
+        privatePartId: "",
         generalInformations: this.generalInformationsFormGroup!.getRawValue(),
         constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
-        pictures: [],
+        pictures: this.tempPictures!,
         contacts: this.contactsFormGroup!.getRawValue(),
       }
 
@@ -291,10 +309,13 @@ export class BuildingFormComponent {
 
         let building: BuildingModel = {
 
-          id: this.tempId!,
+          filesId: this.fileId!,
+          firebaseId: "",
+          ownerUserId: this.userId!,
+          privatePartId: "",
           generalInformations: this.generalInformationsFormGroup!.getRawValue(),
           constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
-          pictures: [],
+          pictures: this.tempPictures!,
           contacts: this.contactsFormGroup!.getRawValue(),
         }
 
@@ -306,6 +327,10 @@ export class BuildingFormComponent {
   }
 
   resetPosition() {
+    if (this.editedBuildingId) {
+      this.router.navigateByUrl("/select-map/" + this.editedBuildingId);
+      return;
+    }
     this.router.navigateByUrl("/select-map")
   }
 }

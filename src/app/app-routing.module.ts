@@ -10,6 +10,7 @@ import { TechnicalAdminComponent } from './containers/technical-admin/technical-
 const routes: Routes = [
  {path: "log-in", component: LogInComponent},
  {path: "home-map", component: MainMapComponent, data: {title: 'Référencement des constructions en Paille Porteuse de France'}},
+ {path: "select-map/:id", component: MainMapComponent, data: {title: 'Veuillez modifier la position de votre construction'}},
  {path: "select-map", component: MainMapComponent, data: {title: 'Veuillez sélectionner la position de votre construction'}},
  {path: "new-building", component: BuildingFormComponent, data: {title: 'Référencement d’une nouvelle construction'}},
  {path: "edit-building/:id", component: BuildingFormComponent, data: {title: 'Edition d’une construction'}},

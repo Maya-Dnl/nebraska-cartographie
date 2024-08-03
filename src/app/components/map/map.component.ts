@@ -29,14 +29,13 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() viewedBuilding: BuildingModel | undefined;
   @Input() buildingList: BuildingModel[] | null = [];
   @Input() selectedBuilding: BuildingModel | undefined;
+  @Input() selectedBuildingId : string |null = null;
   @Input() crossMode: boolean = false;
 
   @Output() onBuildingClicked = new EventEmitter<LatLng>();
 
   constructor(
-    private buildingService: BuildingService,
     private router: Router,
-    private store: Store<AppState>,
     public dialog: MatDialog
   ) { }
 
@@ -56,9 +55,18 @@ export class MapComponent implements OnInit, OnChanges {
     });
 
 
-    this.map.on('resize', () => {
+    this.map.on('resize', (event) => {
+      console.log("resize", event)
       this.CenterMap();
     });
+
+
+    if (this.selectedBuilding) {
+      this.map.setView(
+        latLng([+this.selectedBuilding.generalInformations.latitude!, +this.selectedBuilding.generalInformations.longitude!]),
+        this.map.getZoom()
+      );
+    }
   }
 
   CenterMap() {
@@ -75,7 +83,7 @@ export class MapComponent implements OnInit, OnChanges {
     }
   }
 
- 
+
 
   UpdateMarkers() {
     if (!this.map) return;
@@ -91,7 +99,7 @@ export class MapComponent implements OnInit, OnChanges {
         let size = baseSize * currentZoom;
 
         let markerPoint: any = null;
-        if (this.selectedBuilding && building.id === this.selectedBuilding.id) {
+        if (this.selectedBuilding && building === this.selectedBuilding) {
           markerPoint = marker([+building.generalInformations.latitude!, +building.generalInformations.longitude!], {
             icon: icon({
               iconUrl: "assets/images/home_48dp_select.png",
@@ -114,32 +122,43 @@ export class MapComponent implements OnInit, OnChanges {
         this.layers.push(markerPoint);
       });
 
-      if (this.selectedBuilding) {
-        this.map.setView(
-          latLng([+this.selectedBuilding.generalInformations.latitude!, +this.selectedBuilding.generalInformations.longitude!]),
-          this.map.getZoom()
-        );
-      }
+
     }
   }
 
   onMarkerClick(e: L.LeafletMouseEvent, markerPoint: L.Marker<any>): void {
     this.onBuildingClicked.emit(markerPoint.getLatLng());
+    setTimeout(() => {
+      this.CenterMap();
+    }, 500);
   }
 
   ClickMap(value: any) {
     if (this.crossMode === true) {
 
       if (this.map && this.map.getZoom() < 15) {
-        this.dialog.open(PopUpUserConfirmComponent, {
-          width: '400px',
-          backdropClass: 'backdrop-blur',
-          panelClass: 'overlay-pop-up',
-          data: {
-            message: `Veuillez zoomer au maximum avant de placer votre repère.`,
-            modePopup: ModeConfirmPopup.Ok
+        this.map.setView(
+          latLng([value.latlng.lat, value.latlng.lng]),
+          this.map.getZoom()    
+        );
+
+        setTimeout(() => {
+          if (this.map && this.map.getZoom() < 15) {
+          this.map.zoomIn();
           }
-        }) 
+        }, 200);
+
+
+        
+        // this.dialog.open(PopUpUserConfirmComponent, {
+        //   width: '400px',
+        //   backdropClass: 'backdrop-blur',
+        //   panelClass: 'overlay-pop-up',
+        //   data: {
+        //     message: `Veuillez zoomer au maximum avant de placer votre repère.`,
+        //     modePopup: ModeConfirmPopup.Ok
+        //   }
+        // })
         return;
       }
 
@@ -165,12 +184,32 @@ export class MapComponent implements OnInit, OnChanges {
     const latlng = markerPoint.getLatLng();
 
     if (this.map && this.map.getZoom() < 15) {
-      throw new Error("Veuillez zoomer au maximum pour placer votre repère");      
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: 'overlay-pop-up',
+        data: {
+          message: `Veuillez zoomer au maximum avant de placer votre repère.`,
+          modePopup: ModeConfirmPopup.Ok
+        }
+      })
+      return;
+    }
+
+    if (this.selectedBuilding) {
+
+      const params = {
+        latitude: latlng.lat,
+        longitude: latlng.lng,
+      };
+
+      this.router.navigate(['/edit-building/' + this.selectedBuildingId], { queryParams: params });
+      return;
     }
 
     const params = {
       latitude: latlng.lat,
-      longitude: latlng.lng
+      longitude: latlng.lng,
     };
 
     this.router.navigate(['/new-building'], { queryParams: params });

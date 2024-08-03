@@ -7,7 +7,10 @@ import { BuildingService } from '../../services/building/building.service';
 import { UserRole } from '../../store/models/user.model';
 
 export const MockBuilding: BuildingModel = {
-  id: "",
+  filesId: "",
+  firebaseId: "",
+  ownerUserId: "",
+  privatePartId: "",
   generalInformations: {
     buildingName: "Construcion Thourie",
     address: "",
@@ -80,41 +83,9 @@ export class DashboardAdminComponent {
   waitingBuildings$: Observable<BuildingModel[]> | undefined;
 
   waitingModidifcationsBuildingsList: BuildingModel[] = [
-    {
-      ...MockBuilding,
-      id: "1",
-      generalInformations: { ...MockBuilding.generalInformations, buildingName: "toto" }
-    },
-    {
-      ...MockBuilding,
-      id: "2",
-      generalInformations: { ...MockBuilding.generalInformations, buildingName: "titi" }
-    },
-    {
-      ...MockBuilding,
-      id: "3",
-      generalInformations: { ...MockBuilding.generalInformations, buildingName: "tata" }
-    },
   ];
 
-  publishedBuildingsList: BuildingModel[] = [
-    {
-      ...MockBuilding,
-      id: "1",
-      generalInformations: { ...MockBuilding.generalInformations, buildingName: "toto" }
-    },
-    {
-      ...MockBuilding,
-      id: "2",
-      generalInformations: { ...MockBuilding.generalInformations, buildingName: "titi" }
-    },
-    {
-      ...MockBuilding,
-      id: "3",
-      generalInformations: { ...MockBuilding.generalInformations, buildingName: "tata" }
-    },
-  ];
-
+  publishedBuildingsList$: Observable<BuildingModel[]> |undefined;
   constructor(
     private router: Router,
     private buildingService: BuildingService
@@ -122,6 +93,7 @@ export class DashboardAdminComponent {
 
   ngOnInit() {
     this.waitingBuildings$ = this.buildingService.getWaitingBuildings();
+    this.publishedBuildingsList$ =  this.buildingService.getPublishedBuildings();
     // UserRole.nebraskaAdministrator
   }
 
