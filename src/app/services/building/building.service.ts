@@ -3,6 +3,7 @@ import { BuildingModel } from "./building.model";
 import { inject, Injectable } from "@angular/core";
 import { addDoc, deleteDoc, collection, collectionData, CollectionReference, doc, Firestore, getDoc, QueryDocumentSnapshot, SnapshotOptions, DocumentData, DocumentReference } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
+import { updateDoc } from "firebase/firestore";
 
   export const publishedBuildingsCollectionName = "publishedBuildings"
   export const waitingBuildingsCollectionName = "waitingBuildings"
@@ -11,8 +12,6 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class BuildingService {
-
-
 
   private buildingPreview: BuildingModel | null = null;
 
@@ -55,6 +54,11 @@ export class BuildingService {
     let waitingBuildings: CollectionReference<BuildingModel> = collection(this.firestore, waitingBuildingsCollectionName).withConverter(buildingConverter);
     const addedBuildingDocumentReference = await addDoc(waitingBuildings, building);
     return addedBuildingDocumentReference;
+  }
+
+  public async UpdateBuildingFromPreview(building: BuildingModel, editedBuildingId: string) {
+    const documentReference = doc(this.firestore, waitingBuildingsCollectionName, editedBuildingId);
+    return await updateDoc(documentReference, { ...building });
   }
 
   public getWaitingBuildings(): Observable<BuildingModel[]> {
