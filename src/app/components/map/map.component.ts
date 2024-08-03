@@ -173,7 +173,16 @@ export class MapComponent implements OnInit, OnChanges {
     const latlng = markerPoint.getLatLng();
 
     if (this.map && this.map.getZoom() < 15) {
-      throw new Error("Veuillez zoomer au maximum pour placer votre repère");
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: 'overlay-pop-up',
+        data: {
+          message: `Veuillez zoomer au maximum avant de placer votre repère.`,
+          modePopup: ModeConfirmPopup.Ok
+        }
+      })
+      return;
     }
 
     if (this.selectedBuilding) {
