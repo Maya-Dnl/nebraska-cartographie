@@ -29,10 +29,11 @@ export class MainMapComponent {
 
   public userRole = UserRole;
   public MainMapMode = MainMapMode;
-  
+
   selectedBuildingId: null | string = null;
 
   user$: Observable<UserModel | null> = this.store.select(selectUser)
+  private userId: string | undefined;
 
   constructor(
     private store: Store<AppState>,
@@ -46,6 +47,12 @@ export class MainMapComponent {
 
     this.selectedBuildingId = this.route.snapshot.paramMap.get('id');
 
+
+
+    this.user$.subscribe(user => {
+      this.userId = user?.id
+    })
+
     switch (this.router.url) {
       // display all published buildings | saved in Firebase
       case "/home-map":
@@ -55,7 +62,7 @@ export class MainMapComponent {
       case "/select-map":
         this.InitSelectMap();
         break;
-     case "/select-map/" + this.selectedBuildingId:
+      case "/select-map/" + this.selectedBuildingId:
         this.EditSelectMap(this.selectedBuildingId!);
         break;
       // display in progress building before save in Firebase
@@ -172,7 +179,7 @@ export class MainMapComponent {
   InitMyBuildings() {
     this.mainMapMode = MainMapMode.myBuildingsMode;
     setTimeout(() => {
-      this.filteredBuildingList$ = of([]);
+      this.filteredBuildingList$ = this.buildingService.getAllBuildingsByOwner(this.userId!);
     }, 100);
   }
 

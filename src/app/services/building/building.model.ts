@@ -54,7 +54,7 @@ export interface BConstructionWorks {
 
 export interface BPictures {
   index: string
-  id: string
+  alt: string
 }
 
 export interface BContacts {

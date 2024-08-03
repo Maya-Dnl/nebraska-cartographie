@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, inject, input } from '@angular/core';
-import { FullMetadata, Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { FullMetadata, Storage, getDownloadURL, listAll, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { DOC_ORIENTATION, NgxImageCompressService } from 'ngx-image-compress';
 import { Observable } from 'rxjs';
 import { placeholder } from './upload-image.placeholder';
@@ -33,13 +33,61 @@ export class UploadImageComponent {
   imgResultCompress: string[] = [];
 
 
+
   ngOnInit() {
+    // Initialize arrays with placeholders
     Array.from({ length: this.numberOfPictures }, (_, index) => {
       this.imgResultThumb[index] = placeholder;
       this.imgResultCompress[index] = "";
     });
-  };
 
+    // Load existing images if any
+    if (this.buildingId) {
+      this.loadExistingImages(this.buildingId);
+    }
+  }
+
+  async loadExistingImages(buildingId: string) {
+    const folderPath = `${buildingId}/`; // Define the folder path
+    const storageRef = ref(this.storage, folderPath);
+
+    try {
+      // List all items in the directory to get image references
+      const result = await listAll(storageRef);
+
+      // Fetch each file's URL and set to imgResultThumb array
+      const fetchImagePromises = result.items.map(async (itemRef, index) => {
+        try {
+          const url = await getDownloadURL(itemRef);
+          // Convert the URL to a base64 string for compression
+       //   const base64Image = await this.urlToBase64(url);
+          this.imgResultThumb[index] = url;
+          this.imgResultCompress[index] = url;
+          // Call thumb to generate thumbnail
+       //   this.thumb(base64Image, index);
+        } catch (error) {
+          console.error(`Failed to get download URL for image ${index}:`, error);
+        }
+      });
+
+      // Wait for all URLs to be fetched and processed
+      await Promise.all(fetchImagePromises);
+
+    } catch (error) {
+      console.error("Error loading existing images:", error);
+    }
+  }
+
+  async urlToBase64(url: string): Promise<string> {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
   compressFileToFixed(index: number) {
     const MAX_MEGABYTE = 1;
     this.imageCompress
@@ -73,12 +121,17 @@ export class UploadImageComponent {
     this.SavePictures(index).then(
       result => this.pictureSaved.emit({ index, metadata: result.metadata }), err => alert(err))
       .then(val => {
-        this.imageCompress.compressFile(result, DOC_ORIENTATION.Default, 100, 100, 500, 300) // 50% ratio, 50% quality
-          .then(compressedImage => {
-            this.imgResultThumb[index] = compressedImage;
-            console.log('Size in bytes after compression is now:', this.imageCompress.byteCount(compressedImage));
-          }, (err) => alert(err));
+        this.thumb(result, index);
       }, (err) => console.log("eeeeeeee"));
+  }
+
+
+  thumb(result: string, index: number) {
+    this.imageCompress.compressFile(result, DOC_ORIENTATION.Default, 100, 100, 500, 300) // 50% ratio, 50% quality
+    .then(compressedImage => {
+      this.imgResultThumb[index] = compressedImage;
+      console.log('Size in bytes after compression is now:', this.imageCompress.byteCount(compressedImage));
+    }, (err) => alert(err));
   }
 
   async SavePictures(index: number) {

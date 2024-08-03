@@ -137,15 +137,28 @@ export class MapComponent implements OnInit, OnChanges {
     if (this.crossMode === true) {
 
       if (this.map && this.map.getZoom() < 15) {
-        this.dialog.open(PopUpUserConfirmComponent, {
-          width: '400px',
-          backdropClass: 'backdrop-blur',
-          panelClass: 'overlay-pop-up',
-          data: {
-            message: `Veuillez zoomer au maximum avant de placer votre repère.`,
-            modePopup: ModeConfirmPopup.Ok
+        this.map.setView(
+          latLng([value.latlng.lat, value.latlng.lng]),
+          this.map.getZoom()    
+        );
+
+        setTimeout(() => {
+          if (this.map && this.map.getZoom() < 15) {
+          this.map.zoomIn();
           }
-        })
+        }, 200);
+
+
+        
+        // this.dialog.open(PopUpUserConfirmComponent, {
+        //   width: '400px',
+        //   backdropClass: 'backdrop-blur',
+        //   panelClass: 'overlay-pop-up',
+        //   data: {
+        //     message: `Veuillez zoomer au maximum avant de placer votre repère.`,
+        //     modePopup: ModeConfirmPopup.Ok
+        //   }
+        // })
         return;
       }
 

@@ -2,8 +2,8 @@ import { Router } from "@angular/router";
 import { BuildingModel } from "./building.model";
 import { inject, Injectable } from "@angular/core";
 import { addDoc, deleteDoc, collection, collectionData, CollectionReference, doc, Firestore, getDoc, QueryDocumentSnapshot, SnapshotOptions, DocumentData, DocumentReference } from "@angular/fire/firestore";
-import { Observable } from "rxjs";
-import { updateDoc } from "firebase/firestore";
+import { combineLatest, map, Observable } from "rxjs";
+import { query, updateDoc, where } from "firebase/firestore";
 
   export const publishedBuildingsCollectionName = "publishedBuildings"
   export const waitingBuildingsCollectionName = "waitingBuildings"
@@ -72,6 +72,44 @@ export class BuildingService {
     const waitingBuildingsCollection = collection(this.firestore, waitingBuildingsCollectionName).withConverter(buildingConverter);
     return collectionData(waitingBuildingsCollection, { idField: 'firebaseId' }) as Observable<BuildingModel[]>;
   }
+
+
+  // New method to filter buildings by ownerUserId
+  public getWaitingBuildingsByOwner(ownerUserId: string): Observable<BuildingModel[]> {
+    const waitingBuildingsCollection = collection(this.firestore, waitingBuildingsCollectionName).withConverter(buildingConverter);
+
+    // Create a query that filters buildings by ownerUserId
+    const ownerQuery = query(waitingBuildingsCollection, where('ownerUserId', '==', ownerUserId));
+    
+    // Return the filtered collection as an observable
+    return collectionData(ownerQuery, { idField: 'firebaseId' }) as Observable<BuildingModel[]>;
+  }
+
+  public getPublishBuildingsByOwner(ownerUserId: string): Observable<BuildingModel[]> {
+    const publishBuildingsCollection = collection(this.firestore, publishedBuildingsCollectionName).withConverter(buildingConverter);
+
+    // Create a query that filters buildings by ownerUserId
+    const ownerQuery = query(publishBuildingsCollection, where('ownerUserId', '==', ownerUserId));
+    
+    // Return the filtered collection as an observable
+    return collectionData(ownerQuery, { idField: 'firebaseId' }) as Observable<BuildingModel[]>;
+  }
+
+   // Method to combine both waiting and published buildings by ownerUserId
+   public getAllBuildingsByOwner(ownerUserId: string): Observable<BuildingModel[]> {
+    // Get both observables
+    const waitingBuildings$ = this.getWaitingBuildingsByOwner(ownerUserId);
+    const publishedBuildings$ = this.getPublishBuildingsByOwner(ownerUserId);
+
+    // Combine both observables
+    return combineLatest([waitingBuildings$, publishedBuildings$]).pipe(
+      map(([waitingBuildings, publishedBuildings]) => {
+        // Concatenate the results into a single array
+        return [...waitingBuildings, ...publishedBuildings];
+      })
+    );
+  }
+
 
   public getPublishedBuildings(): Observable<BuildingModel[]> {
     const waitingBuildingsCollection = collection(this.firestore, publishedBuildingsCollectionName).withConverter(buildingConverter);
