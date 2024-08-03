@@ -26,7 +26,6 @@ import { environment } from '../environments/environment';
 import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { HomeComponent } from './containers/home/home.component';
 import { MainMapComponent } from './containers/main-map/main-map.component';
 import { HeadBarComponent } from './components/head-bar/head-bar.component';
 import { MapComponent } from './components/map/map.component';
@@ -90,7 +89,6 @@ export const reducers: ActionReducerMap<AppState> = {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     MainMapComponent,
     HeadBarComponent,
     MapComponent,

@@ -8,7 +8,7 @@ import { DashboardAdminComponent } from './containers/dashboard-admin/dashboard-
 import { TechnicalAdminComponent } from './containers/technical-admin/technical-admin.component';
 
 const routes: Routes = [
- {path: "log-in", component: LogInComponent, data: {title: 'Connexion ou inscription'}},
+ {path: "log-in", component: LogInComponent},
  {path: "home-map", component: MainMapComponent, data: {title: 'Référencement des constructions en Paille Porteuse de France'}},
  {path: "select-map", component: MainMapComponent, data: {title: 'Veuillez sélectionner la position de votre construction'}},
  {path: "new-building", component: BuildingFormComponent, data: {title: 'Référencement d’une nouvelle construction'}},

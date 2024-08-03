@@ -4,7 +4,7 @@
       
       <!-- Connexion Section -->
       <div *ngSwitchCase="1">
-        <h2>Connexion</h2>
+        <h2 class="center-title">Connexion</h2>
         <div class="input-title">E-mail</div>
         <mat-form-field>
           <input matInput placeholder="construction@exemple.com" [formControl]="emailLogin" required>
@@ -31,7 +31,7 @@
 
       <!-- Inscription Section -->
       <div *ngSwitchCase="2">
-        <h2>Inscription</h2>
+        <h2 class="center-title">Inscription</h2>
         <form [formGroup]="registerForm">
           <div class="input-title">E-mail</div>
           <mat-form-field>
