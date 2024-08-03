@@ -4,9 +4,15 @@ export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): V
   const password = control.get('passwordSubscribe');
   const confirmPassword = control.get('passwordConfirm');
 
-  if (password && confirmPassword && password.value !== confirmPassword.value) {
-    return { 'passwordMismatch': true };
+
+  if (!password || !confirmPassword) {
+    return null;
   }
 
-  return null;
-};
+  if (password.value !== confirmPassword.value) {
+    confirmPassword.setErrors({ passwordMismatch: true });
+  } else {
+    confirmPassword.setErrors(null);
+  }
+  return null; // Ne renvoie pas d'erreur au niveau du groupe de formulaire
+}

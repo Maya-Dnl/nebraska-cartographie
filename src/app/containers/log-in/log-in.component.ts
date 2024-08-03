@@ -40,9 +40,9 @@ export class LogInComponent {
   ) {
     this.registerForm = this.fb.group({
       emailSubscribe: ['', [Validators.required, Validators.email]],
-      passwordSubscribe: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
+      passwordSubscribe: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(50)]],
       passwordConfirm: ['', [Validators.required]]
-    }, { validator: passwordMatchValidator });
+    }, { validators: passwordMatchValidator });
   }
   
   signIn() {
