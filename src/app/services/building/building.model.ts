@@ -1,6 +1,10 @@
 export interface BuildingModel {
 
-  id: string;
+  firebaseId: string;
+  filesId: string;
+  privatePartId:string;
+  ownerUserId: string;
+  
   generalInformations: BGeneralInformations;
   constructionWorks: BConstructionWorks;
   pictures: BPictures[];

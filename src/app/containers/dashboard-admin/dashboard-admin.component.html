@@ -7,7 +7,7 @@
       </div>
       <div class="right-content">
         <mat-icon class="color-waiting-validation">hourglass_top</mat-icon>
-        <button (click)="viewOnMap(waitingBuilding.id)" class="custom-nebraska" mat-flat-button color="primary">Voir sur la carte</button>
+        <button (click)="viewOnMap(waitingBuilding.firebaseId)" class="custom-nebraska" mat-flat-button color="primary">Voir sur la carte</button>
       </div>
     </div>
   </div>
@@ -24,14 +24,14 @@
     </div>
   </div>
 
-  <div class="array-buildings" *ngFor="let publishedBuilding of publishedBuildingsList">
+  <div class="array-buildings" *ngFor="let publishedBuilding of publishedBuildingsList$ | async">
     <div class="validations-building">
       <div class="left-content">
         Construction {{ publishedBuilding.generalInformations.buildingName }} | DANIEL May-Wen | Validée le 29/04/2024
       </div>
       <div class="right-content">
         <mat-icon class="color-published">check_box</mat-icon>
-        <button class="custom-nebraska" mat-flat-button color="primary">Voir sur la carte</button>
+        <button (click)="viewOnMap(publishedBuilding.firebaseId)" class="custom-nebraska" mat-flat-button color="primary">Voir sur la carte</button>
       </div>
     </div>
   </div>

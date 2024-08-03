@@ -35,9 +35,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Output() onBuildingClicked = new EventEmitter<LatLng>();
 
   constructor(
-    private buildingService: BuildingService,
     private router: Router,
-    private store: Store<AppState>,
     public dialog: MatDialog
   ) { }
 
@@ -101,7 +99,7 @@ export class MapComponent implements OnInit, OnChanges {
         let size = baseSize * currentZoom;
 
         let markerPoint: any = null;
-        if (this.selectedBuilding && building.id === this.selectedBuilding.id) {
+        if (this.selectedBuilding && building === this.selectedBuilding) {
           markerPoint = marker([+building.generalInformations.latitude!, +building.generalInformations.longitude!], {
             icon: icon({
               iconUrl: "assets/images/home_48dp_select.png",

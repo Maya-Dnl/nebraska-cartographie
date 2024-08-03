@@ -52,7 +52,14 @@ export class BuildingService {
 
   public async SaveBuildingFromPreview(building: BuildingModel): Promise<DocumentReference<BuildingModel, DocumentData>> {
     let waitingBuildings: CollectionReference<BuildingModel> = collection(this.firestore, waitingBuildingsCollectionName).withConverter(buildingConverter);
-    const addedBuildingDocumentReference = await addDoc(waitingBuildings, building);
+    const addedBuildingDocumentReference = await addDoc(waitingBuildings, building );
+
+    // Update the building with the generated ID
+    building.firebaseId = addedBuildingDocumentReference.id;
+    
+    // Update the document with the new firebaseId field
+    await updateDoc(addedBuildingDocumentReference, { firebaseId: building.firebaseId });
+
     return addedBuildingDocumentReference;
   }
 
@@ -63,12 +70,12 @@ export class BuildingService {
 
   public getWaitingBuildings(): Observable<BuildingModel[]> {
     const waitingBuildingsCollection = collection(this.firestore, waitingBuildingsCollectionName).withConverter(buildingConverter);
-    return collectionData(waitingBuildingsCollection, { idField: 'id' }) as Observable<BuildingModel[]>;
+    return collectionData(waitingBuildingsCollection, { idField: 'firebaseId' }) as Observable<BuildingModel[]>;
   }
 
   public getPublishedBuildings(): Observable<BuildingModel[]> {
     const waitingBuildingsCollection = collection(this.firestore, publishedBuildingsCollectionName).withConverter(buildingConverter);
-    return collectionData(waitingBuildingsCollection, { idField: 'id' }) as Observable<BuildingModel[]>;
+    return collectionData(waitingBuildingsCollection, { idField: 'firebaseId' }) as Observable<BuildingModel[]>;
   }
 
   // function publish building(id)

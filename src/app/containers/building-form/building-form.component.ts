@@ -25,9 +25,10 @@ export class BuildingFormComponent {
 
   maxDate = new Date();
   // tempId = Date.now().toString();
-  tempId: string | undefined = undefined;
+  fileId: string | undefined = undefined;
   user$ = this.store.select(selectUser);
 
+  userId: string |undefined = undefined;
   generalInformationsFormGroup: FormGroup | undefined = undefined
 
   constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisirs', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre'];
@@ -80,6 +81,7 @@ export class BuildingFormComponent {
 
     this.user$.subscribe(user => {
       userMail = user?.mail
+      this.userId = user?.id
     })
 
 
@@ -104,7 +106,7 @@ export class BuildingFormComponent {
     }
 
 
-    this.tempId = editedBuilding != null ? editedBuilding.id : uuidv4();
+    this.fileId = editedBuilding != null ? editedBuilding.filesId : uuidv4();
     let latitude = undefined;
     let longitude = undefined;
 
@@ -259,9 +261,14 @@ export class BuildingFormComponent {
 
     // Server edit mode
     if (this.editedBuildingId != null) {
+
+
       let building: BuildingModel = {
 
-        id: this.tempId!,
+        filesId: this.fileId!,
+        firebaseId: "",
+        ownerUserId: this.userId!,
+        privatePartId: "",
         generalInformations: this.generalInformationsFormGroup!.getRawValue(),
         constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
         pictures: [],
@@ -291,7 +298,10 @@ export class BuildingFormComponent {
 
         let building: BuildingModel = {
 
-          id: this.tempId!,
+          filesId: this.fileId!,
+          firebaseId: "",
+          ownerUserId: this.userId!,
+          privatePartId: "",
           generalInformations: this.generalInformationsFormGroup!.getRawValue(),
           constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
           pictures: [],
