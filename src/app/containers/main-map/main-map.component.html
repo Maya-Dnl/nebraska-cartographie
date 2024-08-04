@@ -22,17 +22,17 @@
   } -->
 
   @if (mainMapMode === MainMapMode.previewCacheMode) {
-    <button mat-flat-button class="custom-nebraska" color="warn"><mat-icon>delete</mat-icon>Supprimer</button>
+    <button mat-flat-button class="custom-nebraska" color="warn"><mat-icon class="no-margin">delete</mat-icon></button>
     <button [routerLink]="['/new-building']" class="custom-nebraska modify-btn"
-    mat-button>Modifier ?<mat-icon>edit</mat-icon></button>
-  <button (click)="saveBuildingPreview()" class="custom-nebraska" mat-flat-button color="accent">Valider<mat-icon>thumb_up_alt</mat-icon></button>
+    mat-button><mat-icon class="no-margin">edit</mat-icon></button>
+  <button (click)="saveBuildingPreview()" class="custom-nebraska" mat-flat-button color="accent"><mat-icon class="no-margin">thumb_up_alt</mat-icon></button>
   }
 
   @if (mainMapMode === MainMapMode.previewServerMode && (user.role === userRole.nebraskaAdministrator || user.role === userRole.techAdministrator)) {
-    <button mat-flat-button class="custom-nebraska" color="warn"><mat-icon>delete</mat-icon>Supprimer</button>
+    <button mat-flat-button class="custom-nebraska" color="warn"><mat-icon class="no-margin">delete</mat-icon></button>
     <button [routerLink]="['/edit-building', selectedBuildingId]" class="custom-nebraska modify-btn"
-    mat-button>Modifier ?<mat-icon>edit</mat-icon></button>
-  <button (click)="publishBuilding()" class="custom-nebraska" mat-flat-button color="accent">Valider<mat-icon>thumb_up_alt</mat-icon></button>
+    mat-button><mat-icon class="no-margin">edit</mat-icon></button>
+  <button (click)="publishBuilding()" class="custom-nebraska" mat-flat-button color="accent"><mat-icon class="no-margin">thumb_up_alt</mat-icon></button>
   }
 <!-- 
   @if (mainMapMode === MainMapMode.previewCacheMode && user.role === userRole.techAdministrator) {

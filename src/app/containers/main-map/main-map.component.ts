@@ -194,7 +194,7 @@ export class MainMapComponent {
         backdropClass: 'backdrop-blur',
         panelClass: 'overlay-pop-up',
         data: {
-          message: "Merci pour votre ajout. Votre construction est en attente de validation par l’association Nebraska. Vous serez tenus informé par e-mail.",
+          message: "Merci pour votre ajout. Votre construction est en attente de validation par l’association Nebraska 😄",
           modePopup: ModeConfirmPopup.Ok
         }
       }).afterClosed().subscribe(result => {
