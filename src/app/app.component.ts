@@ -4,6 +4,7 @@ import { FirebaseUISignInSuccessWithAuthResult, FirebaseUISignInFailure, Firebas
 import { AppState } from './store/app.state';
 import { changeTitle } from './store/global.actions';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { AuthProcessService } from './services/authentication-service.service';
 // import { selectApplicationMode } from './store/global.selectors';
 
 @Component({
@@ -17,6 +18,7 @@ export class AppComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    public auth: AuthProcessService,
     private store: Store<AppState>) {
   }
 

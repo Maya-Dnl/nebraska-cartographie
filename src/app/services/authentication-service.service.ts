@@ -39,11 +39,28 @@ export class AuthProcessService {
   messageOnAuthSuccess: string = '';
   messageOnAuthError: string = '';
 
+  public AuthReady: boolean = false;
+
   constructor(
     public afa: AngularFireAuth,
     private store: Store<AppState>,
     public dialog: MatDialog
-  ) { }
+  ) {
+    this.afa.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch((error) => {
+      console.error('Failed to set persistence:', error);
+    });
+
+    this.afa.authState.subscribe((user) => {
+      if (user) {
+        console.log('User signed in:', user);
+        this.UpdateStateAfterLogin(user!);
+        this.AuthReady = true;
+      } else {
+        console.log('User signed out');
+        this.AuthReady = true;
+      }
+    });
+  }
 
   /**
    * Reset password for a user via email.
@@ -108,28 +125,7 @@ export class AuthProcessService {
           resolve(SignInResult.emailNotVerified);
         } else {
 
-          let role: UserRole
-
-          switch (user?.email) {
-            case "maya.dnl29@gmail.com":
-              role = UserRole.techAdministrator
-              break;
-            case "carto.nebraska@gmail.com":
-              role = UserRole.nebraskaAdministrator
-              break;
-            default:
-              role = UserRole.contributor
-              break;
-          };
-    
-          this.store.dispatch(userLogInSuccess({
-            user: {
-              id: user?.uid!,
-              mail: user?.email!,
-              creationDate: user?.metadata.creationTime!,
-              role: role
-            }
-          }));
+          this.UpdateStateAfterLogin(user!);
           resolve(SignInResult.signInSuccess);
         }
       } catch (error: any) {
@@ -142,6 +138,32 @@ export class AuthProcessService {
         }
       }
     });
+  }
+
+  private UpdateStateAfterLogin(user: firebase.User)
+  {
+    let role: UserRole
+
+    switch (user?.email) {
+      case "maya.dnl29@gmail.com":
+        role = UserRole.techAdministrator
+        break;
+      case "carto.nebraska@gmail.com":
+        role = UserRole.nebraskaAdministrator
+        break;
+      default:
+        role = UserRole.contributor
+        break;
+    };
+
+    this.store.dispatch(userLogInSuccess({
+      user: {
+        id: user?.uid!,
+        mail: user?.email!,
+        creationDate: user?.metadata.creationTime!,
+        role: role
+      }
+    }));
   }
 
   /**

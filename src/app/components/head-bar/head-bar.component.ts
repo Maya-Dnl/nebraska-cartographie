@@ -37,7 +37,8 @@ export class HeadBarComponent {
     }).afterClosed().subscribe(async result => {
       if (result === true) {
         await this.authProcess.signOut()
-        this.router.navigateByUrl("/")
+        this.router.navigateByUrl("/");
+        location.reload();
       }
     });
   };
