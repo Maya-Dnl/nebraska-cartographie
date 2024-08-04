@@ -28,7 +28,7 @@ export class BuildingFormComponent {
   fileId: string | undefined = undefined;
   user$ = this.store.select(selectUser);
 
-  userId: string |undefined = undefined;
+  userId: string | undefined = undefined;
   generalInformationsFormGroup: FormGroup | undefined = undefined
 
   constructionUseOptions: string[] = ['Logement collectif', 'Logement individuel', 'Logement individuel groupé', 'Bâtiment administratif', 'Bâtiment commercial', 'Bâtiment industriel', 'Bâtiment de loisirs', 'Bâtiment de santé', 'Bâtiment de retraite', 'Bâtiment éducatif', 'Bâtiment socio-culturel', 'Bâtiment agricole', 'Ouvrage exeptionnel', 'autre'];
@@ -61,7 +61,7 @@ export class BuildingFormComponent {
   contactsFormGroup: FormGroup | undefined = undefined;
 
   editedBuildingId: string | undefined | null = undefined;
-  
+
   editedBuilding: BuildingModel | undefined | null = undefined;
 
   constructor(
@@ -88,7 +88,7 @@ export class BuildingFormComponent {
     })
 
 
-     this.editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
+    this.editedBuilding = this.buildingService.GetPreviewBuildingFromCache();
 
     this.editedBuildingId = this.route.snapshot.paramMap.get('id');
     if (this.editedBuildingId != null) {
@@ -198,16 +198,13 @@ export class BuildingFormComponent {
 
   SavedPicture($event: SavedPictureEventType) {
     console.log("save pictures");
-    if(this.editedBuilding != null)
-      {
-        this.editedBuilding.pictures[$event.index] = 
-        {
-          alt: "picture presentation" + $event.index,
-          index: $event.index.toString()
-        }
-      }else{
 
-      }
+    this.tempPictures[$event.index] =
+    {
+      alt: "picture presentation" + $event.index,
+      index: $event.index.toString()
+    }
+
   }
 
 

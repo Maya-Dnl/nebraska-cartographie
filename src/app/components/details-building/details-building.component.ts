@@ -73,7 +73,7 @@ export class DetailsBuildingComponent {
   }
 
   GetPictures() {
-
+    console.log("GetPicture");
     this.Pictures = this.viewedBuilding?.pictures;
     this.PicturesIsEmpty = false; // Always display picture
 
@@ -81,6 +81,7 @@ export class DetailsBuildingComponent {
     this.picturesReady = []
 
     if (this.Pictures !== undefined && this.Pictures.length > 0) {
+      console.log("PICTURE IS PRESENT", this.Pictures.length);
       console.log(this.Pictures);
       let index: number = 0;
       this.Pictures.forEach(picture => {
@@ -112,7 +113,7 @@ export class DetailsBuildingComponent {
         });
       })
     } else {
-
+      console.log("NO PICTURE !!");
       this.imageObject = [];
       this.imageObject.push({
         image: 'assets/images/360_F_435592117assets_q7GtFAXFiKdxygr8qNOcNy79wzax89Qp.jpg',
