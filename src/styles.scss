@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -10,22 +9,35 @@
 @include mat.core();
 
 $nebraska-palette: (
-  50: #f9e8e0, // much lighter version of #AB7A44
-  100: #f0d1c2, // lighter version of #AB7A44
-  200: #e7baa3, // lighter version of #AB7A44
-  300: #dea384, // slight lighter version of #AB7A44
-  400: #d6906f, // slightly lighter version of #AB7A44
-  500: #ab7a44, // base color
-  600: #a4723e, // slightly darker version of #AB7A44
-  700: #9b6836, // darker version of #AB7A44
-  800: #925f2f, // darker version of #AB7A44
-  900: #834e21, // much darker version of #AB7A44
-  A100: #ffd7b5, // a lighter accent color
-  A200: #ffa882, // an accent color
-  A400: #ff794f, // a darker accent color
-  A700: #ff6435, // an even darker accent color
-  contrast: (
-    50: #212121,
+  50: #f9e8e0,
+  // much lighter version of #AB7A44
+  100: #f0d1c2,
+  // lighter version of #AB7A44
+  200: #e7baa3,
+  // lighter version of #AB7A44
+  300: #dea384,
+  // slight lighter version of #AB7A44
+  400: #d6906f,
+  // slightly lighter version of #AB7A44
+  500: #ab7a44,
+  // base color
+  600: #a4723e,
+  // slightly darker version of #AB7A44
+  700: #9b6836,
+  // darker version of #AB7A44
+  800: #925f2f,
+  // darker version of #AB7A44
+  900: #834e21,
+  // much darker version of #AB7A44
+  A100: #ffd7b5,
+  // a lighter accent color
+  A200: #ffa882,
+  // an accent color
+  A400: #ff794f,
+  // a darker accent color
+  A700: #ff6435,
+  // an even darker accent color
+  contrast: (50: #212121,
     100: #212121,
     200: #212121,
     300: #212121,
@@ -57,15 +69,12 @@ $nebraska-cartographie-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$nebraska-cartographie-theme: mat.define-light-theme((
-  color: (
-    primary: $nebraska-cartographie-primary,
-    accent: $nebraska-cartographie-accent,
-    warn: $nebraska-cartographie-warn,
-  ),
-  typography: mat.define-typography-config(),
-  density: 0
-));
+$nebraska-cartographie-theme: mat.define-light-theme((color: (primary: $nebraska-cartographie-primary,
+        accent: $nebraska-cartographie-accent,
+        warn: $nebraska-cartographie-warn,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -78,22 +87,27 @@ body {
   font-family: "Happy Monkey", system-ui;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 button.custom-nebraska {
   font-family: "Happy Monkey", system-ui;
   font-size: 16px;
-  color: white!important;
+  color: white !important;
   border: none;
   border-radius: 10px;
   margin: 10px;
   padding: 10px;
+
+  mat-icon.no-margin {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 button.modify-btn {
@@ -113,35 +127,36 @@ button.modify-btn {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #fafafa; 
+  background: #fafafa;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #bbb; 
+  background: #bbb;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #999; 
+  background: #999;
 }
 
 .custom-pop-up {
-  font-family: "Happy Monkey", system-ui!important;
+  font-family: "Happy Monkey", system-ui !important;
   text-align: center;
   background-color: teal;
-  color: white!important;
+  color: white !important;
   padding-top: 20px;
 }
 
-.error-popup .custom-pop-up{
-  background-color: #FF7E6F!important;;
+.error-popup .custom-pop-up {
+  background-color: #FF7E6F !important;
+  ;
 }
 
 .btn-error-popup {
-  font-family: "Happy Monkey", system-ui!important;
-  background-color: white!important;
-  color: black!important;
+  font-family: "Happy Monkey", system-ui !important;
+  background-color: white !important;
+  color: black !important;
   font-weight: bold;
   border: none;
   border-radius: 10px;
@@ -152,9 +167,9 @@ button.modify-btn {
 }
 
 .custom-btn-popup {
-  font-family: "Happy Monkey", system-ui!important;
-  background-color: white!important;
-  color: teal!important;
+  font-family: "Happy Monkey", system-ui !important;
+  background-color: white !important;
+  color: teal !important;
   font-weight: bold;
   border: none;
   border-radius: 10px;
