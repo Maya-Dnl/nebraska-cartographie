@@ -5,3 +5,19 @@
   .rounded{
     border-radius: 10px;
   }
+
+  mat-icon.delete-btn {
+    cursor: pointer;
+    z-index: 1;
+    position: absolute;
+    top: 13px;
+    right: 18px;
+  }
+
+  button.custom-nebraska {
+    background-color: rgba($color: #000000, $alpha: 0.2);
+    span{
+      color: black;
+    }
+
+  }
