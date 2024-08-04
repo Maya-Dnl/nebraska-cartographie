@@ -1,7 +1,7 @@
 import { Component, Input, SimpleChange, ViewChild, inject } from '@angular/core';
 import { NgImageSliderComponent } from 'ng-image-slider';
 // import { BuildingFormComponent } from '../../containers/building-form/building-form.component';
-import { BConstructionWorks, BContacts, BGeneralInformations, BPictures, BuildingModel } from '../../services/building/building.model';
+import { BConstructionWorks, BContacts, BGeneralInformations, BPictures, BuildingModel, PrivateBuildingData } from '../../services/building/building.model';
 import { MatDialog } from '@angular/material/dialog';
 import { BuildingService } from '../../services/building/building.service';
 import { Router } from '@angular/router';
@@ -44,6 +44,9 @@ export class DetailsBuildingComponent {
   Contacts: BContacts | undefined = undefined;
   ContactsIsEmpty: boolean | null = null;
 
+  Private: PrivateBuildingData | undefined = undefined;
+  PrivateIsEmpty: boolean | null = null;
+
   constructor(
     public dialog: MatDialog,
     public buildingService: BuildingService,
@@ -69,7 +72,8 @@ export class DetailsBuildingComponent {
     this.Contacts = this.viewedBuilding?.contacts;
     this.ContactsIsEmpty = ObjectIsEmpty(this.Contacts);
 
-
+    this.Private = this.viewedBuilding?.private;
+    this.PrivateIsEmpty = ObjectIsEmpty(this.Private);
   }
 
   GetPictures() {

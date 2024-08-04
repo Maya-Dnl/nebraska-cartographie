@@ -1,15 +1,21 @@
 export interface BuildingModel {
 
+
   firebaseId: string;
   filesId: string;
-  privatePartId:string;
+  privateId: string;
+  adminNoteId: string;
   ownerUserId: string;
   status: BuildingStatus; // Draft, Waiting, Publish
-  
+  creationDate: string;
+  lastModifiedDate: string;
+  lastModifiedUserId: string;
+
   generalInformations: BGeneralInformations;
   constructionWorks: BConstructionWorks;
   pictures: BPictures[];
   contacts: BContacts;
+  private: PrivateBuildingData;
 
 }
 
@@ -59,10 +65,6 @@ export interface BPictures {
 }
 
 export interface BContacts {
-  contact: string | undefined;
-  postalCode: string | undefined;
-  email: string | undefined;
-  phoneNumber: string | undefined;
   projectOwner: string | undefined;
   projectManager: string | undefined;
   architect: string | undefined;
@@ -75,6 +77,14 @@ export interface BContacts {
   difficultiesBox: string | undefined;
   tipsAndTricksBox: string | undefined;
   otherCommentBox: string | undefined;
+}
+
+export interface PrivateBuildingData
+{
+  contact: string | undefined;
+  postalCode: string | undefined;
+  email: string | undefined;
+  phoneNumber: string | undefined;
 }
 
 

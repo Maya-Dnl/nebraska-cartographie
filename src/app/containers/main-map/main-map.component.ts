@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BuildingService } from '../../services/building/building.service';
-import { BuildingModel } from '../../services/building/building.model';
+import { BuildingModel, BuildingStatus } from '../../services/building/building.model';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpUserConfirmComponent, ModeConfirmPopup } from '../../components/pop-ups/user-confirm-popup/popup-user-confirm.component';
 import { Store } from '@ngrx/store';
@@ -187,7 +187,7 @@ export class MainMapComponent {
     if (this.selectedBuilding === undefined) {
       throw new Error("Aucune construction à sauvegarder !")
     }
-    this.buildingService.SaveBuildingFromPreview(this.selectedBuilding).then(() => {
+    this.buildingService.SaveBuildingFromPreview(this.selectedBuilding, this.userId!).then(() => {
       this.buildingService.RemovePrevewBuilding();
       this.dialog.open(PopUpUserConfirmComponent, {
         width: '400px',
@@ -231,10 +231,42 @@ export class MainMapComponent {
     this.opened = true;
   }
 
-  unpublish(building: BuildingModel|undefined) {
-  
+  unpublish(building: BuildingModel | undefined) {
+
+    if (building?.status == BuildingStatus.Publish) {
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: ['overlay-pop-up', 'warning-popup'],
+        data: { message: "Attention cette action va entrainer la dépublication de votre construction pour permettre des modifications", modePopup: ModeConfirmPopup.OkOrBack }
+      }).afterClosed().subscribe(async result => {
+        if (result === false) {
+          return;
+        } else {
+          this.buildingService.unpublishBuildings(building, this.userId!);
+        }
+      });
+      return;
     }
-    
+
+    if (building?.status == BuildingStatus.Waiting) {
+      this.dialog.open(PopUpUserConfirmComponent, {
+        width: '400px',
+        backdropClass: 'backdrop-blur',
+        panelClass: ['overlay-pop-up', 'warning-popup'],
+        data: { message: "Attention cette action va annuler la demande de publication de votre construction pour permettre des modifications", modePopup: ModeConfirmPopup.OkOrBack }
+      }).afterClosed().subscribe(async result => {
+        if (result === false) {
+          return;
+        } else {
+          this.buildingService.unwaitingBuildings(building, this.userId!);
+        }
+      });
+      return;
+    }
+  }
+
+
 }
 
 export enum MainMapMode {

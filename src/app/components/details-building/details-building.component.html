@@ -170,28 +170,28 @@
         </div>
       </mat-tab>
 
-      <mat-tab *ngIf="!ContactsIsEmpty">
+      <mat-tab *ngIf="!ContactsIsEmpty || !PrivateIsEmpty">
         <ng-template mat-tab-label>
           <mat-icon class="icon-margin">feed</mat-icon>
           À propos
         </ng-template>
         <div class="contacts-tab container">
           <div class="custom-content">
-            <div *ngIf="Contacts?.contact">
+            <div *ngIf="Private?.contact">
               <div class="title-info">Contact</div>
-              {{Contacts?.contact}}
+              {{Private?.contact}}
             </div>
-            <div *ngIf="Contacts?.postalCode">
+            <div *ngIf="Private?.postalCode">
               <div class="title-info">Contact</div>
-              {{Contacts?.postalCode}}
+              {{Private?.postalCode}}
             </div>
-            <div *ngIf="Contacts?.email">
+            <div *ngIf="Private?.email">
               <div class="title-info">Email</div>
-              {{Contacts?.email}}
+              {{Private?.email}}
             </div>
-            <div *ngIf="Contacts?.phoneNumber">
+            <div *ngIf="Private?.phoneNumber">
               <div class="title-info">Numéro de téléphone</div>
-              {{Contacts?.phoneNumber}}
+              {{Private?.phoneNumber}}
             </div>
             <div *ngIf="Contacts?.projectOwner">
               <div class="title-info">Maître d'ouvrage</div>

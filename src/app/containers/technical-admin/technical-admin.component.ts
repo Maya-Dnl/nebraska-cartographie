@@ -116,8 +116,9 @@ export class TechnicalAdminComponent {
 
         filesId: "",
         ownerUserId: "",
-        privatePartId: "",
         firebaseId: "",
+        privateId: "",
+        adminNoteId: "",
         status: BuildingStatus.Waiting,
         constructionWorks: {
           arrayIntegration: "",
@@ -149,13 +150,9 @@ export class TechnicalAdminComponent {
           architect: this.UndefinedToEmpty(oldData.architecte),
           carpentryInstallationCompany: "",
           coatingImplementationCompany: this.UndefinedToEmpty(oldData.entrepriseEnduits),
-          contact: "",
           controlOffice: "",
           difficultiesBox: "",
-          email: "",
           otherCommentBox: "",
-          phoneNumber: "",
-          postalCode: this.UndefinedToEmpty(oldData.codePostal),
           projectDescriptionBox: "",
           projectManager: "",
           projectOwner: "",
@@ -175,6 +172,15 @@ export class TechnicalAdminComponent {
           numberOfLevels: this.UndefinedToEmpty(oldData.niveaux?.toString()),
           totalCostOfWork: this.UndefinedToEmpty(oldData.coutTravauxTTC?.toString())
         },
+        private: {
+          postalCode: this.UndefinedToEmpty(oldData.codePostal),
+          contact: "",
+          email: "",
+          phoneNumber: "",
+        },
+        creationDate: new Date().toDateString(),
+        lastModifiedDate: new Date().toDateString(),
+        lastModifiedUserId: "TECHADMIN",
         pictures: []
       }
 
@@ -200,7 +206,7 @@ export class TechnicalAdminComponent {
       //   }
       // })
 
-      let doc = await this.buildingService.SaveBuildingFromPreview(newBuilding)
+      let doc = await this.buildingService.SaveBuildingFromPreview(newBuilding, "TECHADMIN")
       this.waitingBuildingsId.push(doc.id);
     });
   }

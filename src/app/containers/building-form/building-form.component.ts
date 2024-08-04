@@ -59,7 +59,7 @@ export class BuildingFormComponent {
   picturesFormGroup: FormGroup | undefined = undefined;
   tempPictures: BPictures[] = [];
   contactsFormGroup: FormGroup | undefined = undefined;
-
+  privateFormGroup: FormGroup | undefined = undefined;
   editedBuildingId: string | undefined | null = undefined;
 
   editedBuilding: BuildingModel | undefined | null = undefined;
@@ -168,10 +168,6 @@ export class BuildingFormComponent {
     let c = this.editedBuilding != null ? this.editedBuilding.contacts : null;
 
     this.contactsFormGroup = this.formBuilder.group({
-      contact: [c ? c.contact : '', Validators.required],
-      postalCode: [c ? c.postalCode : ''],
-      email: [c ? c.email : userMail],
-      phoneNumber: [c ? c.phoneNumber : ''],
       projectOwner: [c ? c.projectOwner : ''],
       projectManager: [c ? c.projectManager : ''],
       architect: [c ? c.architect : ''],
@@ -185,6 +181,15 @@ export class BuildingFormComponent {
       tipsAndTricksBox: [c ? c.tipsAndTricksBox : ''],
       otherCommentBox: [c ? c.otherCommentBox : ''],
     });
+
+    let p = this.editedBuilding != null ? this.editedBuilding.private : null;
+
+    this.privateFormGroup = this.formBuilder.group({
+      contact: [p ? p.contact : '', Validators.required],
+      postalCode: [p ? p.postalCode : ''],
+      email: [p ? p.email : userMail],
+      phoneNumber: [p ? p.phoneNumber : ''],
+    })
 
     this.tempPictures = this.editedBuilding != null ? this.editedBuilding.pictures : this.tempPictures;
 
@@ -276,15 +281,20 @@ export class BuildingFormComponent {
         filesId: this.fileId!,
         firebaseId: this.editedBuildingId,
         ownerUserId: this.userId!,
+        privateId: this.editedBuilding?.privateId!,
+        adminNoteId: this.editedBuilding?.adminNoteId!,
+        creationDate: this.editedBuilding?.creationDate!,
+        lastModifiedDate: new Date().toDateString(),
+        lastModifiedUserId: this.userId!,
         status: BuildingStatus.Waiting,
-        privatePartId: "",
         generalInformations: this.generalInformationsFormGroup!.getRawValue(),
         constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
         pictures: this.tempPictures!,
+        private: this.privateFormGroup!.getRawValue(),
         contacts: this.contactsFormGroup!.getRawValue(),
       }
 
-      this.buildingService.UpdateBuildingFromPreview(building, this.editedBuildingId);
+      this.buildingService.UpdateBuildingFromPreview(building, this.editedBuildingId, this.userId!);
       this.router.navigateByUrl("/preview/" + this.editedBuildingId);
       return;
     }
@@ -309,13 +319,18 @@ export class BuildingFormComponent {
 
           filesId: this.fileId!,
           firebaseId: "",
+          privateId: "",
+          adminNoteId: "",
           ownerUserId: this.userId!,
-          privatePartId: "",
+          creationDate: new Date().toDateString(),
+          lastModifiedDate: new Date().toDateString(),
+          lastModifiedUserId: this.userId!,
           status: BuildingStatus.Draft,
           generalInformations: this.generalInformationsFormGroup!.getRawValue(),
           constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
           pictures: this.tempPictures!,
           contacts: this.contactsFormGroup!.getRawValue(),
+          private: this.privateFormGroup!.getRawValue()
         }
 
         this.buildingService.SetPreviewBuilding(building);

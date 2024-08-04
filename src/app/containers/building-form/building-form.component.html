@@ -142,10 +142,12 @@
               <div class="input-title">Début des travaux *</div>
               <mat-form-field class="auto-size">
                 <mat-label>JJ/MM/AAAA</mat-label>
-                <input #startInput matInput [matDatepicker]="pickerStart" (click)="pickerStart.open()" matInput formControlName="startDate" required>
+                <input #startInput matInput [matDatepicker]="pickerStart" (click)="pickerStart.open()" matInput
+                  formControlName="startDate" required>
                 <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
                 <mat-datepicker #pickerStart></mat-datepicker>
-                <mat-error *ngIf="constructionWorksFormGroup.get('startDate')!.hasError('matDatepickerParse')">Merci de rentrer une date valide</mat-error>
+                <mat-error *ngIf="constructionWorksFormGroup.get('startDate')!.hasError('matDatepickerParse')">Merci de
+                  rentrer une date valide</mat-error>
                 <mat-error *ngIf="constructionWorksFormGroup.get('startDate')!.hasError('required')">Ce champ est
                   requis</mat-error>
               </mat-form-field>
@@ -154,10 +156,12 @@
               <div class="input-title">Achèvement des travaux</div>
               <mat-form-field class="auto-size">
                 <mat-label>JJ/MM/AAAA</mat-label>
-                <input matInput [matDatepicker]="pickerEnd" (click)="pickerEnd.open()" matInput [min]="constructionWorksFormGroup.get('startDate')!.value" formControlName="endDate">
+                <input matInput [matDatepicker]="pickerEnd" (click)="pickerEnd.open()" matInput
+                  [min]="constructionWorksFormGroup.get('startDate')!.value" formControlName="endDate">
                 <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                 <mat-datepicker #pickerEnd></mat-datepicker>
-                <mat-error *ngIf="constructionWorksFormGroup.get('endDate')!.hasError('matDatepickerParse')">Merci de rentrer une date valide</mat-error>
+                <mat-error *ngIf="constructionWorksFormGroup.get('endDate')!.hasError('matDatepickerParse')">Merci de
+                  rentrer une date valide</mat-error>
                 <!-- <div> {{constructionWorksFormGroup.get('endDate')!.errors | json }}</div> -->
               </mat-form-field>
             </div>
@@ -423,7 +427,8 @@
     <mat-step *ngIf="picturesFormGroup" [stepControl]="picturesFormGroup" label="Photos">
       <form [formGroup]="picturesFormGroup">
         <div class="container step-container">
-          <app-upload-image [numberOfPictures]="4" [buildingId]="fileId" (pictureSaved)="SavedPicture($event)" ></app-upload-image>
+          <app-upload-image [numberOfPictures]="4" [buildingId]="fileId"
+            (pictureSaved)="SavedPicture($event)"></app-upload-image>
           <div class="btn-custom">
           </div>
         </div>
@@ -436,8 +441,9 @@
     </mat-step>
 
 
-    <mat-step *ngIf="contactsFormGroup" [stepControl]="contactsFormGroup" label="Participants, Contacts">
-      <form [formGroup]="contactsFormGroup">
+    <mat-step *ngIf="contactsFormGroup && privateFormGroup" [stepControl]="privateFormGroup"
+      label="Participants, Contacts">
+      <form [formGroup]="privateFormGroup">
         <div class="container step-container">
           <div class="infos-private-square">
             <p>Les coordonnées personnelles que vous entrez dans cet encart sont strictement réservées à l'association
@@ -449,7 +455,7 @@
                 <div class="input-title">Contact *</div>
                 <mat-form-field class="auto-size">
                   <input matInput placeholder="Nom/Prénom" formControlName="contact" required>
-                  <mat-error *ngIf="contactsFormGroup.get('contact')!.hasError('required')">Ce champ est
+                  <mat-error *ngIf="privateFormGroup.get('contact')!.hasError('required')">Ce champ est
                     requis</mat-error>
                 </mat-form-field>
               </div>
@@ -476,110 +482,112 @@
               </div>
             </div>
           </div>
+        </div>
+      </form>
+      <form [formGroup]="contactsFormGroup">
+        <h2>Actrices, Acteurs</h2>
 
-          <h2>Actrices, Acteurs</h2>
-
-          <div class="row">
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Maître d'ouvrage</div>
-              <mat-form-field class="auto-size">
-                <input matInput placeholder="Lapierre / Hamelin" formControlName="projectOwner">
-              </mat-form-field>
-            </div>
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Maître d'œuvre</div>
-              <mat-form-field class="auto-size">
-                <input matInput placeholder="Lapierre / Hamelin" formControlName="projectManager">
-              </mat-form-field>
-            </div>
+        <div class="row">
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Maître d'ouvrage</div>
+            <mat-form-field class="auto-size">
+              <input matInput placeholder="Lapierre / Hamelin" formControlName="projectOwner">
+            </mat-form-field>
           </div>
-
-          <div class="row">
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Architecte</div>
-              <mat-form-field class="auto-size">
-                <input matInput placeholder="Lapierre / Hamelin" formControlName="architect">
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Bureau d'étude Structure</div>
-              <mat-form-field class="auto-size">
-                <input matInput placeholder="Lapierre / Hamelin" formControlName="structureDesignOffice">
-              </mat-form-field>
-            </div>
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Bureau contrôle</div>
-              <mat-form-field class="auto-size">
-                <input matInput placeholder="Lapierre / Hamelin" formControlName="controlOffice">
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Entreprise de mise en œuvre des bottes, si autoconstruction le préciser</div>
-              <mat-form-field class="auto-size">
-                <input matInput placeholder="Nebraska" formControlName="strawBaleCompany">
-              </mat-form-field>
-            </div>
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Entreprise de mise en oeuvre de la charpente, si autoconstruction le préciser
-              </div>
-              <mat-form-field class="auto-size">
-                <input matInput placeholder="Veuillez préciser" formControlName="carpentryInstallationCompany">
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Entreprise de mise en oeuvre des enduits, si autoconstruction le préciser</div>
-              <mat-form-field class="auto-size">
-                <input matInput placeholder="Veuillez préciser" formControlName="coatingImplementationCompany">
-              </mat-form-field>
-            </div>
-          </div>
-
-          <h2>Commentaires</h2>
-
-          <div class="row">
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Description du projet</div>
-              <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput maxlength="400"
-                  placeholder="Description plus approffondie de votre projet"
-                  formControlName="projectDescriptionBox"></textarea>
-              </mat-form-field>
-            </div>
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Difficultés rencontrés</div>
-              <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput maxlength="400"
-                  placeholder="Parlez-nous des difficultés rencontrées" formControlName="difficultiesBox"></textarea>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Trucs et astuces</div>
-              <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput maxlength="400" placeholder="Partagez vos trucs et astuces !"
-                  formControlName="tipsAndTricksBox"></textarea>
-              </mat-form-field>
-            </div>
-            <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Autres commentaires</div>
-              <mat-form-field class="auto-size text-area-height">
-                <textarea style="resize: none;" matInput maxlength="400" placeholder="Autre chose à dire ?"
-                  formControlName="otherCommentBox"></textarea>
-              </mat-form-field>
-            </div>
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Maître d'œuvre</div>
+            <mat-form-field class="auto-size">
+              <input matInput placeholder="Lapierre / Hamelin" formControlName="projectManager">
+            </mat-form-field>
           </div>
         </div>
+
+        <div class="row">
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Architecte</div>
+            <mat-form-field class="auto-size">
+              <input matInput placeholder="Lapierre / Hamelin" formControlName="architect">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Bureau d'étude Structure</div>
+            <mat-form-field class="auto-size">
+              <input matInput placeholder="Lapierre / Hamelin" formControlName="structureDesignOffice">
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Bureau contrôle</div>
+            <mat-form-field class="auto-size">
+              <input matInput placeholder="Lapierre / Hamelin" formControlName="controlOffice">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Entreprise de mise en œuvre des bottes, si autoconstruction le préciser</div>
+            <mat-form-field class="auto-size">
+              <input matInput placeholder="Nebraska" formControlName="strawBaleCompany">
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Entreprise de mise en oeuvre de la charpente, si autoconstruction le préciser
+            </div>
+            <mat-form-field class="auto-size">
+              <input matInput placeholder="Veuillez préciser" formControlName="carpentryInstallationCompany">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Entreprise de mise en oeuvre des enduits, si autoconstruction le préciser</div>
+            <mat-form-field class="auto-size">
+              <input matInput placeholder="Veuillez préciser" formControlName="coatingImplementationCompany">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <h2>Commentaires</h2>
+
+        <div class="row">
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Description du projet</div>
+            <mat-form-field class="auto-size text-area-height">
+              <textarea style="resize: none;" matInput maxlength="400"
+                placeholder="Description plus approffondie de votre projet"
+                formControlName="projectDescriptionBox"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Difficultés rencontrés</div>
+            <mat-form-field class="auto-size text-area-height">
+              <textarea style="resize: none;" matInput maxlength="400"
+                placeholder="Parlez-nous des difficultés rencontrées" formControlName="difficultiesBox"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Trucs et astuces</div>
+            <mat-form-field class="auto-size text-area-height">
+              <textarea style="resize: none;" matInput maxlength="400" placeholder="Partagez vos trucs et astuces !"
+                formControlName="tipsAndTricksBox"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="title-and-input-content col-md-12 col-lg-6">
+            <div class="input-title">Autres commentaires</div>
+            <mat-form-field class="auto-size text-area-height">
+              <textarea style="resize: none;" matInput maxlength="400" placeholder="Autre chose à dire ?"
+                formControlName="otherCommentBox"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
         <div class="btn-custom">
           <button class="custom-nebraska" mat-flat-button color="primary" matStepperPrevious>Précédent</button>
           <button (click)="checkFormStepFour()" class="custom-nebraska" mat-flat-button color="accent"
