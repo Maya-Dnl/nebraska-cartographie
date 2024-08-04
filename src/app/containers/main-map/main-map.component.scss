@@ -15,3 +15,11 @@
   bottom: 25px;
   align-items: center;
 }
+
+mat-icon.close-btn {
+  cursor: pointer;
+  z-index: 1;
+  position: absolute;
+  top: 13px;
+  right: 18px;
+}
