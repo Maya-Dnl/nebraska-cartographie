@@ -1,7 +1,7 @@
 import { Component, Inject, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
-import { BPictures, BuildingModel } from '../../services/building/building.model';
+import { BPictures, BuildingModel, BuildingStatus } from '../../services/building/building.model';
 import { BuildingService } from '../../services/building/building.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { __param } from 'tslib';
@@ -276,6 +276,7 @@ export class BuildingFormComponent {
         filesId: this.fileId!,
         firebaseId: this.editedBuildingId,
         ownerUserId: this.userId!,
+        status: BuildingStatus.Waiting,
         privatePartId: "",
         generalInformations: this.generalInformationsFormGroup!.getRawValue(),
         constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
@@ -310,6 +311,7 @@ export class BuildingFormComponent {
           firebaseId: "",
           ownerUserId: this.userId!,
           privatePartId: "",
+          status: BuildingStatus.Draft,
           generalInformations: this.generalInformationsFormGroup!.getRawValue(),
           constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
           pictures: this.tempPictures!,

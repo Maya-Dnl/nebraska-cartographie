@@ -16,6 +16,14 @@
   align-items: center;
 }
 
+mat-icon.edit-btn {
+  cursor: pointer;
+  z-index: 1;
+  position: absolute;
+  top: 13px;
+  left: 18px;
+}
+
 mat-icon.close-btn {
   cursor: pointer;
   z-index: 1;

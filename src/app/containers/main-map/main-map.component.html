@@ -1,5 +1,16 @@
 <mat-drawer-container *ngIf="filteredBuildingList$ | async" class="main-map-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side" [(opened)]="opened" (openedChange)="onDrawerToggle()">
+    
+    <div *ngIf="user$ | async as user">
+      @if ((mainMapMode === MainMapMode.homeMapMode || mainMapMode === MainMapMode.myBuildingsMode)
+
+       && (user.role === userRole.techAdministrator || user.role === userRole.nebraskaAdministrator 
+
+       || (user.role === userRole.contributor && user.id === selectedBuilding?.ownerUserId))) {
+
+        <mat-icon class="edit-btn" (click)="unpublish(selectedBuilding)">edit</mat-icon>
+      }
+    </div>
     <mat-icon class="close-btn" (click)="opened = false">arrow_back</mat-icon>
     <app-details-building [viewedBuilding]="selectedBuilding"></app-details-building>
   </mat-drawer>

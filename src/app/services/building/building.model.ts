@@ -4,6 +4,7 @@ export interface BuildingModel {
   filesId: string;
   privatePartId:string;
   ownerUserId: string;
+  status: BuildingStatus; // Draft, Waiting, Publish
   
   generalInformations: BGeneralInformations;
   constructionWorks: BConstructionWorks;
@@ -74,4 +75,12 @@ export interface BContacts {
   difficultiesBox: string | undefined;
   tipsAndTricksBox: string | undefined;
   otherCommentBox: string | undefined;
+}
+
+
+
+export enum BuildingStatus {
+  Draft = 0,
+  Waiting = 1,
+  Publish = 2
 }

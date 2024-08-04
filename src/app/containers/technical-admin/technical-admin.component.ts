@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import oldBuildingsData from '../../../assets/initialData/oldBuildingsData.json';
 import { ConstructionData } from './models/oldBuildingData.model';
-import { BuildingModel } from '../../services/building/building.model';
+import { BuildingModel, BuildingStatus } from '../../services/building/building.model';
 import { BuildingService } from '../../services/building/building.service';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
 @Component({
@@ -118,7 +118,7 @@ export class TechnicalAdminComponent {
         ownerUserId: "",
         privatePartId: "",
         firebaseId: "",
-
+        status: BuildingStatus.Waiting,
         constructionWorks: {
           arrayIntegration: "",
           arrayIntegrationInfos: "",

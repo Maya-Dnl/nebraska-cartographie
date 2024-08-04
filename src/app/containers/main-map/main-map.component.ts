@@ -230,6 +230,11 @@ export class MainMapComponent {
     })
     this.opened = true;
   }
+
+  unpublish(building: BuildingModel|undefined) {
+  
+    }
+    
 }
 
 export enum MainMapMode {

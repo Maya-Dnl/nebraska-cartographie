@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit, OnChanges } from '@angular/core';
 import L, { icon, LatLng, latLng, Layer, map, marker, tileLayer } from 'leaflet';
-import { BuildingModel } from '../../services/building/building.model';
+import { BuildingModel, BuildingStatus } from '../../services/building/building.model';
 import { Router } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
@@ -29,7 +29,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() viewedBuilding: BuildingModel | undefined;
   @Input() buildingList: BuildingModel[] | null = [];
   @Input() selectedBuilding: BuildingModel | undefined;
-  @Input() selectedBuildingId : string |null = null;
+  @Input() selectedBuildingId: string | null = null;
   @Input() crossMode: boolean = false;
 
   @Output() onBuildingClicked = new EventEmitter<LatLng>();
@@ -107,7 +107,16 @@ export class MapComponent implements OnInit, OnChanges {
               iconSize: [45, 45],
             })
           });
-        } else {
+        } else if (building.status == BuildingStatus.Waiting) {
+          markerPoint = marker([+building.generalInformations.latitude!, +building.generalInformations.longitude!], {
+            icon: icon({
+              iconUrl: "assets/images/home_48dp_waiting.png",
+              className: "marker-point",
+              iconSize: [size, size],
+            })
+          });
+        }
+        else if (building.status == BuildingStatus.Publish) {
           markerPoint = marker([+building.generalInformations.latitude!, +building.generalInformations.longitude!], {
             icon: icon({
               iconUrl: "assets/images/home_48dp.png",
@@ -139,17 +148,17 @@ export class MapComponent implements OnInit, OnChanges {
       if (this.map && this.map.getZoom() < 15) {
         this.map.setView(
           latLng([value.latlng.lat, value.latlng.lng]),
-          this.map.getZoom()    
+          this.map.getZoom()
         );
 
         setTimeout(() => {
           if (this.map && this.map.getZoom() < 15) {
-          this.map.zoomIn();
+            this.map.zoomIn();
           }
         }, 200);
 
 
-        
+
         // this.dialog.open(PopUpUserConfirmComponent, {
         //   width: '400px',
         //   backdropClass: 'backdrop-blur',

@@ -1,5 +1,5 @@
 import { Router } from "@angular/router";
-import { BuildingModel } from "./building.model";
+import { BuildingModel, BuildingStatus } from "./building.model";
 import { inject, Injectable } from "@angular/core";
 import { addDoc, deleteDoc, collection, collectionData, CollectionReference, doc, Firestore, getDoc, QueryDocumentSnapshot, SnapshotOptions, DocumentData, DocumentReference } from "@angular/fire/firestore";
 import { combineLatest, map, Observable } from "rxjs";
@@ -20,6 +20,7 @@ export class BuildingService {
   constructor(private router: Router) { }
 
   public SetPreviewBuilding(building: BuildingModel) {
+    building.status = BuildingStatus.Draft;
     this.buildingPreview = building;
     localStorage.setItem("BuildingPreview", JSON.stringify(building));
     this.router.navigateByUrl("/preview");
@@ -51,6 +52,7 @@ export class BuildingService {
   }
 
   public async SaveBuildingFromPreview(building: BuildingModel): Promise<DocumentReference<BuildingModel, DocumentData>> {
+    building.status = BuildingStatus.Waiting;
     let waitingBuildings: CollectionReference<BuildingModel> = collection(this.firestore, waitingBuildingsCollectionName).withConverter(buildingConverter);
     const addedBuildingDocumentReference = await addDoc(waitingBuildings, building );
 
@@ -64,6 +66,7 @@ export class BuildingService {
   }
 
   public async UpdateBuildingFromPreview(building: BuildingModel, editedBuildingId: string) {
+    building.status = BuildingStatus.Waiting;
     const documentReference = doc(this.firestore, waitingBuildingsCollectionName, editedBuildingId);
     return await updateDoc(documentReference, { ...building });
   }
@@ -122,12 +125,16 @@ export class BuildingService {
   // une fois valider, supprimer des waiting building
 
   public async publishBuilding(id: string) {
+    
     console.log(id)
     const building = await this.GetPreviewBuildingFromServer(id);
     if (building === undefined) {
       throw new Error("Building is undefined for id : " + id)
     }
     console.log(building);
+    building.status = BuildingStatus.Publish;
+
+    // TODO HIDE SENSIBLE DATA
     let publishedBuildings: CollectionReference<BuildingModel> = collection(this.firestore, publishedBuildingsCollectionName).withConverter(buildingConverter);
     await addDoc(publishedBuildings, building);
     const documentReference = doc(this.firestore, waitingBuildingsCollectionName, id);
