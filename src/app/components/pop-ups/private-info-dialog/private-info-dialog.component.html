@@ -1,0 +1,8 @@
+<!-- private-info-dialog.component.html -->
+<h1>Informations Privées</h1>
+<ul>
+  <li *ngFor="let item of data | keyvalue">
+    <strong>{{item.key}}:</strong> {{item.value}}
+  </li>
+</ul>
+<button mat-button mat-dialog-close>Fermer</button>

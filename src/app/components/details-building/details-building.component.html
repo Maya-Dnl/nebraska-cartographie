@@ -1,12 +1,12 @@
 <div class="details-building-container">
   <!-- Template de chargement qui s'affiche tant que le carrousel n'est pas prêt -->
-<div *ngIf="!pictureReady" class="loading-template">
-  <div class="spinner">
-    <!-- Par exemple, un spinner ou un message de chargement -->
-    <!-- <mat-spinner></mat-spinner> -->
-    <p>Chargement des images...</p>
+  <div *ngIf="!pictureReady" class="loading-template">
+    <div class="spinner">
+      <!-- Par exemple, un spinner ou un message de chargement -->
+      <!-- <mat-spinner></mat-spinner> -->
+      <p>Chargement des images...</p>
+    </div>
   </div>
-</div>
 
   <div *ngIf="pictureReady" class="carousel">
     <ng-image-slider [images]="imageObject" [infinite]="true" [manageImageRatio]="true" [imageSize]="imageSizeObject"
@@ -36,7 +36,7 @@
           <div class="custom-content">
             <div class="align-items-custom" *ngIf="GeneralInfo?.cityOrTown">
               <mat-icon color="accent">place</mat-icon>
-              {{GeneralInfo?.address}} 
+              {{GeneralInfo?.address}}
               {{GeneralInfo?.cityOrTown}}
             </div>
             <div class="align-items-custom" *ngIf="GeneralInfo?.constructionUse">
@@ -242,7 +242,11 @@
               {{Contacts?.otherCommentBox}}
             </div>
           </div>
-
+          <div *ngIf="role == 0 || role == 1">
+            <button class="custom-nebraska modify-btn" (click)="OpenAdminNote()"  mat-button><mat-icon class="no-margin">file_open</mat-icon></button>
+            <button class="custom-nebraska" (click)="OpenPrivateData()" mat-flat-button color="accent"><mat-icon
+                class="no-margin" >visibility</mat-icon></button>
+          </div>
         </div>
       </mat-tab>
     </mat-tab-group>

@@ -1,5 +1,5 @@
 import { Router } from "@angular/router";
-import { BuildingModel, BuildingStatus, PrivateBuildingData } from "./building.model";
+import { AdminNoteData, BuildingModel, BuildingStatus, PrivateBuildingData } from "./building.model";
 import { inject, Injectable } from "@angular/core";
 import { addDoc, deleteDoc, collection, collectionData, CollectionReference, doc, Firestore, getDoc, QueryDocumentSnapshot, SnapshotOptions, DocumentData, DocumentReference } from "@angular/fire/firestore";
 import { combineLatest, map, Observable } from "rxjs";
@@ -77,6 +77,40 @@ export class BuildingService {
 
     return addedBuildingDocumentReference;
   }
+
+  public async SaveOrUpdateAdminNote(building: BuildingModel, adminNote: AdminNoteData): Promise<void> {
+
+
+    if (building.adminNoteId !== "") {
+      const documentReference = doc(this.firestore, adminNoteBuildingsCollectionName, building.adminNoteId).withConverter(adminNoteDataConverter);
+      // Update the document with the new firebaseId field
+      return await updateDoc(documentReference, { ...adminNote });
+    }
+
+    // CREATE
+    let adminNotes: CollectionReference<AdminNoteData> = collection(this.firestore, adminNoteBuildingsCollectionName).withConverter(adminNoteDataConverter);
+    const addedAdminNoteDocumentReference = await addDoc(adminNotes, adminNote);
+
+    // Update the building with the generated ID
+    building.adminNoteId = addedAdminNoteDocumentReference.id;
+    return this.UpdateBuildingFromStatus(building);
+
+  }
+
+  public async UpdateBuildingFromStatus(building: BuildingModel) {
+    if (building.status == BuildingStatus.Publish) {
+
+      let publishedBuildings: CollectionReference<BuildingModel> = collection(this.firestore, publishedBuildingsCollectionName).withConverter(buildingConverter);
+      await addDoc(publishedBuildings, building);
+    } else if (building.status == BuildingStatus.Waiting) {
+
+      let waitingBuildings: CollectionReference<BuildingModel> = collection(this.firestore, waitingBuildingsCollectionName).withConverter(buildingConverter);
+      await addDoc(waitingBuildings, building);
+    } else {
+      return this.SetPreviewBuilding(building)
+    }
+  }
+
 
   public async UpdateBuildingFromPreview(building: BuildingModel, editedBuildingId: string, UserId: string) {
     building.status = BuildingStatus.Waiting;
@@ -160,17 +194,16 @@ export class BuildingService {
     console.log(building);
     building.status = BuildingStatus.Publish;
 
-
-
     // TODO HIDE SENSIBLE DATA
     let privateDataBuildings: CollectionReference<PrivateBuildingData> = collection(this.firestore, privateDataBuildingsCollectionName).withConverter(privateBuildingConverter);
-   const addedBuildingDocumentReference = await addDoc(privateDataBuildings, privateData);
+    const privateDataBuildingDocumentReference = await addDoc(privateDataBuildings, privateData);
 
-        // Update the building with the generated ID
-        building.privateId = addedBuildingDocumentReference.id;
+    // Update the building with the generated ID
+    building.privateId = privateDataBuildingDocumentReference.id;
 
-        // Update the document with the new firebaseId field
-        await updateDoc(addedBuildingDocumentReference, { privateId: building.privateId });
+    // Update the document with the new firebaseId field
+    await updateDoc(privateDataBuildingDocumentReference, { privateId: building.privateId });
+
 
     let publishedBuildings: CollectionReference<BuildingModel> = collection(this.firestore, publishedBuildingsCollectionName).withConverter(buildingConverter);
     await addDoc(publishedBuildings, building);
@@ -179,11 +212,11 @@ export class BuildingService {
     await deleteDoc(documentReference);
   }
 
-  async unwaitingBuildings(WaitingBuilding: BuildingModel, userId: string) { 
+  async unwaitingBuildings(WaitingBuilding: BuildingModel, userId: string) {
     const documentReference = doc(this.firestore, waitingBuildingsCollectionName, WaitingBuilding.firebaseId);
-     await deleteDoc(documentReference).then(() => {
+    await deleteDoc(documentReference).then(() => {
       this.SetPreviewBuilding(WaitingBuilding);
-     })
+    })
   }
 
   async unpublishBuildings(publishedBuilding: BuildingModel, userId: string): Promise<void> {
@@ -195,7 +228,7 @@ export class BuildingService {
     publishedBuilding.status = BuildingStatus.Draft;
     const documentReference = doc(this.firestore, publishedBuildingsCollectionName, publishedBuilding.firebaseId);
     await deleteDoc(documentReference).then(() => {
-     this.SetPreviewBuilding(publishedBuilding);
+      this.SetPreviewBuilding(publishedBuilding);
     })
   }
 }
@@ -226,5 +259,18 @@ export const privateBuildingConverter = {
     const building = { ...data as PrivateBuildingData }
     return building
   }
+}
 
+export const adminNoteDataConverter = {
+  toFirestore(adminNoteData: AdminNoteData) {
+    return { ...adminNoteData }
+  },
+  fromFirestore(
+    snapshot: QueryDocumentSnapshot,
+    options: SnapshotOptions
+  ): AdminNoteData {
+    const data = snapshot.data(options);
+    const typedData = { ...data as AdminNoteData }
+    return typedData
+  }
 }

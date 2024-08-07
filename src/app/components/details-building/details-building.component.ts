@@ -7,6 +7,9 @@ import { BuildingService } from '../../services/building/building.service';
 import { Router } from '@angular/router';
 import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../pop-ups/user-confirm-popup/popup-user-confirm.component';
 import { FullMetadata, Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { UserRole } from '../../store/models/user.model';
+import { PrivateInfoDialogComponent } from '../pop-ups/private-info-dialog/private-info-dialog.component';
+import { AdminNoteDialogComponent } from '../pop-ups/admin-note-dialog/admin-note-dialog.component';
 
 @Component({
   selector: 'app-details-building',
@@ -15,7 +18,10 @@ import { FullMetadata, Storage, getDownloadURL, ref, uploadBytesResumable } from
 })
 export class DetailsBuildingComponent {
 
+  @ViewChild('nav') slider: NgImageSliderComponent | undefined;
+
   @Input() viewedBuilding: BuildingModel | undefined;
+  @Input() role: UserRole | undefined;
 
 
   private readonly storage: Storage = inject(Storage);
@@ -128,7 +134,7 @@ export class DetailsBuildingComponent {
       setTimeout(() => {
         this.pictureReady = true;
       }, 200);
-    
+
     }
   }
 
@@ -177,8 +183,6 @@ export class DetailsBuildingComponent {
   //   })
   // }
 
-  @ViewChild('nav') slider: NgImageSliderComponent | undefined;
-
 
 
   prevImageClick() {
@@ -187,6 +191,30 @@ export class DetailsBuildingComponent {
 
   nextImageClick() {
     this.slider!.next();
+  }
+
+
+  OpenPrivateData() {
+
+      this.dialog.open(PrivateInfoDialogComponent, {
+        data: this.Private,
+        width: '400px'
+      });
+    
+  }
+
+  OpenAdminNote() {
+    const dialogRef = this.dialog.open(AdminNoteDialogComponent, {
+      data: { note: 'Existing note' },
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Note saved:', result);
+        // Handle the updated note
+      }
+    });
   }
 }
 

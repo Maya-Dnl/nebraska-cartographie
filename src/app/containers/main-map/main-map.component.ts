@@ -27,13 +27,14 @@ export class MainMapComponent {
   opened = false;
   mainMapMode: MainMapMode | undefined = undefined;
 
-  public userRole = UserRole;
+  public userRoleType = UserRole;
   public MainMapMode = MainMapMode;
 
   selectedBuildingId: null | string = null;
 
   user$: Observable<UserModel | null> = this.store.select(selectUser)
   private userId: string | undefined;
+  public userRole: UserRole | undefined;
 
   constructor(
     private store: Store<AppState>,
@@ -50,7 +51,8 @@ export class MainMapComponent {
 
 
     this.user$.subscribe(user => {
-      this.userId = user?.id
+      this.userId = user?.id,
+      this.userRole = user?.role
     })
 
     switch (this.router.url) {

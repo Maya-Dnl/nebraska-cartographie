@@ -52,6 +52,8 @@ import { globalReducer } from './store/global.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppState } from './store/app.state';
 import { PopUpUserConfirmComponent } from './components/pop-ups/user-confirm-popup/popup-user-confirm.component';
+import { AdminNoteDialogComponent } from './components/pop-ups/admin-note-dialog/admin-note-dialog.component';
+import { PrivateInfoDialogComponent } from './components/pop-ups/private-info-dialog/private-info-dialog.component';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -98,7 +100,9 @@ export const reducers: ActionReducerMap<AppState> = {
     UploadImageComponent,
     DashboardAdminComponent,
     TechnicalAdminComponent,
-    PopUpUserConfirmComponent
+    PopUpUserConfirmComponent,
+    AdminNoteDialogComponent,
+    PrivateInfoDialogComponent
   ],
   imports: [
     BrowserModule,

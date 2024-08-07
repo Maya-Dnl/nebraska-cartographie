@@ -4,15 +4,15 @@
     <div *ngIf="user$ | async as user">
       @if ((mainMapMode === MainMapMode.homeMapMode || mainMapMode === MainMapMode.myBuildingsMode)
 
-       && (user.role === userRole.techAdministrator || user.role === userRole.nebraskaAdministrator 
+       && (user.role === userRoleType.techAdministrator || user.role === userRoleType.nebraskaAdministrator 
 
-       || (user.role === userRole.contributor && user.id === selectedBuilding?.ownerUserId))) {
+       || (user.role === userRoleType.contributor && user.id === selectedBuilding?.ownerUserId))) {
 
-        <mat-icon class="edit-btn" (click)="unpublish(selectedBuilding)">edit</mat-icon>
+        <mat-icon class="edit-btn" (click)="unpublish(selectedBuilding)">unpublished</mat-icon>
       }
     </div>
     <mat-icon class="close-btn" (click)="opened = false">arrow_back</mat-icon>
-    <app-details-building [viewedBuilding]="selectedBuilding"></app-details-building>
+    <app-details-building [viewedBuilding]="selectedBuilding" [role]="userRole"></app-details-building>
   </mat-drawer>
 
   <div class="sidenav-content">
@@ -39,7 +39,7 @@
   <button (click)="saveBuildingPreview()" class="custom-nebraska" mat-flat-button color="accent"><mat-icon class="no-margin">thumb_up_alt</mat-icon></button>
   }
 
-  @if (mainMapMode === MainMapMode.previewServerMode && (user.role === userRole.nebraskaAdministrator || user.role === userRole.techAdministrator)) {
+  @if (mainMapMode === MainMapMode.previewServerMode && (user.role === userRoleType.nebraskaAdministrator || user.role === userRoleType.techAdministrator)) {
     <button mat-flat-button class="custom-nebraska" color="warn"><mat-icon class="no-margin">delete</mat-icon></button>
     <button [routerLink]="['/edit-building', selectedBuildingId]" class="custom-nebraska modify-btn"
     mat-button><mat-icon class="no-margin">edit</mat-icon></button>

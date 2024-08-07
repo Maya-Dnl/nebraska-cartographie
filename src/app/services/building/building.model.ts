@@ -87,6 +87,12 @@ export interface PrivateBuildingData
   phoneNumber: string | undefined;
 }
 
+export interface AdminNoteData
+{
+  text: string;
+  creationDate: string;
+  lastUpdate: string; 
+}
 
 
 export enum BuildingStatus {
