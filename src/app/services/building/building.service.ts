@@ -78,16 +78,27 @@ export class BuildingService {
     return addedBuildingDocumentReference;
   }
 
-  public async SaveOrUpdateAdminNote(building: BuildingModel, adminNote: AdminNoteData): Promise<void> {
+  public async SaveOrUpdateAdminNote(building: BuildingModel, adminNotText: string): Promise<void> {
 
 
     if (building.adminNoteId !== "") {
+      let adminNoteOld = await this.getAdminNoteById(building.adminNoteId);
+
+      adminNoteOld!.lastUpdate = Date.now().toString();
+      adminNoteOld!.text = adminNotText;
+
       const documentReference = doc(this.firestore, adminNoteBuildingsCollectionName, building.adminNoteId).withConverter(adminNoteDataConverter);
       // Update the document with the new firebaseId field
-      return await updateDoc(documentReference, { ...adminNote });
+      return await updateDoc(documentReference, { ...adminNoteOld });
     }
 
     // CREATE
+    let adminNote: AdminNoteData = {
+    creationDate:  Date.now().toString(),
+    lastUpdate:  Date.now().toString(),
+    text: adminNotText
+    }
+
     let adminNotes: CollectionReference<AdminNoteData> = collection(this.firestore, adminNoteBuildingsCollectionName).withConverter(adminNoteDataConverter);
     const addedAdminNoteDocumentReference = await addDoc(adminNotes, adminNote);
 
@@ -95,6 +106,27 @@ export class BuildingService {
     building.adminNoteId = addedAdminNoteDocumentReference.id;
     return this.UpdateBuildingFromStatus(building);
 
+  }
+
+  public async getAdminNoteById(adminNoteId: string): Promise<AdminNoteData | undefined> {
+    try {
+      // Référence au document de la note admin
+      const docRef = doc(this.firestore, adminNoteBuildingsCollectionName + "/" + adminNoteId).withConverter(adminNoteDataConverter);
+      
+      // Récupération du document
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        // Conversion et retour des données AdminNote
+        return docSnap.data() as AdminNoteData;
+      } else {
+        console.error("Aucune note admin trouvée pour l'ID :", adminNoteId);
+        return undefined;
+      }
+    } catch (error) {
+      console.error("Erreur lors de la récupération de la note admin :", error);
+      throw error;
+    }
   }
 
   public async UpdateBuildingFromStatus(building: BuildingModel) {

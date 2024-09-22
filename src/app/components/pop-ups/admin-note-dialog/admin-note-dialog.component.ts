@@ -1,6 +1,7 @@
 // admin-note-dialog.component.ts
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AdminNoteData } from '../../../services/building/building.model';
 
 @Component({
   selector: 'app-admin-note-dialog',
@@ -12,9 +13,9 @@ export class AdminNoteDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AdminNoteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { note: string }
+    @Inject(MAT_DIALOG_DATA) public data: { note: AdminNoteData }
   ) {
-    this.note = data.note;
+    this.note = data.note.text;
   }
 
   save() {

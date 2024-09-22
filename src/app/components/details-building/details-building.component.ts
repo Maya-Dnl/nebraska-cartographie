@@ -1,7 +1,7 @@
 import { Component, Input, SimpleChange, ViewChild, inject } from '@angular/core';
 import { NgImageSliderComponent } from 'ng-image-slider';
 // import { BuildingFormComponent } from '../../containers/building-form/building-form.component';
-import { BConstructionWorks, BContacts, BGeneralInformations, BPictures, BuildingModel, PrivateBuildingData } from '../../services/building/building.model';
+import { AdminNoteData, BConstructionWorks, BContacts, BGeneralInformations, BPictures, BuildingModel, PrivateBuildingData } from '../../services/building/building.model';
 import { MatDialog } from '@angular/material/dialog';
 import { BuildingService } from '../../services/building/building.service';
 import { Router } from '@angular/router';
@@ -149,7 +149,7 @@ export class DetailsBuildingComponent {
       console.error("Failed to retrieve private data:", error);
     }
   }
-  
+
 
 
   // Method to get the URL of a saved picture
@@ -207,28 +207,37 @@ export class DetailsBuildingComponent {
 
   OpenPrivateData() {
 
-    if(this.role == UserRole.nebraskaAdministrator)
-    {
+    if (this.role == UserRole.nebraskaAdministrator) {
       this.loadPrivateData(this.viewedBuilding?.privateId!);
     }
-      // this.dialog.open(PrivateInfoDialogComponent, {
-      //   data: this.PrivateData,
-      //   width: '400px'
-      // });
-    
+    // this.dialog.open(PrivateInfoDialogComponent, {
+    //   data: this.PrivateData,
+    //   width: '400px'
+    // });
+
   }
 
   OpenAdminNote() {
-    const dialogRef = this.dialog.open(AdminNoteDialogComponent, {
-      data: { note: 'Existing note' },
-      width: '400px'
-    });
+    const adminNoteId = this.viewedBuilding?.adminNoteId || "";
+    
+    const adminNotePromise = adminNoteId 
+      ? this.buildingService.getAdminNoteById(adminNoteId) 
+      : Promise.resolve("");
+  
+    adminNotePromise.then(note => {
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log('Note saved:', result);
-        // Handle the updated note
-      }
+      console.log(note);
+      const dialogRef = this.dialog.open(AdminNoteDialogComponent, {
+        data: { note: note },
+        width: '400px'
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          console.log(result);
+          this.buildingService.SaveOrUpdateAdminNote(this.viewedBuilding!, result);
+        }
+      });
     });
   }
 }
