@@ -127,7 +127,7 @@
       <form [formGroup]="constructionWorksFormGroup">
         <div class="container step-container">
           <div class="row">
-            <section class="checkbox-section col" [formGroup]="selectWorks">
+            <section class="checkbox-section col" formGroupName="selectWorks">
               <div class="input-title">Nature des travaux : *</div>
               <p><mat-checkbox formControlName="neuf">Neuf</mat-checkbox></p>
               <p><mat-checkbox formControlName="extension">Extension</mat-checkbox></p>
@@ -135,6 +135,8 @@
               <p><mat-checkbox formControlName="isolationExt">Isolation thermique extérieure</mat-checkbox></p>
               <p><mat-checkbox formControlName="isolationInt">Isolation thermique intérieure</mat-checkbox></p>
             </section>
+            <mat-error *ngIf="constructionWorksFormGroup.get('selectWorks')!.hasError('atLeastOneRequired')">Merci de
+              selectionner au moins une proposition</mat-error>
           </div>
 
           <div class="row">

@@ -1,5 +1,5 @@
 import { Component, Inject, Input } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { BPictures, BuildingModel, BuildingStatus } from '../../services/building/building.model';
 import { BuildingService } from '../../services/building/building.service';
@@ -48,13 +48,16 @@ export class BuildingFormComponent {
 
   constructionWorksFormGroup: FormGroup | undefined = undefined;
 
-  selectWorks = this.formBuilder.group({
-    neuf: [false],
-    extension: [false],
-    renovation: [false],
-    isolationExt: [false],
-    isolationInt: [false]
-  });
+  // Fonction de validation personnalisée
+  atLeastOneCheckboxChecked(control: AbstractControl): { [key: string]: boolean } | null {
+    const controls = control.value;
+    // Vérifie si au moins une des cases à cocher est à 'true'
+    const isAtLeastOneChecked = Object.values(controls).some(value => value === true);
+
+    return isAtLeastOneChecked ? null : { atLeastOneRequired: true };
+  }
+
+
 
   picturesFormGroup: FormGroup | undefined = undefined;
   tempPictures: BPictures[] = [];
@@ -162,7 +165,14 @@ export class BuildingFormComponent {
       interiorCovering: [cw ? cw.interiorCovering : ''],
       infosInteriorCovering: [cw ? cw.infosInteriorCovering : ''],
       exteriorCovering: [cw ? cw.exteriorCovering : ''],
-      infosExteriorCovering: [cw ? cw.infosExteriorCovering : '']
+      infosExteriorCovering: [cw ? cw.infosExteriorCovering : ''],
+      selectWorks: this.formBuilder.group({
+        neuf: [false],
+        extension: [false],
+        renovation: [false],
+        isolationExt: [false],
+        isolationInt: [false]
+      }, { validators: this.atLeastOneCheckboxChecked })
     });
 
     let c = this.editedBuilding != null ? this.editedBuilding.contacts : null;
