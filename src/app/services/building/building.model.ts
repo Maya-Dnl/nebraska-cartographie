@@ -57,6 +57,15 @@ export interface BConstructionWorks {
   infosInteriorCovering: string | undefined;
   exteriorCovering: string | undefined;
   infosExteriorCovering: string | undefined;
+  selectWorks: selectWorks | undefined;
+}
+
+export interface selectWorks {
+  neuf: boolean | undefined
+  extension: boolean | undefined,
+  renovation: boolean | undefined,
+  isolationExt: boolean | undefined,
+  isolationInt: boolean | undefined
 }
 
 export interface BPictures {

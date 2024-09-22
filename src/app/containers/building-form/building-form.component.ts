@@ -167,11 +167,11 @@ export class BuildingFormComponent {
       exteriorCovering: [cw ? cw.exteriorCovering : ''],
       infosExteriorCovering: [cw ? cw.infosExteriorCovering : ''],
       selectWorks: this.formBuilder.group({
-        neuf: [false],
-        extension: [false],
-        renovation: [false],
-        isolationExt: [false],
-        isolationInt: [false]
+        neuf: [cw ? cw.selectWorks?.neuf : false],
+        extension: [cw ? cw.selectWorks?.extension : false] ,
+        renovation: [cw ? cw.selectWorks?.renovation : false],
+        isolationExt: [cw ? cw.selectWorks?.isolationExt : false],
+        isolationInt: [cw ? cw.selectWorks?.isolationInt : false]
       }, { validators: this.atLeastOneCheckboxChecked })
     });
 

@@ -22,6 +22,11 @@ export class TechnicalAdminComponent {
     return value != undefined ? value : ""
   }
 
+  UndefinedToFalse(value: any)
+  {
+    return value != undefined ? true : false
+  }
+
   map(oldValue: string | undefined): any {
     if (oldValue === undefined) {
       return "";
@@ -144,7 +149,14 @@ export class TechnicalAdminComponent {
           strawBaleDensity: this.UndefinedToEmpty(oldData.bottesDensite?.toString()),
           strawBaleInfos: this.UndefinedToEmpty(oldData.bottesTailleInfos),
           strawBaleSize: this.map(oldData.bottesTaille?.objectId),
-          supplyDistance: this.UndefinedToEmpty(oldData.bottesDistanceApprovisionnement?.toString())
+          supplyDistance: this.UndefinedToEmpty(oldData.bottesDistanceApprovisionnement?.toString()),
+          selectWorks: {
+            extension: this.UndefinedToFalse(oldData.travauxExtension),
+            isolationExt: this.UndefinedToFalse(oldData.travauxIte),
+            isolationInt: this.UndefinedToFalse(oldData.travauxIti),
+            neuf: this.UndefinedToFalse(oldData.travauxNeuf),
+            renovation: this.UndefinedToFalse(oldData.travauxRenov),
+          }
         },
         contacts: {
           architect: this.UndefinedToEmpty(oldData.architecte),
