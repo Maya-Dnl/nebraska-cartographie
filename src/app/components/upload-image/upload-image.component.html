@@ -1,17 +1,15 @@
-
 <div class="row">
     @for (item of imgResultThumb; let i = $index; track item) {
 
     <div class="col-md-12 col-lg-6">
         <div class="text-center">
             <div style="width: 500px; height: 300px;">
-                <mat-icon *ngIf="imgResultThumb[i] !== placeHolder" class="delete-btn" (click)="remove(i)">delete</mat-icon>
-                <img class="rounded" [src]="imgResultThumb[i]" *ngIf="imgResultThumb[i]" style="max-width: 500px; max-height: 300px;" />
+                <mat-icon *ngIf="imgResultThumb[i] !== placeHolder" class="delete-btn"
+                    (click)="remove(i)">delete</mat-icon>
+                <img class="rounded" [src]="imgResultThumb[i]" *ngIf="imgResultThumb[i]"
+                    style="max-width: 500px; max-height: 300px;" />
             </div>
-   
-                <button class="custom-nebraska" mat-button (click)="compressFileToFixed(i)">Ajouter une photo</button>
-
-   
+            <button class="custom-nebraska" mat-button (click)="compressFileToFixed(i)">Ajouter une photo</button>
         </div>
 
     </div>
@@ -20,4 +18,3 @@
     <li> There are no items. </li>
     }
 </div>
-

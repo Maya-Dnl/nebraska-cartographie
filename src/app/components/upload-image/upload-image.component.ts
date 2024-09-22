@@ -128,10 +128,11 @@ export class UploadImageComponent {
   TempImgResultAfterCompAndThumb(result: string, index: number) {
     this.imgResultCompress[index] = result;
     this.SavePictures(index).then(
-      result => this.pictureSaved.emit({ index, metadata: result.metadata }), err => alert(err))
+      result => this.pictureSaved.emit({ index, metadata: result.metadata }), err => Promise.reject(err))  // Propager l'erreur pour stopper la chaîne)
       .then(val => {
+
         this.thumb(result, index);
-      }, (err) => console.log("eeeeeeee"));
+      }, (err) => {alert("Une erreur est survenue lors de l'enregistrement de l'image."); this.remove(index)}).catch(err => console.log("error "));
   }
 
 
@@ -160,10 +161,6 @@ export class UploadImageComponent {
 
       // Start the upload task
       const task = uploadBytesResumable(storageRef, file);
-
-      // Handle any errors during the upload process
-      task.catch(err => alert(err));
-
       // Return the task to allow further actions if needed
       return task;
     }
