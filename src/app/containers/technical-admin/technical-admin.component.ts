@@ -184,7 +184,7 @@ export class TechnicalAdminComponent {
           numberOfLevels: this.UndefinedToEmpty(oldData.niveaux?.toString()),
           totalCostOfWork: this.UndefinedToEmpty(oldData.coutTravauxTTC?.toString())
         },
-        private: {
+        privateData: {
           postalCode: this.UndefinedToEmpty(oldData.codePostal),
           contact: "",
           email: "",

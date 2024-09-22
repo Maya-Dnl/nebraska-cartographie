@@ -177,21 +177,21 @@
         </ng-template>
         <div class="contacts-tab container">
           <div class="custom-content">
-            <div *ngIf="Private?.contact">
+            <div *ngIf="PrivateData?.contact">
               <div class="title-info">Contact</div>
-              {{Private?.contact}}
+              {{PrivateData?.contact}}
             </div>
-            <div *ngIf="Private?.postalCode">
+            <div *ngIf="PrivateData?.postalCode">
               <div class="title-info">Contact</div>
-              {{Private?.postalCode}}
+              {{PrivateData?.postalCode}}
             </div>
-            <div *ngIf="Private?.email">
+            <div *ngIf="PrivateData?.email">
               <div class="title-info">Email</div>
-              {{Private?.email}}
+              {{PrivateData?.email}}
             </div>
-            <div *ngIf="Private?.phoneNumber">
+            <div *ngIf="PrivateData?.phoneNumber">
               <div class="title-info">Numéro de téléphone</div>
-              {{Private?.phoneNumber}}
+              {{PrivateData?.phoneNumber}}
             </div>
             <div *ngIf="Contacts?.projectOwner">
               <div class="title-info">Maître d'ouvrage</div>

@@ -192,7 +192,7 @@ export class BuildingFormComponent {
       otherCommentBox: [c ? c.otherCommentBox : ''],
     });
 
-    let p = this.editedBuilding != null ? this.editedBuilding.private : null;
+    let p = this.editedBuilding != null ? this.editedBuilding.privateData : null;
 
     this.privateFormGroup = this.formBuilder.group({
       contact: [p ? p.contact : '', Validators.required],
@@ -300,7 +300,7 @@ export class BuildingFormComponent {
         generalInformations: this.generalInformationsFormGroup!.getRawValue(),
         constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
         pictures: this.tempPictures!,
-        private: this.privateFormGroup!.getRawValue(),
+        privateData: this.privateFormGroup!.getRawValue(),
         contacts: this.contactsFormGroup!.getRawValue(),
       }
 
@@ -340,7 +340,7 @@ export class BuildingFormComponent {
           constructionWorks: this.constructionWorksFormGroup!.getRawValue(),
           pictures: this.tempPictures!,
           contacts: this.contactsFormGroup!.getRawValue(),
-          private: this.privateFormGroup!.getRawValue()
+          privateData: this.privateFormGroup!.getRawValue()
         }
 
         this.buildingService.SetPreviewBuilding(building);

@@ -15,7 +15,7 @@ export interface BuildingModel {
   constructionWorks: BConstructionWorks;
   pictures: BPictures[];
   contacts: BContacts;
-  private: PrivateBuildingData;
+  privateData: PrivateBuildingData;
 
 }
 

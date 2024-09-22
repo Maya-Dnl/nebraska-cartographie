@@ -50,7 +50,7 @@ export class DetailsBuildingComponent {
   Contacts: BContacts | undefined = undefined;
   ContactsIsEmpty: boolean | null = null;
 
-  Private: PrivateBuildingData | undefined = undefined;
+  PrivateData: PrivateBuildingData | undefined = undefined;
   PrivateIsEmpty: boolean | null = null;
 
   constructor(
@@ -78,8 +78,8 @@ export class DetailsBuildingComponent {
     this.Contacts = this.viewedBuilding?.contacts;
     this.ContactsIsEmpty = ObjectIsEmpty(this.Contacts);
 
-    this.Private = this.viewedBuilding?.private;
-    this.PrivateIsEmpty = ObjectIsEmpty(this.Private);
+    this.PrivateData = this.viewedBuilding?.privateData;
+    this.PrivateIsEmpty = ObjectIsEmpty(this.PrivateData);
   }
 
   GetPictures() {
@@ -139,6 +139,17 @@ export class DetailsBuildingComponent {
   }
 
 
+  async loadPrivateData(privateId: string) {
+    try {
+      this.PrivateData = await this.buildingService.getPrivateBuildingDataById(privateId);
+      if (this.PrivateData) {
+        console.log("Private data retrieved:", this.PrivateData);
+      }
+    } catch (error) {
+      console.error("Failed to retrieve private data:", error);
+    }
+  }
+  
 
 
   // Method to get the URL of a saved picture
@@ -196,10 +207,14 @@ export class DetailsBuildingComponent {
 
   OpenPrivateData() {
 
-      this.dialog.open(PrivateInfoDialogComponent, {
-        data: this.Private,
-        width: '400px'
-      });
+    if(this.role == UserRole.nebraskaAdministrator)
+    {
+      this.loadPrivateData(this.viewedBuilding?.privateId!);
+    }
+      // this.dialog.open(PrivateInfoDialogComponent, {
+      //   data: this.PrivateData,
+      //   width: '400px'
+      // });
     
   }
 

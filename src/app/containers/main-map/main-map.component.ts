@@ -242,7 +242,7 @@ export class MainMapComponent {
         panelClass: ['overlay-pop-up', 'warning-popup'],
         data: { message: "Attention cette action va entrainer la dépublication de votre construction pour permettre des modifications", modePopup: ModeConfirmPopup.OkOrBack }
       }).afterClosed().subscribe(async result => {
-        if (result === false) {
+        if (result !== true) {
           return;
         } else {
           this.buildingService.unpublishBuildings(building, this.userId!);
@@ -258,7 +258,7 @@ export class MainMapComponent {
         panelClass: ['overlay-pop-up', 'warning-popup'],
         data: { message: "Attention cette action va annuler la demande de publication de votre construction pour permettre des modifications", modePopup: ModeConfirmPopup.OkOrBack }
       }).afterClosed().subscribe(async result => {
-        if (result === false) {
+        if (result !== true) {
           return;
         } else {
           this.buildingService.unwaitingBuildings(building, this.userId!);
@@ -267,8 +267,6 @@ export class MainMapComponent {
       return;
     }
   }
-
-
 }
 
 export enum MainMapMode {

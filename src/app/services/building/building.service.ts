@@ -183,8 +183,8 @@ export class BuildingService {
       throw new Error("Building is undefined for id : " + id)
     }
 
-    const privateData = building?.private;
-    building!.private = {
+    const privateData = building?.privateData;
+    building!.privateData = {
       contact: "",
       email: "",
       phoneNumber: "",
@@ -193,6 +193,12 @@ export class BuildingService {
 
     console.log(building);
     building.status = BuildingStatus.Publish;
+
+    if(building.privateId)
+    {
+      const documentReference = doc(this.firestore, privateDataBuildingsCollectionName, building.privateId);
+      deleteDoc(documentReference);
+    }
 
     // TODO HIDE SENSIBLE DATA
     let privateDataBuildings: CollectionReference<PrivateBuildingData> = collection(this.firestore, privateDataBuildingsCollectionName).withConverter(privateBuildingConverter);
@@ -212,6 +218,25 @@ export class BuildingService {
     await deleteDoc(documentReference);
   }
 
+
+  async getPrivateBuildingDataById(privateId: string): Promise<PrivateBuildingData | undefined> {
+    try {
+      const docRef = doc(this.firestore, privateDataBuildingsCollectionName + "/" + privateId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        return docSnap.data() as PrivateBuildingData;
+      } else {
+        console.error("No private data found for ID:", privateId);
+        return undefined;
+      }
+    } catch (error) {
+      console.error("Error retrieving private data:", error);
+      throw error;
+    }
+  }
+
+
   async unwaitingBuildings(WaitingBuilding: BuildingModel, userId: string) {
     const documentReference = doc(this.firestore, waitingBuildingsCollectionName, WaitingBuilding.firebaseId);
     await deleteDoc(documentReference).then(() => {
@@ -222,7 +247,7 @@ export class BuildingService {
   async unpublishBuildings(publishedBuilding: BuildingModel, userId: string): Promise<void> {
     let privateData = await this.GetPrivateBuildingDataFromServer(publishedBuilding.privateId);
     if (privateData != undefined) {
-      publishedBuilding.private = privateData!;
+      publishedBuilding.privateData = privateData!;
     }
     publishedBuilding.lastModifiedDate = new Date().toDateString();
     publishedBuilding.status = BuildingStatus.Draft;
