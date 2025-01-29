@@ -27,7 +27,7 @@
     "firebase": "^10.11.0",
     "firebaseui-angular": "^6.2.1",
     "leaflet": "^1.9.4",
-    "ng-image-slider": "^7.0.1",
+    "ng-image-slider": "^9.0.0",
     "ngx-image-compress": "^15.1.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
