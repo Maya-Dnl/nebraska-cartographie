@@ -114,13 +114,13 @@
 <ng-template #visitorBtn>
   <div class="navbar-container-right">
     <div class="below-icon">
-      <a [routerLink]="['/home-map']" class="custom-icon">
+      <a [routerLink]="['/home-map']" class="custom-icon" data-testid="menu-button">
         <mat-icon>map</mat-icon>
       </a>
       <div>Carte</div>
     </div>
     <div class="below-icon">
-      <a [routerLink]="['/log-in']" class="custom-icon">
+      <a [routerLink]="['/log-in']" class="custom-icon" data-testid="login-menu-item">
         <mat-icon>account_circle</mat-icon>
       </a>
       <div>Connexion</div>

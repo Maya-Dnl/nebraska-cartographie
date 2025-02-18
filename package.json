@@ -41,6 +41,8 @@
     "@angular/compiler-cli": "^17.3.12",
     "@types/jasmine": "~5.1.0",
     "@types/leaflet": "^1.9.12",
+    "cypress": "latest",
+    "@cypress/schematic": "latest",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

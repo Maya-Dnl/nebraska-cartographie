@@ -67,6 +67,9 @@ export class BuildingFormComponent {
 
   editedBuilding: BuildingModel | undefined | null = undefined;
 
+  submitSuccess = false;
+  formErrors = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,

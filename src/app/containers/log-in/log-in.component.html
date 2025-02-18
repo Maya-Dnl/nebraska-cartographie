@@ -5,28 +5,35 @@
       <!-- Connexion Section -->
       <div *ngSwitchCase="1">
         <h2 class="center-title">Connexion</h2>
-        <div class="input-title">E-mail</div>
-        <mat-form-field>
-          <input matInput placeholder="construction@exemple.com" [formControl]="emailLogin" required>
-          <mat-error *ngIf="emailLogin.hasError('required')">Email est requis</mat-error>
-          <mat-error *ngIf="emailLogin.hasError('email')">Email invalide</mat-error>
-        </mat-form-field>
+        <form data-testid="login-form">
+          <div class="input-title">E-mail</div>
+          <mat-form-field>
+            <input matInput data-testid="email-input" placeholder="construction@exemple.com" [formControl]="emailLogin" required>
+            <mat-error *ngIf="emailLogin.hasError('required')">Email est requis</mat-error>
+            <mat-error *ngIf="emailLogin.hasError('email')">Email invalide</mat-error>
+          </mat-form-field>
 
-        <div class="input-title">Mot de passe</div>
-        <mat-form-field>
-          <input matInput [type]="hidePassword ? 'password' : 'text'" class="password-input" [formControl]="passwordLogin" placeholder="********">
-          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hidePassword">
-            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <mat-error *ngIf="passwordLogin.hasError('required')">Le mot de passe est requis</mat-error>
-        </mat-form-field>
+          <div class="input-title">Mot de passe</div>
+          <mat-form-field>
+            <input matInput data-testid="password-input" [type]="hidePassword ? 'password' : 'text'" class="password-input" [formControl]="passwordLogin" placeholder="********">
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePassword">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="passwordLogin.hasError('required')">Le mot de passe est requis</mat-error>
+          </mat-form-field>
+          
+          <div class="btn-custom connexion">
+            <button mat-flat-button data-testid="login-button" (click)="signIn()">Se connecter</button>
+          </div>
+          <p (click)="resetPassword()" class="btn-custom missing-mdp">Mot de passe oublié ?</p>
+          <p (click)="connectionMode = 2" class="btn-custom create-account">Créer un nouveau compte</p>
+        </form>
         
-        <div class="btn-custom connexion">
-          <button mat-flat-button (click)="signIn()">Se connecter</button>
+        <!-- Ajouter pour les messages d'erreur -->
+        <div data-testid="error-message" *ngIf="loginError" class="error-message">
+          <!-- Message d'erreur -->
         </div>
-        <p (click)="resetPassword()" class="btn-custom missing-mdp">Mot de passe oublié ?</p>
-        <p (click)="connectionMode = 2" class="btn-custom create-account">Créer un nouveau compte</p>
       </div>
 
       <!-- Inscription Section -->

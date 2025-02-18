@@ -1,7 +1,7 @@
 <div class="stepper-container container" *ngIf="user$ | async as user">
   <mat-stepper color="accent" [linear]="true" #stepper>
     <mat-step *ngIf="generalInformationsFormGroup" [stepControl]="generalInformationsFormGroup">
-      <form [formGroup]="generalInformationsFormGroup">
+      <form [formGroup]="generalInformationsFormGroup" data-testid="building-form">
         <ng-template matStepLabel>Informations Générales</ng-template>
         <div class="container step-container">
           <div class="row">
@@ -83,10 +83,10 @@
             </div>
 
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Infos sur l’usage</div>
+              <div class="input-title">Infos sur l'usage</div>
               <mat-form-field class="auto-size text-area-height">
                 <textarea style="resize: none;" matInput maxlength="400" maxlength="400"
-                  placeholder="Maison d’architecte construite en plein coeur de Grenoble, habitation particulier."
+                  placeholder="Maison d'architecte construite en plein coeur de Grenoble, habitation particulier."
                   formControlName="infosConstructionUse" rows="6"></textarea>
               </mat-form-field>
             </div>
@@ -124,7 +124,7 @@
 
     <mat-step *ngIf="constructionWorksFormGroup" [stepControl]="constructionWorksFormGroup"
       label="Travaux / Construction">
-      <form [formGroup]="constructionWorksFormGroup">
+      <form [formGroup]="constructionWorksFormGroup" data-testid="building-form">
         <div class="container step-container">
           <div class="row">
             <section class="checkbox-section col" formGroupName="selectWorks">
@@ -345,10 +345,10 @@
               </mat-form-field>
             </div>
             <div class="title-and-input-content col-md-12 col-lg-6">
-              <div class="input-title">Infos sur l’intégration des baies</div>
+              <div class="input-title">Infos sur l'intégration des baies</div>
               <mat-form-field class="auto-size text-area-height">
                 <textarea style="resize: none;" matInput maxlength="400"
-                  placeholder="Plus d'informations sur l’intégration des baies ?"
+                  placeholder="Plus d'informations sur l'intégration des baies ?"
                   formControlName="arrayIntegrationInfos"></textarea>
               </mat-form-field>
             </div>
@@ -427,7 +427,7 @@
 
 
     <mat-step *ngIf="picturesFormGroup" [stepControl]="picturesFormGroup" label="Photos">
-      <form [formGroup]="picturesFormGroup">
+      <form [formGroup]="picturesFormGroup" data-testid="building-form">
         <div class="container step-container">
           <app-upload-image [numberOfPictures]="4" [buildingId]="fileId"
             (pictureSaved)="SavedPicture($event)"></app-upload-image>
@@ -445,7 +445,7 @@
 
     <mat-step *ngIf="contactsFormGroup && privateFormGroup" [stepControl]="privateFormGroup"
       label="Participants, Contacts">
-      <form [formGroup]="privateFormGroup">
+      <form [formGroup]="privateFormGroup" data-testid="building-form">
         <div class="container step-container">
           <div class="infos-private-square">
             <p>Les coordonnées personnelles que vous entrez dans cet encart sont strictement réservées à l'association
@@ -486,7 +486,7 @@
           </div>
         </div>
       </form>
-      <form [formGroup]="contactsFormGroup">
+      <form [formGroup]="contactsFormGroup" data-testid="building-form">
         <h2>Actrices, Acteurs</h2>
 
         <div class="row">
@@ -598,4 +598,11 @@
       </form>
     </mat-step>
   </mat-stepper>
+</div>
+
+<div class="error-message" data-testid="error-message" *ngIf="formErrors">
+  <!-- error messages -->
+</div>
+<div class="success-message" data-testid="success-message" *ngIf="submitSuccess">
+  <!-- success message -->
 </div>

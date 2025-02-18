@@ -28,7 +28,7 @@ export class LogInComponent {
 
   isProductionEnvironment = environment.production;
 
-
+  loginError = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -87,6 +87,7 @@ export class LogInComponent {
         }
       })
       .catch((error) => {
+        this.loginError = true;
         let errorMessage = 'Une erreur est survenue. Veuillez réessayer plus tard.';
         
         if (error.code) {
