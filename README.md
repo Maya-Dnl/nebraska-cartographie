@@ -14,13 +14,35 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Deploy
+## Deploy Staging
 
 firebase logout 
-firebase login -> select the appropriate google account for deploy in stage or production
+firebase login -> select the appropriate google account for deploy in stage
 
-firebase deploy --only hosting:staging --project nebraska-cartographie   (dev account)
-firebase deploy --only hosting:production --project carto-nebraska       (prod account)  
+  "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ]
+
+ng build --configuration=development
+firebase deploy --only hosting:staging --project nebraska-cartographie   (with dev account)
+
+## Deploy production
+
+firebase logout 
+firebase login -> select the appropriate google account for deploy in production
+
+  "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.ts"
+                }
+              ]
+
+ng build --configuration=production
+firebase deploy --only hosting:production --project carto-nebraska    (with prod account)  
 
 ## Running unit tests
 

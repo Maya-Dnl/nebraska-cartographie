@@ -10,6 +10,7 @@ import { selectUser } from '../../store/global.selectors';
 import { firstValueFrom, lastValueFrom, Observable, of } from 'rxjs';
 import { UserModel, UserRole } from '../../store/models/user.model';
 import { LatLng } from 'leaflet';
+import { log } from '../../logger';
 
 
 @Component({
@@ -203,7 +204,7 @@ export class MainMapComponent {
         this.router.navigateByUrl("my-buildings")
       });
     }, (reason) => {
-      console.log(reason);
+      log(reason);
     })
   }
 
@@ -223,9 +224,9 @@ export class MainMapComponent {
   }
 
   onBuildingClicked($event: LatLng) {
-    console.log($event)
+    log($event)
     firstValueFrom(this.filteredBuildingList$!).then(value => {
-      console.log(value);
+      log(value);
       this.selectedBuilding = value.find(b =>
         b.generalInformations.latitude == $event.lat.toString()
         && b.generalInformations.longitude == $event.lng.toString())

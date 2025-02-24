@@ -11,6 +11,7 @@ import { getAuth, fetchSignInMethodsForEmail } from "firebase/auth";
 
 
 import UserCredential = firebase.auth.UserCredential;
+import { log } from '../logger';
 
 
 export interface ICredentials {
@@ -52,11 +53,11 @@ export class AuthProcessService {
 
     this.afa.authState.subscribe((user) => {
       if (user) {
-        console.log('User signed in:', user);
+        log('User signed in:', user);
         this.UpdateStateAfterLogin(user!);
         this.AuthReady = true;
       } else {
-        console.log('User signed out');
+        log('User signed out');
         this.AuthReady = true;
       }
     });
@@ -88,12 +89,12 @@ export class AuthProcessService {
     const auth = getAuth();
     return fetchSignInMethodsForEmail(auth, email)
       .then((signInMethods) => {
-        console.log(signInMethods);
+        log(signInMethods);
         if (signInMethods.includes('password')) {
-          console.log('Le fournisseur de connexion par mot de passe est activé pour cet email.');
+          log('Le fournisseur de connexion par mot de passe est activé pour cet email.');
           return true;
         } else {
-          console.log('Le fournisseur de connexion par mot de passe n\'est pas activé pour cet email.');
+          log('Le fournisseur de connexion par mot de passe n\'est pas activé pour cet email.');
           return false;
         }
       })
@@ -202,7 +203,7 @@ export class AuthProcessService {
     ).then((user) => {
       user.user?.sendEmailVerification();
       this.signOut();
-    }).catch(err => console.log(err))
+    }).catch(err => log(err))
   }
 
   async signOut() {

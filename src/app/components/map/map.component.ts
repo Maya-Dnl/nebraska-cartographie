@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { BuildingService } from '../../services/building/building.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpUserConfirmComponent, ModeConfirmPopup } from '../pop-ups/user-confirm-popup/popup-user-confirm.component';
+import { log } from '../../logger';
 
 const initOptions = {
   layers: [
@@ -50,13 +51,13 @@ export class MapComponent implements OnInit, OnChanges {
   onMapReady(map: L.Map) {
     this.map = map;
     this.map.on('zoomend', () => {
-      console.log("Current Zoom Level:", this.map?.getZoom());
+      log("Current Zoom Level:", this.map?.getZoom());
       this.UpdateMarkers();
     });
 
 
     this.map.on('resize', (event) => {
-      console.log("resize", event)
+      log("resize", event)
       this.CenterMap();
     });
 
@@ -184,7 +185,7 @@ export class MapComponent implements OnInit, OnChanges {
       this.layers = [markerPoint];
       markerPoint.addTo(this.map!);
     } else {
-      console.log(value);
+      log(value);
     }
   }
 

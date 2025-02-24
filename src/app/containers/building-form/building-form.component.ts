@@ -12,6 +12,7 @@ import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../../components/po
 import { selectUser } from '../../store/global.selectors';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
+import { log } from '../../logger';
 
 
 @Component({
@@ -215,7 +216,7 @@ export class BuildingFormComponent {
 
 
   SavedPicture($event: SavedPictureEventType) {
-    console.log("save pictures");
+    log("save pictures");
 
     this.tempPictures[$event.index] =
     {
@@ -228,7 +229,7 @@ export class BuildingFormComponent {
 
   // onSubmit() {
   //   this.generalInformationsFormGroup.valid
-  //   console.log('Valeurs du formulaire :', this.generalInformationsFormGroup.value);
+  //   log('Valeurs du formulaire :', this.generalInformationsFormGroup.value);
   // }
 
   checkFormStepOne() {
@@ -347,7 +348,7 @@ export class BuildingFormComponent {
         }
 
         this.buildingService.SetPreviewBuilding(building);
-        console.log(building);
+        log(building);
       }
     })
 

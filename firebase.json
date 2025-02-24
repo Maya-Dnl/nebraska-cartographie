@@ -2,6 +2,7 @@
   "hosting": [
     {
       "target": "staging",
+      "configuration": "development",
       "source": ".",
       "frameworksBackend": {}
     },

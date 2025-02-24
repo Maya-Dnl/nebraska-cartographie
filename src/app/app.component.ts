@@ -33,15 +33,15 @@ export class AppComponent {
   
   // successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult
   // ) {
-  //   console.log("successCallback", signInSuccessData)
+  //   log("successCallback", signInSuccessData)
   // }
 
   // errorCallback(errorData: FirebaseUISignInFailure
   // ) {
-  //   console.log("errorData", errorData)
+  //   log("errorData", errorData)
   // }
 
   // uiShownCallback() {
-  //   console.log("uiShownCallback")
+  //   log("uiShownCallback")
   // }
 }

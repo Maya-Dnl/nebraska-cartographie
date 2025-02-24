@@ -3,6 +3,7 @@ import { FullMetadata, Storage, deleteObject, getDownloadURL, listAll, ref, uplo
 import { DOC_ORIENTATION, NgxImageCompressService } from 'ngx-image-compress';
 import { Observable } from 'rxjs';
 import { placeholder, spiner } from './upload-image.placeholder';
+import { log } from '../../logger';
 
 export interface SavedPictureEventType {
   metadata: FullMetadata,
@@ -132,7 +133,7 @@ export class UploadImageComponent {
       .then(val => {
 
         this.thumb(result, index);
-      }, (err) => {alert("Une erreur est survenue lors de l'enregistrement de l'image."); this.remove(index)}).catch(err => console.log("error "));
+      }, (err) => {alert("Une erreur est survenue lors de l'enregistrement de l'image."); this.remove(index)}).catch(err => log("error "));
   }
 
 
@@ -140,7 +141,7 @@ export class UploadImageComponent {
     this.imageCompress.compressFile(result, DOC_ORIENTATION.Default, 100, 100, 500, 300) // 50% ratio, 50% quality
       .then(compressedImage => {
         this.imgResultThumb[index] = compressedImage;
-        console.log('Size in bytes after compression is now:', this.imageCompress.byteCount(compressedImage));
+        log('Size in bytes after compression is now:', this.imageCompress.byteCount(compressedImage));
       }, (err) => alert(err));
   }
 
@@ -149,7 +150,7 @@ export class UploadImageComponent {
     let file = this.base64ToFile(this.imgResultCompress[index], this.buildingId! + "-" + index + ".jpeg");
 
     if (file) {
-      console.log("FILE");
+      log("FILE");
 
       // Create a folder with the buildingId and store the file inside it
       const folderPath = `${this.buildingId}/`;  // This is the folder path
@@ -157,7 +158,7 @@ export class UploadImageComponent {
 
       // Create a reference to the file in Firebase Storage within the specified folder
       const storageRef = ref(this.storage, this.imgFilePath[index]);
-      console.log(storageRef);
+      log(storageRef);
 
       // Start the upload task
       const task = uploadBytesResumable(storageRef, file);
@@ -179,7 +180,7 @@ export class UploadImageComponent {
     const storageRef = ref(this.storage, imagePath);
     try {
       await deleteObject(storageRef);
-      console.log('Image successfully deleted:', imagePath);
+      log('Image successfully deleted:', imagePath);
     } catch (error) {
       console.error('Error removing image:', error);
     }

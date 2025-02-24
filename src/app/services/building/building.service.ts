@@ -4,6 +4,7 @@ import { inject, Injectable } from "@angular/core";
 import { addDoc, deleteDoc, collection, collectionData, CollectionReference, doc, Firestore, getDoc, QueryDocumentSnapshot, SnapshotOptions, DocumentData, DocumentReference } from "@angular/fire/firestore";
 import { combineLatest, map, Observable } from "rxjs";
 import { query, updateDoc, where } from "firebase/firestore";
+import { log } from "../../logger";
 
 export const publishedBuildingsCollectionName = "publishedBuildings"
 export const waitingBuildingsCollectionName = "waitingBuildings"
@@ -207,7 +208,7 @@ export class BuildingService {
 
   public async publishBuilding(id: string) {
 
-    console.log(id)
+    log(id)
     const building = await this.GetPreviewBuildingFromServer(id);
 
 
@@ -223,7 +224,7 @@ export class BuildingService {
       postalCode: ""
     };
 
-    console.log(building);
+    log(building);
     building.status = BuildingStatus.Publish;
 
     if(building.privateId)

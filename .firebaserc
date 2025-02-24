@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "carto-nebraska"
+    "default": "nebraska-cartographie"
   },
   "targets": {
     "nebraska-cartographie": {
@@ -13,11 +13,9 @@
     "carto-nebraska": {
       "hosting": {
         "production": [
-          "carto-nebraska"
+           "carto-nebraska"
         ]
       }
     }
-  },
-  "etags": {},
-  "dataconnectEmulatorConfig": {}
+  }
 }

@@ -10,6 +10,7 @@ import { FullMetadata, Storage, getDownloadURL, ref, uploadBytesResumable } from
 import { UserRole } from '../../store/models/user.model';
 import { PrivateInfoDialogComponent } from '../pop-ups/private-info-dialog/private-info-dialog.component';
 import { AdminNoteDialogComponent } from '../pop-ups/admin-note-dialog/admin-note-dialog.component';
+import { log } from '../../logger';
 
 @Component({
   selector: 'app-details-building',
@@ -68,7 +69,7 @@ export class DetailsBuildingComponent {
   }
 
   UpdateDetailObject() {
-    console.log("Update");
+    log("Update");
     this.GeneralInfo = this.viewedBuilding?.generalInformations;
     this.GeneralInfoIsEmpty = ObjectIsEmpty(this.GeneralInfo);
 
@@ -83,7 +84,7 @@ export class DetailsBuildingComponent {
   }
 
   GetPictures() {
-    console.log("GetPicture");
+    log("GetPicture");
     this.Pictures = this.viewedBuilding?.pictures;
     this.PicturesIsEmpty = false; // Always display picture
 
@@ -91,8 +92,8 @@ export class DetailsBuildingComponent {
     this.picturesReady = []
 
     if (this.Pictures !== undefined && this.Pictures.length > 0) {
-      console.log("PICTURE IS PRESENT", this.Pictures.length);
-      console.log(this.Pictures);
+      log("PICTURE IS PRESENT", this.Pictures.length);
+      log(this.Pictures);
       let index: number = 0;
       this.Pictures.forEach(picture => {
         this.imageObject.push({
@@ -106,8 +107,8 @@ export class DetailsBuildingComponent {
       })
       this.Pictures.forEach(picture => {
         this.GetPictureUrl(+picture.index, this.viewedBuilding?.filesId!).then(pictureUrl => {
-          console.log(pictureUrl);
-          console.log(picture);
+          log(pictureUrl);
+          log(picture);
           this.imageObject[+picture.index] =
           {
             image: pictureUrl,
@@ -115,15 +116,15 @@ export class DetailsBuildingComponent {
             alt: picture.alt,
             order: picture.index
           }
-          console.log(this.imageObject);
+          log(this.imageObject);
         }).finally(() => {
           this.picturesReady[+picture.index] = true;
-          console.log(this.picturesReady)
+          log(this.picturesReady)
           this.pictureReady = this.picturesReady.every(p => p === true)
         });
       })
     } else {
-      console.log("NO PICTURE !!");
+      log("NO PICTURE !!");
       this.imageObject = [];
       this.imageObject.push({
         image: 'assets/images/360_F_435592117assets_q7GtFAXFiKdxygr8qNOcNy79wzax89Qp.jpg',
@@ -143,7 +144,7 @@ export class DetailsBuildingComponent {
     try {
       this.PrivateData = await this.buildingService.getPrivateBuildingDataById(privateId);
       if (this.PrivateData) {
-        console.log("Private data retrieved:", this.PrivateData);
+        log("Private data retrieved:", this.PrivateData);
       }
     } catch (error) {
       console.error("Failed to retrieve private data:", error);
@@ -165,7 +166,7 @@ export class DetailsBuildingComponent {
     try {
       // Get the download URL
       const url = await getDownloadURL(storageRef);
-      console.log(`Download URL for image ${index}: ${url}`);
+      log(`Download URL for image ${index}: ${url}`);
       return url;
     } catch (error) {
       console.error("Error getting download URL", error);
@@ -190,7 +191,7 @@ export class DetailsBuildingComponent {
   //       this.router.navigateByUrl("my-buildings")
   //     });
   //   }, (reason) => {
-  //     console.log(reason);
+  //     log(reason);
   //   })
   // }
 
@@ -226,7 +227,7 @@ export class DetailsBuildingComponent {
   
     adminNotePromise.then(note => {
 
-      console.log(note);
+      log(note);
       const dialogRef = this.dialog.open(AdminNoteDialogComponent, {
         data: { note: note },
         width: '400px'
@@ -234,7 +235,7 @@ export class DetailsBuildingComponent {
   
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          console.log(result);
+          log(result);
           this.buildingService.SaveOrUpdateAdminNote(this.viewedBuilding!, result);
         }
       });

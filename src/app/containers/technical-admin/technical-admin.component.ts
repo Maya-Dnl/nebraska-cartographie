@@ -4,6 +4,7 @@ import { ConstructionData } from './models/oldBuildingData.model';
 import { BuildingModel, BuildingStatus } from '../../services/building/building.model';
 import { BuildingService } from '../../services/building/building.service';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { log } from '../../logger';
 @Component({
   selector: 'app-technical-admin',
   templateUrl: './technical-admin.component.html',
@@ -196,7 +197,7 @@ export class TechnicalAdminComponent {
         pictures: []
       }
 
-      console.log(newBuilding);
+      log(newBuilding);
 
 
       // waitingBuildings.forEach(value => {

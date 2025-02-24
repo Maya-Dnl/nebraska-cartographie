@@ -11,6 +11,7 @@ import { environment } from '../../../environments/environment';
 import { UserRole } from '../../store/models/user.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ModeConfirmPopup, PopUpUserConfirmComponent } from '../../components/pop-ups/user-confirm-popup/popup-user-confirm.component';
+import { log } from '../../logger';
 
 @Component({
   selector: 'app-log-in',
@@ -182,7 +183,7 @@ export class LogInComponent {
         panelClass: 'overlay-pop-up',
         data: { message: 'Un nouveau mail de confirmation vous a été envoyé, veuillez vérifier votre boîte mail.', modePopup: ModeConfirmPopup.Ok }
       });
-    }).catch(err => console.log(err));
+    }).catch(err => log(err));
   }
 
   resetPassword() {
