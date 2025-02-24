@@ -7,14 +7,14 @@
         <h2 class="center-title">Connexion</h2>
         <form data-testid="login-form">
           <div class="input-title">E-mail</div>
-          <mat-form-field>
+          <mat-form-field data-testid="email-form-input">
             <input matInput data-testid="email-input" placeholder="construction@exemple.com" [formControl]="emailLogin" required>
             <mat-error *ngIf="emailLogin.hasError('required')">Email est requis</mat-error>
             <mat-error *ngIf="emailLogin.hasError('email')">Email invalide</mat-error>
           </mat-form-field>
 
           <div class="input-title">Mot de passe</div>
-          <mat-form-field>
+          <mat-form-field data-testid="password-form-input">
             <input matInput data-testid="password-input" [type]="hidePassword ? 'password' : 'text'" class="password-input" [formControl]="passwordLogin" placeholder="********">
             <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hidePassword">

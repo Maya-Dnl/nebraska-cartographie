@@ -1,0 +1,9 @@
+{
+    "AppFrontUrl": "http://localhost:4200",
+    "Users": {
+        "Kevin": {
+            "Login": "kevin.michaut44@gmail.com",
+            "Mdp": "aaaaaa"
+        }
+    }
+}
