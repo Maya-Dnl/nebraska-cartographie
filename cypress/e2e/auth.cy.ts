@@ -1,11 +1,9 @@
 import * as AppConfig from "../fixtures/appConfig.local.json"
 
 
-// Tester le mecanisme d'authentification seul
-describe('Authentication Flow', () => {
-
-  before(() => {
-    cy.visit(AppConfig.AppFrontUrl);
+function CheckLoginStateAndLogoutIfNeed()
+{
+  cy.visit(AppConfig.AppFrontUrl);
     // verifier que on repart bien deconnecté
     cy.location('pathname').should('eq', '/home-map')
 
@@ -20,7 +18,13 @@ describe('Authentication Flow', () => {
         cy.log("Check start not logged OK !");
       }
     });
+}
 
+// Tester le mecanisme d'authentification seul
+describe('Authentication Flow', () => {
+
+  before(() => {
+    CheckLoginStateAndLogoutIfNeed();
   });
 
   beforeEach(() => {
@@ -62,7 +66,7 @@ describe('Authentication Flow', () => {
 
     // Todo other message 
 
-    
+
     // Test Wrong user
     cy.get('[data-testid="email-input"]').type('invalid@example.com')
     cy.get('[data-testid="password-input"]').type('wrongpassword')
@@ -85,5 +89,4 @@ describe('Authentication Flow', () => {
     // After successful login, menu should show user is logged in
     cy.getByTestId('exit-menu-item').should('contain', 'Quitter')
   })
-
 }) 
